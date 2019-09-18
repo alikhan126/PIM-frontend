@@ -21,9 +21,11 @@ export class ProductService  {
     // super(http);
 }
 
-add (dealer: any): Observable<any> {
-  return this.http.post<any>(`${AppConfig.URL_Products}`, dealer).pipe(
-    map(x => x["data"] ),
+add (record: any): Observable<any> {
+
+  alert(record)
+  return this.http.post<any>(`${AppConfig.URL_Products}`, record).pipe(
+    map(x => x ),
     tap((newP: any) => console.log(`added record w/ id=${newP}`)),
     catchError(this.handleError<any>('add'))
   );
@@ -39,21 +41,21 @@ getAll()
     catchError(this.handleError('getRecord', []))
   );
 }
-// get(id){
-//   return this.http.get<Dealer>(`${AppConfig.URL_Dealers}${id}`).pipe(
-//     map(x => x["data"] ),
-//     tap(_ => console.log(`updated dealer id=${id}`)),
-//     catchError(this.handleError<any>('getdealer'))
-//   );
-// }
+get(id){
+  return this.http.get<any>(`${AppConfig.URL_Products}${id}/`).pipe(
+    map(x => x ),
+    tap(_ => console.log(`get record=${id}`)),
+    catchError(this.handleError<any>('getRecord'))
+  );
+}
 
 
 
 
 
-// delete (dealer: any | number): Observable<any> {
-//   const id = typeof dealer === 'number' ? dealer : dealer.dealerId;
-//   const url = `${AppConfig.URL_Dealers}${id}`;
+// delete (record: any | number): Observable<any> {
+//   const id = typeof record === 'number' ? record : record.id;
+//   const url = `${AppConfig.URL_Products}${id}`;
 
 //   return this.http.delete<Dealer>(url).pipe(
 //     map(x => x["data"] ),
@@ -62,12 +64,12 @@ getAll()
 //   );
 // }
 
-// update (dealer: any): Observable<any> {
-//   return this.http.put(`${AppConfig.URL_Dealers}${dealer["dealerId"]}`, dealer).pipe(
-//     tap(_ => this.log(`updated dealer id=${dealer["dealerId"]}`)),
-//     catchError(this.handleError<any>('updatedealer'))
-//   );
-// }
+update (record: any): Observable<any> {
+  return this.http.put(`${AppConfig.URL_Products}${record["id"]}/`, record).pipe(
+    tap(_ => this.log(`updated record id=${record["id"]}`)),
+    catchError(this.handleError<any>('updateRecord'))
+  );
+}
 
 
 
@@ -78,6 +80,7 @@ private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
 
     // TODO: send the error to remote logging infrastructure
+    alert(error);
     console.log(error); // log to console instead
 
     // TODO: better job of transforming error for user consumption

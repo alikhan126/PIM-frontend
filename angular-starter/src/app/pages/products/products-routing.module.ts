@@ -20,7 +20,7 @@ const routes: Routes = [
     },    
   },
   {
-    path: 'add-product/:id',
+    path: ':id',
      component: AddProductComponent,
     data: {
       title: 'Add Product Page'

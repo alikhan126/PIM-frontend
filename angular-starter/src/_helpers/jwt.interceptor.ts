@@ -16,15 +16,15 @@ export class JwtInterceptor implements HttpInterceptor {
         let currentUser = true;
 
         // let currentUser = this.authenticationService.isAuthenticated();
-        let token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6InRlc3QyQGdtYWlsLmNvbSIsImV4cCI6MTU2ODQ5ODI0NSwiZW1haWwiOiJ0ZXN0MkBnbWFpbC5jb20ifQ.hRMIX890WHi4NUb4iD-UvpEJEj9uVQ3APpFmfyaEoLs";
+        // let token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6InRlc3QyQGdtYWlsLmNvbSIsImV4cCI6MTU2ODc1NDc3MiwiZW1haWwiOiJ0ZXN0MkBnbWFpbC5jb20ifQ.HF0t_R_O_lnDJV82GiFDF9dXlmGu1UhoID3NxrO8qZU";
         
-        if (currentUser && currentUser) {
-            request = request.clone({
-                setHeaders: {
-                    Authorization: `jwt ${token}`
-                }
-            });
-        }
+        // if (currentUser && currentUser) {
+        //     request = request.clone({
+        //         setHeaders: {
+        //             Authorization: `jwt ${token}`
+        //         }
+        //     });
+        // }
 
         return next.handle(request);
     }

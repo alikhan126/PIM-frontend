@@ -115,6 +115,7 @@
       <div class="card">
         <div class="card-header">
           <h4 class="card-title">Products</h4>
+          <a  (click)="addProduct()"   class="btn btn-floating halfway-fab btn-large bg-warning topClass"><i class="ft-plus"></i></a>
         </div>
         <div class="card-content">
           <div class="card-body">
@@ -127,12 +128,12 @@
                   <th>Price</th>
                   <th>Quantity</th>
                   <th>Amount</th>
-                  <th>Delete</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr  *ngFor="let product of products">
-                  <td><img class="media-object round-media" src="assets/img/elements/01.png" alt="Generic placeholder image"
+                  <td><img class="media-object round-media" src="{{product.images && product.images[0] && product.images[0].thumbnail_image ? product.images[0].thumbnail_image : 'https://i.ibb.co/TvF2VVK/headphone.png'}}" alt="Generic placeholder image"
                       style="height: 75px;" /></td>
                   <td>{{product.name}}</td>
                   <td>{{product.weight}}</td>
@@ -149,9 +150,9 @@
                     <!-- <a class="danger" data-original-title="" title="">
                       <i class="ft-trash font-medium-3"></i>
                     </a> -->
-                    <a class="info p-0" data-original-title="" title="">
+                    <!-- <a class="info p-0" data-original-title="" title="">
                       <i class="ft-user font-medium-3 mr-2"></i>
-                    </a>
+                    </a> -->
                     <a class="success p-0"  (click)="editProduct(product.id)" data-original-title="Edit product" title="Edit product">
                       <i class="ft-edit-2 font-medium-3 mr-2"></i>
                     </a>
@@ -160,66 +161,7 @@
                     </a>
                   </td>
                 </tr>
-                <tr>
-                  <td><img class="media-object round-media" src="assets/img/elements/07.png" alt="Generic placeholder image"
-                      style="height: 75px;" /></td>
-                  <td>Product 2</td>
-                  <td>15.9 Ounce</td>
-                  <td>$6.00</td>
-                  <td>
-                    2
-                    <div class="btn-group ml-1">
-                      <a class="bg-info px-1 py-1 white font-medium-5" href="javascript:void(0)">-</a>
-                      <a class="bg-info px-1 py-1 white font-medium-5" href="javascript:void(0)">+</a>
-                    </div>
-                  </td>
-                  <td>$12.00</td>
-                  <td>
-                    <a class="danger" data-original-title="" title="">
-                      <i class="ft-trash font-medium-3"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td><img class="media-object round-media" src="assets/img/elements/11.png" alt="Generic placeholder image"
-                      style="height: 75px;" /></td>
-                  <td>Product 3</td>
-                  <td>20.9 Ounce</td>
-                  <td>$15.78</td>
-                  <td>
-                    1
-                    <div class="btn-group ml-1">
-                      <a class="bg-info px-1 py-1 white font-medium-5" href="javascript:void(0)">-</a>
-                      <a class="bg-info px-1 py-1 white font-medium-5" href="javascript:void(0)">+</a>
-                    </div>
-                  </td>
-                  <td>$15.78</td>
-                  <td>
-                    <a class="danger" data-original-title="" title="">
-                      <i class="ft-trash font-medium-3"></i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td><img class="media-object round-media" src="assets/img/elements/14.png" alt="Generic placeholder image"
-                      style="height: 75px;" /></td>
-                  <td>Product 4</td>
-                  <td>90 Ounce</td>
-                  <td>$24.51</td>
-                  <td>
-                    3
-                    <div class="btn-group ml-1">
-                      <a class="bg-info px-1 py-1 white font-medium-5" href="javascript:void(0)">-</a>
-                      <a class="bg-info px-1 py-1 white font-medium-5" href="javascript:void(0)">+</a>
-                    </div>
-                  </td>
-                  <td>$73.53</td>
-                  <td>
-                    <a class="danger" data-original-title="" title="">
-                      <i class="ft-trash font-medium-3"></i>
-                    </a>
-                  </td>
-                </tr>
+
                 <!-- <tr>
                   <td></td>
                   <td></td>

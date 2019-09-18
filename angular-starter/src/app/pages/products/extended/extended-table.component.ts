@@ -12,19 +12,25 @@ export class ExtendedTableComponent implements OnInit {
   
     products :any[];
     totalRecords:number;
-    constructor(public productService: ProductService, private router: Router) {
+    constructor(private productService: ProductService, private router: Router) {
     }
     ngOnInit() {
         this.productService.getAll().subscribe(data => {
-            this.products = data['results'];
+            this.products = data;
             console.log(this.products)
-            this.totalRecords = data['count'];
+            // this.totalRecords = data['count'];
         });
     }
 
 
     editProduct(id){
-        alert(id)
+        this.router.navigate(['/products/' + id]);
+
+    }
+
+    addProduct(){
+        this.router.navigate(['/products/0']);
+
     }
 
 }
