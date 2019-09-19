@@ -23,7 +23,6 @@ export class ProductService  {
 
 add (record: any): Observable<any> {
 
-  alert(record)
   return this.http.post<any>(`${AppConfig.URL_Products}`, record).pipe(
     map(x => x ),
     tap((newP: any) => console.log(`added record w/ id=${newP}`)),
@@ -80,7 +79,7 @@ private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
 
     // TODO: send the error to remote logging infrastructure
-    alert(error);
+    // alert(error);
     console.log(error); // log to console instead
 
     // TODO: better job of transforming error for user consumption
