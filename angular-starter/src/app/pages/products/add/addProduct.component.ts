@@ -11,6 +11,14 @@ import {ProductService} from '../products.service';
 export class AddProductComponent implements OnInit{
 
   pObj:any={};
+  images:any=[];
+  websites:any=[];
+  tagsList:any=[];
+  brands:any=[];
+  categories:any=[];
+  productFamilies:any=[];
+  taxes:any=[];
+
   isNew :boolean = false;
 
   constructor( private route : ActivatedRoute, private router : Router, private productService: ProductService){
@@ -18,6 +26,13 @@ export class AddProductComponent implements OnInit{
   }
   ngOnInit () {
      this.getProduct();
+     this.getImages();
+     this.getWebsites();
+     this.getTags();
+     this.getBrands();
+     this.getCategories();
+     this.getProductFamilies();
+     this.getTaxes();
   }
 
   getProduct(){
@@ -35,11 +50,6 @@ export class AddProductComponent implements OnInit{
 
 
     if(this.isNew){
-      this.pObj.images=[1];
-      this.pObj.tags=[1];
-      this.pObj.websites=[1];
-      this.pObj.category=[];
-
       this.productService.add(this.pObj)
       .subscribe(result => {
         this.pObj=result;
@@ -49,19 +59,19 @@ export class AddProductComponent implements OnInit{
     }
       else {
         //ToDO change
-        let tempArray=[];
-         this.pObj.images.map(image=>{  tempArray.push(image.id?image.id:image)});
-         this.pObj.images=tempArray;
-         tempArray=[];
-         this.pObj.tags.map(image=>{  tempArray.push(image.id?image.id:image)});
-         this.pObj.tags=tempArray;
-         tempArray=[];
-         this.pObj.websites.map(image=>{  tempArray.push(image.id?image.id:image)});
-         this.pObj.websites=tempArray;
-         tempArray=[];
-         this.pObj.category.map(image=>{  tempArray.push(image.id?image.id:image)});
-         this.pObj.category=tempArray;
-         tempArray=[];
+        // let tempArray=[];
+        //  this.pObj.images.map(image=>{  tempArray.push(image.id?image.id:image)});
+        //  this.pObj.images=tempArray;
+        //  tempArray=[];
+        //  this.pObj.tags.map(image=>{  tempArray.push(image.id?image.id:image)});
+        //  this.pObj.tags=tempArray;
+        //  tempArray=[];
+        //  this.pObj.websites.map(image=>{  tempArray.push(image.id?image.id:image)});
+        //  this.pObj.websites=tempArray;
+        //  tempArray=[];
+        //  this.pObj.category.map(image=>{  tempArray.push(image.id?image.id:image)});
+        //  this.pObj.category=tempArray;
+        //  tempArray=[];
          
         
         this.productService.update(this.pObj).subscribe(aResult=>{
@@ -78,4 +88,46 @@ export class AddProductComponent implements OnInit{
     this.router.navigate(['/products']);
 
 }
+
+
+getImages(){
+  this.productService.getAllImages().subscribe(data => {
+    this.images = data['results'];
+});
+}
+
+getCategories(){
+  this.productService.getAllCategories().subscribe(data => {
+    this.categories = data['results'];
+});
+}
+getTags(){
+  this.productService.getAllTags().subscribe(data => {
+    this.tagsList = data['results'];
+});
+}
+getBrands(){
+  this.productService.getAllBrands().subscribe(data => {
+    this.brands = data['results'];
+});
+}
+
+getWebsites(){
+  this.productService.getAllWebsites().subscribe(data => {
+    this.websites = data['results'];
+});
+}
+
+getProductFamilies(){
+  this.productService.getAllProductFamilies().subscribe(data => {
+    this.productFamilies = data['results'];
+});
+}
+
+getTaxes(){
+  this.productService.getAllTaxes().subscribe(data => {
+    this.taxes = data['results'];
+});
+}
+
 }

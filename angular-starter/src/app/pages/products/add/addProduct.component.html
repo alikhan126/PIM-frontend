@@ -32,28 +32,6 @@
                  
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label >brand</label>
-                      <input type="text" [(ngModel)]="pObj.brand"  class="form-control" name="brand">
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label >Tax</label>
-                      <input type="text"  [(ngModel)]="pObj.tax" class="form-control" name="tax">
-                    </div>
-                  </div>
-                 
-                </div>
-
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label >Product family</label>
-                      <input type="text" [(ngModel)]="pObj.product_family" class="form-control" name="product_family">
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
                       <label >Slug</label>
                       <input type="text"  [(ngModel)]="pObj.slug" class="form-control" name="slug">
                     </div>
@@ -65,15 +43,124 @@
                       <input type="text" [(ngModel)]="pObj.type" class="form-control" name="type">
                     </div>
                   </div>
+                 
+                </div>
+
+                <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
                       <label >Sku</label>
                       <input type="text"  [(ngModel)]="pObj.sku" class="form-control" name="sku">
                     </div>
                   </div>
-                 
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label >Websites</label>
+                      <ng-select [items]="websites" bindLabel="url" bindValue="id" [multiple]="true" placeholder="Select websites"
+                      name="images" [(ngModel)]="pObj.Websites">
+                      <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                        <div class="ng-value" *ngFor="let item of items | slice:0:2">
+                            <span class="ng-value-label"> {{item['url']}}</span>
+                            <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+                        </div>
+                        <div class="ng-value" *ngIf="items.length > 2">
+                            <span class="ng-value-label">{{items.length - 2}} more...</span>
+                        </div>
+                    </ng-template>
+                    </ng-select>
+                    </div>
+                  </div>
                 </div>
 
+
+
+                <h4 class="form-section"><i class="ft-file-text"></i> Relationships Info</h4>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label >Images</label>
+                      <ng-select [items]="images" bindLabel="thumbnail_image_label" bindValue="id" [multiple]="true" placeholder="Select Images"
+                      name="images" [(ngModel)]="pObj.images">
+                      <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                        <div class="ng-value" *ngFor="let item of items | slice:0:2">
+                            <span class="ng-value-label"><img [src]="item['thumbnail_image']" width="20px" height="20px"> {{item['thumbnail_image_label']}}</span>
+                            <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+                        </div>
+                        <div class="ng-value" *ngIf="items.length > 2">
+                            <span class="ng-value-label">{{items.length - 2}} more...</span>
+                        </div>
+                    </ng-template>
+                    </ng-select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label >Tags</label>
+                      <ng-select [items]="tagsList" bindLabel="name" bindValue="id" [multiple]="true" placeholder="Select tags"
+                      name="images" [(ngModel)]="pObj.tags">
+                      <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                        <div class="ng-value" *ngFor="let item of items | slice:0:2">
+                            <span class="ng-value-label"> {{item['name']}}</span>
+                            <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+                        </div>
+                        <div class="ng-value" *ngIf="items.length > 2">
+                            <span class="ng-value-label">{{items.length - 2}} more...</span>
+                        </div>
+                    </ng-template>
+                    </ng-select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label >Categories</label>
+                      <ng-select [items]="categories" bindLabel="name" bindValue="id" [multiple]="true" placeholder="Select categories"
+                      name="images" [(ngModel)]="pObj.category">
+                      <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                        <div class="ng-value" *ngFor="let item of items | slice:0:2">
+                            <span class="ng-value-label"> {{item['name']}}</span>
+                            <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+                        </div>
+                        <div class="ng-value" *ngIf="items.length > 2">
+                            <span class="ng-value-label">{{items.length - 2}} more...</span>
+                        </div>
+                    </ng-template>
+                    </ng-select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label >Tax</label>
+                      <ng-select [items]="taxes" bindLabel="name" bindValue="id"  placeholder="Select tax"
+                      name="tax" [(ngModel)]="pObj.tax">
+                    </ng-select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label >Brand</label>
+                      <ng-select [items]="brands" bindLabel="name" bindValue="id"  placeholder="Select brand"
+                      name="brand" [(ngModel)]="pObj.brand">
+                    </ng-select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label >Product family</label>
+                      <ng-select [items]="productFamilies" bindLabel="name" bindValue="id"  placeholder="Select product family"
+                      name="product_family" [(ngModel)]="pObj.product_family">
+                    </ng-select>
+                    </div>
+                  </div>
+
+                  </div>
                 <h4 class="form-section"><i class="ft-file-text"></i>Additional Info </h4>
 
                 <div class="row">
@@ -234,7 +321,7 @@
                     <div class="col-md-3"><div class="form-group"><label>qty increments</label><input type="text"  [(ngModel)]="pObj.qty_increments" class="form-control" name="qty_increments"></div></div>                                                                                          
                     <div class="col-md-3"><div class="form-group"><label>use config enable qty inc</label><input type="text"  [(ngModel)]="pObj.use_config_enable_qty_inc" class="form-control" name="use_config_enable_qty_inc"></div></div>                                                                                          
                     <div class="col-md-3"><div class="form-group"><label>enable qty increments</label><input type="text"  [(ngModel)]="pObj.enable_qty_increments" class="form-control" name="enable_qty_increments"></div></div>                                                                                          
-                    <div class="col-md-3"><div class="form-group"><label>hide from product page</label><input type="text"  [(ngModel)]="pObj.hide_from_product_page" class="form-control" name="hide_from_product_page"></div></div>                                                                                          
+                    <div class="col-md-3"><div class="form-group"><label>hide from product page</label><input type="checkbox"  [(ngModel)]="pObj.hide_from_product_page" class="form-control" name="hide_from_product_page"></div></div>                                                                                          
                     
                  </div>
                  <div class="row">

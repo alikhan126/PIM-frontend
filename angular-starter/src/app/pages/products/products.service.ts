@@ -40,6 +40,7 @@ getAll()
     catchError(this.handleError('getRecord', []))
   );
 }
+
 get(id){
   return this.http.get<any>(`${AppConfig.URL_Products}${id}/`).pipe(
     map(x => x ),
@@ -47,6 +48,84 @@ get(id){
     catchError(this.handleError<any>('getRecord'))
   );
 }
+
+getAllImages() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Images}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
+getAllTags() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Tags}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
+getAllWebsites() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Websites}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
+getAllCategories() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Categories}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
+getAllBrands() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Brands}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
+
+getAllProductFamilies() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_ProductFamilies}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
+
+getAllTaxes () {
+  return this.http.get<any []>(`${AppConfig.URL_Taxes}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
 
 
 

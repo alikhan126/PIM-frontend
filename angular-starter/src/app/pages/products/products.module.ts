@@ -9,6 +9,8 @@ import { ProductsRoutingModule } from "./products-routing.module";
 import { ProductsPageComponent } from './products.component';
 import {AddProductComponent} from './add/addProduct.component';
 import { ReactiveFormsModule,FormControl,FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 
 @NgModule({
     imports: [
@@ -17,7 +19,9 @@ import { ReactiveFormsModule,FormControl,FormsModule } from '@angular/forms';
         FormsModule,
         // FormControl,
         ProductsRoutingModule ,
-        Ng2SmartTableModule  
+        Ng2SmartTableModule ,
+        NgSelectModule,
+        NgOptionHighlightModule
     ],
     declarations: [ 
         ExtendedTableComponent,
