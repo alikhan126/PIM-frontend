@@ -32,7 +32,7 @@ export class AddProductComponent implements OnInit{
      this.getBrands();
      this.getCategories();
      this.getProductFamilies();
-     this.getTaxes();
+    //  this.getTaxes();
   }
 
   getProduct(){
@@ -92,42 +92,43 @@ export class AddProductComponent implements OnInit{
 
 getImages(){
   this.productService.getAllImages().subscribe(data => {
-    this.images = data['results'];
+    this.images = data;
+
 });
 }
 
 getCategories(){
   this.productService.getAllCategories().subscribe(data => {
-    this.categories = data['results'];
+    this.categories = data;
 });
 }
 getTags(){
   this.productService.getAllTags().subscribe(data => {
-    this.tagsList = data['results'];
+    this.tagsList = data;
 });
 }
 getBrands(){
   this.productService.getAllBrands().subscribe(data => {
-    this.brands = data['results'];
+    this.brands = data;
 });
 }
 
 getWebsites(){
   this.productService.getAllWebsites().subscribe(data => {
-    this.websites = data['results'];
+    this.websites = data;
 });
 }
 
 getProductFamilies(){
   this.productService.getAllProductFamilies().subscribe(data => {
-    this.productFamilies = data['results'];
+    this.productFamilies = data;
 });
 }
 
-getTaxes(){
-  this.productService.getAllTaxes().subscribe(data => {
-    this.taxes = data['results'];
-});
-}
+// getTaxes(){
+//   this.productService.getAllTaxes().subscribe(data => {
+//     this.taxes = data['results'];
+// });
+// }
 
 }
