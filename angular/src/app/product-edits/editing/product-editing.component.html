@@ -1,0 +1,124 @@
+<!--DataTable With Editing Feature Starts-->
+<section id="editing-DataTable" class="mb-3">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">Products</div>
+            <p class="content-sub-header">Double click on any content to edit that section.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <ngx-datatable #mydatatable class="bootstrap" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="50"
+                [rowHeight]="'auto'" [rows]="rows">
+                <ngx-datatable-column name="Name">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-name'] = true" *ngIf="!editing[rowIndex + '-name']">
+                            {{value}}
+                        </span>
+                        <input autofocus (blur)="updateValue($event, 'name', rowIndex)" *ngIf="editing[rowIndex+ '-name']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="SKU">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-sku'] = true" *ngIf="!editing[rowIndex + '-sku']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'sku', rowIndex)" *ngIf="editing[rowIndex+ '-sku']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="MPN">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-mpn'] = true" *ngIf="!editing[rowIndex + '-mpn']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'mpn', rowIndex)" *ngIf="editing[rowIndex+ '-mpn']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="EAN">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-ean'] = true" *ngIf="!editing[rowIndex + '-ean']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'ean', rowIndex)" *ngIf="editing[rowIndex+ '-ean']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Amount">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-amount'] = true" *ngIf="!editing[rowIndex + '-amount']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'amount', rowIndex)" *ngIf="editing[rowIndex+ '-amount']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Description">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-description'] = true" *ngIf="!editing[rowIndex + '-description']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'description', rowIndex)" *ngIf="editing[rowIndex+ '-description']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Short Description">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-short_description'] = true" *ngIf="!editing[rowIndex + '-short_description']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'short_description', rowIndex)" *ngIf="editing[rowIndex+ '-short_description']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="EAN">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-ean'] = true" *ngIf="!editing[rowIndex + '-ean']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'ean', rowIndex)" *ngIf="editing[rowIndex+ '-ean']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Weight">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-weight'] = true" *ngIf="!editing[rowIndex + '-weight']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'weight', rowIndex)" *ngIf="editing[rowIndex+ '-weight']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Products Online">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-productsOnline'] = true" *ngIf="!editing[rowIndex + '-productsOnline']">
+                            {{value}}
+                        </span>
+                        <select *ngIf="editing[rowIndex + '-productsOnline']" (change)="updateValue($event, 'productsOnline', rowIndex)" [value]="value">
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Visibility">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-visibility'] = true" *ngIf="!editing[rowIndex + '-visibility']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'visibility', rowIndex)" *ngIf="editing[rowIndex+ '-visibility']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                
+                <ngx-datatable-column name="Amount">
+                    <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </div>
+<!--DataTable With Editing Feature Ends-->
+</section>

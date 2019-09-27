@@ -12,7 +12,7 @@ import { AuthGuard } from './shared/auth/auth-guard.service';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard/dashboard1',
+    redirectTo: 'data-tables/editing',
     pathMatch: 'full',
   },
   { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
