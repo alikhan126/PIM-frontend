@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 datatable-header-cell.datatable-header-cell.sortable.resizeable.ng-star-inserted {
-    width: 350px !important;
+    width: 4000px !important;
 }
 datatable-body-cell.datatable-body-cell.sort-active.ng-star-inserted {
-    width: 350px !important;
+    width: 4000px !important;
 }
 
 .ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
@@ -12,5 +12,5 @@ datatable-body-cell.datatable-body-cell.sort-active.ng-star-inserted {
 }
 
 ngx-datatable.bootstrap.ngx-datatable.fixed-header.fixed-row.virtualized {
-    width: 200% !important;
+    width: 760% !important;
 }

@@ -73,7 +73,7 @@
                         />
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="EAN">
+                <ngx-datatable-column name="Product Status">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-ean'] = true" *ngIf="!editing[rowIndex + '-ean']">
                             {{value}}
