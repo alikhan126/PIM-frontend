@@ -14,3 +14,7 @@ datatable-body-cell.datatable-body-cell.sort-active.ng-star-inserted {
 ngx-datatable.bootstrap.ngx-datatable.fixed-header.fixed-row.virtualized {
     width: 760% !important;
 }
+
+ngx-datatable.bootstrap.ngx-datatable.fixed-header.virtualized{
+ 	width: 760% !important;
+}
