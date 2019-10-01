@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { ProductService} from '../../pages/products/products.service';
+import { ProductService} from '../../service/products.service';
 import { Router } from '@angular/router';
 
 declare var require: any;
