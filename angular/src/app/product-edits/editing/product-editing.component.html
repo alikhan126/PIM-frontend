@@ -4,6 +4,7 @@
         <div class="col-sm-12">
             <div class="content-header">Products</div>
             <p class="content-sub-header">Double click on any content to edit that section.</p>
+            <a  (click)="addProduct()"   class="btn btn-floating halfway-fab btn-large bg-warning topClass"><i class="ft-plus text-right"></i></a>
         </div>
     </div>
     <div class="row">
@@ -66,20 +67,26 @@
                 </ngx-datatable-column>
                 <ngx-datatable-column name="Short Description">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-short_description'] = true" *ngIf="!editing[rowIndex + '-short_description']">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-shortDescription'] = true" *ngIf="!editing[rowIndex + '-shortDescription']">
                             {{value}}
                         </span>
-                        <input (blur)="updateValue($event, 'short_description', rowIndex)" *ngIf="editing[rowIndex+ '-short_description']" type="text" [value]="value"
+                        <input (blur)="updateValue($event, 'shortDescription', rowIndex)" *ngIf="editing[rowIndex+ '-shortDescription']" type="text" [value]="value"
                         />
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="Product Status">
+                <ngx-datatable-column name="Products Status">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-ean'] = true" *ngIf="!editing[rowIndex + '-ean']">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-productStatus'] = true" *ngIf="!editing[rowIndex + '-productStatus']">
                             {{value}}
                         </span>
-                        <input (blur)="updateValue($event, 'ean', rowIndex)" *ngIf="editing[rowIndex+ '-ean']" type="text" [value]="value"
-                        />
+                        <select *ngIf="editing[rowIndex + '-productStatus']" (change)="updateValue($event, 'productStatus', rowIndex)" [value]="value">
+                            <option value="Simple">Simple</option>
+                            <option value="Grouped">Grouped</option>
+                            <option value="Configurable">Configurable</option>
+                            <option value="Virtual">Virtual</option>
+                            <option value="Bundle">Bundle</option>
+                            <option value="Downloadable">Downloadable</option>
+                        </select>
                     </ng-template>
                 </ngx-datatable-column>
                 <ngx-datatable-column name="Weight">
@@ -111,12 +118,791 @@
                         />
                     </ng-template>
                 </ngx-datatable-column>
-                
-                <ngx-datatable-column name="Amount">
-                    <ng-template ngx-datatable-cell-template let-value="value">
-                        {{value}}
+                <!-- From here start adding new -->
+                <ngx-datatable-column name="Price">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-price'] = true" *ngIf="!editing[rowIndex + '-price']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'price', rowIndex)" *ngIf="editing[rowIndex+ '-price']" type="text" [value]="value"
+                        />
                     </ng-template>
                 </ngx-datatable-column>
+                <ngx-datatable-column name="Special Price">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-specialPrice'] = true" *ngIf="!editing[rowIndex + '-specialPrice']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'specialPrice', rowIndex)" *ngIf="editing[rowIndex+ '-specialPrice']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Special Price From Date">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-specialPriceFromDate'] = true" *ngIf="!editing[rowIndex + '-specialPriceFromDate']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'specialPriceFromDate', rowIndex)" *ngIf="editing[rowIndex+ '-specialPriceFromDate']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Special Price To Date">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-specialPriceToDate'] = true" *ngIf="!editing[rowIndex + '-specialPriceToDate']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'specialPriceToDate', rowIndex)" *ngIf="editing[rowIndex+ '-specialPriceToDate']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Meta Title">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-metaTitle'] = true" *ngIf="!editing[rowIndex + '-metaTitle']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'metaTitle', rowIndex)" *ngIf="editing[rowIndex+ '-metaTitle']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Meta Keywords">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-metaKeywords'] = true" *ngIf="!editing[rowIndex + '-metaKeywords']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'metaKeywords', rowIndex)" *ngIf="editing[rowIndex+ '-metaKeywords']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Visibility">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-visibility'] = true" *ngIf="!editing[rowIndex + '-visibility']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'visibility', rowIndex)" *ngIf="editing[rowIndex+ '-visibility']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Meta Description">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-metaDescription'] = true" *ngIf="!editing[rowIndex + '-metaDescription']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'metaDescription', rowIndex)" *ngIf="editing[rowIndex+ '-metaDescription']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Map Price">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-mapPrice'] = true" *ngIf="!editing[rowIndex + '-mapPrice']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'mapPrice', rowIndex)" *ngIf="editing[rowIndex+ '-mapPrice']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Msrp Price">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-msrpPrice'] = true" *ngIf="!editing[rowIndex + '-msrpPrice']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'msrpPrice', rowIndex)" *ngIf="editing[rowIndex+ '-msrpPrice']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Map Enabled">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-mapEnabled'] = true" *ngIf="!editing[rowIndex + '-mapEnabled']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'mapEnabled', rowIndex)" *ngIf="editing[rowIndex+ '-mapEnabled']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Gift Message Available">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-giftMessageAvailable'] = true" *ngIf="!editing[rowIndex + '-giftMessageAvailable']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'giftMessageAvailable', rowIndex)" *ngIf="editing[rowIndex+ '-giftMessageAvailable']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Custom Design">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-customDesign'] = true" *ngIf="!editing[rowIndex + '-customDesign']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'customDesign', rowIndex)" *ngIf="editing[rowIndex+ '-customDesign']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Custom Design From">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-customDesignFrom'] = true" *ngIf="!editing[rowIndex + '-customDesignFrom']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'customDesignFrom', rowIndex)" *ngIf="editing[rowIndex+ '-customDesignFrom']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Custom Design To">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-customDesignTo'] = true" *ngIf="!editing[rowIndex + '-customDesignTo']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'customDesignTo', rowIndex)" *ngIf="editing[rowIndex+ '-customDesignTo']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Custom Layout Update">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-customLayoutUpdate'] = true" *ngIf="!editing[rowIndex + '-customLayoutUpdate']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'customLayoutUpdate', rowIndex)" *ngIf="editing[rowIndex+ '-customLayoutUpdate']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Page Layout">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-pageLayout'] = true" *ngIf="!editing[rowIndex + '-pageLayout']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'pageLayout', rowIndex)" *ngIf="editing[rowIndex+ '-pageLayout']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Product Options">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-productOptions_container'] = true" *ngIf="!editing[rowIndex + '-productOptions_container']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'productOptions_container', rowIndex)" *ngIf="editing[rowIndex+ '-productOptions_container']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Msrp Display Actual Price Type">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-msrpDisplayActualPriceType'] = true" *ngIf="!editing[rowIndex + '-msrpDisplayActualPriceType']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'msrpDisplayActualPriceType', rowIndex)" *ngIf="editing[rowIndex+ '-msrpDisplayActualPriceType']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Country Of Manufacture">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-countryOfManufacture'] = true" *ngIf="!editing[rowIndex + '-countryOfManufacture']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'countryOfManufacture', rowIndex)" *ngIf="editing[rowIndex+ '-countryOfManufacture']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Quantity">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-quantity'] = true" *ngIf="!editing[rowIndex + '-quantity']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'quantity', rowIndex)" *ngIf="editing[rowIndex+ '-quantity']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Out Of Stock Quantity">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-outOfStockQuantity'] = true" *ngIf="!editing[rowIndex + '-outOfStockQuantity']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'outOfStockQuantity', rowIndex)" *ngIf="editing[rowIndex+ '-outOfStockQuantity']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Use Config Min Qty">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-useConfigMinQty'] = true" *ngIf="!editing[rowIndex + '-useConfigMinQty']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'useConfigMinQty', rowIndex)" *ngIf="editing[rowIndex+ '-useConfigMinQty']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Is Qty Decimal">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-isQtyDecimal'] = true" *ngIf="!editing[rowIndex + '-isQtyDecimal']">
+                            {{value}}
+                        </span>
+                        <select *ngIf="editing[rowIndex + '-isQtyDecimal']" (change)="updateValue($event, 'isQtyDecimal', rowIndex)" [value]="value">
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Out Of Stock">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-outOfStock'] = true" *ngIf="!editing[rowIndex + '-outOfStock']">
+                            {{value}}
+                        </span>
+                        <select *ngIf="editing[rowIndex + '-outOfStock']" (change)="updateValue($event, 'outOfStock', rowIndex)" [value]="value">
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Allow Backorders">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-AllowBackorders'] = true" *ngIf="!editing[rowIndex + '-AllowBackorders']">
+                            {{value}}
+                        </span>
+                        <select *ngIf="editing[rowIndex + '-AllowBackorders']" (change)="updateValue($event, 'AllowBackorders', rowIndex)" [value]="value">
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Use Config Backorders">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-useConfigBackorders'] = true" *ngIf="!editing[rowIndex + '-useConfigBackorders']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'useConfigBackorders', rowIndex)" *ngIf="editing[rowIndex+ '-useConfigBackorders']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Min Cart Qty">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-minCartQty'] = true" *ngIf="!editing[rowIndex + '-minCartQty']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'minCartQty', rowIndex)" *ngIf="editing[rowIndex+ '-minCartQty']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Use Config Min Sale Qty">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-useConfigMinSaleQty'] = true" *ngIf="!editing[rowIndex + '-useConfigMinSaleQty']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'useConfigMinSaleQty', rowIndex)" *ngIf="editing[rowIndex+ '-useConfigMinSaleQty']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Max Cart Qty">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-maxCartQty'] = true" *ngIf="!editing[rowIndex + '-maxCartQty']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'maxCartQty', rowIndex)" *ngIf="editing[rowIndex+ '-maxCartQty']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Use Config Max Sale Qty">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-useConfigMaxSaleQty'] = true" *ngIf="!editing[rowIndex + '-useConfigMaxSaleQty']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'useConfigMaxSaleQty', rowIndex)" *ngIf="editing[rowIndex+ '-useConfigMaxSaleQty']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Max Cart Qty">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-maxCartQty'] = true" *ngIf="!editing[rowIndex + '-maxCartQty']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'maxCartQty', rowIndex)" *ngIf="editing[rowIndex+ '-maxCartQty']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Is In Stock">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-isInStock'] = true" *ngIf="!editing[rowIndex + '-isInStock']">
+                            {{value}}
+                        </span>
+                         <select *ngIf="editing[rowIndex + '-isInStock']" (change)="updateValue($event, 'isInStock', rowIndex)" [value]="value">
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Notify On Stock Below">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-notifyOnStockBelow'] = true" *ngIf="!editing[rowIndex + '-notifyOnStockBelow']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'notifyOnStockBelow', rowIndex)" *ngIf="editing[rowIndex+ '-notifyOnStockBelow']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Use Config Notify Stock Qty">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-useConfigNotifyStockQty'] = true" *ngIf="!editing[rowIndex + '-useConfigNotifyStockQty']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'useConfigNotifyStockQty', rowIndex)" *ngIf="editing[rowIndex+ '-useConfigNotifyStockQty']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Manage Stock">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-manageStock'] = true" *ngIf="!editing[rowIndex + '-manageStock']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'manageStock', rowIndex)" *ngIf="editing[rowIndex+ '-manageStock']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Use Config Manage Stock">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-useConfigManageStock'] = true" *ngIf="!editing[rowIndex + '-useConfigManageStock']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'useConfigManageStock', rowIndex)" *ngIf="editing[rowIndex+ '-useConfigManageStock']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Use Config Qty Increments">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-useConfigQtyIncrements'] = true" *ngIf="!editing[rowIndex + '-useConfigQtyIncrements']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'useConfigQtyIncrements', rowIndex)" *ngIf="editing[rowIndex+ '-useConfigQtyIncrements']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Qty Increments">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-qtyIncrements'] = true" *ngIf="!editing[rowIndex + '-qtyIncrements']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'qtyIncrements', rowIndex)" *ngIf="editing[rowIndex+ '-qtyIncrements']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Use Config Enable Qty Inc">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-useConfigEnableQtyInc'] = true" *ngIf="!editing[rowIndex + '-useConfigEnableQtyInc']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'useConfigEnableQtyInc', rowIndex)" *ngIf="editing[rowIndex+ '-useConfigEnableQtyInc']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Enable Qty Increments">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-enableQtyIncrements'] = true" *ngIf="!editing[rowIndex + '-enableQtyIncrements']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'enableQtyIncrements', rowIndex)" *ngIf="editing[rowIndex+ '-enableQtyIncrements']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Hide From Product Page">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-hideFromProductPage'] = true" *ngIf="!editing[rowIndex + '-hideFromProductPage']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'hideFromProductPage', rowIndex)" *ngIf="editing[rowIndex+ '-hideFromProductPage']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Custom Options">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-customOptions'] = true" *ngIf="!editing[rowIndex + '-customOptions']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'customOptions', rowIndex)" *ngIf="editing[rowIndex+ '-customOptions']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Bundle Price Type">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-bundlePriceType'] = true" *ngIf="!editing[rowIndex + '-bundlePriceType']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'bundlePriceType', rowIndex)" *ngIf="editing[rowIndex+ '-bundlePriceType']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Bundle Sku Type">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-bundleSkuType'] = true" *ngIf="!editing[rowIndex + '-bundleSkuType']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'bundleSkuType', rowIndex)" *ngIf="editing[rowIndex+ '-bundleSkuType']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Bundle Price View">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-bundlePriceView'] = true" *ngIf="!editing[rowIndex + '-bundlePriceView']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'bundlePriceView', rowIndex)" *ngIf="editing[rowIndex+ '-bundlePriceView']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Bundle Values">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-bundleValues'] = true" *ngIf="!editing[rowIndex + '-bundleValues']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'bundleValues', rowIndex)" *ngIf="editing[rowIndex+ '-bundleValues']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Bundle Shipment Type">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-bundleShipmentType'] = true" *ngIf="!editing[rowIndex + '-bundleShipmentType']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'bundleShipmentType', rowIndex)" *ngIf="editing[rowIndex+ '-bundleShipmentType']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Configurable Variations">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-configurableVariations'] = true" *ngIf="!editing[rowIndex + '-configurableVariations']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'configurableVariations', rowIndex)" *ngIf="editing[rowIndex+ '-configurableVariations']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Configurable Variation Labels">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-configurableVariationLabels'] = true" *ngIf="!editing[rowIndex + '-configurableVariationLabels']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'configurableVariationLabels', rowIndex)" *ngIf="editing[rowIndex+ '-configurableVariationLabels']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="allergenContent">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-allergenContent'] = true" *ngIf="!editing[rowIndex + '-allergenContent']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'allergenContent', rowIndex)" *ngIf="editing[rowIndex+ '-allergenContent']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Case Quantity">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-caseQuantity'] = true" *ngIf="!editing[rowIndex + '-caseQuantity']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'caseQuantity', rowIndex)" *ngIf="editing[rowIndex+ '-caseQuantity']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Distributor">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-distributor'] = true" *ngIf="!editing[rowIndex + '-distributor']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'distributor', rowIndex)" *ngIf="editing[rowIndex+ '-distributor']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Food Nutrition">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-foodNutrition'] = true" *ngIf="!editing[rowIndex + '-foodNutrition']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'foodNutrition', rowIndex)" *ngIf="editing[rowIndex+ '-foodNutrition']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Food Property Content">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-foodPropertyContent'] = true" *ngIf="!editing[rowIndex + '-foodPropertyContent']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'foodPropertyContent', rowIndex)" *ngIf="editing[rowIndex+ '-foodPropertyContent']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Food Properties List">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-foodPropertiesList'] = true" *ngIf="!editing[rowIndex + '-foodPropertiesList']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'foodPropertiesList', rowIndex)" *ngIf="editing[rowIndex+ '-foodPropertiesList']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Fsd Category Reference">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-fsdCategoryReference'] = true" *ngIf="!editing[rowIndex + '-fsdCategoryReference']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'fsdCategoryReference', rowIndex)" *ngIf="editing[rowIndex+ '-fsdCategoryReference']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Fsd Products Reference">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-fsdProductsReference'] = true" *ngIf="!editing[rowIndex + '-fsdProductsReference']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'fsdProductsReference', rowIndex)" *ngIf="editing[rowIndex+ '-fsdProductsReference']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Fsd Product Reference">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-fsdProductReference'] = true" *ngIf="!editing[rowIndex + '-fsdProductReference']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'fsdProductReference', rowIndex)" *ngIf="editing[rowIndex+ '-fsdProductReference']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Gift Wrapping Available">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-giftWrappingAvailable'] = true" *ngIf="!editing[rowIndex + '-giftWrappingAvailable']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'giftWrappingAvailable', rowIndex)" *ngIf="editing[rowIndex+ '-giftWrappingAvailable']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Sku Height">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-skuHeight'] = true" *ngIf="!editing[rowIndex + '-skuHeight']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'skuHeight', rowIndex)" *ngIf="editing[rowIndex+ '-skuHeight']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Sku Length">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-skuLength'] = true" *ngIf="!editing[rowIndex + '-skuLength']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'skuLength', rowIndex)" *ngIf="editing[rowIndex+ '-skuLength']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Sku Width">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-skuWidth'] = true" *ngIf="!editing[rowIndex + '-skuWidth']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'skuWidth', rowIndex)" *ngIf="editing[rowIndex+ '-skuWidth']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Shelf Life">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-shelfLife'] = true" *ngIf="!editing[rowIndex + '-shelfLife']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'shelfLife', rowIndex)" *ngIf="editing[rowIndex+ '-shelfLife']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Shipping Temp">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-shippingTemp'] = true" *ngIf="!editing[rowIndex + '-shippingTemp']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'shippingTemp', rowIndex)" *ngIf="editing[rowIndex+ '-shippingTemp']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Ships In">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-shipsIn'] = true" *ngIf="!editing[rowIndex + '-shipsIn']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'shipsIn', rowIndex)" *ngIf="editing[rowIndex+ '-shipsIn']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Stock Type">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-stockType'] = true" *ngIf="!editing[rowIndex + '-stockType']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'stockType', rowIndex)" *ngIf="editing[rowIndex+ '-stockType']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Ts Dimensions Height">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-tsDimensionsHeight'] = true" *ngIf="!editing[rowIndex + '-tsDimensionsHeight']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'tsDimensionsHeight', rowIndex)" *ngIf="editing[rowIndex+ '-tsDimensionsHeight']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Ts Dimensions Length">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-tsDimensionsLength'] = true" *ngIf="!editing[rowIndex + '-tsDimensionsLength']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'tsDimensionsLength', rowIndex)" *ngIf="editing[rowIndex+ '-tsDimensionsLength']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Ts Dimensions Width">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-tsDimensionsWidth'] = true" *ngIf="!editing[rowIndex + '-tsDimensionsWidth']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'tsDimensionsWidth', rowIndex)" *ngIf="editing[rowIndex+ '-tsDimensionsWidth']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Unit Amount">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-unitAmount'] = true" *ngIf="!editing[rowIndex + '-unitAmount']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'unitAmount', rowIndex)" *ngIf="editing[rowIndex+ '-unitAmount']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Unit Amount Type">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-unitAmountType'] = true" *ngIf="!editing[rowIndex + '-unitAmountType']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'unitAmountType', rowIndex)" *ngIf="editing[rowIndex+ '-unitAmountType']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="UPC">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-upc'] = true" *ngIf="!editing[rowIndex + '-upc']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'upc', rowIndex)" *ngIf="editing[rowIndex+ '-upc']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Volume">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-volume'] = true" *ngIf="!editing[rowIndex + '-volume']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'volume', rowIndex)" *ngIf="editing[rowIndex+ '-volume']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="BulletPoints">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-bulletPoints'] = true" *ngIf="!editing[rowIndex + '-bulletPoints']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'bulletPoints', rowIndex)" *ngIf="editing[rowIndex+ '-bulletPoints']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="h1Tag">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-h1Tag'] = true" *ngIf="!editing[rowIndex + '-h1Tag']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'h1Tag', rowIndex)" *ngIf="editing[rowIndex+ '-h1Tag']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="h2Tag">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-h2Tag'] = true" *ngIf="!editing[rowIndex + '-h2Tag']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'h2Tag', rowIndex)" *ngIf="editing[rowIndex+ '-h2Tag']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="h3Tag">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-h3Tag'] = true" *ngIf="!editing[rowIndex + '-h3Tag']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'h3Tag', rowIndex)" *ngIf="editing[rowIndex+ '-h3Tag']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="AltTag">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-altTag'] = true" *ngIf="!editing[rowIndex + '-altTag']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'altTag', rowIndex)" *ngIf="editing[rowIndex+ '-altTag']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Is Decimal Divided">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-isDecimalDivided'] = true" *ngIf="!editing[rowIndex + '-isDecimalDivided']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'isDecimalDivided', rowIndex)" *ngIf="editing[rowIndex+ '-isDecimalDivided']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Crosssell Skus">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-crosssellSkus'] = true" *ngIf="!editing[rowIndex + '-crosssellSkus']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'crosssellSkus', rowIndex)" *ngIf="editing[rowIndex+ '-crosssellSkus']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Crosssell Position">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-crosssellPosition'] = true" *ngIf="!editing[rowIndex + '-crosssellPosition']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'crosssellPosition', rowIndex)" *ngIf="editing[rowIndex+ '-crosssellPosition']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Upsell Skus">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-upsellSkus'] = true" *ngIf="!editing[rowIndex + '-upsellSkus']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'upsellSkus', rowIndex)" *ngIf="editing[rowIndex+ '-upsellSkus']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Upsell Position">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-upsellPosition'] = true" *ngIf="!editing[rowIndex + '-upsellPosition']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'upsellPosition', rowIndex)" *ngIf="editing[rowIndex+ '-upsellPosition']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Deferred Stock Update">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-deferredStockUpdate'] = true" *ngIf="!editing[rowIndex + '-deferredStockUpdate']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'deferredStockUpdate', rowIndex)" *ngIf="editing[rowIndex+ '-deferredStockUpdate']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Brand">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-brand'] = true" *ngIf="!editing[rowIndex + '-brand']">
+                            {{value}}
+                        </span>
+                        <input (blur)="updateValue($event, 'brand', rowIndex)" *ngIf="editing[rowIndex+ '-brand']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+
             </ngx-datatable>
         </div>
     </div>
