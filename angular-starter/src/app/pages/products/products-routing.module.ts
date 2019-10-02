@@ -4,12 +4,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductsPageComponent } from 'app/pages/products/products.component';
 import {ExtendedTableComponent} from './extended/extended-table.component';
 import {AddProductComponent} from './add/addProduct.component';
+import { ProductsEditComponent } from './editing/product-editing.component';
 const routes: Routes = [
   {
-    path: '',
+    path: 'old',
      component: ExtendedTableComponent,
     data: {
       title: 'Products Page'
+    },    
+  },
+  {
+    path: '',
+     component: ProductsEditComponent,
+    data: {
+      title: 'Products Editing Page'
     },    
   },
   {

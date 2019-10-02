@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ExtendedTableComponent } from "./extended/extended-table.component";
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 import { ProductsRoutingModule } from "./products-routing.module";
@@ -11,6 +12,7 @@ import {AddProductComponent} from './add/addProduct.component';
 import { ReactiveFormsModule,FormControl,FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
+import { ProductsEditComponent } from './editing/product-editing.component';
 
 @NgModule({
     imports: [
@@ -21,12 +23,14 @@ import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
         ProductsRoutingModule ,
         Ng2SmartTableModule ,
         NgSelectModule,
-        NgOptionHighlightModule
+        NgOptionHighlightModule,
+        NgxDatatableModule
     ],
     declarations: [ 
         ExtendedTableComponent,
         ProductsPageComponent,
-        AddProductComponent
+        AddProductComponent,
+        ProductsEditComponent
         
     ]
 })
