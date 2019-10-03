@@ -5,6 +5,7 @@ import { ProductsPageComponent } from 'app/pages/products/products.component';
 import {ExtendedTableComponent} from './extended/extended-table.component';
 import {AddProductComponent} from './add/addProduct.component';
 import { ProductsEditComponent } from './editing/product-editing.component';
+import { ProductViewsComponent } from './product-views/productViews.component';
 const routes: Routes = [
   {
     path: 'old',
@@ -18,6 +19,13 @@ const routes: Routes = [
      component: ProductsEditComponent,
     data: {
       title: 'Products Editing Page'
+    },    
+  },
+  {
+    path: 'view',
+     component: ProductViewsComponent,
+    data: {
+      title: 'Products Views Page'
     },    
   },
   {

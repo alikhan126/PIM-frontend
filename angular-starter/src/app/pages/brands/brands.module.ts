@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { ExtendedTableComponent } from "./extended/extended-table.component";
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
-import { ProductsRoutingModule } from "./products-routing.module";
+import { ProductsRoutingModule } from "./brands-routing.module";
 
-import { ProductsPageComponent } from './products.component';
-import {AddProductComponent} from './add/addProduct.component';
+import { BrandsPageComponent } from './brands.component';
+import {AddProductComponent} from './add/addBrand.component';
 import { ReactiveFormsModule,FormControl,FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
-import { ProductsEditComponent } from './editing/product-editing.component';
-import { ProductViewsComponent } from './product-views/productViews.component';
+import { BrandsEditComponent } from './editing/brand-editing.component';
+import { BrandsViewComponent } from './brand-views/brandsViews.component';
 
 @NgModule({
     imports: [
@@ -28,12 +27,11 @@ import { ProductViewsComponent } from './product-views/productViews.component';
         NgxDatatableModule
     ],
     declarations: [ 
-        ExtendedTableComponent,
-        ProductsPageComponent,
+        BrandsPageComponent,
         AddProductComponent,
-        ProductsEditComponent,
-        ProductViewsComponent
+        BrandsEditComponent,
+        BrandsViewComponent
         
     ]
 })
-export class ProductsPagesModule { }
+export class BrandsPagesModule { }
