@@ -28,6 +28,7 @@ export class AddProductComponent implements OnInit{
   Search:any=[];
   FoodProducts:any=[];
   NonFoodProducts:any=[];
+  Virtual:any=[];
 
   isNew :boolean = false;
 
@@ -45,7 +46,7 @@ export class AddProductComponent implements OnInit{
      this.Simple = "Simple"
      this.Grouped = "Grouped"
      this.Configurable = "Configurable"
-     this.Grouped = "Virtual"
+     this.Virtual = "Virtual"
      this.Bundle = "Bundle"
      this.Downloadable = "Downloadable"
      this.Catalog = "Catalog"
