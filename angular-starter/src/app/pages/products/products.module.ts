@@ -14,6 +14,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 import { ProductsEditComponent } from './editing/product-editing.component';
 import { ProductViewsComponent } from './product-views/productViews.component';
+import { ProductsEditsComponent } from './product-edits/product-editing.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import { ProductViewsComponent } from './product-views/productViews.component';
         ProductsPageComponent,
         AddProductComponent,
         ProductsEditComponent,
-        ProductViewsComponent
+        ProductViewsComponent,
+        ProductsEditsComponent
         
     ]
 })

@@ -7,7 +7,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ProductsRoutingModule } from "./brands-routing.module";
 
 import { BrandsPageComponent } from './brands.component';
-import {AddProductComponent} from './add/addBrand.component';
+import { AddBrandComponent} from './add/addBrand.component';
 import { ReactiveFormsModule,FormControl,FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
@@ -28,7 +28,7 @@ import { BrandsViewComponent } from './brand-views/brandsViews.component';
     ],
     declarations: [ 
         BrandsPageComponent,
-        AddProductComponent,
+        AddBrandComponent,
         BrandsEditComponent,
         BrandsViewComponent
         

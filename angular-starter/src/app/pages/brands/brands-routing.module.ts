@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { BrandsPageComponent } from 'app/pages/brands/brands.component';
-import {AddProductComponent} from './add/addBrand.component';
+import { AddBrandComponent} from './add/addBrand.component';
 import { BrandsEditComponent } from './editing/brand-editing.component';
 import { BrandsViewComponent } from './brand-views/brandsViews.component';
 const routes: Routes = [
@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-     component: AddProductComponent,
+     component: AddBrandComponent,
     data: {
       title: 'Add Brand Page'
     },    

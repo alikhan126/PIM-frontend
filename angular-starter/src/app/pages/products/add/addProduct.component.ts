@@ -18,6 +18,16 @@ export class AddProductComponent implements OnInit{
   categories:any=[];
   productFamilies:any=[];
   taxes:any=[];
+  Downloadable:any=[];
+  Simple:any=[];
+  Grouped:any=[];
+  Bundle:any=[];
+  Configurable:any=[];
+  Catalog:any=[];
+  NotVisibleIndividually:any=[];
+  Search:any=[];
+  FoodProducts:any=[];
+  NonFoodProducts:any=[];
 
   isNew :boolean = false;
 
@@ -31,7 +41,18 @@ export class AddProductComponent implements OnInit{
      this.getTags();
      this.getBrands();
      this.getCategories();
-     this.getProductFamilies();
+     // this.getProductFamilies();
+     this.Simple = "Simple"
+     this.Grouped = "Grouped"
+     this.Configurable = "Configurable"
+     this.Grouped = "Virtual"
+     this.Bundle = "Bundle"
+     this.Downloadable = "Downloadable"
+     this.Catalog = "Catalog"
+     this.Search = "Search"
+     this.NotVisibleIndividually = "NotVisibleIndividually"
+     this.FoodProducts = "FoodProducts"
+     this.NonFoodProducts = "NonFoodProducts"
     //  this.getTaxes();
   }
 

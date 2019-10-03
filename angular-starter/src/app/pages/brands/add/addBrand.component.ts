@@ -8,7 +8,7 @@ import { BrandService } from '../brands.service';
   templateUrl: './addBrand.component.html',
   styleUrls: ['./addBrand.component.scss']
 })
-export class AddProductComponent implements OnInit{
+export class AddBrandComponent implements OnInit{
 
   pObj:any={};
   images:any=[];
