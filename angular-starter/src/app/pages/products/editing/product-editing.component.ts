@@ -16,8 +16,8 @@ export class ProductsEditComponent {
     websites:any=[];
     tags:any=[];
     brands:any=[];
-    categories:any=[];
-    productFamilies:any=[];
+    category:any=[];
+    // productFamilies:any=[];
     taxes:any=[];  
     editing = {};
     rows = [];
@@ -59,12 +59,12 @@ export class ProductsEditComponent {
         this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
             this.rows[rowIndex] = data;
             this.rows[rowIndex][cell] = event.target.value;
-            // this.productService.update(this.rows[rowIndex]).subscribe(data => {
-            //     this.productService.getAll().subscribe(data => {
-            //         this.rows = data['results'];
-            //         console.log(this.rows)
-            //     });
-            // });
+            this.productService.update(this.rows[rowIndex]).subscribe(data => {
+                this.productService.getAll().subscribe(data => {
+                    this.rows = data['results'];
+                    console.log(this.rows)
+                });
+            });
         });
     }
 
@@ -106,7 +106,7 @@ getImages(){
 
 getCategories(){
   this.productService.getAllCategories().subscribe(data => {
-    this.categories = data;
+    this.category = data;
 });
 }
 getTags(){
@@ -126,11 +126,11 @@ getWebsites(){
 });
 }
 
-getProductFamilies(){
-  this.productService.getAllProductFamilies().subscribe(data => {
-    this.productFamilies = data;
-});
-}
+// getProductFamilies(){
+//   this.productService.getAllProductFamilies().subscribe(data => {
+//     this.productFamilies = data;
+// });
+// }
 
 
 }

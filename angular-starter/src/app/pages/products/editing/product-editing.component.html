@@ -123,8 +123,10 @@
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-productStatus'] = true" *ngIf="!editing[rowIndex + '-productStatus']">
                             {{value}}
+                            {{row['productStatus']}}
                         </span>
-                        <select *ngIf="editing[rowIndex + '-productStatus']" (change)="updateValue($event, 'productStatus', rowIndex)" [value]="value">
+                        
+                        <select  *ngIf="editing[rowIndex + '-productStatus']" class="form-control" (change)="updateValue($event, 'productStatus', rowIndex)" [value]="row['productStatus']">
                             <option value="Simple">Simple</option>
                             <option value="Grouped">Grouped</option>
                             <option value="Configurable">Configurable</option>
@@ -148,19 +150,24 @@
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-productsOnline'] = true" *ngIf="!editing[rowIndex + '-productsOnline']">
                             {{value}}
                         </span>
-                        <select *ngIf="editing[rowIndex + '-productsOnline']" (change)="updateValue($event, 'productsOnline', rowIndex)" [value]="value">
+                        <select *ngIf="editing[rowIndex + '-productsOnline']" class="form-control" (change)="updateValue($event, 'productsOnline', rowIndex)" [value]="value">
                             <option value="true">True</option>
                             <option value="false">False</option>
                         </select>
                     </ng-template>
+                    
                 </ngx-datatable-column>
                 <ngx-datatable-column [width]="300" name="Visibility">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-visibility'] = true" *ngIf="!editing[rowIndex + '-visibility']">
                             {{value}}
                         </span>
-                        <input (blur)="updateValue($event, 'visibility', rowIndex)" *ngIf="editing[rowIndex+ '-visibility']" type="text" [value]="value"
-                        />
+                        <select *ngIf="editing[rowIndex+ '-visibility']" class="form-control" (change)="updateValue($event, 'visibility', rowIndex)" [value]="value" >
+                            <option class="form-control" value="Catalog">Catalog</option>
+                            <option class="form-control" value="Search">Search</option>
+                            <option class="form-control" value="NotVisibleIndividually">Not Visible Individually</option>
+                          </select>
+                        
                     </ng-template>
                 </ngx-datatable-column>
 
@@ -1024,6 +1031,33 @@
                         <div class="form-group">
                         <ng-select (blur)="updateRelationshipValue(getIds(row['tags']), 'tags', rowIndex)" *ngIf="editing[rowIndex+ '-tags']" [items]="tags" bindLabel="name"  [multiple]="true" placeholder="Select tags"
                         name="tags" [(ngModel)]="row['tags']" >
+                        <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                          <div class="ng-value" *ngFor="let item of items | slice:0:2">
+                              <span class="ng-value-label"> {{item['name']}}</span>
+                              <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+                          </div>
+                          <div class="ng-value" *ngIf="items.length > 2">
+                              <span class="ng-value-label">{{items.length - 2}} more...</span>
+                          </div>
+                      </ng-template>
+                      </ng-select>
+                      </div>
+                         
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [width]="500" name="Category">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-category'] = true" *ngIf="!editing[rowIndex + '-category']">
+                            {{getValues(value,'name')}}
+                        </span>
+                        <!-- <input (blur)="updateValue($event, 'brand', rowIndex)" *ngIf="editing[rowIndex+ '-brand']" type="text" [value]="value"
+                        
+                        
+                        /> -->
+                        <div class="form-group">
+                        <ng-select (blur)="updateRelationshipValue(getIds(row['category']), 'category', rowIndex)" *ngIf="editing[rowIndex+ '-category']" [items]="category" bindLabel="name"  [multiple]="true" placeholder="Select category"
+                        name="category" [(ngModel)]="row['category']" >
                         <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
                           <div class="ng-value" *ngFor="let item of items | slice:0:2">
                               <span class="ng-value-label"> {{item['name']}}</span>
