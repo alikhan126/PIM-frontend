@@ -126,7 +126,7 @@
                             {{row['productStatus']}}
                         </span>
                         
-                        <select  *ngIf="editing[rowIndex + '-productStatus']" class="form-control" (change)="updateValue($event, 'productStatus', rowIndex)" [value]="row['productStatus']">
+                        <select  *ngIf="editing[rowIndex + '-productStatus']" class="form-control" (blur)="updateValue($event, 'productStatus', rowIndex)" [value]="row['productStatus']">
                             <option value="Simple">Simple</option>
                             <option value="Grouped">Grouped</option>
                             <option value="Configurable">Configurable</option>
@@ -150,7 +150,7 @@
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-productsOnline'] = true" *ngIf="!editing[rowIndex + '-productsOnline']">
                             {{value}}
                         </span>
-                        <select *ngIf="editing[rowIndex + '-productsOnline']" class="form-control" (change)="updateValue($event, 'productsOnline', rowIndex)" [value]="value">
+                        <select *ngIf="editing[rowIndex + '-productsOnline']" class="form-control" (blur)="updateValue($event, 'productsOnline', rowIndex)" [value]="value">
                             <option value="true">True</option>
                             <option value="false">False</option>
                         </select>
@@ -162,7 +162,7 @@
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-visibility'] = true" *ngIf="!editing[rowIndex + '-visibility']">
                             {{value}}
                         </span>
-                        <select *ngIf="editing[rowIndex+ '-visibility']" class="form-control" (change)="updateValue($event, 'visibility', rowIndex)" [value]="value" >
+                        <select *ngIf="editing[rowIndex+ '-visibility']" class="form-control" (blur)="updateValue($event, 'visibility', rowIndex)" [value]="value" >
                             <option class="form-control" value="Catalog">Catalog</option>
                             <option class="form-control" value="Search">Search</option>
                             <option class="form-control" value="NotVisibleIndividually">Not Visible Individually</option>
@@ -384,7 +384,7 @@
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-isQtyDecimal'] = true" *ngIf="!editing[rowIndex + '-isQtyDecimal']">
                             {{value}}
                         </span>
-                        <select *ngIf="editing[rowIndex + '-isQtyDecimal']" (change)="updateValue($event, 'isQtyDecimal', rowIndex)" [value]="value">
+                        <select *ngIf="editing[rowIndex + '-isQtyDecimal']" (blur)="updateValue($event, 'isQtyDecimal', rowIndex)" [value]="value">
                             <option value="true">True</option>
                             <option value="false">False</option>
                         </select>
@@ -395,7 +395,7 @@
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-outOfStock'] = true" *ngIf="!editing[rowIndex + '-outOfStock']">
                             {{value}}
                         </span>
-                        <select *ngIf="editing[rowIndex + '-outOfStock']" (change)="updateValue($event, 'outOfStock', rowIndex)" [value]="value">
+                        <select *ngIf="editing[rowIndex + '-outOfStock']" (blur)="updateValue($event, 'outOfStock', rowIndex)" [value]="value">
                             <option value="true">True</option>
                             <option value="false">False</option>
                         </select>
@@ -406,7 +406,7 @@
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-AllowBackorders'] = true" *ngIf="!editing[rowIndex + '-AllowBackorders']">
                             {{value}}
                         </span>
-                        <select *ngIf="editing[rowIndex + '-AllowBackorders']" (change)="updateValue($event, 'AllowBackorders', rowIndex)" [value]="value">
+                        <select *ngIf="editing[rowIndex + '-AllowBackorders']" (blur)="updateValue($event, 'AllowBackorders', rowIndex)" [value]="value">
                             <option value="true">True</option>
                             <option value="false">False</option>
                         </select>
@@ -471,7 +471,7 @@
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-isInStock'] = true" *ngIf="!editing[rowIndex + '-isInStock']">
                             {{value}}
                         </span>
-                         <select *ngIf="editing[rowIndex + '-isInStock']" (change)="updateValue($event, 'isInStock', rowIndex)" [value]="value">
+                         <select *ngIf="editing[rowIndex + '-isInStock']" (blur)="updateValue($event, 'isInStock', rowIndex)" [value]="value">
                             <option value="true">True</option>
                             <option value="false">False</option>
                         </select>
@@ -1048,7 +1048,7 @@
 
                 <ngx-datatable-column [width]="500" name="Category">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-category'] = true" *ngIf="!editing[rowIndex + '-category']">
+                        <span title="Double click to edit" (click)="test('haha')" (dblclick)="editing[rowIndex + '-category'] = true" *ngIf="!editing[rowIndex + '-category']">
                             {{getValues(value,'name')}}
                         </span>
                         <!-- <input (blur)="updateValue($event, 'brand', rowIndex)" *ngIf="editing[rowIndex+ '-brand']" type="text" [value]="value"
