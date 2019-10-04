@@ -123,11 +123,9 @@
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-type'] = true" *ngIf="!editing[rowIndex + '-type']">
                             {{value}}
-                            {{row['productStatus']}}
                         </span>
                         
-                        <select  *ngIf="editing[rowIndex + '-productStatus']" class="form-control" (blur)="updateValue($event, 'productStatus', rowIndex)" [value]="row['productStatus']">
-                        <select *ngIf="editing[rowIndex + '-type']" (change)="updateValue($event, 'type', rowIndex)" [value]="value">
+                        <select  *ngIf="editing[rowIndex + '-type']" class="form-control" (blur)="updateValue($event, 'type', rowIndex)" [value]="row['type']">
                             <option value="Simple">Simple</option>
                             <option value="Grouped">Grouped</option>
                             <option value="Configurable">Configurable</option>
@@ -142,9 +140,9 @@
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-taxClassName'] = true" *ngIf="!editing[rowIndex + '-taxClassName']">
                             {{value}}
                         </span>
-                        <select *ngIf="editing[rowIndex + '-taxClassName']" (change)="updateValue($event, 'taxClassName', rowIndex)" [value]="value">
-                            <option value="FoodProducts">Food Products</option>
-                            <option value="NonFoodProducts">Non Food Products</option>
+                        <select class="form-control" *ngIf="editing[rowIndex + '-taxClassName']" (change)="updateValue($event, 'taxClassName', rowIndex)" [value]="value">
+                            <option class="form-control" value="FoodProducts">Food Products</option>
+                            <option class="form-control" value="NonFoodProducts">Non Food Products</option>
                         </select>
                     </ng-template>
                 </ngx-datatable-column>s
@@ -162,9 +160,9 @@
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-productsOnline'] = true" *ngIf="!editing[rowIndex + '-productsOnline']">
                             {{value}}
                         </span>
-                        <select *ngIf="editing[rowIndex + '-productsOnline']" class="form-control" (blur)="updateValue($event, 'productsOnline', rowIndex)" [value]="value">
-                            <option value="true">True</option>
-                            <option value="false">False</option>
+                        <select  class="form-control"*ngIf="editing[rowIndex + '-productsOnline']" class="form-control" (blur)="updateValue($event, 'productsOnline', rowIndex)" [value]="value">
+                            <option class="form-control" value="true">True</option>
+                            <option class="form-control" value="false">False</option>
                         </select>
                     </ng-template>
                     
@@ -179,12 +177,6 @@
                             <option class="form-control" value="Search">Search</option>
                             <option class="form-control" value="NotVisibleIndividually">Not Visible Individually</option>
                           </select>
-                        
-                        <select *ngIf="editing[rowIndex + '-visibility']" (change)="updateValue($event, 'visibility', rowIndex)" [value]="value">
-                            <option value="Catalog">Catalog</option>
-                            <option value="Search">Search</option>
-                            <option value="NotVisibleIndividually">Not Visible Individually</option>
-                        </select>
                     </ng-template>
                 </ngx-datatable-column>
 
@@ -392,9 +384,9 @@
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-isQtyDecimal'] = true" *ngIf="!editing[rowIndex + '-isQtyDecimal']">
                             {{value}}
                         </span>
-                        <select *ngIf="editing[rowIndex + '-isQtyDecimal']" (blur)="updateValue($event, 'isQtyDecimal', rowIndex)" [value]="value">
-                            <option value="true">True</option>
-                            <option value="false">False</option>
+                        <select class="form-control" *ngIf="editing[rowIndex + '-isQtyDecimal']" (blur)="updateValue($event, 'isQtyDecimal', rowIndex)" [value]="value">
+                            <option class="form-control" value="true">True</option>
+                            <option class="form-control" value="false">False</option>
                         </select>
                     </ng-template>
                 </ngx-datatable-column>
@@ -403,21 +395,19 @@
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-outOfStock'] = true" *ngIf="!editing[rowIndex + '-outOfStock']">
                             {{value}}
                         </span>
-                        <select *ngIf="editing[rowIndex + '-outOfStock']" (blur)="updateValue($event, 'outOfStock', rowIndex)" [value]="value">
-                            <option value="true">True</option>
-                            <option value="false">False</option>
+                        <select class="form-control" *ngIf="editing[rowIndex + '-outOfStock']" (blur)="updateValue($event, 'outOfStock', rowIndex)" [value]="value">
+                            <option class="form-control" value="true">True</option>
+                            <option  class="form-control" value="false">False</option>
                         </select>
                     </ng-template>
                 </ngx-datatable-column>
                 <ngx-datatable-column [width]="300" name="Allow Backorders">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-AllowBackorders'] = true" *ngIf="!editing[rowIndex + '-AllowBackorders']">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-allowBackorders'] = true" *ngIf="!editing[rowIndex + '-allowBackorders']">
                             {{value}}
                         </span>
-                        <select *ngIf="editing[rowIndex + '-AllowBackorders']" (blur)="updateValue($event, 'AllowBackorders', rowIndex)" [value]="value">
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                        </select>
+                        <input (blur)="updateValue($event, 'allowBackorders', rowIndex)" *ngIf="editing[rowIndex+ '-allowBackorders']" type="text" [value]="value"
+                        />
                     </ng-template>
                 </ngx-datatable-column>
                 <ngx-datatable-column [width]="300" name="Use Config Backorders">
@@ -479,9 +469,9 @@
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-isInStock'] = true" *ngIf="!editing[rowIndex + '-isInStock']">
                             {{value}}
                         </span>
-                         <select *ngIf="editing[rowIndex + '-isInStock']" (blur)="updateValue($event, 'isInStock', rowIndex)" [value]="value">
-                            <option value="true">True</option>
-                            <option value="false">False</option>
+                         <select *ngIf="editing[rowIndex + '-isInStock']"  class="form-control"(blur)="updateValue($event, 'isInStock', rowIndex)" [value]="value">
+                            <option class="form-control" value="true">True</option>
+                            <option class="form-control" value="false">False</option>
                         </select>
                     </ng-template>
                 </ngx-datatable-column>
