@@ -29,6 +29,7 @@ export class CategoryViewComponent {
     // DataTable Content Titles
     columns = [
         { prop: 'name' },
+        { prop: 'description' },
     ];
     // constructor() {
     //     this.rows = data;

@@ -10,28 +10,28 @@ const routes: Routes = [
     path: '',
      component: CategoryEditComponent,
     data: {
-      title: 'Brands Editing Page'
+      title: 'Categories Editing Page'
     },    
   },
   {
     path: 'view',
      component: CategoryViewComponent,
     data: {
-      title: 'Brands View Page'
+      title: 'Categories View Page'
     },    
   },
   {
     path: 'detail',
      component: CategoryPageComponent,
     data: {
-      title: 'Brands Page'
+      title: 'Categories Page'
     },    
   },
   {
     path: ':id',
      component: AddCategoryComponent,
     data: {
-      title: 'Add Brand Page'
+      title: 'Add Categories Page'
     },    
   }
 ];
@@ -40,4 +40,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ProductsRoutingModule { }
+export class CategoryRoutingModule { }

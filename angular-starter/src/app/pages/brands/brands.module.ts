@@ -4,7 +4,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
-import { ProductsRoutingModule } from "./brands-routing.module";
+import { BrandsRoutingModule } from "./brands-routing.module";
 
 import { BrandsPageComponent } from './brands.component';
 import { AddBrandComponent} from './add/addBrand.component';
@@ -20,7 +20,7 @@ import { BrandsViewComponent } from './brand-views/brandsViews.component';
         ReactiveFormsModule,
         FormsModule,
         // FormControl,
-        ProductsRoutingModule ,
+        BrandsRoutingModule ,
         Ng2SmartTableModule ,
         NgSelectModule,
         NgOptionHighlightModule,
