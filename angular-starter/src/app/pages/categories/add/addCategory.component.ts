@@ -85,8 +85,8 @@ export class AddCategoryComponent implements OnInit{
 
 
 
-  goToBrands(){
-    this.router.navigate(['/brands']);
+  goToCategories(){
+    this.router.navigate(['/categories']);
 
 }
 
