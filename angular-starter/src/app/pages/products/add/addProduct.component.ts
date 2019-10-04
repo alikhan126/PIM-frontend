@@ -43,7 +43,18 @@ export class AddProductComponent implements OnInit{
      this.getBrands();
      this.getCategories();
      // this.getProductFamilies();
-         //  this.getTaxes();
+     //  this.getTaxes();
+     this.Simple = "Simple";
+     this.Grouped = "Grouped";
+     this.Configurable = "Configurable";
+     this.Virtual = "Virtual";
+     this.Bundle = "Bundle";
+     this.Downloadable = "Downloadable";
+     this.Catalog = "Catalog";
+     this.Search = "Search";
+     this.NotVisibleIndividually = "NotVisibleIndividually";
+     this.FoodProducts = "FoodProducts";
+     this.NonFoodProducts = "NonFoodProducts";
   }
 
 

@@ -3,6 +3,7 @@
   <div class="row text-left">
     <div class="col-sm-12">
       <div class="content-header">Product</div>
+      <p class="content-sub-header">* fields are mandatory.</p>  
     </div>
   </div>
   <div class="row ">
@@ -19,7 +20,7 @@
                 <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label >Name</label>
+                      <label >Name<span style="color:Red;">*</span></label>
                       <input type="text" class="form-control" name="name" [(ngModel)]="pObj.name"   >
                     </div>
                   </div>
@@ -32,13 +33,20 @@
                  
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label >type</label>
-                      <input type="text" [(ngModel)]="pObj.type" class="form-control" name="type">
+                      <label >type<span style="color:Red;">*</span></label>
+                      <select class="form-control" [(ngModel)]="pObj.type">
+                        <option class="form-control" [ngValue]="Simple">Simple</option>
+                        <option class="form-control" [ngValue]="Grouped">Grouped</option>
+                        <option class="form-control" [ngValue]="Configurable">Configurable</option>
+                        <option class="form-control" [ngValue]="Virtual">Virtual</option>
+                        <option class="form-control" [ngValue]="Bundle">Bundle</option>
+                        <option class="form-control" [ngValue]="Downloadable">Downloadable</option>
+                      </select>
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label >Sku</label>
+                      <label >Sku<span style="color:Red;">*</span></label>
                       <input type="text"  [(ngModel)]="pObj.sku" class="form-control" name="sku">
                     </div>
                   </div>
@@ -48,7 +56,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label >Websites</label>
+                      <label >Websites<span style="color:Red;">*</span></label>
                       <ng-select [items]="websites" bindLabel="url" bindValue="id" [multiple]="true" placeholder="Select websites"
                       name="images" [(ngModel)]="pObj.Websites">
                       <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
@@ -71,7 +79,7 @@
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label >Images</label>
+                      <label >Images<span style="color:Red;">*</span></label>
                       <ng-select [items]="images" bindLabel="thumbnail_image_label" bindValue="id" [multiple]="true" placeholder="Select Images"
                       name="images" [(ngModel)]="pObj.images">
                       <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
@@ -89,7 +97,7 @@
 
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label >Tags</label>
+                      <label >Tags<span style="color:Red;">*</span></label>
                       <ng-select [items]="tagsList" bindLabel="name" bindValue="id" [multiple]="true" placeholder="Select tags"
                       name="images" [(ngModel)]="pObj.tags">
                       <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
@@ -107,7 +115,7 @@
 
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label >Categories</label>
+                      <label >Categories<span style="color:Red;">*</span></label>
                       <ng-select [items]="categories" bindLabel="name" bindValue="id" [multiple]="true" placeholder="Select categories"
                       name="images" [(ngModel)]="pObj.category">
                       <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
@@ -129,7 +137,7 @@
 
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label >Brand</label>
+                      <label >Brand<span style="color:Red;">*</span></label>
                       <ng-select [items]="brands" bindLabel="name" bindValue="id"  placeholder="Select brand"
                       name="brand" [(ngModel)]="pObj.brand">
                     </ng-select>
@@ -142,13 +150,13 @@
                 <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label >Mpn</label>
+                      <label >Mpn<span style="color:Red;">*</span></label>
                       <input type="text"  [(ngModel)]="pObj.mpn" class="form-control" name="mpn">
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label >Ean</label>
+                      <label >Ean<span style="color:Red;">*</span></label>
                       <input type="text"  [(ngModel)]="pObj.ean" class="form-control" name="ean">
                     </div>
                   </div>
@@ -166,9 +174,10 @@
                       </select>
                     </div>
                   </div>
+                  
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label >Amount</label>
+                      <label >Amount<span style="color:Red;">*</span></label>
                       <input type="number"  [(ngModel)]="pObj.amount" class="form-control" name="amount">
                     </div>
                   </div>
@@ -225,7 +234,7 @@
 
                 <h4 class="form-section"><i class="ft-file-text"></i> Price Info</h4>
                 <div class="row">
-                  <div class="col-md-3"><div class="form-group"><label>price</label><input type="number"  [(ngModel)]="pObj.price" class="form-control" name="price"></div></div>                                                                                          
+                  <div class="col-md-3"><div class="form-group"><label>price<span style="color:Red;">*</span></label><input type="number"  [(ngModel)]="pObj.price" class="form-control" name="price"></div></div>                                                                                          
                                                                                             <div class="col-md-3"><div class="form-group"><label>special price</label><input type="number"  [(ngModel)]="pObj.specialPrice" class="form-control" name="specialPrice"></div></div>                                                                                          
                                                                                             <div class="col-md-3"><div class="form-group"><label>special price from date</label><input type="number"  [(ngModel)]="pObj.specialPriceFromDate" class="form-control" name="specialPriceFromDate"></div></div>                                                                                          
                                                                                             <div class="col-md-3"><div class="form-group"><label>special price to date</label><input type="number"  [(ngModel)]="pObj.specialPriceToDate" class="form-control" name="specialPriceToDate"></div>

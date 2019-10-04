@@ -34,7 +34,6 @@ export class ProductViewsComponent {
         { name: 'SKU' },
         { name: 'MPN' },
         { name: 'EAN' },
-        { name: 'Product Status' },
         { name: 'Amount' },
         { name: 'Description' },
         { name: 'Tax Class Name' },

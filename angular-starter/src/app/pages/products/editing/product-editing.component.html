@@ -119,14 +119,15 @@
                         />
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column [width]="300" name="Products Status">
+                <ngx-datatable-column [width]="300" name="Type">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-productStatus'] = true" *ngIf="!editing[rowIndex + '-productStatus']">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-type'] = true" *ngIf="!editing[rowIndex + '-type']">
                             {{value}}
                             {{row['productStatus']}}
                         </span>
                         
                         <select  *ngIf="editing[rowIndex + '-productStatus']" class="form-control" (blur)="updateValue($event, 'productStatus', rowIndex)" [value]="row['productStatus']">
+                        <select *ngIf="editing[rowIndex + '-type']" (change)="updateValue($event, 'type', rowIndex)" [value]="value">
                             <option value="Simple">Simple</option>
                             <option value="Grouped">Grouped</option>
                             <option value="Configurable">Configurable</option>
@@ -136,6 +137,17 @@
                         </select>
                     </ng-template>
                 </ngx-datatable-column>
+                <ngx-datatable-column [width]="300" name="Tax Class Name">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-taxClassName'] = true" *ngIf="!editing[rowIndex + '-taxClassName']">
+                            {{value}}
+                        </span>
+                        <select *ngIf="editing[rowIndex + '-taxClassName']" (change)="updateValue($event, 'taxClassName', rowIndex)" [value]="value">
+                            <option value="FoodProducts">Food Products</option>
+                            <option value="NonFoodProducts">Non Food Products</option>
+                        </select>
+                    </ng-template>
+                </ngx-datatable-column>s
                 <ngx-datatable-column [width]="300" name="Weight">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-weight'] = true" *ngIf="!editing[rowIndex + '-weight']">
@@ -168,6 +180,11 @@
                             <option class="form-control" value="NotVisibleIndividually">Not Visible Individually</option>
                           </select>
                         
+                        <select *ngIf="editing[rowIndex + '-visibility']" (change)="updateValue($event, 'visibility', rowIndex)" [value]="value">
+                            <option value="Catalog">Catalog</option>
+                            <option value="Search">Search</option>
+                            <option value="NotVisibleIndividually">Not Visible Individually</option>
+                        </select>
                     </ng-template>
                 </ngx-datatable-column>
 
@@ -222,15 +239,6 @@
                             {{value}}
                         </span>
                         <input (blur)="updateValue($event, 'metaKeywords', rowIndex)" *ngIf="editing[rowIndex+ '-metaKeywords']" type="text" [value]="value"
-                        />
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column [width]="300" name="Visibility">
-                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-visibility'] = true" *ngIf="!editing[rowIndex + '-visibility']">
-                            {{value}}
-                        </span>
-                        <input (blur)="updateValue($event, 'visibility', rowIndex)" *ngIf="editing[rowIndex+ '-visibility']" type="text" [value]="value"
                         />
                     </ng-template>
                 </ngx-datatable-column>

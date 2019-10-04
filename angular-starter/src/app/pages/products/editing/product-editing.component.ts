@@ -22,6 +22,17 @@ export class ProductsEditComponent {
     editing = {};
     rows = [];
     products :any[];
+    Downloadable:any=[];
+    Simple:any=[];
+    Grouped:any=[];
+    Bundle:any=[];
+    Configurable:any=[];
+    Catalog:any=[];
+    NotVisibleIndividually:any=[];
+    Search:any=[];
+    FoodProducts:any=[];
+    NonFoodProducts:any=[];
+    Virtual:any=[];
     totalRecords:number;
     constructor(private productService: ProductService, private router: Router) {
     }
@@ -35,6 +46,17 @@ export class ProductsEditComponent {
         this.getTags();
         this.getBrands();
         this.getCategories();
+        this.Simple = "Simple";
+        this.Grouped = "Grouped";
+        this.Configurable = "Configurable";
+        this.Virtual = "Virtual";
+        this.Bundle = "Bundle";
+        this.Downloadable = "Downloadable";
+        this.Catalog = "Catalog";
+        this.Search = "Search";
+        this.NotVisibleIndividually = "NotVisibleIndividually";
+        this.FoodProducts = "FoodProducts";
+        this.NonFoodProducts = "NonFoodProducts";
     }
 
 
