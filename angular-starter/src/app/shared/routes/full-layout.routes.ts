@@ -17,5 +17,9 @@ export const Full_ROUTES: Routes = [
   {
     path: 'brands',
     loadChildren: () => import('../../pages/brands/brands.module').then(m => m.BrandsPagesModule)
+  },
+  {
+    path: 'categories',
+    loadChildren: () => import('../../pages/categories/category.module').then(m => m.CategoryPagesModule)
   }
 ];
