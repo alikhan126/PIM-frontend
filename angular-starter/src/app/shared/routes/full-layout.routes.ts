@@ -21,5 +21,9 @@ export const Full_ROUTES: Routes = [
   {
     path: 'categories',
     loadChildren: () => import('../../pages/categories/category.module').then(m => m.CategoryPagesModule)
+  },
+  {
+    path: 'websites',
+    loadChildren: () => import('../../pages/websites/websites.module').then(m => m.WebsitesPagesModule)
   }
 ];
