@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { WebsitesPageComponent } from 'app/pages/websites/websites.component';
-import { AddBrandComponent} from './add/addWebsite.component';
+import { AddWebsiteComponent} from './add/addWebsite.component';
 import { WebsitesEditComponent } from './editing/website-editing.component';
 import { WebsitesViewComponent } from './website-views/websiteViews.component';
 const routes: Routes = [
@@ -10,28 +10,28 @@ const routes: Routes = [
     path: '',
      component: WebsitesEditComponent,
     data: {
-      title: 'Brands Editing Page'
+      title: 'Websites Editing Page'
     },    
   },
   {
     path: 'view',
      component: WebsitesViewComponent,
     data: {
-      title: 'Brands View Page'
+      title: 'Websites View Page'
     },    
   },
   {
     path: 'detail',
      component: WebsitesPageComponent,
     data: {
-      title: 'Brands Page'
+      title: 'Website Page'
     },    
   },
   {
     path: ':id',
-     component: AddBrandComponent,
+     component: AddWebsiteComponent,
     data: {
-      title: 'Add Brand Page'
+      title: 'Add Website Page'
     },    
   }
 ];

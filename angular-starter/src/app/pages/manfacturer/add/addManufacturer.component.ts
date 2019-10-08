@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
-import { WebsiteService } from '../websites.service';
+import { ManufacturerService } from '../manufacturer.service';
 
 @Component({
   selector: 'app-product',
-  templateUrl: './addWebsite.component.html',
-  styleUrls: ['./addWebsite.component.scss']
+  templateUrl: './addManufacturer.component.html',
+  styleUrls: ['./addManufacturer.component.scss']
 })
-export class AddWebsiteComponent implements OnInit{
+export class AddMaufacturerComponent implements OnInit{
 
   pObj:any={};
   images:any=[];
@@ -21,11 +21,11 @@ export class AddWebsiteComponent implements OnInit{
 
   isNew :boolean = false;
 
-  constructor( private route : ActivatedRoute, private router : Router, private websiteService: WebsiteService){
+  constructor( private route : ActivatedRoute, private router : Router, private manufacturerService: ManufacturerService){
 
   }
   ngOnInit () {
-     this.getWebsite();
+     this.getManufacturer();
      // this.getImages();
      // this.getWebsites();
      // this.getTags();
@@ -35,10 +35,10 @@ export class AddWebsiteComponent implements OnInit{
     //  this.getTaxes();
   }
 
-  getWebsite(){
+  getManufacturer(){
     const id = +this.route.snapshot.paramMap.get('id');
 
-    id ? this.websiteService.get(id)
+    id ? this.manufacturerService.get(id)
     .subscribe(data => {
     this.pObj=data;
 
@@ -50,11 +50,11 @@ export class AddWebsiteComponent implements OnInit{
 
 
     if(this.isNew){
-      this.websiteService.add(this.pObj)
+      this.manufacturerService.add(this.pObj)
       .subscribe(result => {
         this.pObj=result;
         console.log(this.pObj)
-        this.pObj && this.pObj.id && this.router.navigate(['websites/'])
+        this.pObj && this.pObj.id && this.router.navigate(['manufacturer/'])
         // this.ts.success("Operation Performed Successfully");
       })
     }
@@ -75,7 +75,7 @@ export class AddWebsiteComponent implements OnInit{
         //  tempArray=[];
          
         
-        this.websiteService.update(this.pObj).subscribe(aResult=>{
+        this.manufacturerService.update(this.pObj).subscribe(aResult=>{
          alert("Updated Successfully")
         });
   }
@@ -85,49 +85,49 @@ export class AddWebsiteComponent implements OnInit{
 
 
 
-  goToWebsites(){
-    this.router.navigate(['/websites']);
+  goToManufacturer(){
+    this.router.navigate(['/manufacturer']);
 
 }
 
 
 getImages(){
-  this.websiteService.getAllImages().subscribe(data => {
+  this.manufacturerService.getAllImages().subscribe(data => {
     this.images = data;
 
 });
 }
 
 getCategories(){
-  this.websiteService.getAllCategories().subscribe(data => {
+  this.manufacturerService.getAllCategories().subscribe(data => {
     this.categories = data;
 });
 }
 getTags(){
-  this.websiteService.getAllTags().subscribe(data => {
+  this.manufacturerService.getAllTags().subscribe(data => {
     this.tagsList = data;
 });
 }
 getBrands(){
-  this.websiteService.getAllBrands().subscribe(data => {
+  this.manufacturerService.getAllBrands().subscribe(data => {
     this.brands = data;
 });
 }
 
 getWebsites(){
-  this.websiteService.getAllWebsites().subscribe(data => {
+  this.manufacturerService.getAllWebsites().subscribe(data => {
     this.websites = data;
 });
 }
 
 getProductFamilies(){
-  this.websiteService.getAllProductFamilies().subscribe(data => {
+  this.manufacturerService.getAllProductFamilies().subscribe(data => {
     this.productFamilies = data;
 });
 }
 
 // getTaxes(){
-//   this.websiteService.getAllTaxes().subscribe(data => {
+//   this.manufacturerService.getAllTaxes().subscribe(data => {
 //     this.taxes = data['results'];
 // });
 // }

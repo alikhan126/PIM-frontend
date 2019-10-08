@@ -4,15 +4,15 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
-import { WebsitesRoutingModule } from "./websites-routing.module";
+import { ManufacturerRoutingModule } from "./manufacturer-routing.module";
 
-import { WebsitesPageComponent } from './websites.component';
-import { AddWebsiteComponent} from './add/addWebsite.component';
+import { ManufacturerPageComponent } from './manufacturer.component';
+import { AddMaufacturerComponent} from './add/addManufacturer.component';
 import { ReactiveFormsModule,FormControl,FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
-import { WebsitesEditComponent } from './editing/website-editing.component';
-import { WebsitesViewComponent } from './website-views/websiteViews.component';
+import { ManufacturerEditComponent } from './editing/manufacturer-editing.component';
+import { ManufacturerViewComponent } from './manufacturer-views/manufacturerViews.component';
 
 @NgModule({
     imports: [
@@ -20,18 +20,18 @@ import { WebsitesViewComponent } from './website-views/websiteViews.component';
         ReactiveFormsModule,
         FormsModule,
         // FormControl,
-        WebsitesRoutingModule ,
+        ManufacturerRoutingModule ,
         Ng2SmartTableModule ,
         NgSelectModule,
         NgOptionHighlightModule,
         NgxDatatableModule
     ],
     declarations: [ 
-        WebsitesPageComponent,
-        AddWebsiteComponent,
-        WebsitesEditComponent,
-        WebsitesViewComponent
+        ManufacturerPageComponent,
+        AddMaufacturerComponent,
+        ManufacturerEditComponent,
+        ManufacturerViewComponent
         
     ]
 })
-export class WebsitesPagesModule { }
+export class ManufacturerPagesModule { }
