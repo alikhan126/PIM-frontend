@@ -28,7 +28,8 @@ export class WebsitesViewComponent {
 
     // DataTable Content Titles
     columns = [
-        { prop: 'name' },
+        { prop: 'url' },
+        { prop: 'kind' },
     ];
     // constructor() {
     //     this.rows = data;
