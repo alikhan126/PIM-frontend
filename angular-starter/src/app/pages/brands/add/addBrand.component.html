@@ -23,6 +23,14 @@
                       <input type="text" class="form-control" name="name" [(ngModel)]="pObj.name"   >
                     </div>
                   </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label >Manufracturer</label>
+                      <ng-select [items]="manufracturer" bindLabel="name" bindValue="id"  placeholder="Select Manufracturer"
+                      name="manufracturer" [(ngModel)]="pObj.manufacturer">
+                    </ng-select>
+                    </div>
+                  </div>
                 </div>
               </div>
 

@@ -18,6 +18,8 @@ export class AddBrandComponent implements OnInit{
   categories:any=[];
   productFamilies:any=[];
   taxes:any=[];
+  manufracturer:any=[];
+  
 
   isNew :boolean = false;
 
@@ -30,7 +32,7 @@ export class AddBrandComponent implements OnInit{
      // this.getWebsites();
      // this.getTags();
      // this.getBrands();
-     // this.getCategories();
+     this.getManufracturer();
      // this.getProductFamilies();
     //  this.getTaxes();
   }
@@ -54,7 +56,7 @@ export class AddBrandComponent implements OnInit{
       .subscribe(result => {
         this.pObj=result;
         console.log(this.pObj)
-        this.pObj && this.pObj.id && this.router.navigate(['brands/'+this.pObj.id])
+        this.pObj && this.pObj.id && this.router.navigate(['brands/'])
         // this.ts.success("Operation Performed Successfully");
       })
     }
@@ -95,6 +97,12 @@ getImages(){
   this.brandService.getAllImages().subscribe(data => {
     this.images = data;
 
+});
+}
+
+getManufracturer(){
+  this.brandService.getAllManufracturer().subscribe(data => {
+    this.manufracturer = data;
 });
 }
 

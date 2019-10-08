@@ -54,7 +54,7 @@ export class AddBrandComponent implements OnInit{
       .subscribe(result => {
         this.pObj=result;
         console.log(this.pObj)
-        this.pObj && this.pObj.id && this.router.navigate(['websites/'+this.pObj.id])
+        this.pObj && this.pObj.id && this.router.navigate(['websites/'])
         // this.ts.success("Operation Performed Successfully");
       })
     }
