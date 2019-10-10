@@ -39,8 +39,8 @@ export class ProductsEditComponent {
     }
     ngOnInit() {
         this.productService.getAll().subscribe(data => {
-            this.rows = data['results'];
-            this.temp = data['results'];
+            this.rows = data;
+            this.temp = data;
             console.log(this.rows)
         });
         this.getImages();
@@ -85,7 +85,7 @@ export class ProductsEditComponent {
             this.rows[rowIndex][cell] = event.target.value;
             this.productService.update(this.rows[rowIndex]).subscribe(data => {
                 this.productService.getAll().subscribe(data => {
-                    this.rows = data['results'];
+                    this.rows = data;
                     console.log(this.rows)
                 });
             });
@@ -100,7 +100,7 @@ export class ProductsEditComponent {
             this.rows[rowIndex][cell] = value;
             this.productService.update(this.rows[rowIndex]).subscribe(data => {
                 this.productService.getAll().subscribe(data => {
-                    this.rows = data['results'];
+                    this.rows = data;
                     console.log(this.rows)
                 });
             });

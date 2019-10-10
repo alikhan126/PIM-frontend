@@ -21,8 +21,8 @@ export class ProductViewsComponent {
     }
     ngOnInit() {
         this.productService.getAll().subscribe(data => {
-            this.rows = data['results'];
-            this.temp = data['results'];
+            this.rows = data;
+            this.temp = data;
             console.log(this.rows)
         });
     }
