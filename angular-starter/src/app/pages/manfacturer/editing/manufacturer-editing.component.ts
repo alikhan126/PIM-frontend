@@ -15,11 +15,13 @@ export class ManufacturerEditComponent {
     rows = [];
     products :any[];
     totalRecords:number;
+    temp = [];
     constructor(private manufacturerService: ManufacturerService, private router: Router) {
     }
     ngOnInit() {
         this.manufacturerService.getAll().subscribe(data => {
             this.rows = data;
+            this.temp = data;
             console.log(this.rows)
         });
     }
@@ -42,6 +44,17 @@ export class ManufacturerEditComponent {
     addManfacturer(){
         this.router.navigate(['/manufacturer/0']);
 
+    }
+
+    updateFilter(event) {
+        const val = event.target.value.toLowerCase();
+    
+        const temp = this.temp.filter(function (d) {
+            return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+        });
+    
+        // update the rows
+        this.rows = temp;
     }
 
 }

@@ -15,11 +15,13 @@ export class CategoryEditComponent {
     rows = [];
     products :any[];
     totalRecords:number;
+    temp = []
     constructor(private categoryService: CategoryService, private router: Router) {
     }
     ngOnInit() {
         this.categoryService.getAll().subscribe(data => {
             this.rows = data;
+            this.temp = data;
             console.log(this.rows)
         });
     }
@@ -42,6 +44,17 @@ export class CategoryEditComponent {
     addCategory(){
         this.router.navigate(['/categories/0']);
 
+    }
+
+    updateFilter(event) {
+        const val = event.target.value.toLowerCase();
+    
+        const temp = this.temp.filter(function (d) {
+            return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+        });
+    
+        // update the rows
+        this.rows = temp;
     }
 
 }

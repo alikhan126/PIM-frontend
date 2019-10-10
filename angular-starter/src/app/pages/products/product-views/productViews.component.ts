@@ -16,11 +16,13 @@ export class ProductViewsComponent {
     rows = [];
     products :any[];
     totalRecords:number;
+    temp = [];
     constructor(private productService: ProductService, private router: Router) {
     }
     ngOnInit() {
         this.productService.getAll().subscribe(data => {
             this.rows = data['results'];
+            this.temp = data['results'];
             console.log(this.rows)
         });
     }
@@ -136,5 +138,16 @@ export class ProductViewsComponent {
 
     getRowHeight(row) {
       return row.height;
+    }
+
+    updateFilter(event) {
+        const val = event.target.value.toLowerCase();
+    
+        const temp = this.temp.filter(function (d) {
+            return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+        });
+    
+        // update the rows
+        this.rows = temp;
     }
 }

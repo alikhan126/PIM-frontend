@@ -923,6 +923,8 @@
           </div>
           <div class="card-content">
             <div class="card-body">
+                <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Type to filter the name column...' (keyup)='updateFilter($event)'
+                />
                 <ngx-datatable #mydatatable class="bootstrap" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="50"
                 [rowHeight]="'auto'" [rows]="rows">
                 <ngx-datatable-column [width]="300" name="Name">

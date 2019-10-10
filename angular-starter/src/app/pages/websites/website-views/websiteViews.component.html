@@ -9,8 +9,10 @@
     <div class="row">
       <!-- <div> -->
         <div class="col-sm-12" >
-          <ngx-datatable class="bootstrap" [rows]="rows" [loadingIndicator]="loadingIndicator" [columns]="columns"
-            [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [scrollbarH]="true">
+          <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Type to filter the name column...' (keyup)='updateFilter($event)'
+          />
+          <ngx-datatable class="bootstrap" [rows]="rows" [loadingIndicator]="loadingIndicator" [limit]="10" [columns]="columns"
+            [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="auto" [scrollbarH]="true">
           </ngx-datatable>
         </div>
       </div>

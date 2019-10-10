@@ -15,11 +15,16 @@ export class BrandsEditComponent {
     rows = [];
     products :any[];
     totalRecords:number;
+    temp = [];
+
+    // @ViewChild(DatatableComponent, {static: false}) table: DatatableComponent;
+
     constructor(private brandService: BrandService, private router: Router) {
     }
     ngOnInit() {
         this.brandService.getAll().subscribe(data => {
             this.rows = data;
+            this.temp = data
             console.log(this.rows)
         });
     }
@@ -42,6 +47,17 @@ export class BrandsEditComponent {
     addBrand(){
         this.router.navigate(['/brands/0']);
 
+    }
+
+    updateFilter(event) {
+        const val = event.target.value.toLowerCase();
+
+        const temp = this.temp.filter(function (d) {
+            return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+        });
+
+        // update the rows
+        this.rows = temp;
     }
 
 }

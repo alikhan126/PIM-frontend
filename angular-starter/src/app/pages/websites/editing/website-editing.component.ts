@@ -15,11 +15,13 @@ export class WebsitesEditComponent {
     rows = [];
     products :any[];
     totalRecords:number;
+    temp = [];
     constructor(private websiteService: WebsiteService, private router: Router) {
     }
     ngOnInit() {
         this.websiteService.getAll().subscribe(data => {
             this.rows = data;
+            this.temp = data;
             console.log(this.rows)
         });
     }
@@ -44,4 +46,14 @@ export class WebsitesEditComponent {
 
     }
 
+    updateFilter(event) {
+        const val = event.target.value.toLowerCase();
+    
+        const temp = this.temp.filter(function (d) {
+            return d.url.toLowerCase().indexOf(val) !== -1 || !val;
+        });
+    
+        // update the rows
+        this.rows = temp;
+    }
 }
