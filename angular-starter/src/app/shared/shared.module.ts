@@ -20,6 +20,9 @@ import { SidebarListDirective } from './directives/sidebarlist.directive';
 import { SidebarAnchorToggleDirective } from './directives/sidebaranchortoggle.directive';
 import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
 
+
+import { ToastrModule } from "ngx-toastr";
+
 @NgModule({
     exports: [
         CommonModule,

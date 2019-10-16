@@ -13,18 +13,28 @@
         </div>
         <div class="card-content">
           <div class="px-3">
-            <form class="form">
+            <form class="form" [formGroup]="regularForm">
               <div class="form-body">
                 <h4 class="form-section"><i class="ft-file-text"></i> Basic Info</h4>
                 <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
                       <label >Url</label>
-                      <input type="text" class="form-control" name="url" [(ngModel)]="pObj.url"   >
+                      <input 
+                      formControlName="url"
+                      type="url" class="form-control" 
+                       >
+                       <small class="form-text text-muted danger" 
+                       [hidden]="regularForm.get('url').valid || (!regularForm.get('url').dirty && !regularForm.get('url').touched)"
+                       >please enter a valid url</small>
                     </div>
                     <div class="form-group">
                       <label >Kind</label>
-                      <input type="text" class="form-control" name="kind" [(ngModel)]="pObj.kind"   >
+                      <input type="text" class="form-control"
+                      formControlName="kind"  >
+                      <small class="form-text text-muted danger" 
+                      [hidden]="regularForm.get('kind').valid || (!regularForm.get('kind').dirty && !regularForm.get('kind').touched)"
+                      >kind is required </small>
                     </div>
                   </div>
                 </div>
@@ -34,7 +44,7 @@
                 <button (click)="goToWebsites()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Cancel
                 </button>
-                <button (click)="save()" type="button" class="btn btn-raised btn-raised btn-primary">
+                <button [disabled]="!regularForm.valid" (click)="save()" type="button" class="btn btn-raised btn-raised btn-primary">
                   <i class="fa fa-check-square-o"></i> Save
                 </button>
               </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 import { WebsiteService } from '../websites.service';
+import { NGXToastrService } from 'app/shared/services/toastr.service';
 
 @Component({
   selector: 'app-product',
@@ -20,12 +21,20 @@ export class AddWebsiteComponent implements OnInit{
   taxes:any=[];
 
   isNew :boolean = false;
-
-  constructor( private route : ActivatedRoute, private router : Router, private websiteService: WebsiteService){
+ patternUrl="(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}";
+ regularForm: FormGroup;
+  constructor( private ts:NGXToastrService, private route : ActivatedRoute, private router : Router, private websiteService: WebsiteService){
 
   }
   ngOnInit () {
      this.getWebsite();
+     this.regularForm = new FormGroup({
+      'url': new FormControl(null, [Validators.required, Validators.pattern(this.patternUrl)]),
+      'kind': new FormControl(null, [Validators.required]),
+      // 'url': new FormControl(null),
+      // 'kind': new FormControl(null),
+      
+  });
      // this.getImages();
      // this.getWebsites();
      // this.getTags();
@@ -35,13 +44,15 @@ export class AddWebsiteComponent implements OnInit{
     //  this.getTaxes();
   }
 
+
   getWebsite(){
     const id = +this.route.snapshot.paramMap.get('id');
 
     id ? this.websiteService.get(id)
     .subscribe(data => {
-    this.pObj=data;
-
+  
+    this.regularForm.get('url').setValue(data.url);
+    this.regularForm.get('kind').setValue(data.kind);
     }):this.isNew=true;
   }
 
@@ -50,7 +61,8 @@ export class AddWebsiteComponent implements OnInit{
 
 
     if(this.isNew){
-      this.websiteService.add(this.pObj)
+
+       this.websiteService.add(this.regularForm.value)
       .subscribe(result => {
         this.pObj=result;
         console.log(this.pObj)
@@ -75,7 +87,7 @@ export class AddWebsiteComponent implements OnInit{
         //  tempArray=[];
          
         
-        this.websiteService.update(this.pObj).subscribe(aResult=>{
+        this.websiteService.update(this.regularForm.value).subscribe(aResult=>{
          alert("Updated Successfully")
         });
   }
