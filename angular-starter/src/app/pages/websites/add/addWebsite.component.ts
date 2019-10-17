@@ -21,7 +21,9 @@ export class AddWebsiteComponent implements OnInit{
   taxes:any=[];
 
   isNew :boolean = false;
- patternUrl="(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}";
+  loading :boolean = false;
+
+ patternUrl='(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
  regularForm: FormGroup;
   constructor( private ts:NGXToastrService, private route : ActivatedRoute, private router : Router, private websiteService: WebsiteService){
 
@@ -50,7 +52,6 @@ export class AddWebsiteComponent implements OnInit{
 
     id ? this.websiteService.get(id)
     .subscribe(data => {
-  
     this.regularForm.get('url').setValue(data.url);
     this.regularForm.get('kind').setValue(data.kind);
     }):this.isNew=true;
@@ -59,7 +60,7 @@ export class AddWebsiteComponent implements OnInit{
 
   save(): void {
 
-
+    this.loading=true;
     if(this.isNew){
 
        this.websiteService.add(this.regularForm.value)

@@ -11,10 +11,11 @@ import {AuthService} from "../../../shared/auth/auth.service";
 export class RegisterPageComponent {
 
     regularForm: FormGroup;
+    terms:boolean=true;
     constructor(private router: Router,
         private route: ActivatedRoute,private authService:AuthService) { }
         pa="^[a-zA-Z]{3,25}$";
-    
+        
     ngOnInit(){
         this.authService.isAuthenticated() ? this.router.navigate(['products']):null; 
         this.regularForm = new FormGroup({

@@ -31,7 +31,7 @@ export class AddProductComponent implements OnInit{
   Virtual:any=[];
 
   isNew :boolean = false;
-
+  loading:boolean=false;
   constructor( private route : ActivatedRoute, private router : Router, private productService: ProductService){
 
   }
@@ -74,12 +74,13 @@ export class AddProductComponent implements OnInit{
 
   save(): void {
 
-
+  this.loading=true;
     if(this.isNew){
       this.productService.add(this.pObj)
       .subscribe(result => {
         this.pObj=result;
-        this.pObj && this.pObj.id && this.router.navigate(['products/'])
+        this.pObj && this.pObj.id && this.router.navigate(['products/']);
+
         // this.ts.success("Operation Performed Successfully");
       })
     }

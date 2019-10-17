@@ -85,6 +85,7 @@
                       name="customCheckboxInline1"
                       class="custom-control-input"
                       checked
+                      (change)="terms=!terms"
                     />
                     <label
                       class="custom-control-label"
@@ -106,7 +107,7 @@
                       </button>
                     </div>
                     <div class="recover-pass">
-                      <button (click)="onSubmit()"  [disabled]="!regularForm.valid"  class="btn btn-primary">
+                      <button (click)="onSubmit()"  [disabled]="!terms || !regularForm.valid || !matchPAss() "  class="btn btn-primary">
                         <a class="text-decoration-none text-white">
                           Register
                         </a>
