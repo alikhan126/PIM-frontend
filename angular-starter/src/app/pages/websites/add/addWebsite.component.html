@@ -26,15 +26,12 @@
                        >
                        <small class="form-text text-muted danger" 
                        [hidden]="regularForm.get('url').valid || (!regularForm.get('url').dirty && !regularForm.get('url').touched)"
-                       >please enter a valid url</small>
+                       >Please enter a valid url</small>
                     </div>
                     <div class="form-group">
                       <label >Kind</label>
                       <input type="text" class="form-control"
-                      formControlName="kind"  >
-                      <small class="form-text text-muted danger" 
-                      [hidden]="regularForm.get('kind').valid || (!regularForm.get('kind').dirty && !regularForm.get('kind').touched)"
-                      >kind is required </small>
+                      formControlName="kind">
                     </div>
                   </div>
                 </div>
@@ -44,7 +41,7 @@
                 <button (click)="goToWebsites()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Cancel
                 </button>
-                <button [disabled]="loading||!regularForm.valid" (click)="save()" type="button" class="btn btn-raised btn-raised btn-primary">
+                <button  (click)="save()" type="button" class="btn btn-raised btn-raised btn-primary">
                   <i class="fa fa-check-square-o"></i> Save
                 </button>
               </div>
