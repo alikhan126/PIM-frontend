@@ -35,6 +35,9 @@ export class ProductsEditComponent {
     Virtual:any=[];
     totalRecords:number;
     temp = [];
+    Stocked:any=[];
+    SpecialOrder:any=[];
+    FromPartners:any=[];
     constructor(private productService: ProductService, private router: Router) {
     }
     ngOnInit() {
@@ -59,6 +62,9 @@ export class ProductsEditComponent {
         this.NotVisibleIndividually = "NotVisibleIndividually";
         this.FoodProducts = "FoodProducts";
         this.NonFoodProducts = "NonFoodProducts";
+        this.Stocked = "Stocked";
+        this.SpecialOrder = "SpecialOrder";
+        this.FromPartners = "FromPartners";
     }
 
 

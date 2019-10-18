@@ -29,6 +29,9 @@ export class AddProductComponent implements OnInit{
   FoodProducts:any=[];
   NonFoodProducts:any=[];
   Virtual:any=[];
+  Stocked:any=[];
+  SpecialOrder:any=[];
+  FromPartners:any=[];
 
   isNew :boolean = false;
   loading:boolean=false;
@@ -55,6 +58,10 @@ export class AddProductComponent implements OnInit{
      this.NotVisibleIndividually = "NotVisibleIndividually";
      this.FoodProducts = "FoodProducts";
      this.NonFoodProducts = "NonFoodProducts";
+     this.Stocked = "Stocked";
+     this.SpecialOrder = "SpecialOrder";
+     this.FromPartners = "FromPartners";
+     
   }
 
 
