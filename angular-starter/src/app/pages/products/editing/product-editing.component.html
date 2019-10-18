@@ -779,8 +779,11 @@
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-stockType'] = true" *ngIf="!editing[rowIndex + '-stockType']">
                             {{value}}
                         </span>
-                        <input (blur)="updateValue($event, 'stockType', rowIndex)" *ngIf="editing[rowIndex+ '-stockType']" type="text" [value]="value"
-                        />
+                        <select  *ngIf="editing[rowIndex + '-stockType']" class="form-control" (blur)="updateValue($event, 'stockType', rowIndex)" [value]="row['stockType']">
+                            <option value="Stocked">Stocked</option>
+                            <option value="SpecialOrder">Special Order</option>
+                            <option value="FromPartners">From Partners</option>
+                        </select>
                     </ng-template>
                 </ngx-datatable-column>
                 <ngx-datatable-column [width]="300" name="Ts Dimensions Height">
