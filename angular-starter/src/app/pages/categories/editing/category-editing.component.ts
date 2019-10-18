@@ -14,16 +14,19 @@ export class CategoryEditComponent {
     editing = {};
     rows = [];
     products :any[];
+    categories :any[];
     totalRecords:number;
     temp = []
     constructor(private categoryService: CategoryService, private router: Router) {
     }
-    ngOnInit() {
+    ngOnInit() {                
         this.categoryService.getAll().subscribe(data => {
             this.rows = data;
             this.temp = data;
             console.log(this.rows)
         });
+        this.getCategories();
+
     }
 
     // Editing content code
@@ -55,6 +58,26 @@ export class CategoryEditComponent {
     
         // update the rows
         this.rows = temp;
+    }
+
+    getCategories(){
+            this.categoryService.getAllCategories().subscribe(data => {
+            this.categories = data;
+        });
+    }
+
+    updateRelationshipValue(value, cell, rowIndex) {
+        this.editing[rowIndex + '-' + cell] = false;
+        this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
+            this.rows[rowIndex] = data;
+            this.rows[rowIndex][cell] = value;
+            this.categoryService.update(this.rows[rowIndex]).subscribe(data => {
+                this.categoryService.getAll().subscribe(data => {
+                    this.rows = data;
+                    console.log(this.rows)
+                });
+            });
+        });
     }
 
 }

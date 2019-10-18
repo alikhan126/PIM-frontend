@@ -20,7 +20,9 @@ export class AddCategoryComponent implements OnInit{
   taxes:any=[];
 
   isNew :boolean = false;
-
+  loading :boolean = false;
+  
+  regularForm: FormGroup;
   constructor( private route : ActivatedRoute, private router : Router, private categoryService: CategoryService){
 
   }
@@ -33,6 +35,12 @@ export class AddCategoryComponent implements OnInit{
      this.getCategories();
      // this.getProductFamilies();
     //  this.getTaxes();
+    this.regularForm = new FormGroup({
+      'name': new FormControl(null, [Validators.required]),
+      'level': new FormControl(null, [Validators.required]),
+      'description': new FormControl(null),
+      'parentCategory': new FormControl(null),
+    });
   }
 
   getCategory(){
@@ -40,7 +48,13 @@ export class AddCategoryComponent implements OnInit{
 
     id ? this.categoryService.get(id)
     .subscribe(data => {
-    this.pObj=data;
+    // this.pObj=data;
+    console.log(data)
+
+    this.regularForm.get('name').setValue(data.name);
+    this.regularForm.get('level').setValue(data.level);
+    this.regularForm.get('description').setValue(data.description);
+    this.regularForm.get('parentCategory').setValue(data.parentCategory);
 
     }):this.isNew=true;
   }
@@ -50,7 +64,7 @@ export class AddCategoryComponent implements OnInit{
 
 
     if(this.isNew){
-      this.categoryService.add(this.pObj)
+      this.categoryService.add(this.regularForm.value)
       .subscribe(result => {
         this.pObj=result;
         console.log(this.pObj)
@@ -75,7 +89,7 @@ export class AddCategoryComponent implements OnInit{
         //  tempArray=[];
          
         
-        this.categoryService.update(this.pObj).subscribe(aResult=>{
+        this.categoryService.update(this.regularForm.value).subscribe(aResult=>{
          alert("Updated Successfully")
         });
   }

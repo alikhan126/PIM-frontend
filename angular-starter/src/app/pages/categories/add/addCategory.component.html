@@ -13,20 +13,29 @@
         </div>
         <div class="card-content">
           <div class="px-3">
-            <form class="form">
+            <form class="form" [formGroup]="regularForm">
               <div class="form-body">
                 <h4 class="form-section"><i class="ft-file-text"></i> Basic Info</h4>
                 <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
                       <label >Name</label>
-                      <input type="text" class="form-control" name="name" [(ngModel)]="pObj.name"   >
+                      <input 
+                      formControlName="name"
+                      type="text" class="form-control"
+                      >
+                      <small class="form-text text-muted danger" 
+                       [hidden]="regularForm.get('name').valid || (!regularForm.get('name').dirty && !regularForm.get('name').touched)"
+                       >Name is Required</small>
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
                       <label >Description</label>
-                      <input type="text" class="form-control" name="name" [(ngModel)]="pObj.description"   >
+                      <input 
+                      formControlName="description"
+                      type="text" class="form-control"
+                      >
                     </div>
                   </div>
                 </div>
@@ -34,19 +43,33 @@
               <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                      <label >Category</label>
-                      <ng-select [items]="categories" bindLabel="name" bindValue="id"  placeholder="Select Category"
-                      name="category" [(ngModel)]="pObj.category">
-                    </ng-select>
+                      <label >Parent Category</label>
+                      <ng-select [items]="categories" bindLabel="name" bindValue="id"  placeholder="Select Parent Category"
+                        formControlName="parentCategory" >
+                      </ng-select>
                     </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                      <label >Level<span style="color:Red;">*</span></label>
+                      <select class="form-control" formControlName="level">
+                        <option class="form-control" value="Level1">Level 1</option>
+                        <option class="form-control" value="Level2">Level 2</option>
+                        <option class="form-control" value ="Level3">Level 3</option>
+                        <option class="form-control" value ="Level4">Level 4</option>
+                      </select>
+                      <small class="form-text text-muted danger" 
+                       [hidden]="regularForm.get('level').valid || (!regularForm.get('level').dirty && !regularForm.get('level').touched)"
+                       >Level is Required</small>
                   </div>
+                </div>
               </div>
 
               <div class="form-actions">
                 <button (click)="goToCategories()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Cancel
                 </button>
-                <button (click)="save()" type="button" class="btn btn-raised btn-raised btn-primary">
+                <button [disabled]="loading||!regularForm.valid" (click)="save()" type="button" class="btn btn-raised btn-raised btn-primary">
                   <i class="fa fa-check-square-o"></i> Save
                 </button>
               </div>
