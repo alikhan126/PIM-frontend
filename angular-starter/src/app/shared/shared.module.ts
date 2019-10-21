@@ -21,7 +21,6 @@ import { SidebarAnchorToggleDirective } from './directives/sidebaranchortoggle.d
 import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
 
 
-import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
     exports: [
