@@ -15,6 +15,9 @@ import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 import { ProductsEditComponent } from './editing/product-editing.component';
 import { ProductViewsComponent } from './product-views/productViews.component';
 import { ProductsEditsComponent } from './product-edits/product-editing.component';
+import { RegularTableComponent } from "./regular/regular-table.component";
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+
 
 @NgModule({
     imports: [
@@ -26,7 +29,8 @@ import { ProductsEditsComponent } from './product-edits/product-editing.componen
         Ng2SmartTableModule ,
         NgSelectModule,
         NgOptionHighlightModule,
-        NgxDatatableModule
+        NgxDatatableModule,
+        FileUploadModule
     ],
     declarations: [ 
         ExtendedTableComponent,
@@ -34,7 +38,8 @@ import { ProductsEditsComponent } from './product-edits/product-editing.componen
         AddProductComponent,
         ProductsEditComponent,
         ProductViewsComponent,
-        ProductsEditsComponent
+        ProductsEditsComponent,
+        RegularTableComponent
         
     ]
 })

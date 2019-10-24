@@ -6,7 +6,16 @@ import {ExtendedTableComponent} from './extended/extended-table.component';
 import {AddProductComponent} from './add/addProduct.component';
 import { ProductsEditComponent } from './editing/product-editing.component';
 import { ProductViewsComponent } from './product-views/productViews.component';
+import { RegularTableComponent } from './regular/regular-table.component';
+
 const routes: Routes = [
+  {
+    path:'import',
+    component:RegularTableComponent,
+    data:{
+      title:'Import'
+    }
+  },
   {
     path: 'old',
      component: ExtendedTableComponent,
