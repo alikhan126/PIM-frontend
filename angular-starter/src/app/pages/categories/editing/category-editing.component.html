@@ -14,6 +14,13 @@
                 />
                 <ngx-datatable #mydatatable class="bootstrap" [headerHeight]="50" [limit]="10" [columnMode]="'force'" [footerHeight]="50"
                 [rowHeight]="'auto'" [rows]="rows">
+                <ngx-datatable-column [width]="100" name="Action">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <a class="danger p-0" (click)="deleteCategory($event, 'name', rowIndex)" data-original-title="" title="">
+                          <i class="ft-x font-medium-3 mr-2"></i>
+                        </a>
+                    </ng-template>
+                </ngx-datatable-column>
                 <ngx-datatable-column [width]="300" name="Name">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-name'] = true" *ngIf="!editing[rowIndex + '-name']">

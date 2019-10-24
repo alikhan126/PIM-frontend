@@ -62,6 +62,20 @@ export class BrandsEditComponent {
         });
     }
 
+    deleteBrand(event, cell, rowIndex) {
+        this.editing[rowIndex + '-' + cell] = false;
+        this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+            this.rows[rowIndex] = data;
+            this.rows[rowIndex][cell] = event.target.value;
+            this.brandService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                this.brandService.getAll().subscribe(data => {
+                    this.rows = data;
+                    console.log(this.rows)
+                });
+            });
+        });
+    }
+
     addBrand(){
         this.router.navigate(['/brands/0']);
 

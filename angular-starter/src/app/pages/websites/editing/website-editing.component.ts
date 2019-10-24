@@ -41,6 +41,21 @@ export class WebsitesEditComponent {
         });
     }
 
+    deleteWebsite(event, cell, rowIndex) {
+        this.editing[rowIndex + '-' + cell] = false;
+        this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
+            this.rows[rowIndex] = data;
+            console.log("test", this.rows[rowIndex]['id'])
+            this.rows[rowIndex][cell] = event.target.value;
+            this.websiteService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                this.websiteService.getAll().subscribe(data => {
+                    this.rows = data;
+                    console.log(this.rows)
+                });
+            });
+        });
+    }
+
     addWebsite(){
         this.router.navigate(['/websites/0']);
 

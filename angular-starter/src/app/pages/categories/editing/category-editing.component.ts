@@ -80,4 +80,18 @@ export class CategoryEditComponent {
         });
     }
 
+    deleteCategory(event, cell, rowIndex) {
+        this.editing[rowIndex + '-' + cell] = false;
+        this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
+            this.rows[rowIndex] = data;
+            this.rows[rowIndex][cell] = event.target.value;
+            this.categoryService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                this.categoryService.getAll().subscribe(data => {
+                    this.rows = data;
+                    console.log(this.rows)
+                });
+            });
+        });
+    }
+
 }

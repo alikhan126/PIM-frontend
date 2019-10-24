@@ -41,6 +41,20 @@ export class ManufacturerEditComponent {
         });
     }
 
+    deleteManufacturer(event, cell, rowIndex) {
+        this.editing[rowIndex + '-' + cell] = false;
+        this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
+            this.rows[rowIndex] = data;
+            this.rows[rowIndex][cell] = event.target.value;
+            this.manufacturerService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                this.manufacturerService.getAll().subscribe(data => {
+                    this.rows = data;
+                    console.log(this.rows)
+                });
+            });
+        });
+    }
+
     addManfacturer(){
         this.router.navigate(['/manufacturer/0']);
 

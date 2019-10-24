@@ -149,8 +149,22 @@ update (record: any): Observable<any> {
   );
 }
 
+delete(id){
+  return this.http.delete<any>(`${AppConfig.URL_Websites}${id}/`).pipe(
+    map(x => x ),
+    tap(_ => console.log(`delete record=${id}`)),
+    catchError(this.handleError<any>('deleteRecord'))
+  );
+}
 
 
+destroy (record: any): Observable<any> {
+  console.log(record)
+  return this.http.delete(`${AppConfig.URL_Websites}${record["id"]}/`, record).pipe(
+    tap(_ => this.log(`deleted record id=${record["id"]}`)),
+    catchError(this.handleError<any>('deleteRecord'))
+  );
+}
 
 
 

@@ -98,6 +98,20 @@ export class ProductsEditComponent {
         });
     }
 
+    deleteProduct(event, cell, rowIndex) {
+        this.editing[rowIndex + '-' + cell] = false;
+        this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
+            this.rows[rowIndex] = data;
+            console.log(this.rows[rowIndex])
+            this.rows[rowIndex][cell] = event.target.value;
+            this.productService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                this.productService.getAll().subscribe(data => {
+                    this.rows = data;
+                    console.log(this.rows)
+                });
+            });
+        });
+    }
 
     updateRelationshipValue(value, cell, rowIndex) {
         this.editing[rowIndex + '-' + cell] = false;

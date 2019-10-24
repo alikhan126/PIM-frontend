@@ -149,6 +149,13 @@ update (record: any): Observable<any> {
   );
 }
 
+delete(id){
+  return this.http.delete<any>(`${AppConfig.URL_Categories}${id}/`).pipe(
+    map(x => x ),
+    tap(_ => console.log(`deleted record=${id}`)),
+    catchError(this.handleError<any>('deleteRecord'))
+  );
+}
 
 
 
