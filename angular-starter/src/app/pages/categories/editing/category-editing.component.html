@@ -5,7 +5,6 @@
           <div class="card-header">
             <h4 class="card-title ">Categories</h4>
             <p class="content-sub-header">Double click on any content to edit that section.</p>
-
             <a  (click)="addCategory()"   class="btn btn-floating halfway-fab btn-large bg-warning topClass"><i class="ft-plus"></i></a>
           </div>
           <div class="card-content">
@@ -13,7 +12,7 @@
                 <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Type to filter the name column...' (keyup)='updateFilter($event)'
                 />
                 <ngx-datatable #mydatatable class="bootstrap" [headerHeight]="50" [limit]="10" [columnMode]="'force'" [footerHeight]="50"
-                [rowHeight]="'auto'" [rows]="rows">
+                [rowHeight]="'auto'" [rows]="rows" [scrollbarH]="true" >
                 <ngx-datatable-column [width]="100" name="Action">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                         <a class="danger p-0" (click)="deleteCategory($event, 'name', rowIndex)" data-original-title="" title="">
@@ -21,7 +20,7 @@
                         </a>
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column [width]="300" name="Name">
+                <ngx-datatable-column [width]="200" name="Name">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                         <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-name'] = true" *ngIf="!editing[rowIndex + '-name']">
                             {{value}}
@@ -60,11 +59,18 @@
                        <!--  <input (blur)="updateValue($event, 'parentCategory', rowIndex)" *ngIf="editing[rowIndex+ '-parentCategory']" type="text" [value]="value"
                         /> -->
 
-                        <ng-select  (blur)="updateRelationshipValue(row['parentCategory']['id'], 'parentCategory', rowIndex)" *ngIf="editing[rowIndex+ '-parentCategory']" [items]="categories"  bindLabel="name"   placeholder="Select parent category"
+                        <ng-select  
+                        *ngIf="editing[rowIndex+ '-parentCategory']" 
+                        
+                        (blur)="updateRelationshipValue(row['parentCategory']['id'], 'parentCategory', rowIndex)" 
+                        
+                        [items]="categories"  bindLabel="name"   placeholder="Select parent category"
                          name="parentCategory" [(ngModel)]="row['parentCategory']"
                         >
 
                       </ng-select>
+                      
+
                          
                     </ng-template>
                 </ngx-datatable-column>

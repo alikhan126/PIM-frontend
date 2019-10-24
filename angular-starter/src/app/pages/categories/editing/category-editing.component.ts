@@ -23,7 +23,7 @@ export class CategoryEditComponent {
         this.categoryService.getAll().subscribe(data => {
             this.rows = data;
             this.temp = data;
-            console.log(this.rows)
+
         });
         this.getCategories();
 
@@ -38,7 +38,6 @@ export class CategoryEditComponent {
             this.categoryService.update(this.rows[rowIndex]).subscribe(data => {
                 this.categoryService.getAll().subscribe(data => {
                     this.rows = data;
-                    console.log(this.rows)
                 });
             });
         });
@@ -63,6 +62,7 @@ export class CategoryEditComponent {
     getCategories(){
             this.categoryService.getAllCategories().subscribe(data => {
             this.categories = data;
+            console.log(this.categories)
         });
     }
 
