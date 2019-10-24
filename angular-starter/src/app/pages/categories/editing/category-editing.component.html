@@ -48,12 +48,12 @@
                 <ngx-datatable-column [width]="300" name="Parent Category">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
                         <span title="Double click to edit" (dblclick)="editing[rowIndex + '-parentCategory'] = true" *ngIf="!editing[rowIndex + '-parentCategory']">
-                            {{value}}
+                            {{value.name}}
                         </span>
                        <!--  <input (blur)="updateValue($event, 'parentCategory', rowIndex)" *ngIf="editing[rowIndex+ '-parentCategory']" type="text" [value]="value"
                         /> -->
 
-                        <ng-select  (blur)="updateRelationshipValue(row['category']['id'], 'parentCategory', rowIndex)" *ngIf="editing[rowIndex+ '-parentCategory']" [items]="categories"  bindLabel="name"   placeholder="Select Parent Category"
+                        <ng-select  (blur)="updateRelationshipValue(row['parentCategory']['id'], 'parentCategory', rowIndex)" *ngIf="editing[rowIndex+ '-parentCategory']" [items]="categories"  bindLabel="name"   placeholder="Select parent category"
                          name="parentCategory" [(ngModel)]="row['parentCategory']"
                         >
 
