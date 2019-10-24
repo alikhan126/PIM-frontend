@@ -23,7 +23,7 @@
                 </ngx-datatable-column>
                 <ngx-datatable-column [width]="300" name="Name">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-name'] = true" *ngIf="!editing[rowIndex + '-name']">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-name'] = true" *ngIf="!editing[rowIndex + '-name']">
                             {{value}}
                         </span>
                         <input autofocus (blur)="updateValue($event, 'name', rowIndex)" *ngIf="editing[rowIndex+ '-name']" type="text" [value]="value"
@@ -32,7 +32,7 @@
                 </ngx-datatable-column>
                 <ngx-datatable-column [width]="300" name="Description">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-description'] = true" *ngIf="!editing[rowIndex + '-description']">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-description'] = true" *ngIf="!editing[rowIndex + '-description']">
                             {{value}}
                         </span>
                         <input autofocus (blur)="updateValue($event, 'description', rowIndex)" *ngIf="editing[rowIndex+ '-description']" type="text" [value]="value"
@@ -41,7 +41,7 @@
                 </ngx-datatable-column>
                 <ngx-datatable-column [width]="300" name="Level">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-level'] = true" *ngIf="!editing[rowIndex + '-level']">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-level'] = true" *ngIf="!editing[rowIndex + '-level']">
                             {{value}}
                         </span>
                         <select *ngIf="editing[rowIndex + '-level']" (change)="updateValue($event, 'level', rowIndex)" [value]="value">
@@ -54,7 +54,7 @@
                 </ngx-datatable-column>
                 <ngx-datatable-column [width]="300" name="Parent Category">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                        <span title="Double click to edit" (dblclick)="editing[rowIndex + '-parentCategory'] = true" *ngIf="!editing[rowIndex + '-parentCategory']">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-parentCategory'] = true" *ngIf="!editing[rowIndex + '-parentCategory']">
                             {{value.name}}
                         </span>
                        <!--  <input (blur)="updateValue($event, 'parentCategory', rowIndex)" *ngIf="editing[rowIndex+ '-parentCategory']" type="text" [value]="value"
