@@ -16,16 +16,20 @@ export class BrandsEditComponent {
     products :any[];
     totalRecords:number;
     temp = [];
+    manufacturers =[];
+
 
     // @ViewChild(DatatableComponent, {static: false}) table: DatatableComponent;
 
     constructor(private brandService: BrandService, private router: Router) {
     }
     ngOnInit() {
+        this.getManufacturers();
         this.brandService.getAll().subscribe(data => {
             this.rows = data;
             this.temp = data
             console.log(this.rows)
+            console.log(this.manufacturers);
         });
     }
 
@@ -35,6 +39,20 @@ export class BrandsEditComponent {
         this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
             this.rows[rowIndex] = data;
             this.rows[rowIndex][cell] = event.target.value;
+            this.brandService.update(this.rows[rowIndex]).subscribe(data => {
+                this.brandService.getAll().subscribe(data => {
+                    this.rows = data;
+                    console.log(this.rows)
+                });
+            });
+        });
+    }
+
+    updateRelationshipValue(value, cell, rowIndex) {
+        this.editing[rowIndex + '-' + cell] = false;
+        this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+            this.rows[rowIndex] = data;
+            this.rows[rowIndex][cell] = value;
             this.brandService.update(this.rows[rowIndex]).subscribe(data => {
                 this.brandService.getAll().subscribe(data => {
                     this.rows = data;
@@ -58,6 +76,14 @@ export class BrandsEditComponent {
 
         // update the rows
         this.rows = temp;
+    }
+
+    getManufacturers(){
+            this.brandService.getAllManufacturers().subscribe(data => {
+            this.manufacturers = data;
+            console.log(this.manufacturers)
+
+        });
     }
 
 }

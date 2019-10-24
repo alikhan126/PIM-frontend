@@ -115,6 +115,17 @@ getAllBrands()
   );
 }
 
+getAllManufacturers() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Manfracturer}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
 
 getAllProductFamilies() 
 {
