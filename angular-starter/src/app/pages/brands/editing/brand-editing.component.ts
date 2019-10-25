@@ -86,7 +86,6 @@ export class BrandsEditComponent {
             this.brandService.delete(this.rows[rowIndex]['id']).subscribe(data => {
                 this.brandService.getAll().subscribe(data => {
                     this.rows = data;
-                    console.log(this.rows)
                 });
             });
         });
@@ -101,7 +100,7 @@ export class BrandsEditComponent {
         const val = event.target.value.toLowerCase();
 
         const temp = this.temp.filter(function (d) {
-            return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+            return d.name.toLowerCase().indexOf(val) !== -1 || !val || d.manufacturer['name'].toLowerCase().indexOf(val) !== -1;
         });
 
         // update the rows
@@ -111,8 +110,6 @@ export class BrandsEditComponent {
     getManufacturers(){
             this.brandService.getAllManufacturers().subscribe(data => {
             this.manufacturers = data;
-            console.log(this.manufacturers)
-
         });
     }
 
