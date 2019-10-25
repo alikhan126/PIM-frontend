@@ -1,6 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 import { CategoryService } from '../category.service';
 import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 declare var require: any;
 
@@ -17,7 +19,9 @@ export class CategoryEditComponent {
     categories :any[];
     totalRecords:number;
     temp = []
-    constructor(private categoryService: CategoryService, private router: Router) {
+    closeResult: string;
+    
+    constructor(private modalService: NgbModal, private categoryService: CategoryService, private router: Router) {
     }
     ngOnInit() {                
         this.categoryService.getAll().subscribe(data => {
@@ -27,6 +31,24 @@ export class CategoryEditComponent {
         });
         this.getCategories();
 
+    }
+
+    open(content) {
+        this.modalService.open(content).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    }
+
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return `with: ${reason}`;
+        }
     }
 
     // Editing content code

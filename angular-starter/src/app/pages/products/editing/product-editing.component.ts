@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { ProductService} from '../products.service';
 import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 declare var require: any;
 
@@ -38,7 +39,9 @@ export class ProductsEditComponent {
     Stocked:any=[];
     SpecialOrder:any=[];
     FromPartners:any=[];
-    constructor(private productService: ProductService, private router: Router) {
+    closeResult: string;
+    
+    constructor(private modalService: NgbModal, private productService: ProductService, private router: Router) {
     }
     ngOnInit() {
         this.productService.getAll().subscribe(data => {
@@ -67,7 +70,23 @@ export class ProductsEditComponent {
         this.FromPartners = "FromPartners";
     }
 
+    open(content) {
+        this.modalService.open(content).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    }
 
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return `with: ${reason}`;
+        }
+    }
 
     getValues(values,key){
         let valArray=[];

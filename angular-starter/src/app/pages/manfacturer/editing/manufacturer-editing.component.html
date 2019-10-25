@@ -16,7 +16,21 @@
                 [rowHeight]="'auto'" [rows]="rows">
                 <ngx-datatable-column [width]="300" name="Action">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                        <a class="danger p-0" (click)="deleteManufacturer($event, 'name', rowIndex)" data-original-title="" title="Click to delete">
+                        <ng-template #content let-c="close" let-d="dismiss">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Are you sure you want to delete this?</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <button type="button" class="btn btn-secondary btn-raised" (click)="deleteManufacturer($event, 'name', rowIndex); c('Close click');">Sure</button>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                          </div>
+                        </ng-template>
+                          <a class="danger p-0" (click)="open(content)" data-original-title="" title="Click to delete">
                           <i class="ft-x font-medium-3 mr-2"></i>
                         </a>
                     </ng-template>

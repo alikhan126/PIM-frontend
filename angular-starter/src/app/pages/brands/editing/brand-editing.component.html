@@ -26,8 +26,9 @@
                           </div>
                           <div class="modal-body">
                             <button type="button" class="btn btn-secondary btn-raised" (click)="deleteBrand($event, 'name', rowIndex); c('Close click');">Sure</button>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click');">Cancel</button>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
                           </div>
                         </ng-template>
                           <a class="danger p-0" (click)="open(content)" data-original-title="" title="Click to delete">

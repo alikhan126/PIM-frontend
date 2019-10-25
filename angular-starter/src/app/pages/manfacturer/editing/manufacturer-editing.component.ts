@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { ManufacturerService } from '../manufacturer.service';
 import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 declare var require: any;
 
@@ -16,7 +17,9 @@ export class ManufacturerEditComponent {
     products :any[];
     totalRecords:number;
     temp = [];
-    constructor(private manufacturerService: ManufacturerService, private router: Router) {
+    closeResult: string;
+
+    constructor(private modalService: NgbModal, private manufacturerService: ManufacturerService, private router: Router) {
     }
     ngOnInit() {
         this.manufacturerService.getAll().subscribe(data => {
@@ -24,6 +27,24 @@ export class ManufacturerEditComponent {
             this.temp = data;
             console.log(this.rows)
         });
+    }
+
+    open(content) {
+        this.modalService.open(content).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    }
+
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return `with: ${reason}`;
+        }
     }
 
     // Editing content code
