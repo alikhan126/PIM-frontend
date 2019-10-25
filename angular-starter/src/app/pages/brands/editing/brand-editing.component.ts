@@ -28,8 +28,6 @@ export class BrandsEditComponent {
         this.brandService.getAll().subscribe(data => {
             this.rows = data;
             this.temp = data
-            console.log(this.rows)
-            console.log(this.manufacturers);
         });
     }
 
@@ -42,7 +40,6 @@ export class BrandsEditComponent {
             this.brandService.update(this.rows[rowIndex]).subscribe(data => {
                 this.brandService.getAll().subscribe(data => {
                     this.rows = data;
-                    console.log(this.rows)
                 });
             });
         });
@@ -56,7 +53,6 @@ export class BrandsEditComponent {
             this.brandService.update(this.rows[rowIndex]).subscribe(data => {
                 this.brandService.getAll().subscribe(data => {
                     this.rows = data;
-                    console.log(this.rows)
                 });
             });
         });

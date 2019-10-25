@@ -17,12 +17,12 @@
                 [rowHeight]="'auto'" [rows]="rows">
                 <ngx-datatable-column [width]="100" name="Action">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                        <a class="danger p-0" (click)="deleteBrand($event, 'name', rowIndex)" data-original-title="" title="">
+                        <a class="danger p-0" (click)="deleteBrand($event, 'name', rowIndex)" data-original-title="" title="Click to delete">
                           <i class="ft-x font-medium-3 mr-2"></i>
                         </a>
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column [width]="300" name="Name">
+                <ngx-datatable-column [width]="200" name="Name">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                         <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-name'] = true" *ngIf="!editing[rowIndex + '-name']">
                             {{value}}
@@ -32,22 +32,24 @@
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column [width]="300" name="Manufacturer">
+                <ngx-datatable-column [width]="200" name="Manufacturer">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
                         <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-manufacturer'] = true" *ngIf="!editing[rowIndex + '-manufacturer']">
                             {{value.name}}
                         </span>
-                        <!-- <input (blur)="updateValue($event, 'manufacturer', rowIndex)" *ngIf="editing[rowIndex+ '-manufacturer']" type="text" [value]="value"
-                        
-                        
+                       <!--  <input (blur)="updateValue($event, 'manufacturer', rowIndex)" *ngIf="editing[rowIndex+ '-manufacturer']" type="text" [value]="value"
                         /> -->
-                        <ng-select  (blur)="updateRelationshipValue(row['manufacturer']['id'], 'manufacturer', rowIndex)" *ngIf="editing[rowIndex+ '-manufacturer']" [items]="manufacturers"  bindLabel="name"   placeholder="Select Manufacturer"
-                         
+
+                        <ng-select  
+                        *ngIf="editing[rowIndex+ '-manufacturer']" 
+                        
+                        (blur)="updateRelationshipValue(row['manufacturer']['id'], 'manufacturer', rowIndex)" 
+                        
+                        [items]="manufacturers"  bindLabel="name"   placeholder="Select Manufacturer"
                          name="manufacturer" [(ngModel)]="row['manufacturer']"
                         >
 
-                      </ng-select>
-                         
+                        </ng-select>
                     </ng-template>
                 </ngx-datatable-column>
             </ngx-datatable>
