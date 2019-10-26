@@ -6,6 +6,7 @@ import { ContentPagesRoutingModule } from "./content-pages-routing.module";
 import { ContentLayoutPageComponent } from './content-layout-page.component';
 import { LoginPageComponent } from './login/login-page.component';
 import { RegisterPageComponent } from './register/register-page.component';
+import { VerifiedEmailPageComponent } from './verified-email/verified-email-page.component';
 
 
 
@@ -19,7 +20,8 @@ import { RegisterPageComponent } from './register/register-page.component';
     declarations: [
         ContentLayoutPageComponent,
         LoginPageComponent,
-        RegisterPageComponent
+        RegisterPageComponent,
+        VerifiedEmailPageComponent
     ]
 })
 export class ContentPagesModule { }
