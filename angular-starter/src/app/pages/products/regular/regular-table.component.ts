@@ -124,8 +124,15 @@ buildData(){
   })
 
 
+
   console.log(JSON.stringify(this.buildedData))
+
+  this.productService.importProducts(this.buildedData).subscribe(response=>{
+    console.log(response)
+  })
 }
+
+
      
 fileSelected(e){
 

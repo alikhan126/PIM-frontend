@@ -30,6 +30,14 @@ add (record: any): Observable<any> {
   );
 }
 
+importProducts (record: any): Observable<any> {
+
+  return this.http.post<any>(`${AppConfig.URL_Import_Products}`, record).pipe(
+    map(x => x ),
+    catchError(this.handleError<any>('import'))
+  );
+}
+
 getAll() 
 {
 

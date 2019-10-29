@@ -24,6 +24,9 @@ export class ErrorInterceptor implements HttpInterceptor {
                     this.toastService.typeError(eKey,err.error[eKey][0]);
                 })
             }
+            else if(err && err.status == 500 ){
+                this.toastService.typeError('Server Error',"Internal Server Error")
+            }
 
             const error = err.error.message || err.statusText;
             return throwError(error);
