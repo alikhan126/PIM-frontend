@@ -49,6 +49,14 @@ get(id){
   );
 }
 
+
+getFildsToImport(){
+  return this.http.get<any []>(`${AppConfig.URL_Fields}`)
+  .pipe(
+    map(x => x ),
+    catchError(this.handleError('getRecord', []))
+  );
+}
 getAllImages() 
 {
 

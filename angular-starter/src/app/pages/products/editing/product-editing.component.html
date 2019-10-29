@@ -307,12 +307,12 @@
                         />
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column [width]="300" name="Product Options">
+                <ngx-datatable-column [width]="300" name="Product Options Container">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-productOptions_container'] = true" *ngIf="!editing[rowIndex + '-productOptions_container']">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-productOptionsContainer'] = true" *ngIf="!editing[rowIndex + '-productOptionsContainer']">
                             {{value}}
                         </span>
-                        <input (blur)="updateValue($event, 'productOptions_container', rowIndex)" *ngIf="editing[rowIndex+ '-productOptions_container']" type="text" [value]="value"
+                        <input (blur)="updateValue($event, 'productOptionsContainer', rowIndex)" *ngIf="editing[rowIndex+ '-productOptionsContainer']" type="text" [value]="value"
                         />
                     </ng-template>
                 </ngx-datatable-column>
@@ -534,8 +534,11 @@
                         <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-hideFromProductPage'] = true" *ngIf="!editing[rowIndex + '-hideFromProductPage']">
                             {{value}}
                         </span>
-                        <input (blur)="updateValue($event, 'hideFromProductPage', rowIndex)" *ngIf="editing[rowIndex+ '-hideFromProductPage']" type="text" [value]="value"
-                        />
+                        <select (blur)="updateValue($event, 'hideFromProductPage', rowIndex)" *ngIf="editing[rowIndex+ '-hideFromProductPage']"   class="form-control" [value]="value">
+                            <option class="form-control" value="true">True</option>
+                            <option class="form-control" value="false">False</option>
+                        </select>
+
                     </ng-template>
                 </ngx-datatable-column>
                 <ngx-datatable-column [width]="300" name="Custom Options">

@@ -23,7 +23,7 @@
                   <div class="col-md-3">
                     <div class="form-group">
                       <label >Upload File</label>
-                      <input type="file"   (onFileSelected)="fileSelected($event)" ng2FileSelect [uploader]="uploader"  >
+                      <input type="file"  #upload (change)="onChangeFile(upload.files)" value="process"  accept=".csv">
                        <span class="custom-file-control"></span>
                     </div>
 
@@ -76,144 +76,28 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr  *ngFor="let field of fileColumns">
 
                   <!-- <th scope="row">1</th> -->
                   <td>
                     <div class="col-md-6">
-                    <select  class="form-control"   >
-                      <option class="form-control" value="Catalog">name</option>
-                      <option class="form-control" value="Search">slug</option>
-                      <option class="form-control" value="NotVisibleIndividually">created</option>
-                      <option class="form-control" value="NotVisibleIndividually">last_updated</option>
-                      <option class="form-control" value="NotVisibleIndividually">type</option>
-                      <option class="form-control" value="NotVisibleIndividually">sku</option>
-                      <option class="form-control" value="NotVisibleIndividually">mpn</option>
-
-                    </select>
+                    {{field}} 
                     </div>
 
                   </td>
                   <td>
                       <div class="col-md-6">
-                          <select  class="form-control"   >
-                            <option class="form-control" value="Catalog">name</option>
-                            <option class="form-control" value="Search">slug</option>
-                            <option class="form-control" value="NotVisibleIndividually">created</option>
-                            <option class="form-control" value="NotVisibleIndividually">last_updated</option>
-                            <option class="form-control" value="NotVisibleIndividually">type</option>
-                            <option class="form-control" value="NotVisibleIndividually">sku</option>
-                            <option class="form-control" value="NotVisibleIndividually">mpn</option>
-      
-                          </select>
+                        <ng-select [items]="databaseObjects" bindLabel="name" bindValue="name" 
+                        [(ngModel)]="mappingObj[field]"
+                        name="mappingObj[field]"
+                        placeholder="Select" >
+                      </ng-select>
                           </div>
 
                   </td>
                 </tr>
 
-                <tr>
-                    <!-- <th scope="row">1</th> -->
-                    <td>
-                        <div class="col-md-6">
-                            <select  class="form-control"   >
-                              <option class="form-control" value="Catalog">name</option>
-                              <option class="form-control" value="Search">slug</option>
-                              <option class="form-control" value="NotVisibleIndividually">created</option>
-                              <option class="form-control" value="NotVisibleIndividually">last_updated</option>
-                              <option class="form-control" value="NotVisibleIndividually">type</option>
-                              <option class="form-control" value="NotVisibleIndividually">sku</option>
-                              <option class="form-control" value="NotVisibleIndividually">mpn</option>
-        
-                            </select>
-                            </div>
-  
-                    </td>
-                    <td>
-                        <div class="col-md-6">
-                            <select  class="form-control"   >
-                              <option class="form-control" value="Catalog">name</option>
-                              <option class="form-control" value="Search">slug</option>
-                              <option class="form-control" value="NotVisibleIndividually">created</option>
-                              <option class="form-control" value="NotVisibleIndividually">last_updated</option>
-                              <option class="form-control" value="NotVisibleIndividually">type</option>
-                              <option class="form-control" value="NotVisibleIndividually">sku</option>
-                              <option class="form-control" value="NotVisibleIndividually">mpn</option>
-        
-                            </select>
-                            </div>
-  
-                    </td>
-                  </tr>
-
-
-                  <tr>
-                      <!-- <th scope="row">1</th> -->
-                      <td>
-                          <div class="col-md-6">
-                              <select  class="form-control"   >
-                                <option class="form-control" value="Catalog">name</option>
-                                <option class="form-control" value="Search">slug</option>
-                                <option class="form-control" value="NotVisibleIndividually">created</option>
-                                <option class="form-control" value="NotVisibleIndividually">last_updated</option>
-                                <option class="form-control" value="NotVisibleIndividually">type</option>
-                                <option class="form-control" value="NotVisibleIndividually">sku</option>
-                                <option class="form-control" value="NotVisibleIndividually">mpn</option>
-          
-                              </select>
-                              </div>
-    
-                      </td>
-                      <td>
-                          <div class="col-md-6">
-                              <select  class="form-control"   >
-                                <option class="form-control" value="Catalog">name</option>
-                                <option class="form-control" value="Search">slug</option>
-                                <option class="form-control" value="NotVisibleIndividually">created</option>
-                                <option class="form-control" value="NotVisibleIndividually">last_updated</option>
-                                <option class="form-control" value="NotVisibleIndividually">type</option>
-                                <option class="form-control" value="NotVisibleIndividually">sku</option>
-                                <option class="form-control" value="NotVisibleIndividually">mpn</option>
-          
-                              </select>
-                              </div>
-    
-                      </td>
-                    </tr>
-
-
-                    <tr>
-                        <!-- <th scope="row">1</th> -->
-                        <td>
-                            <div class="col-md-6">
-                                <select  class="form-control"   >
-                                  <option class="form-control" value="Catalog">name</option>
-                                  <option class="form-control" value="Search">slug</option>
-                                  <option class="form-control" value="NotVisibleIndividually">created</option>
-                                  <option class="form-control" value="NotVisibleIndividually">last_updated</option>
-                                  <option class="form-control" value="NotVisibleIndividually">type</option>
-                                  <option class="form-control" value="NotVisibleIndividually">sku</option>
-                                  <option class="form-control" value="NotVisibleIndividually">mpn</option>
-            
-                                </select>
-                                </div>
-      
-                        </td>
-                        <td>
-                            <div class="col-md-6">
-                                <select  class="form-control"   >
-                                  <option class="form-control" value="Catalog">name</option>
-                                  <option class="form-control" value="Search">slug</option>
-                                  <option class="form-control" value="NotVisibleIndividually">created</option>
-                                  <option class="form-control" value="NotVisibleIndividually">last_updated</option>
-                                  <option class="form-control" value="NotVisibleIndividually">type</option>
-                                  <option class="form-control" value="NotVisibleIndividually">sku</option>
-                                  <option class="form-control" value="NotVisibleIndividually">mpn</option>
-            
-                                </select>
-                                </div>
-      
-                        </td>
-                      </tr>
+              
                
               </tbody>
             </table>
@@ -223,7 +107,7 @@
                 <!-- <button (click)="goToResources()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Cancel
                 </button> -->
-                <button (click)="save()" type="button" class="btn btn-raised btn-raised btn-primary">
+                <button (click)="buildData()" type="button" class="btn btn-raised btn-raised btn-primary">
                   <i class="fa fa-check-square-o"></i> Map Data
                 </button>
               </div>

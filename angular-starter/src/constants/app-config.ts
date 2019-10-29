@@ -4,6 +4,8 @@ export class AppConfig {
     public static URL_AppBase: string = environment.appRoot;
     public static URL_Products: string = AppConfig.URL_AppBase + 'api/v1/product/';
     public static URL_Images: string = AppConfig.URL_AppBase + 'api/v1/images/';
+    public static URL_Fields: string = AppConfig.URL_AppBase + 'api/v1/product/fields/';
+
     public static URL_Tags: string = AppConfig.URL_AppBase + 'api/v1/tags/';
     public static URL_Websites: string = AppConfig.URL_AppBase + 'api/v1/websites/';
     public static URL_Categories: string = AppConfig.URL_AppBase + 'api/v1/categories/';
