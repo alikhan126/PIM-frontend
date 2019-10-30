@@ -94,10 +94,10 @@ convertTOTyped(databaseKey,stringValue){
     }
   }
   else if( databaseObj.type == 'boolean'){
-    if(stringValue == 'true' || stringValue == '1'){
+    if(stringValue == 'true' || stringValue == '1' || stringValue == 'TRUE'  ){
       return true;
     }
-    else if (stringValue == 'false' || stringValue == '0') {
+    else if (stringValue == 'false' || stringValue == '0' || stringValue == 'FALSE') {
       return false;
     }
     else {
@@ -128,7 +128,8 @@ buildData(){
   console.log(JSON.stringify(this.buildedData))
 
   this.productService.importProducts(this.buildedData).subscribe(response=>{
-    console.log(response)
+     console.log(response)
+     // this.router.navigate(['products/']);
   })
 }
 
