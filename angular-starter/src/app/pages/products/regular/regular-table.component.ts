@@ -129,7 +129,7 @@ buildData(){
 
   this.productService.importProducts(this.buildedData).subscribe(response=>{
      console.log(response)
-     // this.router.navigate(['products/']);
+     this.router.navigate(['products/']);
   })
 }
 
