@@ -83,6 +83,7 @@ export class RolesEditComponent {
 
     // Editing content code
     updateValue(event, cell, rowIndex) {
+        
         this.editing[rowIndex + '-' + cell] = false;
         this.roleService.get(this.rows[rowIndex]['id']).subscribe(data => {
             this.rows[rowIndex] = data;
@@ -95,12 +96,13 @@ export class RolesEditComponent {
         });
     }
 
-    updateValueArray(event, cell, rowIndex) {
+    updateRelationship(value, cell, rowIndex) {
+
+
         this.editing[rowIndex + '-' + cell] = false;
         this.roleService.get(this.rows[rowIndex]['id']).subscribe(data => {
             this.rows[rowIndex] = data;
-            console.log([event.target.value])
-            this.rows[rowIndex][cell] = [event.target.value];
+            this.rows[rowIndex][cell] = value;
             this.roleService.update(this.rows[rowIndex]).subscribe(data => {
                 this.roleService.getAll().subscribe(data => {
                     this.rows = data;

@@ -36,12 +36,42 @@
                         </a>
                     </ng-template>
                 </ngx-datatable-column> -->
-                <ngx-datatable-column [width]="200" name="Permissions">
+
+                <ngx-datatable-column [width]="100" name="User">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                      <!-- <span 
+                      [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" 
+                      title="Double click to edit" (dblclick)="editing[rowIndex + '-user'] = true" 
+                      *ngIf="!editing[rowIndex + '-user']"
+                      
+                      > -->
+
+                      <span>
+                          {{value.name}}
+                      </span>
+                     <!--  <input (blur)="updateValue($event, 'user', rowIndex)" *ngIf="editing[rowIndex+ '-user']" type="text" [value]="value"
+                      /> -->
+
+                      <!-- <ng-select  
+                      *ngIf="editing[rowIndex+ '-user']" 
+                      
+                      (blur)="updateRelationshipValue(row['user']['id'], 'user', rowIndex)" 
+                      
+                      [items]="users"  bindLabel="name"   placeholder="Select User"
+                       name="user" [(ngModel)]="row['user']"
+                      >
+
+                      </ng-select> -->
+                  </ng-template>
+              </ngx-datatable-column>
+
+
+                <ngx-datatable-column [width]="300" name="Permissions">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                         <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-permissions'] = true" *ngIf="!editing[rowIndex + '-Permissions']">
                             {{value}}
                         </span>
-                        <ng-select  (blur)="updateValue($event, 'name', rowIndex)" *ngIf="editing[rowIndex+ '-permissions']" [items]="permissions"  bindLabel="name"   placeholder="Select permissions"
+                        <ng-select  (blur)="updateRelationship(row['permissions'], 'permissions', rowIndex)" *ngIf="editing[rowIndex+ '-permissions']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select permissions"
                          
                          name="permissions" [(ngModel)]="row['permissions']" multiple="true"
                         >
@@ -50,26 +80,7 @@
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column [width]="200" name="User">
-                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-user'] = true" *ngIf="!editing[rowIndex + '-user']">
-                            {{value.name}}
-                        </span>
-                       <!--  <input (blur)="updateValue($event, 'user', rowIndex)" *ngIf="editing[rowIndex+ '-user']" type="text" [value]="value"
-                        /> -->
 
-                        <ng-select  
-                        *ngIf="editing[rowIndex+ '-user']" 
-                        
-                        (blur)="updateRelationshipValue(row['user']['id'], 'user', rowIndex)" 
-                        
-                        [items]="users"  bindLabel="name"   placeholder="Select User"
-                         name="user" [(ngModel)]="row['user']"
-                        >
-
-                        </ng-select>
-                    </ng-template>
-                </ngx-datatable-column>
             </ngx-datatable>
             </div>
           </div>
