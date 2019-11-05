@@ -95,8 +95,7 @@ export class AddBrandComponent implements OnInit{
 
   goToBrands(){
     this.router.navigate(['/brands']);
-
-}
+  }
 
 
 getImages(){

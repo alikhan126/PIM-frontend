@@ -18,26 +18,15 @@ export class AddRoleComponent implements OnInit{
   categories:any=[];
   productFamilies:any=[];
   taxes:any=[];
-  manufracturer:any=[];
-  user:any=[];
-  permission:any=[];
+  users:any=[];
 
   isNew :boolean = false;
 
   constructor( private route : ActivatedRoute, private router : Router, private roleService: RoleService){
-    // let userObj=JSON.parse(localStorage.getItem('currentUser'));
-
   }
   ngOnInit () {
      this.getRole();
-     // this.getImages();
-     // this.getWebsites();
-     // this.getTags();
-     // this.getBrands();
      this.getUsers();
-     // this.getProductFamilies();
-    //  this.getTaxes();
-
   }
 
   getRole(){
@@ -49,11 +38,35 @@ export class AddRoleComponent implements OnInit{
     }):this.isNew=true;
   }
 
+  permissions = [
+        {name: 'CAN_CREATE_PRDOUCTS'},
+        {name: 'CAN_UPDATE_PRDOUCTS'},
+        {name: 'CAN_DELETE_PRDOUCTS'},
+        {name: 'CAN_CREATE_MANUFACTURER'},
+        {name: 'CAN_UPDATE_MANUFACTURER'},
+        {name: 'CAN_DELETE_MANUFACTURER'},
+        {name: 'CAN_CREATE_BRANDS'},
+        {name: 'CAN_UPDATE_BRANDS'},
+        {name: 'CAN_DELETE_BRANDS'},
+        {name: 'CAN_CREATE_CATALOGS'},
+        {name: 'CAN_UPDATE_CATALOGS'},
+        {name: 'CAN_DELETE_CATALOGS'},
+        {name: 'CAN_CREATE_CATEGORY'},
+        {name: 'CAN_UPDATE_CATEGORY'},
+        {name: 'CAN_DELETE_CATEGORY'},
+        {name: 'CAN_CREATE_TAGS'},
+        {name: 'CAN_UPDATE_TAGS'},
+        {name: 'CAN_DELETE_TAGS'},
+        {name: 'CAN_CREATE_WEBSITE'},
+        {name: 'CAN_UPDATE_WEBSITE'},
+        {name: 'CAN_DELETE_WEBSITE'},
+        {name: 'CAN_CREATE_IMAGES'},
+        {name: 'CAN_UPDATE_IMAGES'},
+        {name: 'CAN_DELETE_IMAGES'},
+    ]
+
 
   save(): void {
-    // let user=JSON.parse(localStorage.getItem('currentUser'));
-    // this.permission = "CAN_CREATE_BRANDS";
-    // if(user.roles['permissions'].includes(this.permission)){
       if(this.isNew){
         this.roleService.add(this.pObj)
         .subscribe(result => {
@@ -84,16 +97,11 @@ export class AddRoleComponent implements OnInit{
            alert("Updated Successfully")
           });
       }
-    // }else {
-    //   console.log("False")
-    //   alert("You don't have permisison to add brands");   
-    // }
-    // // this.location.back();
   }
 
 
 
-  goToBrands(){
+  goToRoles(){
     this.router.navigate(['/roles']);
 
 }
@@ -108,7 +116,7 @@ getImages(){
 
 getUsers(){
   this.roleService.getAllUsers().subscribe(data => {
-    this.manufracturer = data;
+    this.users = data['results'];
 });
 }
 

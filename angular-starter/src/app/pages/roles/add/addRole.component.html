@@ -17,25 +17,29 @@
               <div class="form-body">
                 <h4 class="form-section"><i class="ft-file-text"></i> Basic Info</h4>
                 <div class="row">
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label >Name</label>
-                      <input type="text" class="form-control" name="name" [(ngModel)]="pObj.name"   >
-                    </div>
-                  </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label >Manufracturer</label>
-                      <ng-select [items]="manufracturer" bindLabel="name" bindValue="id"  placeholder="Select Manufracturer"
-                      name="manufracturer" [(ngModel)]="pObj.manufacturer">
+                      <label >User</label>
+                      <ng-select [items]="users" bindLabel="email" bindValue="id"  placeholder="Select User"
+                      name="user" [(ngModel)]="pObj.user">
                     </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label >Permission</label>
+                    <ng-select [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Permissions"
+                        name="permissions" [(ngModel)]="pObj.permissions" multiple="true"
+                      >
+
+                      </ng-select>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="form-actions">
-                <button (click)="goToBrands()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
+                <button (click)="goToRoles()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Cancel
                 </button>
                 <button (click)="save()" type="button" class="btn btn-raised btn-raised btn-primary">

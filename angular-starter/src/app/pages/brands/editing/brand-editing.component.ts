@@ -112,8 +112,13 @@ export class BrandsEditComponent {
     }
 
     addBrand(){
-        this.router.navigate(['/brands/0']);
-
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_CREATE_BRANDS";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.router.navigate(['/brands/0']);
+        } else{
+            alert("You don't have the permission to add Brands!");
+        }
     }
 
     updateFilter(event) {
