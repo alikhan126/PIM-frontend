@@ -20,6 +20,7 @@ export class CategoryEditComponent {
     totalRecords:number;
     temp = []
     closeResult: string;
+    permission: string;
     
     constructor(private modalService: NgbModal, private categoryService: CategoryService, private router: Router) {
     }
@@ -53,20 +54,31 @@ export class CategoryEditComponent {
 
     // Editing content code
     updateValue(event, cell, rowIndex) {
-        this.editing[rowIndex + '-' + cell] = false;
-        this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
-            this.rows[rowIndex] = data;
-            this.rows[rowIndex][cell] = event.target.value;
-            this.categoryService.update(this.rows[rowIndex]).subscribe(data => {
-                this.categoryService.getAll().subscribe(data => {
-                    this.rows = data;
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_UPDATE_CATEGORY";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.editing[rowIndex + '-' + cell] = false;
+            this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.categoryService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.categoryService.getAll().subscribe(data => {
+                        this.rows = data;
+                    });
                 });
             });
-        });
+        } else{
+            alert("You don't have permission to edit categories!");
+        }
     }
-
     addCategory(){
-        this.router.navigate(['/categories/0']);
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_CREATE_CATEGORY";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.router.navigate(['/categories/0']);
+        } else {
+            alert("You don't have permission to add the categories!");
+        }
 
     }
 
@@ -89,31 +101,43 @@ export class CategoryEditComponent {
     }
 
     updateRelationshipValue(value, cell, rowIndex) {
-        this.editing[rowIndex + '-' + cell] = false;
-        this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
-            this.rows[rowIndex] = data;
-            this.rows[rowIndex][cell] = value;
-            this.categoryService.update(this.rows[rowIndex]).subscribe(data => {
-                this.categoryService.getAll().subscribe(data => {
-                    this.rows = data;
-                    console.log(this.rows)
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_UPDATE_CATEGORY";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.editing[rowIndex + '-' + cell] = false;
+            this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = value;
+                this.categoryService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.categoryService.getAll().subscribe(data => {
+                        this.rows = data;
+                        console.log(this.rows)
+                    });
                 });
             });
-        });
+        } else {
+            alert("You don't have permission to edit the categories!");
+        }
     }
 
     deleteCategory(event, cell, rowIndex) {
-        this.editing[rowIndex + '-' + cell] = false;
-        this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
-            this.rows[rowIndex] = data;
-            this.rows[rowIndex][cell] = event.target.value;
-            this.categoryService.delete(this.rows[rowIndex]['id']).subscribe(data => {
-                this.categoryService.getAll().subscribe(data => {
-                    this.rows = data;
-                    console.log(this.rows)
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_DELETE_CATEGORY";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.editing[rowIndex + '-' + cell] = false;
+            this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.categoryService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                    this.categoryService.getAll().subscribe(data => {
+                        this.rows = data;
+                        console.log(this.rows)
+                    });
                 });
             });
-        });
+        } else {
+            alert("You don't have permission to delete the categories!");
+        }
     }
 
 }

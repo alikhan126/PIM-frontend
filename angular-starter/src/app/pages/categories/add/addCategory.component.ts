@@ -18,6 +18,7 @@ export class AddCategoryComponent implements OnInit{
   categories:any=[];
   productFamilies:any=[];
   taxes:any=[];
+  permission:any=[];
 
   isNew :boolean = false;
   loading :boolean = false;
@@ -62,37 +63,42 @@ export class AddCategoryComponent implements OnInit{
 
   save(): void {
 
-
-    if(this.isNew){
-      this.categoryService.add(this.regularForm.value)
-      .subscribe(result => {
-        this.pObj=result;
-        console.log(this.pObj)
-        this.pObj && this.pObj.id && this.router.navigate(['categories/'])
-        // this.ts.success("Operation Performed Successfully");
-      })
-    }
+    let user=JSON.parse(localStorage.getItem('currentUser'));
+    this.permission = "CAN_CREATE_CATEGORY";
+    if(user.roles['permissions'].includes(this.permission)){
+      if(this.isNew){
+        this.categoryService.add(this.regularForm.value)
+        .subscribe(result => {
+          this.pObj=result;
+          console.log(this.pObj)
+          this.pObj && this.pObj.id && this.router.navigate(['categories/'])
+          // this.ts.success("Operation Performed Successfully");
+        })
+      }
       else {
-        //ToDO change
-        // let tempArray=[];
-        //  this.pObj.images.map(image=>{  tempArray.push(image.id?image.id:image)});
-        //  this.pObj.images=tempArray;
-        //  tempArray=[];
-        //  this.pObj.tags.map(image=>{  tempArray.push(image.id?image.id:image)});
-        //  this.pObj.tags=tempArray;
-        //  tempArray=[];
-        //  this.pObj.websites.map(image=>{  tempArray.push(image.id?image.id:image)});
-        //  this.pObj.websites=tempArray;
-        //  tempArray=[];
-        //  this.pObj.category.map(image=>{  tempArray.push(image.id?image.id:image)});
-        //  this.pObj.category=tempArray;
-        //  tempArray=[];
-         
-        
-        this.categoryService.update(this.regularForm.value).subscribe(aResult=>{
-         alert("Updated Successfully")
-        });
-  }
+          //ToDO change
+          // let tempArray=[];
+          //  this.pObj.images.map(image=>{  tempArray.push(image.id?image.id:image)});
+          //  this.pObj.images=tempArray;
+          //  tempArray=[];
+          //  this.pObj.tags.map(image=>{  tempArray.push(image.id?image.id:image)});
+          //  this.pObj.tags=tempArray;
+          //  tempArray=[];
+          //  this.pObj.websites.map(image=>{  tempArray.push(image.id?image.id:image)});
+          //  this.pObj.websites=tempArray;
+          //  tempArray=[];
+          //  this.pObj.category.map(image=>{  tempArray.push(image.id?image.id:image)});
+          //  this.pObj.category=tempArray;
+          //  tempArray=[];
+           
+          
+          this.categoryService.update(this.regularForm.value).subscribe(aResult=>{
+           alert("Updated Successfully")
+          });
+      }
+    } else{
+      alert("You don't have access to add category!");
+    }
       
       // this.location.back();
   }

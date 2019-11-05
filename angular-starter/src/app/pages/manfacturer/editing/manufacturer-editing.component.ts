@@ -18,6 +18,7 @@ export class ManufacturerEditComponent {
     totalRecords:number;
     temp = [];
     closeResult: string;
+    permission: string;
 
     constructor(private modalService: NgbModal, private manufacturerService: ManufacturerService, private router: Router) {
     }
@@ -49,36 +50,53 @@ export class ManufacturerEditComponent {
 
     // Editing content code
     updateValue(event, cell, rowIndex) {
-        this.editing[rowIndex + '-' + cell] = false;
-        this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
-            this.rows[rowIndex] = data;
-            this.rows[rowIndex][cell] = event.target.value;
-            this.manufacturerService.update(this.rows[rowIndex]).subscribe(data => {
-                this.manufacturerService.getAll().subscribe(data => {
-                    this.rows = data;
-                    console.log(this.rows)
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_UPDATE_MANUFACTURER";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.editing[rowIndex + '-' + cell] = false;
+            this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.manufacturerService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.manufacturerService.getAll().subscribe(data => {
+                        this.rows = data;
+                        console.log(this.rows)
+                    });
                 });
             });
-        });
-    }
+        } else {
+            alert("You don't have access to edit manufacturer!");
+        }
+    }    
 
     deleteManufacturer(event, cell, rowIndex) {
-        this.editing[rowIndex + '-' + cell] = false;
-        this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
-            this.rows[rowIndex] = data;
-            this.rows[rowIndex][cell] = event.target.value;
-            this.manufacturerService.delete(this.rows[rowIndex]['id']).subscribe(data => {
-                this.manufacturerService.getAll().subscribe(data => {
-                    this.rows = data;
-                    console.log(this.rows)
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_DELETE_MANUFACTURER";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.editing[rowIndex + '-' + cell] = false;
+            this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.manufacturerService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                    this.manufacturerService.getAll().subscribe(data => {
+                        this.rows = data;
+                        console.log(this.rows)
+                    });
                 });
             });
-        });
+        } else {
+            alert("You don't have access to delete manufacturer!");
+        }
     }
 
     addManfacturer(){
-        this.router.navigate(['/manufacturer/0']);
-
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_CREATE_MANUFACTURER";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.router.navigate(['/manufacturer/0']);
+        } else {
+            alert("You don't have access to add manufacturer!");
+        }
     }
 
     updateFilter(event) {

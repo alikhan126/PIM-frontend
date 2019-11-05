@@ -19,6 +19,7 @@ export class BrandsEditComponent {
     totalRecords:number;
     temp = [];
     manufacturers =[];
+    permission :string;
     closeResult: string;
 
     // @ViewChild(DatatableComponent, {static: false}) table: DatatableComponent;
@@ -53,42 +54,61 @@ export class BrandsEditComponent {
 
     // Editing content code
     updateValue(event, cell, rowIndex) {
-        this.editing[rowIndex + '-' + cell] = false;
-        this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
-            this.rows[rowIndex] = data;
-            this.rows[rowIndex][cell] = event.target.value;
-            this.brandService.update(this.rows[rowIndex]).subscribe(data => {
-                this.brandService.getAll().subscribe(data => {
-                    this.rows = data;
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_UPDATE_BRANDS";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.editing[rowIndex + '-' + cell] = false;
+            this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.brandService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.brandService.getAll().subscribe(data => {
+                        this.rows = data;
+                    });
                 });
             });
-        });
+        } else {
+            alert("You don't have the permission to edit Brands!");
+        }
     }
 
     updateRelationshipValue(value, cell, rowIndex) {
-        this.editing[rowIndex + '-' + cell] = false;
-        this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
-            this.rows[rowIndex] = data;
-            this.rows[rowIndex][cell] = value;
-            this.brandService.update(this.rows[rowIndex]).subscribe(data => {
-                this.brandService.getAll().subscribe(data => {
-                    this.rows = data;
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_UPDATE_BRANDS";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.editing[rowIndex + '-' + cell] = false;
+            this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = value;
+                this.brandService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.brandService.getAll().subscribe(data => {
+                        this.rows = data;
+                    });
                 });
             });
-        });
+        } else {
+            alert("You don't have the permission to edit Brands!");
+        }
     }
 
     deleteBrand(event, cell, rowIndex) {
-        this.editing[rowIndex + '-' + cell] = false;
-        this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
-            this.rows[rowIndex] = data;
-            this.rows[rowIndex][cell] = event.target.value;
-            this.brandService.delete(this.rows[rowIndex]['id']).subscribe(data => {
-                this.brandService.getAll().subscribe(data => {
-                    this.rows = data;
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_DELETE_BRANDS";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.editing[rowIndex + '-' + cell] = false;
+            this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.brandService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                    this.brandService.getAll().subscribe(data => {
+                        this.rows = data;
+                    });
                 });
             });
-        });
+        } else{
+            alert("You don't have the permission to delete Brands!");
+
+        }
     }
 
     addBrand(){

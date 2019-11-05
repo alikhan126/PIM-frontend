@@ -40,6 +40,7 @@ export class ProductsEditComponent {
     SpecialOrder:any=[];
     FromPartners:any=[];
     closeResult: string;
+    permission: string;
     
     constructor(private modalService: NgbModal, private productService: ProductService, private router: Router) {
     }
@@ -104,51 +105,74 @@ export class ProductsEditComponent {
 
     // Editing content code
     updateValue(event, cell, rowIndex) {
-        this.editing[rowIndex + '-' + cell] = false;
-        this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
-            this.rows[rowIndex] = data;
-            this.rows[rowIndex][cell] = event.target.value;
-            this.productService.update(this.rows[rowIndex]).subscribe(data => {
-                this.productService.getAll().subscribe(data => {
-                    this.rows = data;
-                    console.log(this.rows)
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_UPDATE_PRDOUCTS";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.editing[rowIndex + '-' + cell] = false;
+            this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.productService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.productService.getAll().subscribe(data => {
+                        this.rows = data;
+                        console.log(this.rows)
+                    });
                 });
             });
-        });
+        } else {
+            alert("You don't have access to edit products!");
+        }
     }
 
     deleteProduct(event, cell, rowIndex) {
-        this.editing[rowIndex + '-' + cell] = false;
-        this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
-            this.rows[rowIndex] = data;
-            console.log(this.rows[rowIndex])
-            this.rows[rowIndex][cell] = event.target.value;
-            this.productService.delete(this.rows[rowIndex]['id']).subscribe(data => {
-                this.productService.getAll().subscribe(data => {
-                    this.rows = data;
-                    console.log(this.rows)
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_DELETE_PRDOUCTS";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.editing[rowIndex + '-' + cell] = false;
+            this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                console.log(this.rows[rowIndex])
+                this.rows[rowIndex][cell] = event.target.value;
+                this.productService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                    this.productService.getAll().subscribe(data => {
+                        this.rows = data;
+                        console.log(this.rows)
+                    });
                 });
             });
-        });
+        } else {
+            alert("You don't have access to delete products!");
+        }
     }
 
     updateRelationshipValue(value, cell, rowIndex) {
-        this.editing[rowIndex + '-' + cell] = false;
-        this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
-            this.rows[rowIndex] = data;
-            this.rows[rowIndex][cell] = value;
-            this.productService.update(this.rows[rowIndex]).subscribe(data => {
-                this.productService.getAll().subscribe(data => {
-                    this.rows = data;
-                    console.log(this.rows)
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_UPDATE_PRDOUCTS";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.editing[rowIndex + '-' + cell] = false;
+            this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = value;
+                this.productService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.productService.getAll().subscribe(data => {
+                        this.rows = data;
+                        console.log(this.rows)
+                    });
                 });
             });
-        });
+        } else {
+            alert("You don't have access to edit products!");
+        }
     }
 
     addProduct(){
-        this.router.navigate(['/products/0']);
-
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_CREATE_PRDOUCTS";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.router.navigate(['/products/0']);
+        } else {
+            alert("You don't have access to add products!");
+        }
     }
 
 

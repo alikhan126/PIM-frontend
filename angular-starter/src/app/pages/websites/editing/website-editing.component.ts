@@ -18,6 +18,7 @@ export class WebsitesEditComponent {
     totalRecords:number;
     temp = [];
     closeResult: string;
+    permission: string;
 
     constructor(private modalService: NgbModal, private websiteService: WebsiteService, private router: Router) {
     }
@@ -49,37 +50,54 @@ export class WebsitesEditComponent {
 
     // Editing content code
     updateValue(event, cell, rowIndex) {
-        this.editing[rowIndex + '-' + cell] = false;
-        this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
-            this.rows[rowIndex] = data;
-            this.rows[rowIndex][cell] = event.target.value;
-            this.websiteService.update(this.rows[rowIndex]).subscribe(data => {
-                this.websiteService.getAll().subscribe(data => {
-                    this.rows = data;
-                    console.log(this.rows)
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_UPDATE_WEBSITE";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.editing[rowIndex + '-' + cell] = false;
+            this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.websiteService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.websiteService.getAll().subscribe(data => {
+                        this.rows = data;
+                        console.log(this.rows)
+                    });
                 });
             });
-        });
+        } else {
+            alert("You don't have the permission to edit the websites")
+        }
     }
 
     deleteWebsite(event, cell, rowIndex) {
-        this.editing[rowIndex + '-' + cell] = false;
-        this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
-            this.rows[rowIndex] = data;
-            console.log("test", this.rows[rowIndex]['id'])
-            this.rows[rowIndex][cell] = event.target.value;
-            this.websiteService.delete(this.rows[rowIndex]['id']).subscribe(data => {
-                this.websiteService.getAll().subscribe(data => {
-                    this.rows = data;
-                    console.log(this.rows)
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_CREATE_WEBSITE";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.editing[rowIndex + '-' + cell] = false;
+            this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                console.log("test", this.rows[rowIndex]['id'])
+                this.rows[rowIndex][cell] = event.target.value;
+                this.websiteService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                    this.websiteService.getAll().subscribe(data => {
+                        this.rows = data;
+                        console.log(this.rows)
+                    });
                 });
             });
-        });
+        } else {
+            alert("You don't have the permission to delete the websites")
+        }
     }
 
     addWebsite(){
-        this.router.navigate(['/websites/0']);
-
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.permission = "CAN_CREATE_WEBSITE";
+        if(user.roles['permissions'].includes(this.permission)){
+            this.router.navigate(['/websites/0']);
+        } else {
+            alert("You don't have the permission to add the websites")
+        }       
     }
 
     updateFilter(event) {

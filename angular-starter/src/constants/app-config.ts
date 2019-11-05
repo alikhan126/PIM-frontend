@@ -9,6 +9,8 @@ export class AppConfig {
     public static URL_Fields: string = AppConfig.URL_AppBase + 'api/v1/product/fields/';
 
     public static URL_Tags: string = AppConfig.URL_AppBase + 'api/v1/tags/';
+    public static URL_Roles: string = AppConfig.URL_AppBase + 'api/v1/roles/';
+    public static URL_Users: string = AppConfig.URL_AppBase + 'api/v1/users/';
     public static URL_Websites: string = AppConfig.URL_AppBase + 'api/v1/websites/';
     public static URL_Categories: string = AppConfig.URL_AppBase + 'api/v1/categories/';
     public static URL_Manfracturer: string = AppConfig.URL_AppBase + 'api/v1/manfracturer/';

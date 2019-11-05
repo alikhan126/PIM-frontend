@@ -29,5 +29,9 @@ export const Full_ROUTES: Routes = [
   {
     path: 'manufacturer',
     loadChildren: () => import('../../pages/manfacturer/manufacturer.module').then(m => m.ManufacturerPagesModule)
+  },
+  {
+    path: 'roles',
+    loadChildren: () => import('../../pages/roles/roles.module').then(m => m.RolesPagesModule)
   }
 ];
