@@ -55,30 +55,11 @@ export class RolesEditComponent {
     }
 
     permissions = [
-        {name: 'CAN_CREATE_PRDOUCTS'},
-        {name: 'CAN_UPDATE_PRDOUCTS'},
-        {name: 'CAN_DELETE_PRDOUCTS'},
-        {name: 'CAN_CREATE_MANUFACTURER'},
-        {name: 'CAN_UPDATE_MANUFACTURER'},
-        {name: 'CAN_DELETE_MANUFACTURER'},
-        {name: 'CAN_CREATE_BRANDS'},
-        {name: 'CAN_UPDATE_BRANDS'},
-        {name: 'CAN_DELETE_BRANDS'},
-        {name: 'CAN_CREATE_CATALOGS'},
-        {name: 'CAN_UPDATE_CATALOGS'},
-        {name: 'CAN_DELETE_CATALOGS'},
-        {name: 'CAN_CREATE_CATEGORY'},
-        {name: 'CAN_UPDATE_CATEGORY'},
-        {name: 'CAN_DELETE_CATEGORY'},
-        {name: 'CAN_CREATE_TAGS'},
-        {name: 'CAN_UPDATE_TAGS'},
-        {name: 'CAN_DELETE_TAGS'},
-        {name: 'CAN_CREATE_WEBSITE'},
-        {name: 'CAN_UPDATE_WEBSITE'},
-        {name: 'CAN_DELETE_WEBSITE'},
-        {name: 'CAN_CREATE_IMAGES'},
-        {name: 'CAN_UPDATE_IMAGES'},
-        {name: 'CAN_DELETE_IMAGES'},
+        {name: 'All'},
+        {name: 'Create'},
+        {name: 'Update'},
+        {name: 'Delete'},
+        {name: 'View'},
     ]
 
     // Editing content code
