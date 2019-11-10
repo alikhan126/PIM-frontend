@@ -29,7 +29,11 @@
                       <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-brands'] = true" *ngIf="!editing[rowIndex + '-brands']">
                           {{value}}
                       </span>
-                      <ng-select  (blur)="updateRelationship(row['brands'], 'brands', rowIndex)" *ngIf="editing[rowIndex+ '-brands']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Brands Permissions"
+                      <ng-select  
+                      appendTo="body"
+                      (blur)="updateRelationship(row['brands'], 'brands', rowIndex)"
+                       *ngIf="editing[rowIndex+ '-brands']" 
+                       [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Brands Permissions"
                        
                        name="brands" [(ngModel)]="row['brands']" multiple="true" [virtualScroll]="true"
                       >
@@ -44,7 +48,7 @@
                           {{value}}
                       </span>
                       <ng-select  (blur)="updateRelationship(row['products'], 'products', rowIndex)" *ngIf="editing[rowIndex+ '-products']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Products Permissions"
-                       
+                      appendTo="body"
                        name="products" [(ngModel)]="row['products']" multiple="true"
                       >
 
@@ -58,7 +62,7 @@
                           {{value}}
                       </span>
                       <ng-select  (blur)="updateRelationship(row['catalogs'], 'catalogs', rowIndex)" *ngIf="editing[rowIndex+ '-catalogs']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Catalogs Permissions"
-                       
+                      appendTo="body"
                        name="catalogs" [(ngModel)]="row['catalogs']" multiple="true"
                       >
 
@@ -72,7 +76,7 @@
                           {{value}}
                       </span>
                       <ng-select  (blur)="updateRelationship(row['manufacturer'], 'manufacturer', rowIndex)" *ngIf="editing[rowIndex+ '-manufacturer']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Manufacturer Permissions"
-                       
+                      appendTo="body"
                        name="manufacturer" [(ngModel)]="row['manufacturer']" multiple="true"
                       >
 
@@ -86,7 +90,7 @@
                           {{value}}
                       </span>
                       <ng-select  (blur)="updateRelationship(row['websites'], 'websites', rowIndex)" *ngIf="editing[rowIndex+ '-websites']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Websites Permissions"
-                       
+                      appendTo="body"
                        name="websites" [(ngModel)]="row['websites']" multiple="true"
                       >
 
@@ -100,7 +104,7 @@
                           {{value}}
                       </span>
                       <ng-select  (blur)="updateRelationship(row['tags'], 'tags', rowIndex)" *ngIf="editing[rowIndex+ '-tags']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Tags Permissions"
-                       
+                      appendTo="body"
                        name="tags" [(ngModel)]="row['tags']" multiple="true"
                       >
 
@@ -114,7 +118,7 @@
                           {{value}}
                       </span>
                       <ng-select  (blur)="updateRelationship(row['adapters'], 'adapters', rowIndex)" *ngIf="editing[rowIndex+ '-adapters']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Adapters Permissions"
-                       
+                      appendTo="body"
                        name="adapters" [(ngModel)]="row['adapters']" multiple="true"
                       >
 
