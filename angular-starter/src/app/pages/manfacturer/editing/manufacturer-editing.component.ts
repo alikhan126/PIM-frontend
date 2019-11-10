@@ -51,8 +51,8 @@ export class ManufacturerEditComponent {
     // Editing content code
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_UPDATE_MANUFACTURER";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Edit";
+        if(user.roles['manufacturer'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -71,8 +71,8 @@ export class ManufacturerEditComponent {
 
     deleteManufacturer(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_DELETE_MANUFACTURER";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Delete";
+        if(user.roles['manufacturer'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -91,8 +91,8 @@ export class ManufacturerEditComponent {
 
     addManfacturer(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_CREATE_MANUFACTURER";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Create";
+        if(user.roles['manufacturer'].includes(this.permission)){
             this.router.navigate(['/manufacturer/0']);
         } else {
             alert("You don't have access to add manufacturer!");

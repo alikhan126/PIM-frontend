@@ -55,8 +55,8 @@ export class CategoryEditComponent {
     // Editing content code
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_UPDATE_CATEGORY";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Edit";
+        if(user.roles['categories'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -73,8 +73,8 @@ export class CategoryEditComponent {
     }
     addCategory(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_CREATE_CATEGORY";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Create";
+        if(user.roles['categories'].includes(this.permission)){
             this.router.navigate(['/categories/0']);
         } else {
             alert("You don't have permission to add the categories!");
@@ -102,8 +102,8 @@ export class CategoryEditComponent {
 
     updateRelationshipValue(value, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_UPDATE_CATEGORY";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Edit";
+        if(user.roles['categories'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -122,8 +122,8 @@ export class CategoryEditComponent {
 
     deleteCategory(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_DELETE_CATEGORY";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Delete";
+        if(user.roles['categories'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;

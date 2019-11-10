@@ -106,8 +106,8 @@ export class ProductsEditComponent {
     // Editing content code
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_UPDATE_PRDOUCTS";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Edit";
+        if(user.roles['products'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -126,8 +126,8 @@ export class ProductsEditComponent {
 
     deleteProduct(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_DELETE_PRDOUCTS";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Delete";
+        if(user.roles['products'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -147,8 +147,8 @@ export class ProductsEditComponent {
 
     updateRelationshipValue(value, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_UPDATE_PRDOUCTS";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Edit";
+        if(user.roles['products'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -167,8 +167,8 @@ export class ProductsEditComponent {
 
     addProduct(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_CREATE_PRDOUCTS";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Create";
+        if(user.roles['products'].includes(this.permission)){
             this.router.navigate(['/products/0']);
         } else {
             alert("You don't have access to add products!");

@@ -55,8 +55,8 @@ export class BrandsEditComponent {
     // Editing content code
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_UPDATE_BRANDS";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Edit";
+        if(user.roles['brands'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -74,8 +74,8 @@ export class BrandsEditComponent {
 
     updateRelationshipValue(value, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_UPDATE_BRANDS";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Edit";
+        if(user.roles['brands'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -93,8 +93,8 @@ export class BrandsEditComponent {
 
     deleteBrand(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_DELETE_BRANDS";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Delete";
+        if(user.roles['brands'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -113,8 +113,8 @@ export class BrandsEditComponent {
 
     addBrand(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_CREATE_BRANDS";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Create";
+        if(user.roles['brands'].includes(this.permission)){
             this.router.navigate(['/brands/0']);
         } else{
             alert("You don't have the permission to add Brands!");

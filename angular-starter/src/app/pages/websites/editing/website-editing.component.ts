@@ -51,8 +51,8 @@ export class WebsitesEditComponent {
     // Editing content code
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_UPDATE_WEBSITE";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Edit";
+        if(user.roles['websites'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -71,8 +71,8 @@ export class WebsitesEditComponent {
 
     deleteWebsite(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_CREATE_WEBSITE";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Delete";
+        if(user.roles['websites'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -92,8 +92,8 @@ export class WebsitesEditComponent {
 
     addWebsite(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "CAN_CREATE_WEBSITE";
-        if(user.roles['permissions'].includes(this.permission)){
+        this.permission = "Create";
+        if(user.roles['websites'].includes(this.permission)){
             this.router.navigate(['/websites/0']);
         } else {
             alert("You don't have the permission to add the websites")
