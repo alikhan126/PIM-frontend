@@ -38,6 +38,26 @@ importProducts (record: any): Observable<any> {
   );
 }
 
+addAdapters (record: any): Observable<any> {
+
+  return this.http.post<any>(`${AppConfig.URL_Adapters}`, record).pipe(
+    map(x => x ),
+    catchError(this.handleError<any>('Adapters'))
+  );
+}
+
+
+getAdapters() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Adapters}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
 getAll() 
 {
 

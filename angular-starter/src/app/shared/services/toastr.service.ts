@@ -12,6 +12,9 @@ export class NGXToastrService {
     typeSuccess() {
         this.toastr.success('You are awesome!', 'Success!');
     }
+    typeSuccessCustom(title,message) {
+        this.toastr.success(title,message );
+    }
 
     // Success Type
     typeInfo() {

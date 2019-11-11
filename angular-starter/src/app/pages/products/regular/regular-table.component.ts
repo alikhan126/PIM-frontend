@@ -6,6 +6,7 @@ import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import * as Papa from 'papaparse';
 import { ProductService } from '../products.service';
 
+import { NGXToastrService} from  '../../../shared/services/toastr.service';
 @Component({
     selector: 'app-regular-table',
     templateUrl: './regular-table.component.html',
@@ -15,6 +16,10 @@ import { ProductService } from '../products.service';
 export class RegularTableComponent implements OnInit  {
 
     databaseColumns:any=[];
+    adapters:any=[];
+    showAdapters:boolean=false;
+    selectedAdapter:any={};
+    adaptersName:string="";
 
     uploader: FileUploader = new FileUploader({
         // url: URL,
@@ -31,7 +36,7 @@ export class RegularTableComponent implements OnInit  {
       buildedData:any=[];
       mappingObj:any={};
       sampleProduct:any={}
-      constructor( private productService:ProductService,  private formBuilder: FormBuilder,private route : ActivatedRoute, private router : Router){
+      constructor( private toasterService: NGXToastrService,private productService:ProductService,  private formBuilder: FormBuilder,private route : ActivatedRoute, private router : Router){
 
     }
 
@@ -46,6 +51,9 @@ export class RegularTableComponent implements OnInit  {
 
 
       })
+
+      this.getAdaptersFunction();
+
       this.uploadForm =  new FormGroup ({
         'upload': new FormControl(null),
         'name': new FormControl(null),
@@ -53,14 +61,7 @@ export class RegularTableComponent implements OnInit  {
         'url_type':new FormControl(null),
         'package_id':new FormControl(null)
       });
-  
-      // this.uploadForms = new FormGroup({
-      //   'upload': new FormControl(null),
-      //   'name': new FormControl(null),
-      //   'size':new FormControl({value:null,disabled:true}),
-      //   'url_type':new FormControl({value:'upload',disabled:true}),
-      //   'package_id':new FormControl({disabled:true})
-      // });
+
   
 
   
@@ -71,6 +72,16 @@ checkMap(){
 }
 
 
+mapAsAdapter(){
+  this.mappingObj=this.selectedAdapter;
+}
+getAdaptersFunction(){
+  this.productService.getAdapters().subscribe(resp=>{
+    if (resp){
+        this.adapters=resp;
+    }
+  })
+}
 convertTOTyped(databaseKey,stringValue){
 
   
@@ -125,7 +136,7 @@ buildData(){
 
 
 
-  console.log(JSON.stringify(this.buildedData))
+  // console.log(JSON.stringify(this.buildedData))
 
   this.productService.importProducts(this.buildedData).subscribe(response=>{
      console.log(response)
@@ -156,8 +167,6 @@ fileSelected(e){
     
     
     onChangeFile(fileIs :File[]){
-      console.log(fileIs)
-
       Papa.parse(fileIs[0], {
         header: true,
         skipEmptyLines: true,
@@ -174,6 +183,7 @@ fileSelected(e){
            }
           });
 
+          this.mappingObj ? this.showAdapters=true :null;
           // console.log(this.fileColumns)
           // this.dataList = result.data;
         }
@@ -193,6 +203,19 @@ fileSelected(e){
       }
     }
     
+
+
+    saveAdapter () {
+      if( Object.keys(this.mappingObj).length ){
+        this.productService.addAdapters({name:this.adaptersName , fields:this.mappingObj}).subscribe(resp=>{
+          this.toasterService.typeSuccessCustom("Success!","Operation Successful!");
+          this.adaptersName="";
+        })
+      }
+      else {
+          this.toasterService.typeError("Invalid Input","Please map fields first");
+      }
+    }
       save(): void {
     
         var f= new FormData();

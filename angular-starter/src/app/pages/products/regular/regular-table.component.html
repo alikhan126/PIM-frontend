@@ -64,6 +64,37 @@
         <div class="card-header">
           <h4 class="card-title">Map Data to Tables</h4>
           <p>Select the column for the import file in the left side and map it to database table column in the right side </p>
+      
+          <div *ngIf="this.showAdapters" class="form-actions">
+              <!-- <button (click)="goToResources()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
+                <i class="ft-x"></i> Cancel
+              </button> -->
+              <div class="row">
+              <div class="col-md-6">
+                
+                <div class="form-group">
+
+                    <ng-select [items]="adapters" bindLabel="name"  
+                        bindValue="mapped_fields"
+                        [(ngModel)]="selectedAdapter"
+                        name="selectedAdapter"
+                        placeholder="Select adapter to map" >
+                    </ng-select>
+
+                </div>
+
+              </div>
+
+              <div class="col-md-3">
+                  <button [disabled]="!selectedAdapter" (click)="mapAsAdapter()" type="button" class="btn btn-raised btn-raised btn-primary">
+                      <i class="fa fa-check-square-o"></i> Map Adapter
+                    </button>
+              </div>
+              
+
+           </div>
+
+            </div>
         </div>
         <div class="card-content">
           <div class="card-body">
@@ -103,14 +134,30 @@
             </table>
 
 
-            <div class="form-actions">
+            <div *ngIf="this.showAdapters" class="form-actions">
                 <!-- <button (click)="goToResources()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Cancel
                 </button> -->
-                <button (click)="buildData()" type="button" class="btn btn-raised btn-raised btn-primary">
-                  <i class="fa fa-check-square-o"></i> Map Data
+                <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" placeholder="Please enter adapter name"  [(ngModel)]="adaptersName" class="form-control" name="adaptersName" >
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                    <button [disabled]="!adaptersName" (click)="saveAdapter()" type="button" class="btn btn-raised btn-raised btn-primary">
+                        <i class="fa fa-check-square-o"></i> Save as  Adapter
+                      </button>
+                </div>
+                
+
+             </div>
+                <button (click)="buildData()" type="button" class="btn btn-raised btn-raised btn-green">
+                  <i class="fa fa-check-square-o"></i> Import Mapped Data
                 </button>
               </div>
+
           </div>
         </div>
       </div>
