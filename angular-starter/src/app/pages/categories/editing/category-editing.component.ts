@@ -56,7 +56,7 @@ export class CategoryEditComponent {
     // Editing content code
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Edit";
+        this.permission = "Update";
         this.perm = "All";
         if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;
@@ -105,7 +105,7 @@ export class CategoryEditComponent {
 
     updateRelationshipValue(value, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Edit";
+        this.permission = "Update";
         this.perm = "All";
         if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;

@@ -111,7 +111,7 @@ export class ProductsEditComponent {
     // Editing content code
     updateValue(event, cell, rowIndex) {
         const user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Edit";
+        this.permission = "Update";
         this.perm = "All";
         let cellvalue = this.titleCaseWord(cell);
         if(user.roles['products'].includes(this.permission) ||user.roles['products'].includes(this.perm) ){
@@ -161,7 +161,7 @@ export class ProductsEditComponent {
 
     updateRelationshipValue(value, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Edit";
+        this.permission = "Update";
         this.perm = "All";
         if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) ){
             this.productService.getFieldPermissions(user.user_id).subscribe(data => {

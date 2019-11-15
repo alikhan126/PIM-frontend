@@ -84,6 +84,20 @@
                   </ng-template>
               </ngx-datatable-column>
 
+              <ngx-datatable-column [width]="300" name="Categories">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-categories'] = true" *ngIf="!editing[rowIndex + '-categories']">
+                        {{value}}
+                    </span>
+                    <ng-select  (blur)="updateRelationship(row['categories'], 'categories', rowIndex)" *ngIf="editing[rowIndex+ '-categories']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Categories Permissions"
+                    appendTo="body"
+                     name="categories" [(ngModel)]="row['categories']" multiple="true"
+                    >
+
+                  </ng-select>
+                </ng-template>
+            </ngx-datatable-column>
+
               <ngx-datatable-column [width]="300" name="Websites">
                   <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                       <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-websites'] = true" *ngIf="!editing[rowIndex + '-websites']">

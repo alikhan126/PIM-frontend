@@ -52,7 +52,7 @@ export class WebsitesEditComponent {
     // Editing content code
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Edit";
+        this.permission = "Update";
         this.perm = "All";
         if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;

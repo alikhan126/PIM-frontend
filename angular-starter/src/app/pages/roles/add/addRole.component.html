@@ -92,6 +92,15 @@
                     </ng-select>
                     </div>
                   </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label >Categories</label>
+                    <ng-select [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Categories Permissions"
+                        name="adapters" [(ngModel)]="pObj.categories" multiple="true"
+                      >
+                    </ng-select>
+                    </div>
+                  </div>
                 </div>
               </div>
 
