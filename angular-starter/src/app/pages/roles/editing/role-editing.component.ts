@@ -64,7 +64,6 @@ export class RolesEditComponent {
 
     // Editing content code
     updateValue(event, cell, rowIndex) {
-        
         this.editing[rowIndex + '-' + cell] = false;
         this.roleService.get(this.rows[rowIndex]['id']).subscribe(data => {
             this.rows[rowIndex] = data;
@@ -78,8 +77,6 @@ export class RolesEditComponent {
     }
 
     updateRelationship(value, cell, rowIndex) {
-
-
         this.editing[rowIndex + '-' + cell] = false;
         this.roleService.get(this.rows[rowIndex]['id']).subscribe(data => {
             this.rows[rowIndex] = data;

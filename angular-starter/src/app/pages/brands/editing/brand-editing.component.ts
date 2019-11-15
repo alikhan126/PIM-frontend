@@ -20,6 +20,7 @@ export class BrandsEditComponent {
     temp = [];
     manufacturers =[];
     permission :string;
+    perm :string;
     closeResult: string;
 
     // @ViewChild(DatatableComponent, {static: false}) table: DatatableComponent;
@@ -56,7 +57,8 @@ export class BrandsEditComponent {
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Edit";
-        if(user.roles['brands'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;
             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -75,7 +77,8 @@ export class BrandsEditComponent {
     updateRelationshipValue(value, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Edit";
-        if(user.roles['brands'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;
             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -94,7 +97,8 @@ export class BrandsEditComponent {
     deleteBrand(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Delete";
-        if(user.roles['brands'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;
             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -114,7 +118,8 @@ export class BrandsEditComponent {
     addBrand(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Create";
-        if(user.roles['brands'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm)){
             this.router.navigate(['/brands/0']);
         } else{
             alert("You don't have the permission to add Brands!");

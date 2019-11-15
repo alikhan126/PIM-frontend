@@ -19,6 +19,7 @@ export class WebsitesEditComponent {
     temp = [];
     closeResult: string;
     permission: string;
+    perm: string;
 
     constructor(private modalService: NgbModal, private websiteService: WebsiteService, private router: Router) {
     }
@@ -52,7 +53,8 @@ export class WebsitesEditComponent {
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Edit";
-        if(user.roles['websites'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;
             this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -72,7 +74,8 @@ export class WebsitesEditComponent {
     deleteWebsite(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Delete";
-        if(user.roles['websites'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;
             this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -93,7 +96,8 @@ export class WebsitesEditComponent {
     addWebsite(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Create";
-        if(user.roles['websites'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm)){
             this.router.navigate(['/websites/0']);
         } else {
             alert("You don't have the permission to add the websites")

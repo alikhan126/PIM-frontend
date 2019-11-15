@@ -208,7 +208,7 @@ fileSelected(e){
     saveAdapter () {
       if( Object.keys(this.mappingObj).length ){
         this.productService.addAdapters({name:this.adaptersName , fields:this.mappingObj}).subscribe(resp=>{
-          this.toasterService.typeSuccessCustom("Success!","Operation Successful!");
+          this.toasterService.typeSuccessCustom("Success!","Adapter Created Successfully!");
           this.adaptersName="";
         })
       }

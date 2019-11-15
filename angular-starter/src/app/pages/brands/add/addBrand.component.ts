@@ -20,8 +20,8 @@ export class AddBrandComponent implements OnInit{
   taxes:any=[];
   manufracturer:any=[];
   user:any=[];
-  permission:any=[];
-
+  permission :string;
+  perm :string;
   isNew :boolean = false;
 
   constructor( private route : ActivatedRoute, private router : Router, private brandService: BrandService){
@@ -52,8 +52,9 @@ export class AddBrandComponent implements OnInit{
 
   save(): void {
     let user=JSON.parse(localStorage.getItem('currentUser'));
-    this.permission = "CAN_CREATE_BRANDS";
-    if(user.roles['permissions'].includes(this.permission)){
+    this.permission = "Add";
+    this.perm = "All";
+    if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm)){
       if(this.isNew){
         this.brandService.add(this.pObj)
         .subscribe(result => {

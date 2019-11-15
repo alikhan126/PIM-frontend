@@ -21,6 +21,7 @@ export class CategoryEditComponent {
     temp = []
     closeResult: string;
     permission: string;
+    perm: string;
     
     constructor(private modalService: NgbModal, private categoryService: CategoryService, private router: Router) {
     }
@@ -56,7 +57,8 @@ export class CategoryEditComponent {
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Edit";
-        if(user.roles['categories'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;
             this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -74,7 +76,8 @@ export class CategoryEditComponent {
     addCategory(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Create";
-        if(user.roles['categories'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm)){
             this.router.navigate(['/categories/0']);
         } else {
             alert("You don't have permission to add the categories!");
@@ -103,7 +106,8 @@ export class CategoryEditComponent {
     updateRelationshipValue(value, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Edit";
-        if(user.roles['categories'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;
             this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -123,7 +127,8 @@ export class CategoryEditComponent {
     deleteCategory(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Delete";
-        if(user.roles['categories'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;
             this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;

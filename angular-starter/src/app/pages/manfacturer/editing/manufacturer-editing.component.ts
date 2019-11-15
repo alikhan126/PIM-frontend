@@ -19,6 +19,7 @@ export class ManufacturerEditComponent {
     temp = [];
     closeResult: string;
     permission: string;
+    perm: string;
 
     constructor(private modalService: NgbModal, private manufacturerService: ManufacturerService, private router: Router) {
     }
@@ -52,7 +53,8 @@ export class ManufacturerEditComponent {
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Edit";
-        if(user.roles['manufacturer'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['manufacturer'].includes(this.permission) || user.roles['manufacturer'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;
             this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -72,7 +74,8 @@ export class ManufacturerEditComponent {
     deleteManufacturer(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Delete";
-        if(user.roles['manufacturer'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['manufacturer'].includes(this.permission) || user.roles['manufacturer'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;
             this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -92,7 +95,8 @@ export class ManufacturerEditComponent {
     addManfacturer(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Create";
-        if(user.roles['manufacturer'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['manufacturer'].includes(this.permission) || user.roles['manufacturer'].includes(this.perm)){
             this.router.navigate(['/manufacturer/0']);
         } else {
             alert("You don't have access to add manufacturer!");

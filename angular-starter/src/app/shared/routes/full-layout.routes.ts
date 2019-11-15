@@ -33,5 +33,9 @@ export const Full_ROUTES: Routes = [
   {
     path: 'roles',
     loadChildren: () => import('../../pages/roles/roles.module').then(m => m.RolesPagesModule)
+  },
+  {
+    path: 'fields',
+    loadChildren: () => import('../../pages/productPerm/perm.module').then(m => m.PermPagesModule)
   }
 ];

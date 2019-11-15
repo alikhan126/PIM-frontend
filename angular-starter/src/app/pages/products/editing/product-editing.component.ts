@@ -41,6 +41,7 @@ export class ProductsEditComponent {
     FromPartners:any=[];
     closeResult: string;
     permission: string;
+    perm: string;
     
     constructor(private modalService: NgbModal, private productService: ProductService, private router: Router) {
     }
@@ -103,21 +104,33 @@ export class ProductsEditComponent {
         return valArray;
     }
 
+    titleCaseWord(word: string) {
+        if (!word) return word;
+        return word[0].toUpperCase() + word.substr(1).toLowerCase();
+    }
     // Editing content code
     updateValue(event, cell, rowIndex) {
-        let user=JSON.parse(localStorage.getItem('currentUser'));
+        const user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Edit";
-        if(user.roles['products'].includes(this.permission)){
-            this.editing[rowIndex + '-' + cell] = false;
-            this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
-                this.rows[rowIndex] = data;
-                this.rows[rowIndex][cell] = event.target.value;
-                this.productService.update(this.rows[rowIndex]).subscribe(data => {
-                    this.productService.getAll().subscribe(data => {
-                        this.rows = data;
-                        console.log(this.rows)
+        this.perm = "All";
+        let cellvalue = this.titleCaseWord(cell);
+        if(user.roles['products'].includes(this.permission) ||user.roles['products'].includes(this.perm) ){
+            this.productService.getFieldPermissions(user.user_id).subscribe(data => {
+                if(data.edit.includes(cellvalue)){
+                    this.editing[rowIndex + '-' + cell] = false;
+                    this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.rows[rowIndex] = data;
+                        this.rows[rowIndex][cell] = event.target.value;
+                        this.productService.update(this.rows[rowIndex]).subscribe(data => {
+                            this.productService.getAll().subscribe(data => {
+                                this.rows = data;
+                                console.log(this.rows)
+                            });
+                        });
                     });
-                });
+                } else {
+                    alert("You don't have access to edit " + cell +" field!");
+                };
             });
         } else {
             alert("You don't have access to edit products!");
@@ -127,7 +140,8 @@ export class ProductsEditComponent {
     deleteProduct(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Delete";
-        if(user.roles['products'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;
             this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -148,17 +162,24 @@ export class ProductsEditComponent {
     updateRelationshipValue(value, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Edit";
-        if(user.roles['products'].includes(this.permission)){
-            this.editing[rowIndex + '-' + cell] = false;
-            this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
-                this.rows[rowIndex] = data;
-                this.rows[rowIndex][cell] = value;
-                this.productService.update(this.rows[rowIndex]).subscribe(data => {
-                    this.productService.getAll().subscribe(data => {
-                        this.rows = data;
-                        console.log(this.rows)
+        this.perm = "All";
+        if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) ){
+            this.productService.getFieldPermissions(user.user_id).subscribe(data => {
+                if(data.edit.includes(cell)){
+                    this.editing[rowIndex + '-' + cell] = false;
+                    this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.rows[rowIndex] = data;
+                        this.rows[rowIndex][cell] = value;
+                        this.productService.update(this.rows[rowIndex]).subscribe(data => {
+                            this.productService.getAll().subscribe(data => {
+                                this.rows = data;
+                                console.log(this.rows)
+                            });
+                        });
                     });
-                });
+                } else {
+                    alert("You don't have access to edit " + cell +" field!");
+                };
             });
         } else {
             alert("You don't have access to edit products!");
@@ -168,7 +189,8 @@ export class ProductsEditComponent {
     addProduct(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Create";
-        if(user.roles['products'].includes(this.permission)){
+        this.perm = "All";
+        if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) ){
             this.router.navigate(['/products/0']);
         } else {
             alert("You don't have access to add products!");
