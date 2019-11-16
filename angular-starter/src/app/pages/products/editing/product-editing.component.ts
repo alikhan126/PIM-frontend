@@ -114,7 +114,7 @@ export class ProductsEditComponent {
         this.permission = "Update";
         this.perm = "All";
         let cellvalue = this.titleCaseWord(cell);
-        if(user.roles['products'].includes(this.permission) ||user.roles['products'].includes(this.perm) ){
+        if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) ){
             this.productService.getFieldPermissions(user.user_id).subscribe(data => {
                 if(data.edit.includes(cellvalue)){
                     this.editing[rowIndex + '-' + cell] = false;
@@ -163,9 +163,10 @@ export class ProductsEditComponent {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Update";
         this.perm = "All";
+        let cellvalue = this.titleCaseWord(cell);
         if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) ){
             this.productService.getFieldPermissions(user.user_id).subscribe(data => {
-                if(data.edit.includes(cell)){
+                if(data.edit.includes(cellvalue)){
                     this.editing[rowIndex + '-' + cell] = false;
                     this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
                         this.rows[rowIndex] = data;
