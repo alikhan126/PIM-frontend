@@ -1,0 +1,136 @@
+<!--Shopping cart starts-->
+<section id="shopping-cart">
+    <div class="row text-left">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title ">Category Field Permissions</h4>
+            <p class="content-sub-header">Double click on any content to edit that section.</p>
+
+            <a  (click)="addPerm()"   class="btn btn-floating halfway-fab btn-large bg-warning topClass"><i class="ft-plus"></i></a>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+                <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Type to filter the name column...' (keyup)='updateFilter($event)'
+                />
+                <ngx-datatable #mydatatable class="bootstrap" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="50"
+                [rowHeight]="'auto'" [rows]="rows" [scrollbarH]="true">
+                <ngx-datatable-column [width]="300" name="User">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+                      <span>
+                          {{value.email}}
+                      </span>
+                  </ng-template>
+              </ngx-datatable-column>
+
+
+              <ngx-datatable-column [width]="300" name="Edit">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                      <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-edit'] = true" *ngIf="!editing[rowIndex + '-edit']">
+                        {{value}}
+                      </span>
+                      <ng-select  
+                      appendTo="body"
+                      (blur)="updateRelationship(row['edit'], 'edit', rowIndex)"
+                       *ngIf="editing[rowIndex+ '-edit']" 
+                       [items]="CATEGORY_FIELD_CHOICES"  bindLabel="name" bindValue="name"  placeholder="Select Brand Fields"
+                       
+                       name="edit" [(ngModel)]="row['edit']" multiple="true" [virtualScroll]="true"
+                      >
+
+                    </ng-select>
+                  </ng-template>
+              </ngx-datatable-column>
+
+             <!--  <ngx-datatable-column [width]="300" name="Products">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                      <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-products'] = true" *ngIf="!editing[rowIndex + '-products']">
+                          {{value}}
+                      </span>
+                      <ng-select  (blur)="updateRelationship(row['products'], 'products', rowIndex)" *ngIf="editing[rowIndex+ '-products']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Products Permissions"
+                      appendTo="body"
+                       name="products" [(ngModel)]="row['products']" multiple="true"
+                      >
+
+                    </ng-select>
+                  </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column [width]="300" name="Catalogs">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                      <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-catalogs'] = true" *ngIf="!editing[rowIndex + '-catalogs']">
+                          {{value}}
+                      </span>
+                      <ng-select  (blur)="updateRelationship(row['catalogs'], 'catalogs', rowIndex)" *ngIf="editing[rowIndex+ '-catalogs']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Catalogs Permissions"
+                      appendTo="body"
+                       name="catalogs" [(ngModel)]="row['catalogs']" multiple="true"
+                      >
+
+                    </ng-select>
+                  </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column [width]="300" name="Manufacturer">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                      <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-manufacturer'] = true" *ngIf="!editing[rowIndex + '-manufacturer']">
+                          {{value}}
+                      </span>
+                      <ng-select  (blur)="updateRelationship(row['manufacturer'], 'manufacturer', rowIndex)" *ngIf="editing[rowIndex+ '-manufacturer']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Manufacturer Permissions"
+                      appendTo="body"
+                       name="manufacturer" [(ngModel)]="row['manufacturer']" multiple="true"
+                      >
+
+                    </ng-select>
+                  </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column [width]="300" name="Websites">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                      <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-websites'] = true" *ngIf="!editing[rowIndex + '-websites']">
+                          {{value}}
+                      </span>
+                      <ng-select  (blur)="updateRelationship(row['websites'], 'websites', rowIndex)" *ngIf="editing[rowIndex+ '-websites']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Websites Permissions"
+                      appendTo="body"
+                       name="websites" [(ngModel)]="row['websites']" multiple="true"
+                      >
+
+                    </ng-select>
+                  </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column [width]="300" name="Tags">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                      <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-tags'] = true" *ngIf="!editing[rowIndex + '-tags']">
+                          {{value}}
+                      </span>
+                      <ng-select  (blur)="updateRelationship(row['tags'], 'tags', rowIndex)" *ngIf="editing[rowIndex+ '-tags']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Tags Permissions"
+                      appendTo="body"
+                       name="tags" [(ngModel)]="row['tags']" multiple="true"
+                      >
+
+                    </ng-select>
+                  </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column [width]="300" name="Adapters">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                      <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-adapters'] = true" *ngIf="!editing[rowIndex + '-adapters']">
+                          {{value}}
+                      </span>
+                      <ng-select  (blur)="updateRelationship(row['adapters'], 'adapters', rowIndex)" *ngIf="editing[rowIndex+ '-adapters']" [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Adapters Permissions"
+                      appendTo="body"
+                       name="adapters" [(ngModel)]="row['adapters']" multiple="true"
+                      >
+
+                    </ng-select>
+                  </ng-template>
+              </ngx-datatable-column> -->
+            </ngx-datatable>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Shopping cart ends-->
+  

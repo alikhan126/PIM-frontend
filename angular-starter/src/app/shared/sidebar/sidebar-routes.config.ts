@@ -23,8 +23,13 @@ export const ROUTES: RouteInfo[] = [
             { path: '/categories', title: 'Categories', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/websites', title: 'Websites', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/manufacturer', title: 'Manufacturer', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/roles', title: 'Permissions', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/fields/product', title: 'Product Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '', title: 'Roles', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
+            submenu: [
+                { path: '/roles', title: 'Permission', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/fields/product', title: 'Product Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/fields/brand', title: 'Brand Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/fields/category', title: 'Category Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            ]},
         ]
     }
 ];

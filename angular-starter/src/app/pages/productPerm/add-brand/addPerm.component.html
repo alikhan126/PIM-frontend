@@ -2,14 +2,14 @@
 <section id="basic-form-layouts">
   <div class="row text-left">
     <div class="col-sm-12">
-      <div class="content-header">Product</div>
+      <div class="content-header">Brand</div>
     </div>
   </div>
   <div class="row ">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header pb-2">
-          <h4 class="card-title" id="basic-layout-form">Product Field Permissions</h4>
+          <h4 class="card-title" id="basic-layout-form">Brand Field Permissions</h4>
         </div>
         <div class="card-content">
           <div class="px-3">
@@ -28,7 +28,7 @@
                   <div class="col-md-3">
                     <div class="form-group">
                       <label >Edit</label>
-                    <ng-select [items]="PRODUCT_FIELD_CHOICES"  bindLabel="name" bindValue="name"  placeholder="Select Product Fileds"
+                    <ng-select [items]="BRAND_FIELD_CHOICES"  bindLabel="name" bindValue="name"  placeholder="Select Brand Fileds"
                         name="edit" [(ngModel)]="pObj.edit" multiple="true"
                       >
                     </ng-select>
