@@ -9,7 +9,9 @@ export class AppConfig {
     public static URL_ProductPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/products/';
     public static URL_BrandPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/brand/';
     public static URL_BrandPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/brands/';
-    public static URL_CategoryPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/category/';
+    public static URL_CategoryPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/categories/';
+    public static URL_ManufacturerPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/manufacturers/';
+    public static URL_CatalogPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/catalogs/';
 
     public static URL_Images: string = AppConfig.URL_AppBase + 'api/v1/images/';
     public static URL_Fields: string = AppConfig.URL_AppBase + 'api/v1/product/fields/';

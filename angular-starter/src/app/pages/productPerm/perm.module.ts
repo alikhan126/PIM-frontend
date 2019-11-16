@@ -16,6 +16,10 @@ import { AddBrandPermComponent} from './add-brand/addPerm.component';
 import { PermBrandEditComponent } from './editing-brand/perm-editing.component';
 import { AddCategoryPermComponent} from './add-category/addPerm.component';
 import { PermCategoryEditComponent } from './editing-category/perm-editing.component';
+import { AddManufacturerPermComponent} from './add-manufacturer/addPerm.component';
+import { PermManufacturerEditComponent } from './editing-manufacturer/perm-editing.component';
+import { AddCatalogPermComponent} from './add-catalog/addPerm.component';
+import { PermCatalogEditComponent } from './editing-catalog/perm-editing.component';
 
 @NgModule({
     imports: [
@@ -36,7 +40,11 @@ import { PermCategoryEditComponent } from './editing-category/perm-editing.compo
         AddBrandPermComponent,
         PermBrandEditComponent,
         AddCategoryPermComponent,
-        PermCategoryEditComponent
+        PermCategoryEditComponent,
+        AddManufacturerPermComponent,
+        PermManufacturerEditComponent,
+        AddCatalogPermComponent,
+        PermCatalogEditComponent
     ]
 })
 export class PermPagesModule { }
