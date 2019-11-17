@@ -8,6 +8,7 @@ export const ROUTES: RouteInfo[] = [
             { path: '/brands/view', title: 'Brands', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/categories/view', title: 'Categories', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/websites/view', title: 'Websites', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/tags/view', title: 'Tags', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/manufacturer/view', title: 'Manufacturer', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     },
@@ -22,6 +23,7 @@ export const ROUTES: RouteInfo[] = [
             { path: '/brands', title: 'Brands', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/categories', title: 'Categories', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/websites', title: 'Websites', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/tags', title: 'Tags', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/manufacturer', title: 'Manufacturer', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '', title: 'Roles', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
             submenu: [
@@ -31,6 +33,9 @@ export const ROUTES: RouteInfo[] = [
                 { path: '/fields/category', title: 'Category Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
                 { path: '/fields/manufacturer', title: 'Manufacturer Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
                 { path: '/fields/catalog', title: 'Catalog Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/fields/tag', title: 'Tag Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/fields/adapter', title: 'Adapter Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/fields/website', title: 'Website Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             ]},
         ]
     }

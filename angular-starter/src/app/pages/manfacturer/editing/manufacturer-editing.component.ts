@@ -49,22 +49,34 @@ export class ManufacturerEditComponent {
         }
     }
 
+    titleCaseWord(word: string) {
+        if (!word) return word;
+        return word[0].toUpperCase() + word.substr(1).toLowerCase();
+    }
+
     // Editing content code
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Update";
         this.perm = "All";
+        let cellvalue = this.titleCaseWord(cell);
         if(user.roles['manufacturer'].includes(this.permission) || user.roles['manufacturer'].includes(this.perm)){
-            this.editing[rowIndex + '-' + cell] = false;
-            this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
-                this.rows[rowIndex] = data;
-                this.rows[rowIndex][cell] = event.target.value;
-                this.manufacturerService.update(this.rows[rowIndex]).subscribe(data => {
-                    this.manufacturerService.getAll().subscribe(data => {
-                        this.rows = data;
-                        console.log(this.rows)
+            this.manufacturerService.getFieldPermissions(user.user_id).subscribe(data => {
+                if(data.edit.includes(cellvalue)){
+                    this.editing[rowIndex + '-' + cell] = false;
+                    this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.rows[rowIndex] = data;
+                        this.rows[rowIndex][cell] = event.target.value;
+                        this.manufacturerService.update(this.rows[rowIndex]).subscribe(data => {
+                            this.manufacturerService.getAll().subscribe(data => {
+                                this.rows = data;
+                                console.log(this.rows)
+                            });
+                        });
                     });
-                });
+                } else{
+                    alert("You don't have access to edit " + cellvalue +" field!");
+                }
             });
         } else {
             alert("You don't have access to edit manufacturer!");

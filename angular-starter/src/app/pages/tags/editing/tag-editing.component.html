@@ -3,7 +3,7 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title ">Manufacturers</h4>
+            <h4 class="card-title ">Tags</h4>
             <p class="content-sub-header">Double click on any content to edit that section.</p>
 
             <a  (click)="addManfacturer()"   class="btn btn-floating halfway-fab btn-large bg-warning topClass"><i class="ft-plus"></i></a>
@@ -24,7 +24,7 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                            <button type="button" class="btn btn-secondary btn-raised" (click)="deleteManufacturer($event, 'name', rowIndex); c('Close click');">Sure</button>
+                            <button type="button" class="btn btn-secondary btn-raised" (click)="deletetag($event, 'name', rowIndex); c('Close click');">Sure</button>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>

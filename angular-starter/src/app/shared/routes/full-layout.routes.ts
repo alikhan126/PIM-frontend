@@ -37,5 +37,9 @@ export const Full_ROUTES: Routes = [
   {
     path: 'fields',
     loadChildren: () => import('../../pages/productPerm/perm.module').then(m => m.PermPagesModule)
+  },
+  {
+    path: 'tags',
+    loadChildren: () => import('../../pages/tags/tags.module').then(m => m.TagPagesModule)
   }
 ];

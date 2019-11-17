@@ -21,6 +21,14 @@ export class  ManufacturerService  {
     // super(http);
 }
 
+getFieldPermissions(id){
+  return this.http.get<any>(`${AppConfig.URL_ManufacturerPermissionCheck + "?user="}${id}`).pipe(
+    map(x => x ),
+    tap(_ => console.log(`get record=${id}`)),
+    catchError(this.handleError<any>('getRecord'))
+  );
+}
+
 add (record: any): Observable<any> {
 
   return this.http.post<any>(`${AppConfig.URL_Manfracturer}`, record).pipe(

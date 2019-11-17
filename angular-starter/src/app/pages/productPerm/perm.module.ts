@@ -3,7 +3,6 @@ import { CommonModule } from "@angular/common";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
-
 import { PermRoutingModule } from "./perm-routing.module";
 
 import { PermPageComponent } from './perm.component';
@@ -20,6 +19,12 @@ import { AddManufacturerPermComponent} from './add-manufacturer/addPerm.componen
 import { PermManufacturerEditComponent } from './editing-manufacturer/perm-editing.component';
 import { AddCatalogPermComponent} from './add-catalog/addPerm.component';
 import { PermCatalogEditComponent } from './editing-catalog/perm-editing.component';
+import { AddTagPermComponent} from './add-tag/addPerm.component';
+import { PermTagEditComponent } from './editing-tag/perm-editing.component';
+import { AddAdapterPermComponent} from './add-adapter/addPerm.component';
+import { PermAdapterEditComponent } from './editing-adapter/perm-editing.component';
+import { AddWebsitePermComponent} from './add-website/addPerm.component';
+import { PermWebsiteEditComponent } from './editing-website/perm-editing.component';
 
 @NgModule({
     imports: [
@@ -44,7 +49,13 @@ import { PermCatalogEditComponent } from './editing-catalog/perm-editing.compone
         AddManufacturerPermComponent,
         PermManufacturerEditComponent,
         AddCatalogPermComponent,
-        PermCatalogEditComponent
+        PermCatalogEditComponent,
+        AddTagPermComponent,
+        PermTagEditComponent,
+        AddAdapterPermComponent,
+        PermAdapterEditComponent,
+        AddWebsitePermComponent,
+        PermWebsiteEditComponent
     ]
 })
 export class PermPagesModule { }

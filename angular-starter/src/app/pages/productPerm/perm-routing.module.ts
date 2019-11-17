@@ -12,6 +12,12 @@ import { AddManufacturerPermComponent} from './add-manufacturer/addPerm.componen
 import { PermManufacturerEditComponent } from './editing-manufacturer/perm-editing.component';
 import { AddCatalogPermComponent} from './add-catalog/addPerm.component';
 import { PermCatalogEditComponent } from './editing-catalog/perm-editing.component';
+import { AddTagPermComponent} from './add-tag/addPerm.component';
+import { PermTagEditComponent } from './editing-tag/perm-editing.component';
+import { AddAdapterPermComponent} from './add-adapter/addPerm.component';
+import { PermAdapterEditComponent } from './editing-adapter/perm-editing.component';
+import { AddWebsitePermComponent} from './add-website/addPerm.component';
+import { PermWebsiteEditComponent } from './editing-website/perm-editing.component';
 
 const routes: Routes = [
   {
@@ -47,6 +53,27 @@ const routes: Routes = [
      component: PermCatalogEditComponent,
     data: {
       title: 'Catalog Permission Editing Page'
+    },    
+  },
+  {
+    path: 'tag',
+     component: PermTagEditComponent,
+    data: {
+      title: 'Tag Permission Editing Page'
+    },    
+  },
+  {
+    path: 'adapter',
+     component: PermAdapterEditComponent,
+    data: {
+      title: 'Adapter Permission Editing Page'
+    },    
+  },
+  {
+    path: 'website',
+     component: PermWebsiteEditComponent,
+    data: {
+      title: 'Website Adapter Editing Page'
     },    
   },
   {
@@ -89,6 +116,27 @@ const routes: Routes = [
      component: AddCategoryPermComponent,
     data: {
       title: 'Add Category Permission Page'
+    },    
+  },
+  {
+    path: 'tag/:id',
+     component: AddTagPermComponent,
+    data: {
+      title: 'Add Tag Permission Page'
+    },    
+  },
+  {
+    path: 'adapter/:id',
+     component: AddAdapterPermComponent,
+    data: {
+      title: 'Add Adapter Permission Page'
+    },    
+  },
+  {
+    path: 'website/:id',
+     component: AddWebsitePermComponent,
+    data: {
+      title: 'Add Website Permission Page'
     },    
   }
 ];

@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { WebsiteService} from '../websites.service';
+import { TagService } from '../tags.service';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -7,11 +7,11 @@ declare var require: any;
 
 @Component({
     selector: 'app-dt-editing',
-    templateUrl: './website-editing.component.html',
-    styleUrls: ['./website-editing.component.scss']
+    templateUrl: './tag-editing.component.html',
+    styleUrls: ['./tag-editing.component.scss']
 })
 
-export class WebsitesEditComponent {
+export class TagEditComponent {
     editing = {};
     rows = [];
     products :any[];
@@ -21,10 +21,10 @@ export class WebsitesEditComponent {
     permission: string;
     perm: string;
 
-    constructor(private modalService: NgbModal, private websiteService: WebsiteService, private router: Router) {
+    constructor(private modalService: NgbModal, private tagService: TagService, private router: Router) {
     }
     ngOnInit() {
-        this.websiteService.getAll().subscribe(data => {
+        this.tagService.getAll().subscribe(data => {
             this.rows = data;
             this.temp = data;
             console.log(this.rows)
@@ -60,70 +60,70 @@ export class WebsitesEditComponent {
         this.permission = "Update";
         this.perm = "All";
         let cellvalue = this.titleCaseWord(cell);
-        if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm)){
-            this.websiteService.getFieldPermissions(user.user_id).subscribe(data => {
+        if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm)){
+            this.tagService.getFieldPermissions(user.user_id).subscribe(data => {
                 if(data.edit.includes(cellvalue)){
                     this.editing[rowIndex + '-' + cell] = false;
-                    this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                    this.tagService.get(this.rows[rowIndex]['id']).subscribe(data => {
                         this.rows[rowIndex] = data;
                         this.rows[rowIndex][cell] = event.target.value;
-                        this.websiteService.update(this.rows[rowIndex]).subscribe(data => {
-                            this.websiteService.getAll().subscribe(data => {
+                        this.tagService.update(this.rows[rowIndex]).subscribe(data => {
+                            this.tagService.getAll().subscribe(data => {
                                 this.rows = data;
                                 console.log(this.rows)
                             });
                         });
                     });
-                } else {
+                } else{
                     alert("You don't have access to edit " + cellvalue +" field!");
                 }
             });
         } else {
-            alert("You don't have the permission to edit the websites")
+            alert("You don't have access to edit tag!");
         }
-    }
+    }    
 
-    deleteWebsite(event, cell, rowIndex) {
+    deletetag(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Delete";
         this.perm = "All";
-        if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm)){
+        if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm)){
             this.editing[rowIndex + '-' + cell] = false;
-            this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
+            this.tagService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
-                console.log("test", this.rows[rowIndex]['id'])
                 this.rows[rowIndex][cell] = event.target.value;
-                this.websiteService.delete(this.rows[rowIndex]['id']).subscribe(data => {
-                    this.websiteService.getAll().subscribe(data => {
+                this.tagService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                    this.tagService.getAll().subscribe(data => {
                         this.rows = data;
                         console.log(this.rows)
                     });
                 });
             });
         } else {
-            alert("You don't have the permission to delete the websites")
+            alert("You don't have access to delete tag!");
         }
     }
 
-    addWebsite(){
+    addManfacturer(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Create";
         this.perm = "All";
-        if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm)){
-            this.router.navigate(['/websites/0']);
+        if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm)){
+            this.router.navigate(['/tags/0']);
         } else {
-            alert("You don't have the permission to add the websites")
-        }       
+            alert("You don't have access to add tag!");
+        }
     }
 
     updateFilter(event) {
         const val = event.target.value.toLowerCase();
     
         const temp = this.temp.filter(function (d) {
-            return d.url.toLowerCase().indexOf(val) !== -1 || !val;
+            return d.name.toLowerCase().indexOf(val) !== -1 || !val;
         });
     
         // update the rows
         this.rows = temp;
     }
+
 }

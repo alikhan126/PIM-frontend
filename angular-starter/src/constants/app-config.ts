@@ -5,13 +5,23 @@ export class AppConfig {
     public static URL_Products: string = AppConfig.URL_AppBase + 'api/v1/product/';
     public static URL_Import_Products: string = AppConfig.URL_AppBase + 'api/v1/import/product/';
     public static URL_Adapters: string = AppConfig.URL_AppBase + 'api/v1/adapters/';
-    public static URL_ProductPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/product/';
     public static URL_ProductPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/products/';
-    public static URL_BrandPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/brand/';
     public static URL_BrandPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/brands/';
     public static URL_CategoryPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/categories/';
     public static URL_ManufacturerPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/manufacturers/';
     public static URL_CatalogPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/catalogs/';
+    public static URL_TagPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/tags/';
+    public static URL_AdaptersPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/adapters/';
+    public static URL_WebsitePermission: string = AppConfig.URL_AppBase + 'api/v1/fields/websites/';
+
+    public static URL_ProductPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/product/';
+    public static URL_BrandPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/brand/';
+    public static URL_CategoryPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/category/';
+    public static URL_ManufacturerPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/manfracturer/';
+    public static URL_CatalogPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/catalog/';
+    public static URL_TagPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/tag/';
+    public static URL_AdapterPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/adapter/';
+    public static URL_WebsitePermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/website/';
 
     public static URL_Images: string = AppConfig.URL_AppBase + 'api/v1/images/';
     public static URL_Fields: string = AppConfig.URL_AppBase + 'api/v1/product/fields/';

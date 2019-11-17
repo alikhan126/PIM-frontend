@@ -30,6 +30,14 @@ add (record: any): Observable<any> {
   );
 }
 
+getFieldPermissions(id){
+  return this.http.get<any>(`${AppConfig.URL_WebsitePermissionCheck + "?user="}${id}`).pipe(
+    map(x => x ),
+    tap(_ => console.log(`get record=${id}`)),
+    catchError(this.handleError<any>('getRecord'))
+  );
+}
+
 getAll() 
 {
 

@@ -129,7 +129,7 @@ export class ProductsEditComponent {
                         });
                     });
                 } else {
-                    alert("You don't have access to edit " + cell +" field!");
+                    alert("You don't have access to edit " + cellvalue +" field!");
                 };
             });
         } else {
@@ -179,7 +179,7 @@ export class ProductsEditComponent {
                         });
                     });
                 } else {
-                    alert("You don't have access to edit " + cell +" field!");
+                    alert("You don't have access to edit " + cellvalue +" field!");
                 };
             });
         } else {

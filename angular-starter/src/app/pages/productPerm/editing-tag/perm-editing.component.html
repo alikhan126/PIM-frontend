@@ -4,7 +4,7 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title ">Category Field Permissions</h4>
+            <h4 class="card-title ">Tag Field Permissions</h4>
             <p class="content-sub-header">Double click on any content to edit that section.</p>
 
             <a  (click)="addPerm()"   class="btn btn-floating halfway-fab btn-large bg-warning topClass"><i class="ft-plus"></i></a>
@@ -33,7 +33,7 @@
                       appendTo="body"
                       (blur)="updateRelationship(row['edit'], 'edit', rowIndex)"
                        *ngIf="editing[rowIndex+ '-edit']" 
-                       [items]="CATEGORY_FIELD_CHOICES"  bindLabel="name" bindValue="name"  placeholder="Select Category Fields"
+                       [items]="TAG_FIELD_CHOICES"  bindLabel="name" bindValue="name"  placeholder="Select Tag Fields"
                        
                        name="edit" [(ngModel)]="row['edit']" multiple="true" [virtualScroll]="true"
                       >

@@ -33,7 +33,7 @@
                       appendTo="body"
                       (blur)="updateRelationship(row['edit'], 'edit', rowIndex)"
                        *ngIf="editing[rowIndex+ '-edit']" 
-                       [items]="CATALOG_FIELD_CHOICES"  bindLabel="name" bindValue="name"  placeholder="Select Brand Fields"
+                       [items]="CATALOG_FIELD_CHOICES"  bindLabel="name" bindValue="name"  placeholder="Select Catalog Fields"
                        
                        name="edit" [(ngModel)]="row['edit']" multiple="true" [virtualScroll]="true"
                       >
