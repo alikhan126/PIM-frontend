@@ -3,6 +3,7 @@ import { environment } from '../environments/environment';
 export class AppConfig {
     public static URL_AppBase: string = environment.appRoot;
     public static URL_Products: string = AppConfig.URL_AppBase + 'api/v1/product/';
+    public static URL_Search_Products: string = AppConfig.URL_AppBase + 'api/v1/search_product/';
     public static URL_Import_Products: string = AppConfig.URL_AppBase + 'api/v1/import/product/';
     public static URL_Adapters: string = AppConfig.URL_AppBase + 'api/v1/adapters/';
     public static URL_ProductPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/products/';

@@ -253,5 +253,28 @@ updateFilter(event) {
     this.rows = temp;
 }
 
+wildSearch(event){
+    if (event.key === "Enter") {
+let q=event.target.value;
+if(q){
+
+     let params="?q="+q;
+     this.productService.getFilteredProducts(params).subscribe(resp=>{
+        if(resp && resp.length){
+            this.rows=resp;
+        }
+     })
+
+    }
+
+else {
+    this.productService.getAll().subscribe(data => {
+        this.rows = data;
+        this.temp = data;
+        console.log(this.rows)
+    });
+}
+}
+}
 
 }
