@@ -19,6 +19,7 @@ export class AddCategoryComponent implements OnInit{
   productFamilies:any=[];
   taxes:any=[];
   permission:any=[];
+  perm:any=[];
 
   isNew :boolean = false;
   loading :boolean = false;
@@ -64,15 +65,16 @@ export class AddCategoryComponent implements OnInit{
   save(): void {
 
     let user=JSON.parse(localStorage.getItem('currentUser'));
-    this.permission = "CAN_CREATE_CATEGORY";
-    if(user.roles['permissions'].includes(this.permission)){
+    this.permission = "Create";
+    this.perm = "All";
+    if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm)){
       if(this.isNew){
         this.categoryService.add(this.regularForm.value)
         .subscribe(result => {
           this.pObj=result;
           console.log(this.pObj)
           this.pObj && this.pObj.id && this.router.navigate(['categories/'])
-          // this.ts.success("Operation Performed Successfully");
+          // this.ts.success("Category added successfully!");
         })
       }
       else {
