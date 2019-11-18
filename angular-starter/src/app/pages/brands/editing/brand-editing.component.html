@@ -55,6 +55,7 @@
                         /> -->
 
                         <ng-select  
+                        appendTo="body"
                         *ngIf="editing[rowIndex+ '-manufacturer']" 
                         
                         (blur)="updateRelationshipValue(row['manufacturer']['id'], 'manufacturer', rowIndex)" 

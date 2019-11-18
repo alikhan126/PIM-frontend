@@ -73,9 +73,9 @@
                        <!--  <input (blur)="updateValue($event, 'parentCategory', rowIndex)" *ngIf="editing[rowIndex+ '-parentCategory']" type="text" [value]="value"
                         /> -->
 
-                        <ng-select  
+                        <ng-select 
+                        appendTo="body"
                         *ngIf="editing[rowIndex+ '-parentCategory']" 
-                        
                         (blur)="updateRelationshipValue(row['parentCategory']['id'], 'parentCategory', rowIndex)" 
                         
                         [items]="categories"  bindLabel="name"   placeholder="Select parent category"

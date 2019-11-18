@@ -32,6 +32,9 @@
                       <label >Kind</label>
                       <input type="text" class="form-control"
                       formControlName="kind">
+                      <small class="form-text text-muted danger" 
+                       [hidden]="regularForm.get('url').valid || (!regularForm.get('url').dirty && !regularForm.get('url').touched)"
+                       >Kind is required</small>
                     </div>
                   </div>
                 </div>

@@ -32,7 +32,7 @@ export class AddWebsiteComponent implements OnInit{
      this.getWebsite();
      this.regularForm = new FormGroup({
       'url': new FormControl(null, [Validators.required, Validators.pattern(this.patternUrl)]),
-      'kind': new FormControl(null),
+      'kind': new FormControl(null, [Validators.required]),
       // 'url': new FormControl(null),
       // 'kind': new FormControl(null),
       

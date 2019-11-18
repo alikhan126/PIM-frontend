@@ -947,7 +947,7 @@
                         
                         
                         /> -->
-                        <ng-select  (blur)="updateRelationshipValue(row['brand']['id'], 'brand', rowIndex)" *ngIf="editing[rowIndex+ '-brand']" [items]="brands"  bindLabel="name"   placeholder="Select brand"
+                        <ng-select appendTo="body" (blur)="updateRelationshipValue(row['brand']['id'], 'brand', rowIndex)" *ngIf="editing[rowIndex+ '-brand']" [items]="brands"  bindLabel="name"   placeholder="Select brand"
                          
                          name="brand" [(ngModel)]="row['brand']"
                         >
@@ -967,7 +967,7 @@
                         
                         /> -->
                         <div class="form-group">
-                        <ng-select (blur)="updateRelationshipValue(getIds(row['websites']), 'websites', rowIndex)" *ngIf="editing[rowIndex+ '-websites']" [items]="websites" bindLabel="url"  [multiple]="true" placeholder="Select websites"
+                        <ng-select appendTo="body" (blur)="updateRelationshipValue(getIds(row['websites']), 'websites', rowIndex)" *ngIf="editing[rowIndex+ '-websites']" [items]="websites" bindLabel="url"  [multiple]="true" placeholder="Select websites"
                         name="websites" [(ngModel)]="row['websites']" >
                         <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
                           <div class="ng-value" *ngFor="let item of items | slice:0:2">
@@ -994,7 +994,7 @@
                         
                         /> -->
                         <div class="form-group">
-                        <ng-select (blur)="updateRelationshipValue(getIds(row['images']), 'images', rowIndex)" *ngIf="editing[rowIndex+ '-images']" [items]="images" bindLabel="thumbnail_image_label"  [multiple]="true" placeholder="Select images"
+                        <ng-select appendTo="body" (blur)="updateRelationshipValue(getIds(row['images']), 'images', rowIndex)" *ngIf="editing[rowIndex+ '-images']" [items]="images" bindLabel="thumbnail_image_label"  [multiple]="true" placeholder="Select images"
                         name="images" [(ngModel)]="row['images']" >
                         <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
                           <div class="ng-value" *ngFor="let item of items | slice:0:2">
@@ -1022,7 +1022,9 @@
                         
                         /> -->
                         <div class="form-group">
-                        <ng-select (blur)="updateRelationshipValue(getIds(row['tags']), 'tags', rowIndex)" *ngIf="editing[rowIndex+ '-tags']" [items]="tags" bindLabel="name"  [multiple]="true" placeholder="Select tags"
+                        <ng-select 
+                        appendTo="body"
+                        (blur)="updateRelationshipValue(getIds(row['tags']), 'tags', rowIndex)" *ngIf="editing[rowIndex+ '-tags']" [items]="tags" bindLabel="name"  [multiple]="true" placeholder="Select tags"
                         name="tags" [(ngModel)]="row['tags']" >
                         <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
                           <div class="ng-value" *ngFor="let item of items | slice:0:2">
@@ -1049,7 +1051,8 @@
                         
                         /> -->
                         <div class="form-group">
-                        <ng-select (blur)="updateRelationshipValue(getIds(row['category']), 'category', rowIndex)" *ngIf="editing[rowIndex+ '-category']" [items]="category" bindLabel="name"  [multiple]="true" placeholder="Select category"
+                        <ng-select 
+                        appendTo="body" (blur)="updateRelationshipValue(getIds(row['category']), 'category', rowIndex)" *ngIf="editing[rowIndex+ '-category']" [items]="category" bindLabel="name"  [multiple]="true" placeholder="Select category"
                         name="category" [(ngModel)]="row['category']" >
                         <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
                           <div class="ng-value" *ngFor="let item of items | slice:0:2">
