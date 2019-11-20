@@ -14,12 +14,12 @@ export class RegisterPageComponent {
     terms:boolean=true;
     constructor(private router: Router,
         private route: ActivatedRoute,private authService:AuthService) { }
-        pa="^[a-zA-Z]{3,25}$";
+        pa="^[a-zA-Z ]{3,25}$";
         
     ngOnInit(){
         this.authService.isAuthenticated() ? this.router.navigate(['products']):null; 
         this.regularForm = new FormGroup({
-            'fullName': new FormControl(null, [Validators.required, Validators.minLength(3),Validators.pattern(this.pa)]),
+            'fullName': new FormControl(null, [Validators.required, Validators.minLength(4),Validators.pattern(this.pa)]),
             'email': new FormControl(null, [Validators.required, Validators.email]),
             'password': new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(24)]),
             'confirmPassword': new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(24)]),
