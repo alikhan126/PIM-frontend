@@ -33,11 +33,12 @@
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body">
-                            <button type="button" class="btn btn-secondary btn-raised" (click)="deleteProduct($event, 'name', rowIndex); c('Close click');">Sure</button>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                          <!-- <div class="modal-body">
+                            <button type="button" class="btn btn-secondary btn-raised" (click)="deleteBrand($event, 'name', rowIndex); c('Close click');">Sure</button>
+                          </div> -->
+                          <div class="foot">
+                            <button style="float: left;" type="button" class="btn btn-secondary btn-raised left" (click)="deleteProduct($event, 'name', rowIndex); c('Close click');">Sure</button>
+                            <button  style="float: right;" type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
                           </div>
                         </ng-template>
                           <a class="danger p-0" (click)="open(content)" data-original-title="" title="Click to delete">

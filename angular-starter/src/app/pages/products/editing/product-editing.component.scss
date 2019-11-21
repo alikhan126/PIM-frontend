@@ -36,3 +36,17 @@ line-height: 40px;
 // .ngx-datatable.bootstrap .datatable-body .datatable-body-row.datatable-row-even {
 //     background-color: rgba(0,0,0,.05) !important;
 // }
+
+.foot {
+	display: block;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1rem;
+    border-top: 1px solid #dee2e6;
+    border-bottom-right-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+}
+
+.left {
+    margin: 0px 33px;
+}
