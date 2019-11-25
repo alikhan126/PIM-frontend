@@ -8,11 +8,23 @@
             <a  (click)="addProduct()"   class="btn btn-floating halfway-fab btn-large bg-warning topClass floatingButton"><i class="ft-plus bigIcon"></i></a>        
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Type to filter the name column...' (keyup)='wildSearch($event)'
+    <div class="row text-left" style='margin:15px auto;' >
+        <div class="col-md-3" >
+                    <ng-select  style="position: relative !important;"    [items]="fields"  bindLabel="name"   placeholder="Filter"
+                             
+                    name="filter" [(ngModel)]="filter"
+                   >
+
+                </ng-select>
+            </div>
+        <div class="col-md-3">
+            <input type='text'  style='padding:8px;' placeholder='Type to filter the name column...' (keyup)='wildSearch($event)'
             />
         </div>
+
+        
+
+
     </div>
     <div class="row">
         <div class="col-sm-12">

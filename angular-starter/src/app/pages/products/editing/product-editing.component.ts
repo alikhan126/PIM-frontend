@@ -13,6 +13,8 @@ declare var require: any;
 
 export class ProductsEditComponent {
 
+    filter:any;
+    fields:any=[];
     images:any=[];
     websites:any=[];
     tags:any=[];
@@ -56,6 +58,7 @@ export class ProductsEditComponent {
         this.getTags();
         this.getBrands();
         this.getCategories();
+        this.getFields();
         this.Simple = "Simple";
         this.Grouped = "Grouped";
         this.Configurable = "Configurable";
@@ -96,6 +99,12 @@ export class ProductsEditComponent {
         return valArray.join(" , ");
     }
     
+    getFields(){
+        this.productService.getFildsToImport().subscribe(result=>{
+            this.fields=result;
+            this.fields.unshift({name:"All",type:"string"})
+          })
+    }
     
 
     getIds(values){
@@ -255,23 +264,19 @@ updateFilter(event) {
 
 wildSearch(event){
     if (event.key === "Enter") {
-        let q=event.target.value;
-        if(q)
-        {
-            let params="?q="+q;
-            this.productService.getFilteredProducts(params).subscribe(resp=>{
-            if(resp && resp.length){
-                this.rows=resp;
-            }
-            })
-        } else {
-            this.productService.getAll().subscribe(data => {
-                this.rows = data;
-                this.temp = data;
-                console.log(this.rows)
-            });
+let filterValue=event.target.value;
+if(filterValue && this.filter){
+    let filterAgaints=this.filter.name;
+    filterAgaints == 'All' ? filterAgaints='q' : null;
+
+     let params="?"+filterAgaints+"=" +filterValue;
+     this.productService.getFilteredProducts(params).subscribe(resp=>{
+        if(resp && resp.length){
+            this.rows=resp;
         }
-    }
+    })
 }
 
+}
+}
 }
