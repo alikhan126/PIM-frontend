@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { WebsiteService} from '../websites.service';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NGXToastrService } from 'app/shared/services/toastr.service';
 
 declare var require: any;
 
@@ -20,8 +21,9 @@ export class WebsitesEditComponent {
     closeResult: string;
     permission: string;
     perm: string;
-
-    constructor(private modalService: NgbModal, private websiteService: WebsiteService, private router: Router) {
+    patternUrl='(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    regex = RegExp('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?');
+    constructor(private ts:NGXToastrService, private modalService: NgbModal, private websiteService: WebsiteService, private router: Router) {
     }
     ngOnInit() {
         this.websiteService.getAll().subscribe(data => {
@@ -56,6 +58,11 @@ export class WebsitesEditComponent {
 
     // Editing content code
     updateValue(event, cell, rowIndex) {
+        if(cell =='url' && !this.regex.test(event.target.value) ){
+            this.ts.typeError('Validation Failed','Please enter a valid url');
+            this.editing[rowIndex + '-' + cell] = false;
+            return;
+        }
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Update";
         this.perm = "All";
@@ -75,11 +82,11 @@ export class WebsitesEditComponent {
                         });
                     });
                 } else {
-                    alert("You don't have access to edit " + cellvalue +" field!");
+                    this.ts.typeError('Forbidden!',"You don't have access to edit " + cellvalue +" field!")
                 }
             });
         } else {
-            alert("You don't have the permission to edit the websites")
+            this.ts.typeError('Forbidden',"You don't have the permission to edit the websites")
         }
     }
 
@@ -101,7 +108,7 @@ export class WebsitesEditComponent {
                 });
             });
         } else {
-            alert("You don't have the permission to delete the websites")
+            this.ts.typeError('Forbidden!',"You don't have the permission to delete the websites")
         }
     }
 

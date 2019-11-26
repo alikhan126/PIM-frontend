@@ -30,6 +30,7 @@ export class LoginPageComponent implements OnInit{
         this.authService.signinUser(this.regularForm.value.email,this.regularForm.value.password).subscribe(resp=>{
             console.log(JSON.stringify(resp))
             if(!resp){
+                alert(JSON.stringify(resp))
                 this.authService.signinUser(this.regularForm.value.email,this.regularForm.value.password).subscribe(resp=>{
                 console.log(JSON.stringify(resp))
                 // localStorage.setItem('dataSource', resp);

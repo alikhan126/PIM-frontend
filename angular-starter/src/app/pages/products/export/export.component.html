@@ -1,0 +1,121 @@
+<div class="row text-left">
+  <div class="col-12">
+    <div class="content-header">Export Data</div>
+    <!-- <p class="content-sub-header">All table styles are inherited in Bootstrap 4, meaning any nested tables will be
+      styled in the same manner as the parent.</p> -->
+  </div>
+</div>
+
+<!-- Basic form layout section start -->
+
+<!--Basic Table Starts-->
+<section id="simple-table">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Export Data to custom file columns</h4>
+          <p>Edit the column name to your desired file column or choose an export adapter </p>
+      
+          <div *ngIf="this.showAdapters" class="form-actions">
+              <!-- <button (click)="goToResources()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
+                <i class="ft-x"></i> Cancel
+              </button> -->
+              <div class="row">
+              <div class="col-md-6">
+                
+                <div class="form-group">
+
+                    <ng-select [items]="adapters" bindLabel="name"  
+                        bindValue="mapped_fields"
+                        [(ngModel)]="selectedAdapter"
+                        name="selectedAdapter"
+                        placeholder="Select adapter to map" >
+                    </ng-select>
+
+                </div>
+
+              </div>
+
+              <div class="col-md-3">
+                  <button [disabled]="!selectedAdapter" (click)="mapAsAdapter()" type="button" class="btn btn-raised btn-raised btn-primary">
+                      <i class="fa fa-check-square-o"></i> Map Adapter
+                    </button>
+              </div>
+              
+
+           </div>
+
+            </div>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <!-- <th>#</th> -->
+                  <th>Database Table Columns</th>
+                  <th>File Columns</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let field of databaseColumns">
+
+                  <!-- <th scope="row">1</th> -->
+                  <td>
+                    <div class="col-md-6">
+                    {{field}} 
+                    </div>
+
+                  </td>
+                  <td>
+                      <div class="col-md-6">
+                        <!-- <ng-select [items]="databaseObjects" bindLabel="name" bindValue="name" 
+                        [(ngModel)]="mappingObj[field]"
+                        name="mappingObj[field]"
+                        placeholder="Select" >
+                      </ng-select> -->
+                          <input type="text" placeholder="{{field}}"  [(ngModel)]="mappingObj[field]" class="form-control" name="adaptersName" >
+                        </div>
+
+
+                  </td>
+                </tr>
+
+              
+               
+              </tbody>
+            </table>
+
+
+            <div  class="form-actions">
+                <!-- <button (click)="goToResources()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> Cancel
+                </button> -->
+                <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" placeholder="Please enter adapter name"  [(ngModel)]="adaptersName" class="form-control" name="adaptersName" >
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                    <button [disabled]="!adaptersName" (click)="saveAdapter()" type="button" class="btn btn-raised btn-raised btn-primary">
+                        <i class="fa fa-check-square-o"></i> Save as  Adapter
+                      </button>
+                </div>
+                
+
+             </div>
+                <button (click)="exportData()" type="button" class="btn btn-raised btn-raised btn-green">
+                  <i class="fa fa-check-square-o"></i> Export Mapped Data
+                </button>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

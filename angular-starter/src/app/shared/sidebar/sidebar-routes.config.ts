@@ -19,6 +19,8 @@ export const ROUTES: RouteInfo[] = [
             submenu: [
                 { path: '/products', title: 'Edit Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
                 { path: '/products/import', title: 'Import Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/products/export', title: 'Export Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
             ]},
             { path: '/brands', title: 'Brands', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/categories', title: 'Categories', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },

@@ -7,6 +7,7 @@ import {AddProductComponent} from './add/addProduct.component';
 import { ProductsEditComponent } from './editing/product-editing.component';
 import { ProductViewsComponent } from './product-views/productViews.component';
 import { RegularTableComponent } from './regular/regular-table.component';
+import { ExportComponent } from './export/export.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,13 @@ const routes: Routes = [
     component:RegularTableComponent,
     data:{
       title:'Import'
+    }
+  },
+  {
+    path:'export',
+    component:ExportComponent,
+    data:{
+      title:'Export'
     }
   },
   {
