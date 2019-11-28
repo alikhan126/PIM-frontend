@@ -10,7 +10,7 @@
     </div>
     <div class="row text-left" style='margin:15px auto;' >
         <div class="col-md-3" >
-                    <ng-select  style="position: relative !important;"    [items]="fields"  bindLabel="name"   placeholder="Filter"
+                    <ng-select  style="position: relative !important;"  [items]="fields"  bindLabel="name"   placeholder="Filter"
                              
                     name="filter" [(ngModel)]="filter"
                    >
@@ -18,7 +18,7 @@
                 </ng-select>
             </div>
         <div class="col-md-3">
-            <input type='text'  style='padding:8px;' placeholder='Type to filter the name column...' (keyup)='wildSearch($event)'
+            <input type='text' class="wildsearch"  style='padding:8px;' placeholder='Type to filter the name column...' (keyup)='wildSearch($event)'
             />
         </div>
 

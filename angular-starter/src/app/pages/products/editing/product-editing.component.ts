@@ -264,19 +264,31 @@ updateFilter(event) {
 
 wildSearch(event){
     if (event.key === "Enter") {
-let filterValue=event.target.value;
-if(filterValue && this.filter){
-    let filterAgaints=this.filter.name;
-    filterAgaints == 'All' ? filterAgaints='q' : null;
+        let filterValue=event.target.value;
+        console.log(filterValue)
+        console.log(this.filter)
 
-     let params="?"+filterAgaints+"=" +filterValue;
-     this.productService.getFilteredProducts(params).subscribe(resp=>{
-        if(resp && resp.length){
-            this.rows=resp;
+        if(filterValue && this.filter){
+            let filterAgaints=this.filter.name;
+            filterAgaints == 'All' ? filterAgaints='q' : null;
+
+             let params="?"+filterAgaints+"=" +filterValue;
+             this.productService.getFilteredProducts(params).subscribe(resp=>{
+                if(resp && resp.length){
+                    this.rows=resp;
+                }
+            })
+        } else {
+            let filterAgaints = 'q';
+             let params="?"+filterAgaints+"=" +filterValue;
+             this.productService.getFilteredProducts(params).subscribe(resp=>{
+                if(resp && resp.length){
+                    this.rows=resp;
+                }
+            })
         }
-    })
+
+    }
 }
 
-}
-}
 }
