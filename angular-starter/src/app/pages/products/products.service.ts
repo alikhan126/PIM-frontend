@@ -46,6 +46,14 @@ addAdapters (record: any): Observable<any> {
   );
 }
 
+addExportAdapters (record: any): Observable<any> {
+
+  return this.http.post<any>(`${AppConfig.URL_EXPORT_Adapters}`, record).pipe(
+    map(x => x ),
+    catchError(this.handleError<any>('Adapters'))
+  );
+}
+
 
 getFieldPermissions(id){
   return this.http.get<any>(`${AppConfig.URL_ProductPermissionCheck + "?user="}${id}`).pipe(
@@ -59,6 +67,16 @@ getAdapters()
 {
 
   return this.http.get<any []>(`${AppConfig.URL_Adapters}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+getExportAdapters() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_EXPORT_Adapters}`)
   .pipe(
     map(x => x ),
     tap(_ => console.log('fetched record')),
