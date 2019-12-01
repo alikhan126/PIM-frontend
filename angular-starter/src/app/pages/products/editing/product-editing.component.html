@@ -8,18 +8,43 @@
             <a  (click)="addProduct()"   class="btn btn-floating halfway-fab btn-large bg-warning topClass floatingButton"><i class="ft-plus bigIcon"></i></a>        
         </div>
     </div>
+    <!-- style="position: relative !important;" -->
     <div class="row text-left" style='margin:15px auto;' >
         <div class="col-md-3" >
-                    <ng-select  style="position: relative !important;"  [items]="fields"  bindLabel="name"   placeholder="Filter"
-                             
-                    name="filter" [(ngModel)]="filter"
-                   >
+            <ng-select   [items]="fields"  bindLabel="name"   placeholder="Filter"
+            appendTo="body"  name="filter" [(ngModel)]="filter"
+            >
 
-                </ng-select>
+            </ng-select>
+        </div>
+        
+            <div *ngIf="filter && filter.type && filter.type=='number' " class="col-md-3" >
+                <ng-select   [items]="numberFilterOptions"     placeholder="Filter option"
+                appendTo="body"  name="numberFilterValue" [(ngModel)]="numberFilterValue"
+                >
+    
+            </ng-select>
             </div>
-        <div class="col-md-3">
-            <input type='text' class="wildsearch"  style='padding:8px;' placeholder='Type to filter the name column...' (keyup)='wildSearch($event)'
+        <div *ngIf="numberFilterValue && numberFilterValue == 'greaterThan' || numberFilterValue== 'between'" class="col-md-2">
+            <input type='number' class="wildsearch"  style='padding:8px;' placeholder='Greater Than Value' name="greaterThan" [(ngModel)]="greaterThan" 
             />
+        </div>
+
+        <div *ngIf="numberFilterValue && numberFilterValue=='lessThan' || numberFilterValue== 'between'" class="col-md-2">
+            <input type='number' class="wildsearch"  style='padding:8px;' placeholder='Less Than Value' name="lessThan" [(ngModel)]="lessThan" 
+            />
+        </div>
+        
+
+
+        <div [hidden]="filter && filter.type && filter.type=='number' && numberFilterValue != 'equals' " class="col-md-3">
+            <input type='text' class="wildsearch"  style='padding:8px;' placeholder='Type to filter the column...' name="query" [(ngModel)]="query" 
+            />
+        </div>
+
+        <div class="col-md-2">
+            <a  class="btn btn-search"   (click)='wildSearchNew()'
+            >  Search</a>
         </div>
 
         
@@ -27,7 +52,7 @@
 
     </div>
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12" >
             <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Type to filter the name column...' (keyup)='updateFilter($event)'
             /> -->
 
