@@ -19,7 +19,7 @@ export class ExportComponent implements OnInit  {
     databaseColumns:any=[];
     adapters:any=[];
     showAdapters:boolean=false;
-    selectedAdapter:any={};
+    selectedAdapter:any=null;
     adaptersName:string="";
 
     uploader: FileUploader = new FileUploader({
@@ -54,7 +54,7 @@ export class ExportComponent implements OnInit  {
 
       })
 
-      this.getAdaptersFunction();
+      this.getEXportAdaptersFunction();
 
       this.uploadForm =  new FormGroup ({
         'upload': new FormControl(null),
@@ -75,12 +75,13 @@ checkMap(){
 
 
 mapAsAdapter(){
-  this.mappingObj=this.selectedAdapter;
+this.selectedAdapter ?   this.mappingObj=this.selectedAdapter : null;
 }
-getAdaptersFunction(){
-  this.productService.getAdapters().subscribe(resp=>{
+getEXportAdaptersFunction(){
+  this.productService.getExportAdapters().subscribe(resp=>{
     if (resp){
         this.adapters=resp;
+        this.showAdapters=true;
     }
   })
 }
@@ -209,15 +210,16 @@ fileSelected(e){
 
 
     saveAdapter () {
-      // if( Object.keys(this.mappingObj).length ){
-      //   this.productService.addAdapters({name:this.adaptersName , fields:this.mappingObj}).subscribe(resp=>{
-      //     this.toasterService.typeSuccessCustom("Success!","Adapter Created Successfully!");
-      //     this.adaptersName="";
-      //   })
-      // }
-      // else {
-      //     this.toasterService.typeError("Invalid Input","Please map fields first");
-      // }
+
+      if( Object.keys(this.mappingObj).length && this.adaptersName){
+        this.productService.addExportAdapters({name:this.adaptersName , fields:this.mappingObj}).subscribe(resp=>{
+          this.toasterService.typeSuccessCustom("Success!","Adapter Created Successfully!");
+          this.adaptersName="";
+        })
+      }
+      else {
+          this.toasterService.typeError("Invalid Input","Please map fields first and enter name");
+      }
     }
 
 exportData(){

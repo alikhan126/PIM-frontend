@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { ProductService} from '../products.service';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NGXToastrService } from 'app/shared/services/toastr.service';
 
 declare var require: any;
 
@@ -13,7 +14,12 @@ declare var require: any;
 
 export class ProductsEditComponent {
 
-    filter:any;
+    numberFilterOptions=["equals","lessThan","greaterThan","between"];
+    numberFilterValue:string="equals";
+    lessThan:number=null;
+    greaterThan:number=null;
+    query:string;
+    filter:any={name:"All",type:"string"};
     fields:any=[];
     images:any=[];
     websites:any=[];
@@ -45,7 +51,7 @@ export class ProductsEditComponent {
     permission: string;
     perm: string;
     
-    constructor(private modalService: NgbModal, private productService: ProductService, private router: Router) {
+    constructor( private ts:NGXToastrService , private modalService: NgbModal, private productService: ProductService, private router: Router) {
     }
     ngOnInit() {
         this.productService.getAll().subscribe(data => {
@@ -262,21 +268,98 @@ updateFilter(event) {
     this.rows = temp;
 }
 
+
+resetFilters(){
+    this.numberFilterValue='equals';
+    this.lessThan=null;
+    this.greaterThan=null;
+    this.query=null;
+}
+
+wildSearchNew(){
+    if( (this.query || this.lessThan || this.greaterThan)  && this.filter )
+    {
+        let filterAgainst=this.filter.name;
+        let params;
+        if(this.filter.type != 'number' || (this.filter.type == 'number' && this.numberFilterValue == 'equals') ) {
+            filterAgainst == 'All' ? filterAgainst='q' : null;
+
+             params="?"+filterAgainst+"=" +this.query;
+            this.productService.getFilteredProducts(params).subscribe(resp=>{
+               if(resp && resp.length){
+                   this.rows=resp;
+               }
+           })
+        }
+        else {
+            if (this.numberFilterValue == 'lessThan' && this.lessThan!=null ) {
+                params="?"+filterAgainst+"=true&lessThan="+this.lessThan;
+            }
+            else if (this.numberFilterValue == 'greaterThan' && this.greaterThan!=null ) {
+                params="?"+filterAgainst+"=true&greaterThan="+this.greaterThan;
+            }
+            else if (this.numberFilterValue == 'between' && this.lessThan!=null && this.greaterThan!=null && this.lessThan>=this.greaterThan) {
+                params="?"+filterAgainst+"=true&lessThan="+this.lessThan+"&greaterThan="+this.greaterThan;
+            }
+            else {
+                this.ts.typeError("Wrong Filter Value!","Please add valid filters")
+                return;
+            }
+
+            this.productService.getFilteredProducts(params).subscribe(resp=>{
+                if(resp && resp.length){
+                    this.rows=resp;
+                }
+                else {
+                    this.rows=[];
+                }
+            })
+
+
+        }
+
+
+    } else {
+
+        this.ts.typeError("Empty Filter Value!","Please provide a filter value to be filtered on!")
+        
+        // let filterAgaints = 'q';
+        //  let params="?"+filterAgaints+"=" +this.query;
+        //  this.productService.getFilteredProducts(params).subscribe(resp=>{
+        //     if(resp && resp.length){
+        //         this.rows=resp;
+        //     }
+        // })
+    }
+
+}
 wildSearch(event){
     if (event.key === "Enter") {
-let filterValue=event.target.value;
-if(filterValue && this.filter){
-    let filterAgaints=this.filter.name;
-    filterAgaints == 'All' ? filterAgaints='q' : null;
+        let filterValue=event.target.value;
+        console.log(filterValue)
+        console.log(this.filter)
 
-     let params="?"+filterAgaints+"=" +filterValue;
-     this.productService.getFilteredProducts(params).subscribe(resp=>{
-        if(resp && resp.length){
-            this.rows=resp;
+        if(filterValue && this.filter){
+            let filterAgaints=this.filter.name;
+            filterAgaints == 'All' ? filterAgaints='q' : null;
+
+             let params="?"+filterAgaints+"=" +filterValue;
+             this.productService.getFilteredProducts(params).subscribe(resp=>{
+                if(resp && resp.length){
+                    this.rows=resp;
+                }
+            })
+        } else {
+            let filterAgaints = 'q';
+             let params="?"+filterAgaints+"=" +filterValue;
+             this.productService.getFilteredProducts(params).subscribe(resp=>{
+                if(resp && resp.length){
+                    this.rows=resp;
+                }
+            })
         }
-    })
+
+    }
 }
 
-}
-}
 }
