@@ -269,6 +269,13 @@ updateFilter(event) {
 }
 
 
+resetFilters(){
+    this.numberFilterValue='equals';
+    this.lessThan=null;
+    this.greaterThan=null;
+    this.query=null;
+}
+
 wildSearchNew(){
     if( (this.query || this.lessThan || this.greaterThan)  && this.filter )
     {

@@ -9,13 +9,14 @@
         </div>
     </div>
     <!-- style="position: relative !important;" -->
-    <div class="row text-left" style='margin:15px auto;' >
+    <div *ngIf="fields && fields.length" class="row text-left" style='margin:15px auto;' >
         <div class="col-md-3" >
-            <ng-select   [items]="fields"  bindLabel="name"   placeholder="Filter"
-            appendTo="body"  name="filter" [(ngModel)]="filter"
+            <ng-select appendTo="body"  [items]="fields"  bindLabel="name"   placeholder="Filter"
+              name="filter" [(ngModel)]="filter" (change)="resetFilters()"
             >
 
             </ng-select>
+           
         </div>
         
             <div *ngIf="filter && filter.type && filter.type=='number' " class="col-md-3" >
