@@ -8,8 +8,8 @@ export class AppConfig {
     public static URL_Adapters: string = AppConfig.URL_AppBase + 'api/v1/adapters/';
     public static URL_ProductPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/products/';
     public static URL_BrandPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/brands/';
-    public static URL_CategoryPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/categories/';
-    public static URL_ManufacturerPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/manufacturers/';
+    public static URL_CategoryPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/category/';
+    public static URL_ManufacturerPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/manfracturers/';
     public static URL_CatalogPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/catalogs/';
     public static URL_TagPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/tags/';
     public static URL_AdaptersPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/adapters/';
