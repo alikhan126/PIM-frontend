@@ -52,8 +52,15 @@ export class RegisterPageComponent {
                 alert("Invalid Credentials!")
             }
             else {
-                alert("Signed up successfully!")
-                this.regularForm.reset();
+                alert("Signed up successfully!")  
+                this.authService.signinUser(this.regularForm.value.email,this.regularForm.value.password).subscribe(resp=>{
+                    if(!resp){
+                        alert("Invalid Credentials!");
+                    } else {
+                        console.log("Logged In Successfully!");
+                    }
+                });
+                this.regularForm.reset();              
             }
         })
         // this.registerForm.reset();

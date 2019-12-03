@@ -25,7 +25,7 @@ export class AuthService {
           // this.isLoggedIn = true;
         }
         else {
-          alert("Failed to Login")
+          console.log("Failed to Login")
           // this.ts.error("Failed to Logged In",'' ,{timeOut: 1000});
         }
         return user;
