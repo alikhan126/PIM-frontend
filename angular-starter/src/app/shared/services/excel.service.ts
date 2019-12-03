@@ -21,7 +21,7 @@ export class ExcelService {
     //Excel Title, Header, Data
 
     header=Object.values(header)
-    data=data.map(dataObj => Object.values(dataObj)  )
+    // data=data.map(dataObj => Object.values(dataObj)  )
     //Create workbook and worksheet
     let workbook = new Workbook();
     let worksheet = workbook.addWorksheet('Export');
@@ -67,8 +67,11 @@ export class ExcelService {
    
     // Add Data and Conditional Formatting
     data.forEach( (d, index) => {
-         
-      let row = worksheet.addRow(d);
+      let dataRow=[];  
+      header.map(h=>{
+          dataRow.push(d[h])
+         })
+      let row = worksheet.addRow(dataRow);
 
     });
     // return true;
