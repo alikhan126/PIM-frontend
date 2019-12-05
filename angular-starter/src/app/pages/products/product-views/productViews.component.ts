@@ -125,11 +125,6 @@ export class ProductViewsComponent {
         { name: 'upsellSkus' },
         { name: 'upsellPosition' },
         { name: 'deferredStockUpdate' },
-        { name: 'brand' },
-        { name: 'category' },
-        { name: 'tags' },
-        { name: 'images' },
-        { name: 'websites' },
     ];
     // constructor() {
     //     this.rows = data;

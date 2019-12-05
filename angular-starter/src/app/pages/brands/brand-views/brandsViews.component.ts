@@ -31,6 +31,7 @@ export class BrandsViewComponent {
     // DataTable Content Titles
     columns = [
         { prop: 'name' },
+        { prop: 'manufacturers'}
     ];
     // constructor() {
     //     this.rows = data;

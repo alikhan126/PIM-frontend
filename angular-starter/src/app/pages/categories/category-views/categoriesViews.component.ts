@@ -32,6 +32,9 @@ export class CategoryViewComponent {
     columns = [
         { prop: 'name' },
         { prop: 'description' },
+        { prop: 'level' },
+        { prop: 'parentCategories' },
+
     ];
     // constructor() {
     //     this.rows = data;
