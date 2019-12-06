@@ -73,6 +73,7 @@ getAdapters()
     catchError(this.handleError('getRecord', []))
   );
 }
+
 getExportAdapters() 
 {
 
@@ -83,6 +84,18 @@ getExportAdapters()
     catchError(this.handleError('getRecord', []))
   );
 }
+
+getNotifications() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Notifications}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched notifications')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
 
 getAll() 
 {

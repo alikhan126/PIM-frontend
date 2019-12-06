@@ -3,6 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { LayoutService } from '../services/layout.service';
 import { ConfigService } from '../services/config.service';
+import { ProductService} from '../../pages/products/products.service';
+
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -19,11 +21,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   toggleHideSidebar = new EventEmitter<Object>();
 
   public config: any = {};
+  notifications:any=[];
 
-  constructor(public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService,private authService:AuthService) {
+
+  constructor(public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService,private authService:AuthService, private productService: ProductService) {
     const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : "en");
-
+    this.getNotifications();
+    console.log(this.notifications);
   }
 
   ngOnInit() {
@@ -66,6 +71,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.toggleHideSidebar.emit(true);
     }
   }
+
+  getNotifications(){
+  this.productService.getNotifications().subscribe(data => {
+    this.notifications = data['results'];
+
+});
+}
 
   logOut(){
     this.authService.logout();

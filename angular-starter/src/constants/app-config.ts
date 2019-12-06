@@ -37,6 +37,7 @@ export class AppConfig {
     public static URL_Brands: string = AppConfig.URL_AppBase + 'api/v1/brands/';
     public static URL_ProductFamilies: string = AppConfig.URL_AppBase + 'api/v1/productfamily/';
     public static URL_Taxes: string = AppConfig.URL_AppBase + 'api/v1/tax/';
+    public static URL_Notifications: string = AppConfig.URL_AppBase + 'api/v1/notifications/';
     public static URL_SignIn: string = AppConfig.URL_AppBase + 'auth/sign-in/';
     public static URL_SignUp: string = AppConfig.URL_AppBase + 'auth/sign-up/';
 
