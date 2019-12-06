@@ -22,7 +22,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   public config: any = {};
   notifications:any=[];
-
+  read:any=[];
+  notifications_previous:string;
+  notifications_next:string;
+  notifications_count:string;
+  query:string;
 
   constructor(public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService,private authService:AuthService, private productService: ProductService) {
     const browserLang: string = translate.getBrowserLang();
@@ -73,11 +77,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   getNotifications(){
-  this.productService.getNotifications().subscribe(data => {
-    this.notifications = data['results'];
+    this.query = "?is_read=False"
+    this.productService.getNotifications(this.query).subscribe(data => {
+      this.notifications = data['results'];
+      this.notifications_count = data['count'];
+      this.notifications_next = data['next'];
+      this.notifications_previous = data['previous'];
+    });
+  }
 
-});
-}
+  readNotifications(){
+    this.productService.readNotification().subscribe(data => {
+      this.read = data;
+    });
+  }
 
   logOut(){
     this.authService.logout();

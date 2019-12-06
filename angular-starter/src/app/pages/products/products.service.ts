@@ -85,13 +85,23 @@ getExportAdapters()
   );
 }
 
-getNotifications() 
+getNotifications(params) 
 {
 
-  return this.http.get<any []>(`${AppConfig.URL_Notifications}`)
+  return this.http.get<any []>(`${AppConfig.URL_Notifications}${params}`)
   .pipe(
     map(x => x ),
     tap(_ => console.log('fetched notifications')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
+readNotification() 
+{
+  return this.http.get<any []>(`${AppConfig.URL_ReadNotifications}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('read notifications')),
     catchError(this.handleError('getRecord', []))
   );
 }

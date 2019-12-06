@@ -13,14 +13,7 @@
                     <i class="ft-more-vertical"></i>
                 </a>
             </span>
-            <!-- <form class="navbar-form navbar-right mt-1" role="search">
-                <div class="position-relative has-icon-right">
-                    <input type="text" class="form-control round" placeholder="Search">
-                    <div class="form-control-position">
-                        <i class="ft-search"></i>
-                    </div>
-                </div>
-            </form> -->
+
            
         </div>
         <div class="navbar-container">
@@ -33,10 +26,10 @@
                         </a>
                     </li>
                     
-                     <li class="nav-item" ngbDropdown [placement]="placement">
+                    <li class="nav-item" ngbDropdown [placement]="placement">
                         <a class="nav-link position-relative" id="dropdownBasic2" ngbDropdownToggle>
                             <i class="ft-bell font-medium-3 blue-grey darken-4"></i>
-                            <span class="notification badge badge-pill badge-danger">4</span>
+                            <span class="notification badge badge-pill badge-danger">{{notifications_count}}</span>
                             <p class="d-none">Notifications</p>
                         </a>
                         <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown">
@@ -49,7 +42,7 @@
                                     </span>
                                 </a>
                             </div>
-                            <a class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Read All Notifications</a>
+                            <a (click)="readNotifications()" class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Read All Notifications</a>
                         </div>
                     </li>
                     <li class="nav-item" ngbDropdown [placement]="placement">
@@ -57,33 +50,14 @@
                             <i class="ft-user font-medium-3 blue-grey darken-4"></i>
                             <p class="d-none">User Settings</p>
                         </a>
-                        <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="text-left">                           
-                            <!-- <a class="dropdown-item py-1" href="javascript:;">
-                                <i class="ft-edit mr-2"></i>
-                                <span>My Profile</span>
-                            </a>
-                            <a class="dropdown-item py-1" href="javascript:;">
-                                <i class="ft-mail mr-2"></i>
-                                <span>My Inbox</span>
-                            </a>
-                            <a class="dropdown-item py-1" href="javascript:;">
-                                <i class="ft-settings mr-2"></i>
-                                <span>Settings</span>
-                            </a> -->
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="text-left">                            
                             <div class="dropdown-divider"></div>
                             <a (click)="logOut()" class="dropdown-item" href="javascript:;">
                                 <i class="ft-power mr-2"></i>
                                 <span>Logout</span>
                             </a>
                         </div>
-                    </li><!--
-                    <li class="nav-item d-none d-lg-block">
-                        <a class="nav-link position-relative notification-sidebar-toggle" (click)="toggleNotificationSidebar();">
-                            <i class="ft-align-left font-medium-3 blue-grey darken-4"></i>
-                            <p class="d-none">Notifications Sidebar</p>
-                        </a>
-                    </li> -->
-                   
+                    </li>                   
                 </ul>
             </div>
         </div>
