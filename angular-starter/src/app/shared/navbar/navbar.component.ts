@@ -3,6 +3,12 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { LayoutService } from '../services/layout.service';
 import { ConfigService } from '../services/config.service';
+
+import { BrandService } from '../../pages/brands/brands.service';
+import { CategoryService } from '../../pages/categories/category.service';
+import { ManufacturerService } from '../../pages/manfacturer/manufacturer.service';
+import { TagService} from '../../pages/tags/tags.service';
+import { WebsiteService} from '../../pages/websites/websites.service';
 import { ProductService} from '../../pages/products/products.service';
 
 import { AuthService } from '../auth/auth.service';
@@ -30,7 +36,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   rows = [];
 
 
-  constructor(public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService,private authService:AuthService, private productService: ProductService) {
+  constructor(public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService,private authService:AuthService, private productService: ProductService, private brandService: BrandService,private categoryService: CategoryService,private manufacturerService: ManufacturerService,private tagService: TagService,private websiteService: WebsiteService) {
     const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : "en");
     this.getNotifications();
@@ -90,24 +96,83 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   readNotifications(){
     this.productService.readNotification().subscribe(data => {
-      this.read = data;
+      this.productService.getNotifications(this.query).subscribe(data => {
+        this.notifications = data['results'];
+        this.notifications_count = data['count'];
+        this.notifications_next = data['next'];
+        this.notifications_previous = data['previous'];
+      });
     });
   }
 
+  updateNotifications(id){
+    this.productService.getNotification(id).subscribe(data => {
+      this.rows = data;
+      this.rows['is_read'] = true
+      this.productService.updateNotification(this.rows).subscribe(data => {
+          this.productService.getNotifications(this.query).subscribe(data => {
+          this.notifications = data['results'];
+          this.notifications_count = data['count'];
+          this.notifications_next = data['next'];
+          this.notifications_previous = data['previous'];
+        });
+      });
+    });
+  }
+
+
   updateModal(id, modules){
     if (modules == "Product"){
-      this.productService.get('id').subscribe(data => {
+      this.productService.get(id).subscribe(data => {
         this.rows = data;
         this.rows['hidden'] = false
-        console.log(this.rows);
-        this.productService.update(this.rows['id']).subscribe(data => {
-            this.productService.getAll().subscribe(data => {
-                this.rows = data;
-                console.log(this.rows)
-            });
+        this.productService.update(this.rows).subscribe(data => {
+            this.rows = data;
         });
-    });
-    };
+      });
+    } else if(modules == "Brand") {
+      this.brandService.get(id).subscribe(data => {
+        this.rows = data;
+        this.rows['hidden'] = false
+        this.brandService.update(this.rows).subscribe(data => {
+            this.rows = data;
+        });
+      });
+    } else if(modules == "Catalog") {
+       // Implement Catalogs
+    } else if(modules == "Category") {
+      this.categoryService.get(id).subscribe(data => {
+        this.rows = data;
+        this.rows['hidden'] = false
+        this.categoryService.update(this.rows).subscribe(data => {
+            this.rows = data;
+        });
+      });
+    } else if(modules == "Tag") {
+      this.tagService.get(id).subscribe(data => {
+        this.rows = data;
+        this.rows['hidden'] = false
+        this.tagService.update(this.rows).subscribe(data => {
+            this.rows = data;
+        });
+      });
+    } else if(modules == "Website") {
+      this.websiteService.get(id).subscribe(data => {
+        this.rows = data;
+        this.rows['hidden'] = false
+        this.websiteService.update(this.rows).subscribe(data => {
+            this.rows = data;
+        });
+      });
+    } else if(modules == "Manufacturer") {
+      this.manufacturerService.get(id).subscribe(data => {
+        this.rows = data;
+        this.rows['hidden'] = false
+        this.manufacturerService.update(this.rows).subscribe(data => {
+            this.rows = data;
+        });
+      });
+    }
   }
 
   logOut(){

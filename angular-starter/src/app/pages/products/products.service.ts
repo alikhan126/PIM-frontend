@@ -96,6 +96,21 @@ getNotifications(params)
   );
 }
 
+updateNotification (record: any): Observable<any> {
+  return this.http.put(`${AppConfig.URL_Notifications}${record["id"]}/`, record).pipe(
+    tap(_ => this.log(`updated record id=${record["id"]}`)),
+    catchError(this.handleError<any>('updateRecord'))
+  );
+}
+
+getNotification(id){
+  return this.http.get<any>(`${AppConfig.URL_Notifications}${id}/`).pipe(
+    map(x => x ),
+    tap(_ => console.log(`get record=${id}`)),
+    catchError(this.handleError<any>('getRecord'))
+  );
+}
+
 readNotification() 
 {
   return this.http.get<any []>(`${AppConfig.URL_ReadNotifications}`)
