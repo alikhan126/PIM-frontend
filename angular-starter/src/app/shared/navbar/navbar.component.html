@@ -35,11 +35,13 @@
                         <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="notification-dropdown">
                             <div class="noti-list" [perfectScrollbar]>
                                 <a *ngFor="let item of notifications;" class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
+                                <div (click)="updateModal(item.content_id, item.module)" >
                                     <i class="ft-bell info float-left d-block font-large-1 mt-1 mr-2"></i>
                                     <span class="noti-wrapper">
                                         <span class="noti-title line-height-1 d-block text-bold-400 info">New {{item.module}} Created</span>
                                         <span class="noti-text">{{item.message}}</span>
                                     </span>
+                                </div>
                                 </a>
                             </div>
                             <a (click)="readNotifications()" class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Read All Notifications</a>

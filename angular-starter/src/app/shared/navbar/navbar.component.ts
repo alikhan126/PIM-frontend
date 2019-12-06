@@ -27,6 +27,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   notifications_next:string;
   notifications_count:string;
   query:string;
+  rows = [];
+
 
   constructor(public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService,private authService:AuthService, private productService: ProductService) {
     const browserLang: string = translate.getBrowserLang();
@@ -90,6 +92,22 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.productService.readNotification().subscribe(data => {
       this.read = data;
     });
+  }
+
+  updateModal(id, modules){
+    if (modules == "Product"){
+      this.productService.get('id').subscribe(data => {
+        this.rows = data;
+        this.rows['hidden'] = false
+        console.log(this.rows);
+        this.productService.update(this.rows['id']).subscribe(data => {
+            this.productService.getAll().subscribe(data => {
+                this.rows = data;
+                console.log(this.rows)
+            });
+        });
+    });
+    };
   }
 
   logOut(){
