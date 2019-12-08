@@ -52,7 +52,7 @@ export class RegisterPageComponent {
                 alert("Invalid Credentials!")
             }
             else {
-                alert("Signed up successfully!")  
+                console.log("Signed up successfully!")  
                 this.authService.signinUser(this.regularForm.value.email,this.regularForm.value.password).subscribe(resp=>{
                     if(!resp){
                         alert("Invalid Credentials!");
