@@ -3,8 +3,9 @@ import { ProductService} from '../products.service';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NGXToastrService } from 'app/shared/services/toastr.service';
+import { ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/filter';
 
-declare var require: any;
 
 @Component({
     selector: 'app-dt-editing',
@@ -12,7 +13,7 @@ declare var require: any;
     styleUrls: ['./product-editing.component.scss']
 })
 
-export class ProductsEditComponent {
+export class ProductsEditComponent implements OnInit{
 
     numberFilterOptions=["equals","lessThan","greaterThan","between"];
     numberFilterValue:string="equals";
@@ -50,15 +51,22 @@ export class ProductsEditComponent {
     closeResult: string;
     permission: string;
     perm: string;
+
+    queryParams:any={};
     
-    constructor( private ts:NGXToastrService , private modalService: NgbModal, private productService: ProductService, private router: Router) {
+    constructor(private activatedRoute : ActivatedRoute  , private ts:NGXToastrService , private modalService: NgbModal, private productService: ProductService, private router: Router) {
     }
+
     ngOnInit() {
-        this.productService.getAll().subscribe(data => {
-            this.rows = data;
-            this.temp = data;
-            console.log(this.rows)
+
+        this.activatedRoute.queryParams
+        // .filter(params => params)
+        .subscribe(params => {
+          this.queryParams=params;
+          this.applySearch();
         });
+
+        // this.getAllProducts();
         this.getImages();
         this.getWebsites();
         this.getTags();
@@ -79,6 +87,29 @@ export class ProductsEditComponent {
         this.Stocked = "Stocked";
         this.SpecialOrder = "SpecialOrder";
         this.FromPartners = "FromPartners";
+    }
+
+    applySearch(){
+        if (Object.keys(this.queryParams).length){
+            this.queryParams.name && this.queryParams.name != 'q' ? this.filter['name']=this.queryParams.name : this.filter['name']="All";
+            this.queryParams.type ? this.filter['type']=this.queryParams.type :this.filter['type']="string";
+            this.queryParams.query ? this.query=this.queryParams.query :null;
+            this.queryParams.numberFilterValue ? this.numberFilterValue=this.queryParams.numberFilterValue : null;
+            this.queryParams.hasOwnProperty('lessThan') ? this.lessThan=this.queryParams.lessThan :null;
+            this.queryParams.hasOwnProperty('greaterThan') ? this.greaterThan=this.queryParams.greaterThan :null;
+            this.queryParams.queryCall ? this.getSearchedResults(this.queryParams.queryCall) : this.router.navigate['/products'];
+        }
+        else {
+            this.getAllProducts();
+        }
+    }
+
+
+    getData(){
+        this.productService.getAll().subscribe(data => {
+            this.rows = data;
+            this.temp = data;
+        });
     }
 
     open(content) {
@@ -270,13 +301,26 @@ updateFilter(event) {
 
 
 resetFilters(){
+
     this.numberFilterValue='equals';
     this.lessThan=null;
     this.greaterThan=null;
     this.query=null;
 }
+getAllProducts(){
+    this.productService.getAll().subscribe(data => {
+        this.rows = data;
+        this.temp = data;
+    });
 
-wildSearchNew(){
+}
+searchNow(){
+    this.generateParams();
+    // if(para){
+    //     this.getSearchedResults(para);
+    // }
+}
+generateParams(){
     if( (this.query || this.lessThan || this.greaterThan)  && this.filter )
     {
         let filterAgainst=this.filter.name;
@@ -285,6 +329,93 @@ wildSearchNew(){
             filterAgainst == 'All' ? filterAgainst='q' : null;
 
              params="?"+filterAgainst+"=" +this.query;
+            //  return params;
+            this.router.navigate(['/products'], { queryParams: { 'queryCall': params,'name':filterAgainst,'type':this.filter.type,'query':this.query} });
+        //     this.productService.getFilteredProducts(params).subscribe(resp=>{
+        //        if(resp && resp.length){
+        //            this.rows=resp;
+        //        }
+        //    })
+        }
+        else {
+            if (this.numberFilterValue == 'lessThan' && this.lessThan!=null ) {
+                params="?"+filterAgainst+"=true&lessThan="+this.lessThan;
+            }
+            else if (this.numberFilterValue == 'greaterThan' && this.greaterThan!=null ) {
+                params="?"+filterAgainst+"=true&greaterThan="+this.greaterThan;
+            }
+            else if (this.numberFilterValue == 'between' && this.lessThan!=null && this.greaterThan!=null && this.lessThan>=this.greaterThan) {
+                params="?"+filterAgainst+"=true&lessThan="+this.lessThan+"&greaterThan="+this.greaterThan;
+            }
+            else {
+                this.ts.typeError("Wrong Filter Value!","Please add valid filters")
+                this.router.navigate(['/products']);
+                
+            }
+
+            let queryObj={};
+
+            queryObj['name']=this.filter.name;
+            queryObj['type']=this.filter.type;
+            queryObj['numberFilterValue']=this.numberFilterValue;
+            params.slice(1).split('&').map(ele=> {  queryObj[ele.split('=')[0]]=ele.split('=')[1] } )
+            queryObj['queryCall']=params;
+
+            this.router.navigate(['/products'], { queryParams: queryObj });
+
+            // this.productService.getFilteredProducts(params).subscribe(resp=>{
+            //     if(resp && resp.length){
+            //         this.rows=resp;
+            //     }
+            //     else {
+            //         this.rows=[];
+            //     }
+            // })
+
+
+        }
+
+
+    }
+    else {
+
+        this.ts.typeError("Empty Filter Value!","Please provide a filter value to be filtered on!");
+            this.router.navigate(['/products'])
+        // let filterAgaints = 'q';
+        //  let params="?"+filterAgaints+"=" +this.query;
+        //  this.productService.getFilteredProducts(params).subscribe(resp=>{
+        //     if(resp && resp.length){
+        //         this.rows=resp;
+        //     }
+        // })
+    }
+
+}
+
+
+
+getSearchedResults(params){
+    this.productService.getFilteredProducts(params).subscribe(resp=>{
+        if(resp && resp.length){
+            this.rows=resp;
+        }
+        else {
+            this.rows=[];
+        }
+    })
+}
+wildSearchNew(){
+    // alert(JSON.stringify(this.queryParams))
+    // return ;
+    if( (this.query || this.lessThan || this.greaterThan)  && this.filter )
+    {
+        let filterAgainst=this.filter.name;
+        let params;
+        if(this.filter.type != 'number' || (this.filter.type == 'number' && this.numberFilterValue == 'equals') ) {
+            filterAgainst == 'All' ? filterAgainst='q' : null;
+
+             params="?"+filterAgainst+"=" +this.query;
+            this.router.navigate(['/products'], { queryParams: { 'queryCall': params,'name':filterAgainst,'type':this.filter.type,'query':this.query} });
             this.productService.getFilteredProducts(params).subscribe(resp=>{
                if(resp && resp.length){
                    this.rows=resp;
@@ -305,7 +436,7 @@ wildSearchNew(){
                 this.ts.typeError("Wrong Filter Value!","Please add valid filters")
                 return;
             }
-
+            this.router.navigate(['/products'], { queryParams: { 'query': params} });
             this.productService.getFilteredProducts(params).subscribe(resp=>{
                 if(resp && resp.length){
                     this.rows=resp;
@@ -322,7 +453,7 @@ wildSearchNew(){
     } else {
 
         this.ts.typeError("Empty Filter Value!","Please provide a filter value to be filtered on!")
-        
+        this.router.navigate(['/products'])
         // let filterAgaints = 'q';
         //  let params="?"+filterAgaints+"=" +this.query;
         //  this.productService.getFilteredProducts(params).subscribe(resp=>{
