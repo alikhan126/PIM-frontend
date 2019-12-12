@@ -36,7 +36,22 @@
                             <div class="noti-list" [perfectScrollbar]>
 
                                 <a *ngFor="let item of notifications;" class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
-                                <div (click)="updateModal(item.content_id, item.module); updateNotifications(item.id);" >
+                                <ng-template #content let-c="close" let-d="dismiss">
+                                  <div class="modal-header">
+                                    <h4 class="modal-title">New {{item.module}} Created</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>{{item.message}}&hellip;</p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button style="float: left;" type="button" class="btn btn-secondary btn-raised left" (click)="updateModal(item.content_id, item.module, false); updateNotifications(item.id); c('Close click');">Approve</button>
+                                    <button  style="float: right;" type="button" class="btn btn-secondary btn-raised" (click)="c('Close click'); updateModal(item.content_id, item.module, true);">Reject</button>
+                                  </div>
+                                </ng-template>
+                                <div (click)="open(content)" >
                                     <i class="ft-bell info float-left d-block font-large-1 mt-1 mr-2"></i>
                                     <span class="noti-wrapper">
                                         <span class="noti-title line-height-1 d-block text-bold-400 info">New {{item.module}} Created</span>

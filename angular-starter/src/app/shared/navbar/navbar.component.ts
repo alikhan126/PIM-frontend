@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter, OnInit, AfterViewInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { LayoutService } from '../services/layout.service';
 import { ConfigService } from '../services/config.service';
@@ -34,9 +35,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   notifications_count:string;
   query:string;
   rows = [];
+  closeResult: string;
 
-
-  constructor(public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService,private authService:AuthService, private productService: ProductService, private brandService: BrandService,private categoryService: CategoryService,private manufacturerService: ManufacturerService,private tagService: TagService,private websiteService: WebsiteService) {
+  constructor(public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService,private authService:AuthService, private modalService: NgbModal, private productService: ProductService, private brandService: BrandService,private categoryService: CategoryService,private manufacturerService: ManufacturerService,private tagService: TagService,private websiteService: WebsiteService) {
     const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : "en");
     this.getNotifications();
@@ -46,6 +47,25 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.config = this.configService.templateConf;
   }
+
+  open(content) {
+        this.modalService.open(content).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    }
+
+    // This function is used in open
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return `with: ${reason}`;
+        }
+    }
 
   ngAfterViewInit() {
     if(this.config.layout.dir) {
@@ -121,11 +141,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
 
-  updateModal(id, modules){
+  updateModal(id, modules, value){
     if (modules == "Product"){
       this.productService.get(id).subscribe(data => {
         this.rows = data;
-        this.rows['hidden'] = false
+        this.rows['hidden'] = value
         this.productService.update(this.rows).subscribe(data => {
             this.rows = data;
         });
@@ -133,7 +153,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     } else if(modules == "Brand") {
       this.brandService.get(id).subscribe(data => {
         this.rows = data;
-        this.rows['hidden'] = false
+        this.rows['hidden'] = value
         this.brandService.update(this.rows).subscribe(data => {
             this.rows = data;
         });
@@ -143,7 +163,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     } else if(modules == "Category") {
       this.categoryService.get(id).subscribe(data => {
         this.rows = data;
-        this.rows['hidden'] = false
+        this.rows['hidden'] = value
         this.categoryService.update(this.rows).subscribe(data => {
             this.rows = data;
         });
@@ -151,7 +171,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     } else if(modules == "Tag") {
       this.tagService.get(id).subscribe(data => {
         this.rows = data;
-        this.rows['hidden'] = false
+        this.rows['hidden'] = value
         this.tagService.update(this.rows).subscribe(data => {
             this.rows = data;
         });
@@ -159,7 +179,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     } else if(modules == "Website") {
       this.websiteService.get(id).subscribe(data => {
         this.rows = data;
-        this.rows['hidden'] = false
+        this.rows['hidden'] = value
         this.websiteService.update(this.rows).subscribe(data => {
             this.rows = data;
         });
@@ -167,7 +187,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     } else if(modules == "Manufacturer") {
       this.manufacturerService.get(id).subscribe(data => {
         this.rows = data;
-        this.rows['hidden'] = false
+        this.rows['hidden'] = value
         this.manufacturerService.update(this.rows).subscribe(data => {
             this.rows = data;
         });

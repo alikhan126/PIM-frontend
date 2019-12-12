@@ -28,19 +28,8 @@ export class LoginPageComponent implements OnInit{
     // On submit button click
     onSubmit() {
         this.authService.signinUser(this.regularForm.value.email,this.regularForm.value.password).subscribe(resp=>{
-            console.log(JSON.stringify(resp))
             if(!resp){
-                alert(JSON.stringify(resp))
-                this.authService.signinUser(this.regularForm.value.email,this.regularForm.value.password).subscribe(resp=>{
-                console.log(JSON.stringify(resp))
-                // localStorage.setItem('dataSource', resp);
-                // console.log("user", localStorage.getItem('dataSource'));
-                // alert("Logged In Successfully!")
-
-                if (!resp){
-                    alert("Invalid Credentials")
-                }
-                })
+                    console.log("Invalid Credentials");
             }
         })
         // this.loginForm.reset();
