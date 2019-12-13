@@ -46,6 +46,13 @@ addAdapters (record: any): Observable<any> {
   );
 }
 
+addCatalog (record: any): Observable<any> {
+
+  return this.http.post<any>(`${AppConfig.URL_CATALOGS}`, record).pipe(
+    map(x => x ),
+    catchError(this.handleError<any>('Adapters'))
+  );
+}
 addExportAdapters (record: any): Observable<any> {
 
   return this.http.post<any>(`${AppConfig.URL_EXPORT_Adapters}`, record).pipe(

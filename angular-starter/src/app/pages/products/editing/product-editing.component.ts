@@ -15,6 +15,16 @@ import 'rxjs/add/operator/filter';
 
 export class ProductsEditComponent implements OnInit{
 
+
+    catalogName:string="";  //catalog name
+    url:string=""; //catalog url
+    description:string=""; // catalog description
+    hidden:boolean=false; //catlog is hidden or not
+    showCatalog:boolean=false; // show catalog form to save 
+    shareable:boolean=false; //show searchable button based on based on shareable link 
+
+
+
     numberFilterOptions=["equals","lessThan","greaterThan","between"];
     numberFilterValue:string="equals";
     lessThan:number=null;
@@ -54,7 +64,7 @@ export class ProductsEditComponent implements OnInit{
 
     queryParams:any={};
     
-    constructor(private activatedRoute : ActivatedRoute  , private ts:NGXToastrService , private modalService: NgbModal, private productService: ProductService, private router: Router) {
+    constructor( private toastService:NGXToastrService ,private activatedRoute : ActivatedRoute  , private ts:NGXToastrService , private modalService: NgbModal, private productService: ProductService, private router: Router) {
     }
 
     ngOnInit() {
@@ -89,6 +99,49 @@ export class ProductsEditComponent implements OnInit{
         this.FromPartners = "FromPartners";
     }
 
+    
+
+  resetCatalog(){
+      this.catalogName="";
+      this.hidden=false;
+      this.description="";
+      this.url="";
+      this.showCatalog=false;
+  }  
+
+saveAsCatalog(){
+
+    if(this.catalogName && this.description && this.url && this.hasOwnProperty('hidden') ){
+
+    
+    if(window.location.href.indexOf(this.url)){
+        this.url=window.location.href;
+    }
+    else {
+        this.toastService.typeError("Validation Failed","Please provide valid url");
+        return;
+    }
+    this.productService.addCatalog({
+    name:this.catalogName,
+    description:this.description,
+    url:this.url,
+    hidden:this.hidden
+    }).subscribe(data=>{
+    if(data && Object.keys(data).length)        
+    {
+        this.toastService.typeSuccessCustom("Catalog Added","A new catalog " +this.catalogName+"is added!")
+        this.resetCatalog();
+    }
+
+    })
+    }
+
+    else {
+        this.toastService.typeError("Validation Failed","Please provide all parameters");
+        return;
+
+    }
+}
     applySearch(){
         if (Object.keys(this.queryParams).length){
             this.queryParams.name && this.queryParams.name != 'q' ? this.filter['name']=this.queryParams.name : this.filter['name']="All";
@@ -98,11 +151,16 @@ export class ProductsEditComponent implements OnInit{
             this.queryParams.hasOwnProperty('lessThan') ? this.lessThan=this.queryParams.lessThan :null;
             this.queryParams.hasOwnProperty('greaterThan') ? this.greaterThan=this.queryParams.greaterThan :null;
             this.queryParams.queryCall ? this.getSearchedResults(this.queryParams.queryCall) : this.router.navigate['/products'];
+
+            this.shareable=true;
+            this.url=this.queryParams.queryCall;
         }
         else {
             this.getAllProducts();
         }
     }
+
+
 
 
     getData(){

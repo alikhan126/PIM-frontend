@@ -7,6 +7,8 @@ export class AppConfig {
     public static URL_Import_Products: string = AppConfig.URL_AppBase + 'api/v1/import/product/';
     public static URL_Adapters: string = AppConfig.URL_AppBase + 'api/v1/adapters/';
     public static URL_EXPORT_Adapters: string = AppConfig.URL_AppBase + 'api/v1/export_adapters/';
+    public static URL_CATALOGS: string = AppConfig.URL_AppBase + 'api/v1/catalogs/';
+
 
     public static URL_ProductPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/products/';
     public static URL_BrandPermission: string = AppConfig.URL_AppBase + 'api/v1/fields/brands/';

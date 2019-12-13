@@ -52,6 +52,37 @@
 
 
     </div>
+
+    <div *ngIf="showCatalog" class="row text-left" style='margin:15px auto;' >
+        <div class="col-md-3" >
+            <input type='text' class="wildsearch"  style='padding:8px;' placeholder='Catalog Name' name="catalogName" [(ngModel)]="catalogName" >
+           
+        </div>
+        
+        <div  class="col-md-3" >
+            <input type='textarea' class="wildsearch"  style='padding:8px;' placeholder='Catalog Description' name="description" [(ngModel)]="description" >
+        </div>
+        <div  class="col-md-2" >
+             <input [disabled]="true" type='text' class="wildsearch"  style='padding:8px;' placeholder='Url' name="url" [(ngModel)]="url" >
+        </div>
+        <div  class="col-md-1" >
+            <input  type='checkbox' class="wildsearch"  style='padding:8px;' placeholder='hidden' name="hidden" [(ngModel)]="hidden" >
+        </div>
+
+        <div class="col-md-2">
+            <a  class="btn btn-search"   (click)='saveAsCatalog()'
+            >  Save Catalog</a>
+        </div>
+    </div>
+
+    <div class="row text-left" style='margin:15px auto;' >
+    <div *ngIf="shareable" class="col-md-2">
+        <a  class="btn btn-search"   (click)='showCatalog=true;shareable=false;'
+                    >  Add to Catalog</a>
+        </div>
+    </div>
+
+
     <div class="row">
         <div class="col-sm-12" >
             <!-- <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Type to filter the name column...' (keyup)='updateFilter($event)'
