@@ -15,6 +15,7 @@ declare var require: any;
 export class BrandsEditComponent {
     editing = {};
     rows = [];
+    roles = [];
     products :any[];
     totalRecords:number;
     temp = [];
@@ -28,6 +29,7 @@ export class BrandsEditComponent {
     constructor(private modalService: NgbModal, private brandService: BrandService, private router: Router) {
     }
     ngOnInit() {
+        this.getUserRole();
         this.getManufacturers();
         this.brandService.getAll().subscribe(data => {
             this.rows = data;
@@ -58,7 +60,7 @@ export class BrandsEditComponent {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Update";
         this.perm = "All";
-        if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm)){
+        if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.permission) ){
             this.editing[rowIndex + '-' + cell] = false;
             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -78,7 +80,7 @@ export class BrandsEditComponent {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Update";
         this.perm = "All";
-        if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm)){
+        if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -98,7 +100,7 @@ export class BrandsEditComponent {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Delete";
         this.perm = "All";
-        if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm)){
+        if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -119,7 +121,7 @@ export class BrandsEditComponent {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Create";
         this.perm = "All";
-        if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm)){
+        if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.permission)){
             this.router.navigate(['/brands/0']);
         } else{
             alert("You don't have the permission to add Brands!");
@@ -141,6 +143,13 @@ export class BrandsEditComponent {
             this.brandService.getAllManufacturers().subscribe(data => {
             this.manufacturers = data;
         });
+    }
+
+    getUserRole(){
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this. brandService.getUserRole(user.user_id).subscribe(data => {
+          this.roles = data['role'];
+      });
     }
 
 }

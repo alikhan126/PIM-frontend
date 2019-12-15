@@ -19,6 +19,7 @@ export class RolesEditComponent {
     totalRecords:number;
     temp = [];
     users =[];
+    roles =[];
     permission :string;
     closeResult: string;
 
@@ -28,6 +29,7 @@ export class RolesEditComponent {
     }
     ngOnInit() {
         this.getUsers();
+        this.getRoles();
         this.roleService.getAll().subscribe(data => {
             this.rows = data;
             this.temp = data;
@@ -53,14 +55,6 @@ export class RolesEditComponent {
             return `with: ${reason}`;
         }
     }
-
-    permissions = [
-        {name: 'All'},
-        {name: 'Create'},
-        {name: 'Update'},
-        {name: 'Delete'},
-        {name: 'View'},
-    ]
 
     // Editing content code
     updateValue(event, cell, rowIndex) {
@@ -116,7 +110,7 @@ export class RolesEditComponent {
     }
 
     addRole(){
-        this.router.navigate(['/permissions/0']);
+        this.router.navigate(['/assignroles/0']);
 
     }
 
@@ -133,8 +127,14 @@ export class RolesEditComponent {
 
     getUsers(){
             this.roleService.getAllUsers().subscribe(data => {
-            this.users = data;
+            this.users = data['results'];
         });
     }
+
+    getRoles(){
+        this.roleService.getAllRoles().subscribe(data => {
+        this.roles = data['results'];
+    });
+}
 
 }

@@ -41,6 +41,7 @@ export class ProductsEditComponent implements OnInit{
     taxes:any=[];  
     editing = {};
     rows = [];
+    roles = [];
     products :any[];
     Downloadable:any=[];
     Simple:any=[];
@@ -78,6 +79,7 @@ export class ProductsEditComponent implements OnInit{
 
         // this.getAllProducts();
         this.getImages();
+        this.getUserRole();
         this.getWebsites();
         this.getTags();
         this.getBrands();
@@ -218,7 +220,7 @@ saveAsCatalog(){
         this.permission = "Update";
         this.perm = "All";
         let cellvalue = this.titleCaseWord(cell);
-        if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) ){
+        if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission) ){
             this.productService.getFieldPermissions(user.user_id).subscribe(data => {
                 if(data.edit.includes(cellvalue)){
                     this.editing[rowIndex + '-' + cell] = false;
@@ -245,7 +247,7 @@ saveAsCatalog(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Delete";
         this.perm = "All";
-        if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm)){
+        if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission) ){
             this.editing[rowIndex + '-' + cell] = false;
             this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -268,7 +270,7 @@ saveAsCatalog(){
         this.permission = "Update";
         this.perm = "All";
         let cellvalue = this.titleCaseWord(cell);
-        if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) ){
+        if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission)){
             this.productService.getFieldPermissions(user.user_id).subscribe(data => {
                 if(data.edit.includes(cellvalue)){
                     this.editing[rowIndex + '-' + cell] = false;
@@ -295,7 +297,7 @@ saveAsCatalog(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Create";
         this.perm = "All";
-        if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) ){
+        if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission)){
             this.router.navigate(['/products/0']);
         } else {
             alert("You don't have access to add products!");
@@ -317,6 +319,13 @@ getImages(){
 
 });
 }
+
+getUserRole(){
+    let user=JSON.parse(localStorage.getItem('currentUser'));
+    this.productService.getUserRole(user.user_id).subscribe(data => {
+      this.roles = data['role'];
+  });
+  }
 
 getCategories(){
   this.productService.getAllCategories().subscribe(data => {

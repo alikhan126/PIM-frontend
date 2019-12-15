@@ -13,7 +13,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class  TagService  {
+export class  RoleService  {
 
   constructor(private http: HttpClient, 
     // private ts: ToastrService
@@ -21,17 +21,9 @@ export class  TagService  {
     // super(http);
 }
 
-getFieldPermissions(id){
-  return this.http.get<any>(`${AppConfig.URL_TagPermissionCheck + "?user="}${id}`).pipe(
-    map(x => x ),
-    tap(_ => console.log(`get record=${id}`)),
-    catchError(this.handleError<any>('getRecord'))
-  );
-}
-
 add (record: any): Observable<any> {
 
-  return this.http.post<any>(`${AppConfig.URL_Tags}`, record).pipe(
+  return this.http.post<any>(`${AppConfig.URL_AssignRoles}`, record).pipe(
     map(x => x ),
     tap((newP: any) => console.log(`added record w/ id=${newP}`)),
     catchError(this.handleError<any>('add'))
@@ -41,7 +33,7 @@ add (record: any): Observable<any> {
 getAll() 
 {
 
-  return this.http.get<any []>(`${AppConfig.URL_Tags}`)
+  return this.http.get<any []>(`${AppConfig.URL_AssignRoles}`)
   .pipe(
     map(x => x ),
     tap(_ => console.log('fetched record')),
@@ -50,7 +42,7 @@ getAll()
 }
 
 get(id){
-  return this.http.get<any>(`${AppConfig.URL_Tags}${id}/`).pipe(
+  return this.http.get<any>(`${AppConfig.URL_AssignRoles}${id}/`).pipe(
     map(x => x ),
     tap(_ => console.log(`get record=${id}`)),
     catchError(this.handleError<any>('getRecord'))
@@ -82,7 +74,29 @@ getAllTags()
 getAllWebsites() 
 {
 
-  return this.http.get<any []>(`${AppConfig.URL_Tags}`)
+  return this.http.get<any []>(`${AppConfig.URL_Websites}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
+getAllUsers() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Users}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
+getAllRoles() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Role}`)
   .pipe(
     map(x => x ),
     tap(_ => console.log('fetched record')),
@@ -104,7 +118,18 @@ getAllCategories()
 getAllBrands() 
 {
 
-  return this.http.get<any []>(`${AppConfig.URL_Tags}`)
+  return this.http.get<any []>(`${AppConfig.URL_AssignRoles}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
+getAllManufacturers() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Manfracturer}`)
   .pipe(
     map(x => x ),
     tap(_ => console.log('fetched record')),
@@ -135,23 +160,13 @@ getAllTaxes () {
 }
 
 
-getUserRole(id) 
-{
-
-  return this.http.get<any>(`${AppConfig.URL_UserRole + "?user="}${id}`)
-  .pipe(
-    map(x => x ),
-    tap(_ => console.log('fetched record')),
-    catchError(this.handleError('getRecord', []))
-  );
-}
 
 
 
 
 // delete (record: any | number): Observable<any> {
 //   const id = typeof record === 'number' ? record : record.id;
-//   const url = `${AppConfig.URL_Tags}${id}`;
+//   const url = `${AppConfig.URL_AssignRoles}${id}`;
 
 //   return this.http.delete<Dealer>(url).pipe(
 //     map(x => x["data"] ),
@@ -161,20 +176,20 @@ getUserRole(id)
 // }
 
 update (record: any): Observable<any> {
-  return this.http.put(`${AppConfig.URL_Tags}${record["id"]}/`, record).pipe(
+  return this.http.put(`${AppConfig.URL_AssignRoles}${record["id"]}/`, record).pipe(
     tap(_ => this.log(`updated record id=${record["id"]}`)),
     catchError(this.handleError<any>('updateRecord'))
   );
 }
 
-
 delete(id){
-  return this.http.delete<any>(`${AppConfig.URL_Tags}${id}/`).pipe(
+  return this.http.delete<any>(`${AppConfig.URL_AssignRoles}${id}/`).pipe(
     map(x => x ),
     tap(_ => console.log(`delete record=${id}`)),
     catchError(this.handleError<any>('deleteRecord'))
   );
 }
+
 
 
 

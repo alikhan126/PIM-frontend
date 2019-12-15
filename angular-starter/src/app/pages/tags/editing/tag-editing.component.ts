@@ -14,6 +14,7 @@ declare var require: any;
 export class TagEditComponent {
     editing = {};
     rows = [];
+    roles = [];
     products :any[];
     totalRecords:number;
     temp = [];
@@ -24,6 +25,7 @@ export class TagEditComponent {
     constructor(private modalService: NgbModal, private tagService: TagService, private router: Router) {
     }
     ngOnInit() {
+        this.getUserRole();
         this.tagService.getAll().subscribe(data => {
             this.rows = data;
             this.temp = data;
@@ -60,7 +62,7 @@ export class TagEditComponent {
         this.permission = "Update";
         this.perm = "All";
         let cellvalue = this.titleCaseWord(cell);
-        if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm)){
+        if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission) ){
             this.tagService.getFieldPermissions(user.user_id).subscribe(data => {
                 if(data.edit.includes(cellvalue)){
                     this.editing[rowIndex + '-' + cell] = false;
@@ -87,7 +89,7 @@ export class TagEditComponent {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Delete";
         this.perm = "All";
-        if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm)){
+        if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.tagService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -108,7 +110,7 @@ export class TagEditComponent {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Create";
         this.perm = "All";
-        if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm)){
+        if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission)){
             this.router.navigate(['/tags/0']);
         } else {
             alert("You don't have access to add tag!");
@@ -124,6 +126,13 @@ export class TagEditComponent {
     
         // update the rows
         this.rows = temp;
+    }
+
+    getUserRole(){
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.tagService.getUserRole(user.user_id).subscribe(data => {
+          this.roles = data['role'];
+      });
     }
 
 }

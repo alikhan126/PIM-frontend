@@ -19,6 +19,7 @@ export class AddRoleComponent implements OnInit{
   productFamilies:any=[];
   taxes:any=[];
   users:any=[];
+  roles:any=[];
 
   isNew :boolean = false;
 
@@ -26,6 +27,7 @@ export class AddRoleComponent implements OnInit{
   }
   ngOnInit () {
      this.getRole();
+     this.getRoles();
      this.getUsers();
   }
 
@@ -53,7 +55,7 @@ export class AddRoleComponent implements OnInit{
         .subscribe(result => {
           this.pObj=result;
           console.log(this.pObj)
-          this.pObj && this.pObj.id && this.router.navigate(['permissions/'])
+          this.pObj && this.pObj.id && this.router.navigate(['assignroles/'])
           // this.ts.success("Operation Performed Successfully");
         })
       }
@@ -83,7 +85,7 @@ export class AddRoleComponent implements OnInit{
 
 
   goToRoles(){
-    this.router.navigate(['/permissions']);
+    this.router.navigate(['/assignroles']);
 
 }
 
@@ -98,6 +100,12 @@ getImages(){
 getUsers(){
   this.roleService.getAllUsers().subscribe(data => {
     this.users = data['results'];
+});
+}
+
+getRoles(){
+  this.roleService.getAllRoles().subscribe(data => {
+    this.roles = data['results'];
 });
 }
 

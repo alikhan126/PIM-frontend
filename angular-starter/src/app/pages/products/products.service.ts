@@ -167,10 +167,22 @@ getFildsToImport(){
     catchError(this.handleError('getRecord', []))
   );
 }
+
 getAllImages() 
 {
 
   return this.http.get<any []>(`${AppConfig.URL_Images}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
+getUserRole(id) 
+{
+
+  return this.http.get<any>(`${AppConfig.URL_UserRole + "?user="}${id}`)
   .pipe(
     map(x => x ),
     tap(_ => console.log('fetched record')),

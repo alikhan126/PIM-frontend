@@ -20,6 +20,7 @@ export class AppConfig {
     public static URL_WebsitePermission: string = AppConfig.URL_AppBase + 'api/v1/fields/websites/';
 
     public static URL_ProductPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/product/';
+    public static URL_UserRole: string = AppConfig.URL_AppBase + 'api/v1/user_role/';
     public static URL_BrandPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/brand/';
     public static URL_CategoryPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/category/';
     public static URL_ManufacturerPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/manfracturer/';
@@ -32,6 +33,8 @@ export class AppConfig {
     public static URL_Fields: string = AppConfig.URL_AppBase + 'api/v1/product/fields/';
     public static URL_Tags: string = AppConfig.URL_AppBase + 'api/v1/tags/';
     public static URL_Roles: string = AppConfig.URL_AppBase + 'api/v1/roles/';
+    public static URL_Role: string = AppConfig.URL_AppBase + 'api/v1/role/';
+    public static URL_AssignRoles: string = AppConfig.URL_AppBase + 'api/v1/assing_role/';
     public static URL_Users: string = AppConfig.URL_AppBase + 'api/v1/users/';
     public static URL_Websites: string = AppConfig.URL_AppBase + 'api/v1/websites/';
     public static URL_Categories: string = AppConfig.URL_AppBase + 'api/v1/categories/';

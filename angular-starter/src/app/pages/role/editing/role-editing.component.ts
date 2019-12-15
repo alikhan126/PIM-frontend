@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { RoleService} from '../roles.service';
+import { RoleService} from '../role.service';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -27,10 +27,9 @@ export class RolesEditComponent {
     constructor(private modalService: NgbModal, private roleService: RoleService, private router: Router) {
     }
     ngOnInit() {
-        this.getUsers();
         this.roleService.getAll().subscribe(data => {
-            this.rows = data;
-            this.temp = data;
+            this.rows = data['results'];
+            this.temp = data['results'];
             console.log(this.rows)
         });
     }
@@ -116,7 +115,7 @@ export class RolesEditComponent {
     }
 
     addRole(){
-        this.router.navigate(['/permissions/0']);
+        this.router.navigate(['/role/0']);
 
     }
 
@@ -129,12 +128,6 @@ export class RolesEditComponent {
 
         // update the rows
         this.rows = temp;
-    }
-
-    getUsers(){
-            this.roleService.getAllUsers().subscribe(data => {
-            this.users = data;
-        });
     }
 
 }

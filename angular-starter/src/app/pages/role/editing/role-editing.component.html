@@ -4,7 +4,7 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title ">Permissions</h4>
+            <h4 class="card-title ">Roles</h4>
             <p class="content-sub-header">Double click on any content to edit that section.</p>
 
             <a  (click)="addRole()"   class="btn btn-floating halfway-fab btn-large bg-warning topClass"><i class="ft-plus"></i></a>
@@ -15,13 +15,15 @@
                 />
                 <ngx-datatable #mydatatable class="bootstrap" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="50"
                 [rowHeight]="'auto'" [rows]="rows" [scrollbarH]="true">
-                <ngx-datatable-column [width]="300" name="User">
-                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                      <span>
-                          {{value.email}}
+                <ngx-datatable-column [width]="300" name="Name">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                      <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-name'] = true" *ngIf="!editing[rowIndex + '-name']">
+                          {{value}}
                       </span>
+                      <input autofocus (blur)="updateValue($event, 'name', rowIndex)" *ngIf="editing[rowIndex+ '-name']" type="text" [value]="value"
+                      />
                   </ng-template>
-              </ngx-datatable-column>
+                </ngx-datatable-column>
 
 
               <ngx-datatable-column [width]="300" name="Brands">

@@ -22,85 +22,18 @@
                       <label >User</label>
                       <ng-select [items]="users" bindLabel="email" bindValue="id"  placeholder="Select User"
                       name="user" [(ngModel)]="pObj.user">
-                    </ng-select>
+                      </ng-select>
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label >Brands</label>
-                    <ng-select [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Brands Permissions"
-                        name="brands" [(ngModel)]="pObj.brands" multiple="true"
-                      >
-                    </ng-select>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label >Products</label>
-                    <ng-select [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Products Permissions"
-                        name="products" [(ngModel)]="pObj.products" multiple="true"
-                      >
-                    </ng-select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label >Catalogs</label>
-                    <ng-select [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Catalogs Permissions"
-                        name="catalogs" [(ngModel)]="pObj.catalogs" multiple="true"
-                      >
-                    </ng-select>
+                      <label >Role</label>
+                      <ng-select [items]="roles" bindLabel="name" bindValue="id"  placeholder="Select Role"
+                      name="role" [(ngModel)]="pObj.role">
+                      </ng-select>
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label >Manufacturer</label>
-                    <ng-select [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Manufacturer Permissions"
-                        name="manufacturer" [(ngModel)]="pObj.manufacturer" multiple="true"
-                      >
-                    </ng-select>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label >Websites</label>
-                    <ng-select [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Websites Permissions"
-                        name="websites" [(ngModel)]="pObj.websites" multiple="true"
-                      >
-                    </ng-select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label >Tags</label>
-                    <ng-select [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Tags Permissions"
-                        name="tags" [(ngModel)]="pObj.tags" multiple="true"
-                      >
-                    </ng-select>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label >Adapters</label>
-                    <ng-select [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Adapters Permissions"
-                        name="adapters" [(ngModel)]="pObj.adapters" multiple="true"
-                      >
-                    </ng-select>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label >Categories</label>
-                    <ng-select [items]="permissions"  bindLabel="name" bindValue="name"  placeholder="Select Categories Permissions"
-                        name="adapters" [(ngModel)]="pObj.categories" multiple="true"
-                      >
-                    </ng-select>
-                    </div>
-                  </div>
+
                 </div>
               </div>
 

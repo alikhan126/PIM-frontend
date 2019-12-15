@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
-import { RoleService } from '../roles.service';
+import { RoleService } from '../role.service';
 
 @Component({
   selector: 'app-product',
@@ -53,7 +53,7 @@ export class AddRoleComponent implements OnInit{
         .subscribe(result => {
           this.pObj=result;
           console.log(this.pObj)
-          this.pObj && this.pObj.id && this.router.navigate(['permissions/'])
+          this.pObj && this.pObj.id && this.router.navigate(['role/'])
           // this.ts.success("Operation Performed Successfully");
         })
       }
@@ -83,7 +83,7 @@ export class AddRoleComponent implements OnInit{
 
 
   goToRoles(){
-    this.router.navigate(['/permissions']);
+    this.router.navigate(['/role']);
 
 }
 
