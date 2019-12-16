@@ -325,7 +325,7 @@ getUserRole(){
     this.productService.getUserRole(user.user_id).subscribe(data => {
       this.roles = data['role'];
   });
-  }
+}
 
 getCategories(){
   this.productService.getAllCategories().subscribe(data => {
@@ -373,6 +373,7 @@ resetFilters(){
     this.lessThan=null;
     this.greaterThan=null;
     this.query=null;
+    this.getAllProducts();
 }
 getAllProducts(){
     this.productService.getAll().subscribe(data => {

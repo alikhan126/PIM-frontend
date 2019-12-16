@@ -50,7 +50,7 @@ export class AddCatalogPermComponent implements OnInit{
         .subscribe(result => {
           this.pObj=result;
           console.log(this.pObj)
-          this.pObj && this.pObj.id && this.router.navigate(['fields/catalog'])
+          this.pObj && this.pObj.id //&& this.router.navigate(['fields/catalog'])
           // this.ts.success("Operation Performed Successfully");
         })
       }

@@ -49,7 +49,7 @@ export class AddWebsitePermComponent implements OnInit{
         .subscribe(result => {
           this.pObj=result;
           console.log(this.pObj)
-          this.pObj && this.pObj.id && this.router.navigate(['fields/website'])
+          this.pObj && this.pObj.id //&& this.router.navigate(['fields/website'])
           // this.ts.success("Operation Performed Successfully");
         })
       }

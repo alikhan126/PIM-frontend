@@ -48,7 +48,7 @@ export class AddTagPermComponent implements OnInit{
         .subscribe(result => {
           this.pObj=result;
           console.log(this.pObj)
-          this.pObj && this.pObj.id && this.router.navigate(['fields/tag'])
+          this.pObj && this.pObj.id // && this.router.navigate(['fields/tag'])
           // this.ts.success("Operation Performed Successfully");
         })
       }

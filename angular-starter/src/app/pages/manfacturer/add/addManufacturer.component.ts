@@ -54,7 +54,7 @@ export class AddMaufacturerComponent implements OnInit{
       .subscribe(result => {
         this.pObj=result;
         console.log(this.pObj)
-        this.pObj && this.pObj.id && this.router.navigate(['manufacturer/'])
+        this.pObj && this.pObj.id //&& this.router.navigate(['manufacturer/'])
         // this.ts.success("Operation Performed Successfully");
       })
     }
