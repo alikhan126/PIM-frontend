@@ -166,6 +166,14 @@
                 <input type="number"  [(ngModel)]="pObj.amount" class="form-control" name="amount" required>
               </div>
             </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label >Attribute Set Code<span style="color:Red;">*</span></label>
+                 <select class="form-control" [(ngModel)]="pObj.attributeSetCode" required>
+                  <option class="form-control" value="FSD">FSD</option>
+                </select>
+              </div>
+            </div>
            
           </div>
 
@@ -186,7 +194,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label >Products Online<span style="color:Red;">*</span></label>
-                 <select class="form-control" [(ngModel)]="pObj.productsOnline">
+                 <select class="form-control" [(ngModel)]="pObj.productsOnline" required>
                   <option class="form-control" value="false">False</option>
                   <option class="form-control" value="true">True</option>
                 </select>
@@ -195,7 +203,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label >Visibility<span style="color:Red;">*</span></label>
-                <select class="form-control" name="visibility" [(ngModel)]="pObj.visibility">
+                <select class="form-control" name="visibility" [(ngModel)]="pObj.visibility" required>
                   <option class="form-control" value="Catalog">Catalog</option>
                   <option class="form-control" value="Search">Search</option>
                   <option class="form-control" value="NotVisibleIndividually">Not Visible Individually</option>
@@ -208,7 +216,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label >Tax Class Name<span style="color:Red;">*</span></label>
-                 <select class="form-control"  name="taxClassName" [(ngModel)]="pObj.taxClassName">
+                 <select class="form-control"  name="taxClassName" [(ngModel)]="pObj.taxClassName" required>
                   <option class="form-control" value="FoodProducts">Food Products</option>
                   <option class="form-control" value="NonFoodProducts">Non Food Products</option>
                  </select>
@@ -379,7 +387,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label >stock type<span style="color:Red;">*</span></label>
-                <select class="form-control" [(ngModel)]="pObj.stockType">
+                <select class="form-control" [(ngModel)]="pObj.stockType" required>
                   <option class="form-control" [ngValue]="Stocked">Stocked</option>
                   <option class="form-control" [ngValue]="SpecialOrder">Special Order</option>
                   <option class="form-control" [ngValue]="FromPartners">From Partners</option>

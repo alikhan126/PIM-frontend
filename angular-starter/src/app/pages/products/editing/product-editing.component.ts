@@ -48,6 +48,7 @@ export class ProductsEditComponent implements OnInit{
     Stocked:any=[];
     SpecialOrder:any=[];
     FromPartners:any=[];
+    FSD:any=[];
     closeResult: string;
     permission: string;
     perm: string;
@@ -87,6 +88,7 @@ export class ProductsEditComponent implements OnInit{
         this.Stocked = "Stocked";
         this.SpecialOrder = "SpecialOrder";
         this.FromPartners = "FromPartners";
+        this.FSD = "FSD";
     }
 
     applySearch(){

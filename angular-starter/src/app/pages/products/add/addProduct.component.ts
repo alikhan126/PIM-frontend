@@ -32,6 +32,7 @@ export class AddProductComponent implements OnInit{
   Stocked:any=[];
   SpecialOrder:any=[];
   FromPartners:any=[];
+  FSD:any=[];
 
   isNew :boolean = false;
   loading:boolean=false;
@@ -61,7 +62,7 @@ export class AddProductComponent implements OnInit{
      this.Stocked = "Stocked";
      this.SpecialOrder = "SpecialOrder";
      this.FromPartners = "FromPartners";
-     
+     this.FSD = "FSD";
   }
 
 
