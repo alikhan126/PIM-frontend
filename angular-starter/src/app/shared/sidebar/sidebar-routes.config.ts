@@ -32,7 +32,12 @@ export const ADMIN_ROUTES: RouteInfo[] = [
     { 
         path: '', title: 'Roles', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
         submenu: [
-            { path: '/roles', title: 'Permission', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '', title: 'Roles', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
+            submenu: [
+                { path: '/role', title: 'Roles', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/assignroles', title: 'Assign Roles', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },  
+            ]},
+            { path: '/permissions', title: 'Permission', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/fields/product', title: 'Product Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/fields/brand', title: 'Brand Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/fields/category', title: 'Category Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },

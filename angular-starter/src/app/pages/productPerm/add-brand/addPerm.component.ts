@@ -49,7 +49,7 @@ export class AddBrandPermComponent implements OnInit{
         .subscribe(result => {
           this.pObj=result;
           console.log(this.pObj)
-          this.pObj && this.pObj.id && this.router.navigate(['fields/brand'])
+          this.pObj && this.pObj.id //&& this.router.navigate(['fields/brand'])
           // this.ts.success("Operation Performed Successfully");
         })
       }

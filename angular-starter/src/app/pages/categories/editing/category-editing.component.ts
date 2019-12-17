@@ -15,6 +15,7 @@ declare var require: any;
 export class CategoryEditComponent {
     editing = {};
     rows = [];
+    roles = [];
     products :any[];
     categories :any[];
     totalRecords:number;
@@ -32,6 +33,7 @@ export class CategoryEditComponent {
 
         });
         this.getCategories();
+        this.getUserRole();
 
     }
 
@@ -63,7 +65,7 @@ export class CategoryEditComponent {
         this.permission = "Update";
         this.perm = "All";
         let cellvalue = this.titleCaseWord(cell);
-        if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm)){
+        if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
             this.categoryService.getFieldPermissions(user.user_id).subscribe(data => {
                 if(data.edit.includes(cellvalue)){
                     this.editing[rowIndex + '-' + cell] = false;
@@ -88,7 +90,7 @@ export class CategoryEditComponent {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Create";
         this.perm = "All";
-        if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm)){
+        if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
             this.router.navigate(['/categories/0']);
         } else {
             alert("You don't have permission to add the categories!");
@@ -114,12 +116,19 @@ export class CategoryEditComponent {
         });
     }
 
+    getUserRole(){
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.categoryService.getUserRole(user.user_id).subscribe(data => {
+          this.roles = data['role'];
+      });
+    }
+
     updateRelationshipValue(value, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Update";
         this.perm = "All";
         let cellvalue = this.titleCaseWord(cell);
-        if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm)){
+        if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
             this.categoryService.getFieldPermissions(user.user_id).subscribe(data => {
                 if(data.edit.includes(cellvalue)){
                     this.editing[rowIndex + '-' + cell] = false;
@@ -146,7 +155,7 @@ export class CategoryEditComponent {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.permission = "Delete";
         this.perm = "All";
-        if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm)){
+        if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
             this.editing[rowIndex + '-' + cell] = false;
             this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;

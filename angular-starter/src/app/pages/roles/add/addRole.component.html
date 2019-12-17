@@ -2,14 +2,14 @@
 <section id="basic-form-layouts">
   <div class="row text-left">
     <div class="col-sm-12">
-      <div class="content-header">Brand</div>
+      <div class="content-header">Permissions</div>
     </div>
   </div>
   <div class="row ">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header pb-2">
-          <h4 class="card-title" id="basic-layout-form">Brand Info</h4>
+          <h4 class="card-title" id="basic-layout-form">Permission Info</h4>
         </div>
         <div class="card-content">
           <div class="px-3">
@@ -108,7 +108,7 @@
                 <button (click)="goToRoles()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Cancel
                 </button>
-                <button (click)="save()" type="button" class="btn btn-raised btn-raised btn-primary">
+                <button (click)="goToRoles(); save();" type="button" class="btn btn-raised btn-raised btn-primary">
                   <i class="fa fa-check-square-o"></i> Save
                 </button>
               </div>

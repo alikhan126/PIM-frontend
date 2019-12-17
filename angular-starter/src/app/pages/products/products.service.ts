@@ -46,6 +46,13 @@ addAdapters (record: any): Observable<any> {
   );
 }
 
+addCatalog (record: any): Observable<any> {
+
+  return this.http.post<any>(`${AppConfig.URL_CATALOGS}`, record).pipe(
+    map(x => x ),
+    catchError(this.handleError<any>('Adapters'))
+  );
+}
 addExportAdapters (record: any): Observable<any> {
 
   return this.http.post<any>(`${AppConfig.URL_EXPORT_Adapters}`, record).pipe(
@@ -160,10 +167,22 @@ getFildsToImport(){
     catchError(this.handleError('getRecord', []))
   );
 }
+
 getAllImages() 
 {
 
   return this.http.get<any []>(`${AppConfig.URL_Images}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
+getUserRole(id) 
+{
+
+  return this.http.get<any>(`${AppConfig.URL_UserRole + "?user="}${id}`)
   .pipe(
     map(x => x ),
     tap(_ => console.log('fetched record')),

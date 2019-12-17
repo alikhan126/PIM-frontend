@@ -31,8 +31,16 @@ export const Full_ROUTES: Routes = [
     loadChildren: () => import('../../pages/manfacturer/manufacturer.module').then(m => m.ManufacturerPagesModule)
   },
   {
-    path: 'roles',
+    path: 'permissions',
     loadChildren: () => import('../../pages/roles/roles.module').then(m => m.RolesPagesModule)
+  },
+  {
+    path: 'role',
+    loadChildren: () => import('../../pages/role/roles.module').then(m => m.RolePagesModule)
+  },
+  {
+    path: 'assignroles',
+    loadChildren: () => import('../../pages/assignRoles/roles.module').then(m => m.AssingRolePagesModule)
   },
   {
     path: 'fields',

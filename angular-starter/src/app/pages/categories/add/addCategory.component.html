@@ -69,7 +69,7 @@
                 <button (click)="goToCategories()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Cancel
                 </button>
-                <button [disabled]="loading||!regularForm.valid" (click)="save()" type="button" class="btn btn-raised btn-raised btn-primary">
+                <button [disabled]="loading||!regularForm.valid" (click)="goToCategories(); save();" type="button" class="btn btn-raised btn-raised btn-primary">
                   <i class="fa fa-check-square-o"></i> Save
                 </button>
               </div>

@@ -73,7 +73,7 @@ export class AddCategoryComponent implements OnInit{
         .subscribe(result => {
           this.pObj=result;
           console.log(this.pObj)
-          this.pObj && this.pObj.id && this.router.navigate(['categories/'])
+          this.pObj && this.pObj.id //&& this.router.navigate(['categories/'])
           // this.ts.success("Category added successfully!");
         })
       }

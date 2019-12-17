@@ -116,7 +116,7 @@ export class RolesEditComponent {
     }
 
     addRole(){
-        this.router.navigate(['/roles/0']);
+        this.router.navigate(['/permissions/0']);
 
     }
 

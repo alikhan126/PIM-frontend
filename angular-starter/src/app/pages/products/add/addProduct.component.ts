@@ -87,7 +87,7 @@ export class AddProductComponent implements OnInit{
       this.productService.add(this.pObj)
       .subscribe(result => {
         this.pObj=result;
-        this.pObj && this.pObj.id && this.router.navigate(['products/']);
+        this.pObj && this.pObj.id //&& this.router.navigate(['products/']);
 
         // this.ts.success("Operation Performed Successfully");
       })

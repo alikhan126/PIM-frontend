@@ -49,7 +49,7 @@ export class AddAdapterPermComponent implements OnInit{
         .subscribe(result => {
           this.pObj=result;
           console.log(this.pObj)
-          this.pObj && this.pObj.id && this.router.navigate(['fields/adapter'])
+          this.pObj && this.pObj.id //&& this.router.navigate(['fields/adapter'])
           // this.ts.success("Operation Performed Successfully");
         })
       }

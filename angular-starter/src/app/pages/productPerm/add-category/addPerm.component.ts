@@ -51,7 +51,7 @@ export class AddCategoryPermComponent implements OnInit{
         .subscribe(result => {
           this.pObj=result;
           console.log(this.pObj)
-          this.pObj && this.pObj.id && this.router.navigate(['fields/category'])
+          this.pObj && this.pObj.id //&& this.router.navigate(['fields/category'])
           // this.ts.success("Operation Performed Successfully");
         })
       }

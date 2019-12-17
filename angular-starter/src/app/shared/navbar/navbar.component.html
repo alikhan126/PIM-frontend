@@ -48,7 +48,7 @@
                                   </div>
                                   <div class="modal-footer">
                                     <button style="float: left;" type="button" class="btn btn-secondary btn-raised left" (click)="updateModal(item.content_id, item.module, false); updateNotifications(item.id); c('Close click');">Approve</button>
-                                    <button  style="float: right;" type="button" class="btn btn-secondary btn-raised" (click)="c('Close click'); updateModal(item.content_id, item.module, true);">Reject</button>
+                                    <button  style="float: right;" type="button" class="btn btn-secondary btn-raised" (click)="c('Close click'); updateModal(item.content_id, item.module, true); updateNotifications(item.id);">Reject</button>
                                   </div>
                                 </ng-template>
                                 <div (click)="open(content)" >
