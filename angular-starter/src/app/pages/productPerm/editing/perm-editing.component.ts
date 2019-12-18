@@ -63,6 +63,7 @@ export class PermEditComponent {
         {name : 'Amount'},
         {name : 'Description'},
         {name : 'Taxclassname'},
+        {name : 'AttributeSetCode'},
         {name : 'Shortdescription'},
         {name : 'Weight'},
         {name : 'Productsonline'},

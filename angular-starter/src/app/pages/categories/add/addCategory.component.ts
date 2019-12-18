@@ -63,45 +63,36 @@ export class AddCategoryComponent implements OnInit{
 
 
   save(): void {
-
-    let user=JSON.parse(localStorage.getItem('currentUser'));
-    this.permission = "Create";
-    this.perm = "All";
-    if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm)){
-      if(this.isNew){
-        this.categoryService.add(this.regularForm.value)
-        .subscribe(result => {
-          this.pObj=result;
-          console.log(this.pObj)
-          this.pObj && this.pObj.id //&& this.router.navigate(['categories/'])
-          // this.ts.success("Category added successfully!");
-        })
-      }
-      else {
-          //ToDO change
-          // let tempArray=[];
-          //  this.pObj.images.map(image=>{  tempArray.push(image.id?image.id:image)});
-          //  this.pObj.images=tempArray;
-          //  tempArray=[];
-          //  this.pObj.tags.map(image=>{  tempArray.push(image.id?image.id:image)});
-          //  this.pObj.tags=tempArray;
-          //  tempArray=[];
-          //  this.pObj.websites.map(image=>{  tempArray.push(image.id?image.id:image)});
-          //  this.pObj.websites=tempArray;
-          //  tempArray=[];
-          //  this.pObj.category.map(image=>{  tempArray.push(image.id?image.id:image)});
-          //  this.pObj.category=tempArray;
-          //  tempArray=[];
-           
-          
-          this.categoryService.update(this.regularForm.value).subscribe(aResult=>{
-           alert("Updated Successfully")
-          });
-      }
-    } else{
-      alert("You don't have access to add category!");
+    if(this.isNew){
+      this.categoryService.add(this.regularForm.value)
+      .subscribe(result => {
+        this.pObj=result;
+        console.log(this.pObj)
+        this.pObj && this.pObj.id //&& this.router.navigate(['categories/'])
+        // this.ts.success("Category added successfully!");
+      })
     }
-      
+    else {
+        //ToDO change
+        // let tempArray=[];
+        //  this.pObj.images.map(image=>{  tempArray.push(image.id?image.id:image)});
+        //  this.pObj.images=tempArray;
+        //  tempArray=[];
+        //  this.pObj.tags.map(image=>{  tempArray.push(image.id?image.id:image)});
+        //  this.pObj.tags=tempArray;
+        //  tempArray=[];
+        //  this.pObj.websites.map(image=>{  tempArray.push(image.id?image.id:image)});
+        //  this.pObj.websites=tempArray;
+        //  tempArray=[];
+        //  this.pObj.category.map(image=>{  tempArray.push(image.id?image.id:image)});
+        //  this.pObj.category=tempArray;
+        //  tempArray=[];
+         
+        
+        this.categoryService.update(this.regularForm.value).subscribe(aResult=>{
+         alert("Updated Successfully")
+        });
+    }
       // this.location.back();
   }
 

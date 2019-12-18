@@ -59,37 +59,67 @@ export class TagEditComponent {
     // Editing content code
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Update";
-        this.perm = "All";
-        let cellvalue = this.titleCaseWord(cell);
-        if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission) ){
-            this.tagService.getFieldPermissions(user.user_id).subscribe(data => {
-                if(data.edit.includes(cellvalue)){
-                    this.editing[rowIndex + '-' + cell] = false;
-                    this.tagService.get(this.rows[rowIndex]['id']).subscribe(data => {
-                        this.rows[rowIndex] = data;
-                        this.rows[rowIndex][cell] = event.target.value;
-                        this.tagService.update(this.rows[rowIndex]).subscribe(data => {
-                            this.tagService.getAll().subscribe(data => {
-                                this.rows = data;
-                                console.log(this.rows)
+        if (user.is_admin == false){
+            this.permission = "Update";
+            this.perm = "All";
+            let cellvalue = this.titleCaseWord(cell);
+            if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission) ){
+                this.tagService.getFieldPermissions(user.user_id).subscribe(data => {
+                    if(data.edit.includes(cellvalue)){
+                        this.editing[rowIndex + '-' + cell] = false;
+                        this.tagService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                            this.rows[rowIndex] = data;
+                            this.rows[rowIndex][cell] = event.target.value;
+                            this.tagService.update(this.rows[rowIndex]).subscribe(data => {
+                                this.tagService.getAll().subscribe(data => {
+                                    this.rows = data;
+                                    console.log(this.rows)
+                                });
                             });
                         });
-                    });
-                } else{
-                    alert("You don't have access to edit " + cellvalue +" field!");
-                }
-            });
+                    } else{
+                        alert("You don't have access to edit " + cellvalue +" field!");
+                    }
+                });
+            } else {
+                alert("You don't have access to edit tag!");
+            }
         } else {
-            alert("You don't have access to edit tag!");
+            this.editing[rowIndex + '-' + cell] = false;
+            this.tagService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.tagService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.tagService.getAll().subscribe(data => {
+                        this.rows = data;
+                        console.log(this.rows)
+                    });
+                });
+            });
         }
     }    
 
     deletetag(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Delete";
-        this.perm = "All";
-        if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission)){
+        if (user.is_admin == false){
+            this.permission = "Delete";
+            this.perm = "All";
+            if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission)){
+                this.editing[rowIndex + '-' + cell] = false;
+                this.tagService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                    this.rows[rowIndex] = data;
+                    this.rows[rowIndex][cell] = event.target.value;
+                    this.tagService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.tagService.getAll().subscribe(data => {
+                            this.rows = data;
+                            console.log(this.rows)
+                        });
+                    });
+                });
+            } else {
+                alert("You don't have access to delete tag!");
+            }
+        } else {
             this.editing[rowIndex + '-' + cell] = false;
             this.tagService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -101,19 +131,21 @@ export class TagEditComponent {
                     });
                 });
             });
-        } else {
-            alert("You don't have access to delete tag!");
         }
     }
 
-    addManfacturer(){
+    addTag(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Create";
-        this.perm = "All";
-        if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission)){
-            this.router.navigate(['/tags/0']);
+        if (user.is_admin == false){
+            this.permission = "Create";
+            this.perm = "All";
+            if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission)){
+                this.router.navigate(['/tags/0']);
+            } else {
+                alert("You don't have access to add tag!");
+            }
         } else {
-            alert("You don't have access to add tag!");
+            this.router.navigate(['/tags/0']);
         }
     }
 

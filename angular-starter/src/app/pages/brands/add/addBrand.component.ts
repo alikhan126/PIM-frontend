@@ -51,44 +51,37 @@ export class AddBrandComponent implements OnInit{
 
 
   save(): void {
-    let user=JSON.parse(localStorage.getItem('currentUser'));
-    this.permission = "Add";
-    this.perm = "All";
-    if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm)){
-      if(this.isNew){
-        this.brandService.add(this.pObj)
-        .subscribe(result => {
-          this.pObj=result;
-          console.log(this.pObj)
-          this.pObj && this.pObj.id //&& this.router.navigate(['brands/'])
-          // this.ts.success("Operation Performed Successfully");
-        })
-      }
-      else {
-          //ToDO change
-          // let tempArray=[];
-          //  this.pObj.images.map(image=>{  tempArray.push(image.id?image.id:image)});
-          //  this.pObj.images=tempArray;
-          //  tempArray=[];
-          //  this.pObj.tags.map(image=>{  tempArray.push(image.id?image.id:image)});
-          //  this.pObj.tags=tempArray;
-          //  tempArray=[];
-          //  this.pObj.websites.map(image=>{  tempArray.push(image.id?image.id:image)});
-          //  this.pObj.websites=tempArray;
-          //  tempArray=[];
-          //  this.pObj.category.map(image=>{  tempArray.push(image.id?image.id:image)});
-          //  this.pObj.category=tempArray;
-          //  tempArray=[];
-           
-          
-          this.brandService.update(this.pObj).subscribe(aResult=>{
-           alert("Updated Successfully")
-          });
-      }
-    }else {
-      console.log("False")
-      alert("You don't have permisison to add brands");   
+    if(this.isNew){
+      this.brandService.add(this.pObj)
+      .subscribe(result => {
+        this.pObj=result;
+        console.log(this.pObj)
+        this.pObj && this.pObj.id //&& this.router.navigate(['brands/'])
+        // this.ts.success("Operation Performed Successfully");
+      })
     }
+    else {
+        //ToDO change
+        // let tempArray=[];
+        //  this.pObj.images.map(image=>{  tempArray.push(image.id?image.id:image)});
+        //  this.pObj.images=tempArray;
+        //  tempArray=[];
+        //  this.pObj.tags.map(image=>{  tempArray.push(image.id?image.id:image)});
+        //  this.pObj.tags=tempArray;
+        //  tempArray=[];
+        //  this.pObj.websites.map(image=>{  tempArray.push(image.id?image.id:image)});
+        //  this.pObj.websites=tempArray;
+        //  tempArray=[];
+        //  this.pObj.category.map(image=>{  tempArray.push(image.id?image.id:image)});
+        //  this.pObj.category=tempArray;
+        //  tempArray=[];
+         
+        
+        this.brandService.update(this.pObj).subscribe(aResult=>{
+         alert("Updated Successfully")
+        });
+      }
+    
     // this.location.back();
   }
 

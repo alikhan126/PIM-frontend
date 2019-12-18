@@ -59,37 +59,67 @@ export class ManufacturerEditComponent {
     // Editing content code
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Update";
-        this.perm = "All";
-        let cellvalue = this.titleCaseWord(cell);
-        if(user.roles['manufacturer'].includes(this.permission) || user.roles['manufacturer'].includes(this.perm) || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission)){
-            this.manufacturerService.getFieldPermissions(user.user_id).subscribe(data => {
-                if(data.edit.includes(cellvalue)){
-                    this.editing[rowIndex + '-' + cell] = false;
-                    this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
-                        this.rows[rowIndex] = data;
-                        this.rows[rowIndex][cell] = event.target.value;
-                        this.manufacturerService.update(this.rows[rowIndex]).subscribe(data => {
-                            this.manufacturerService.getAll().subscribe(data => {
-                                this.rows = data;
-                                console.log(this.rows)
+        if (user.is_admin == false){
+            this.permission = "Update";
+            this.perm = "All";
+            let cellvalue = this.titleCaseWord(cell);
+            if(user.roles['manufacturer'].includes(this.permission) || user.roles['manufacturer'].includes(this.perm) || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission)){
+                this.manufacturerService.getFieldPermissions(user.user_id).subscribe(data => {
+                    if(data.edit.includes(cellvalue)){
+                        this.editing[rowIndex + '-' + cell] = false;
+                        this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                            this.rows[rowIndex] = data;
+                            this.rows[rowIndex][cell] = event.target.value;
+                            this.manufacturerService.update(this.rows[rowIndex]).subscribe(data => {
+                                this.manufacturerService.getAll().subscribe(data => {
+                                    this.rows = data;
+                                    console.log(this.rows)
+                                });
                             });
                         });
-                    });
-                } else{
-                    alert("You don't have access to edit " + cellvalue +" field!");
-                }
-            });
+                    } else{
+                        alert("You don't have access to edit " + cellvalue +" field!");
+                    }
+                });
+            } else {
+                alert("You don't have access to edit manufacturer!");
+            }
         } else {
-            alert("You don't have access to edit manufacturer!");
+            this.editing[rowIndex + '-' + cell] = false;
+            this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.manufacturerService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.manufacturerService.getAll().subscribe(data => {
+                        this.rows = data;
+                        console.log(this.rows)
+                    });
+                });
+            });
         }
     }    
 
     deleteManufacturer(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Delete";
-        this.perm = "All";
-        if(user.roles['manufacturer'].includes(this.permission) || user.roles['manufacturer'].includes(this.perm || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission))){
+        if (user.is_admin == false){
+            this.permission = "Delete";
+            this.perm = "All";
+            if(user.roles['manufacturer'].includes(this.permission) || user.roles['manufacturer'].includes(this.perm || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission))){
+                this.editing[rowIndex + '-' + cell] = false;
+                this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                    this.rows[rowIndex] = data;
+                    this.rows[rowIndex][cell] = event.target.value;
+                    this.manufacturerService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.manufacturerService.getAll().subscribe(data => {
+                            this.rows = data;
+                            console.log(this.rows)
+                        });
+                    });
+                });
+            } else {
+                alert("You don't have access to delete manufacturer!");
+            }
+        } else {
             this.editing[rowIndex + '-' + cell] = false;
             this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -101,19 +131,21 @@ export class ManufacturerEditComponent {
                     });
                 });
             });
-        } else {
-            alert("You don't have access to delete manufacturer!");
         }
     }
 
     addManfacturer(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Create";
-        this.perm = "All";
-        if(user.roles['manufacturer'].includes(this.permission) || user.roles['manufacturer'].includes(this.perm || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission))){
-            this.router.navigate(['/manufacturer/0']);
+        if (user.is_admin == false){
+            this.permission = "Create";
+            this.perm = "All";
+            if(user.roles['manufacturer'].includes(this.permission) || user.roles['manufacturer'].includes(this.perm || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission))){
+                this.router.navigate(['/manufacturer/0']);
+            } else {
+                alert("You don't have access to add manufacturer!");
+            }
         } else {
-            alert("You don't have access to add manufacturer!");
+            this.router.navigate(['/manufacturer/0']); 
         }
     }
 

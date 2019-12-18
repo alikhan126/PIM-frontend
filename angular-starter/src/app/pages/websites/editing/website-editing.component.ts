@@ -66,41 +66,70 @@ export class WebsitesEditComponent {
             return;
         }
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Update";
-        this.perm = "All";
-        let cellvalue = this.titleCaseWord(cell);
-        if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
-            this.websiteService.getFieldPermissions(user.user_id).subscribe(data => {
-                if(data.edit.includes(cellvalue)){
-                    this.editing[rowIndex + '-' + cell] = false;
-                    this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
-                        this.rows[rowIndex] = data;
-                        this.rows[rowIndex][cell] = event.target.value;
-                        this.websiteService.update(this.rows[rowIndex]).subscribe(data => {
-                            this.websiteService.getAll().subscribe(data => {
-                                this.rows = data;
-                                console.log(this.rows)
+        if (user.is_admin == false){
+            this.permission = "Update";
+            this.perm = "All";
+            let cellvalue = this.titleCaseWord(cell);
+            if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
+                this.websiteService.getFieldPermissions(user.user_id).subscribe(data => {
+                    if(data.edit.includes(cellvalue)){
+                        this.editing[rowIndex + '-' + cell] = false;
+                        this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                            this.rows[rowIndex] = data;
+                            this.rows[rowIndex][cell] = event.target.value;
+                            this.websiteService.update(this.rows[rowIndex]).subscribe(data => {
+                                this.websiteService.getAll().subscribe(data => {
+                                    this.rows = data;
+                                    console.log(this.rows)
+                                });
                             });
                         });
-                    });
-                } else {
-                    this.ts.typeError('Forbidden!',"You don't have access to edit " + cellvalue +" field!")
-                }
-            });
+                    } else {
+                        this.ts.typeError('Forbidden!',"You don't have access to edit " + cellvalue +" field!")
+                    }
+                });
+            } else {
+                this.ts.typeError('Forbidden',"You don't have the permission to edit the websites")
+            }
         } else {
-            this.ts.typeError('Forbidden',"You don't have the permission to edit the websites")
+            this.editing[rowIndex + '-' + cell] = false;
+            this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.websiteService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.websiteService.getAll().subscribe(data => {
+                        this.rows = data;
+                        console.log(this.rows)
+                    });
+                });
+            });
         }
     }
 
     deleteWebsite(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Delete";
-        this.perm = "All";
-        if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
+        if (user.is_admin == false){
+            this.permission = "Delete";
+            this.perm = "All";
+            if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
+                this.editing[rowIndex + '-' + cell] = false;
+                this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                    this.rows[rowIndex] = data;
+                    this.rows[rowIndex][cell] = event.target.value;
+                    this.websiteService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.websiteService.getAll().subscribe(data => {
+                            this.rows = data;
+                            console.log(this.rows)
+                        });
+                    });
+                });
+            } else {
+                this.ts.typeError('Forbidden!',"You don't have the permission to delete the websites")
+            }
+        } else {
             this.editing[rowIndex + '-' + cell] = false;
             this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
-                console.log("test", this.rows[rowIndex]['id'])
                 this.rows[rowIndex][cell] = event.target.value;
                 this.websiteService.delete(this.rows[rowIndex]['id']).subscribe(data => {
                     this.websiteService.getAll().subscribe(data => {
@@ -109,20 +138,22 @@ export class WebsitesEditComponent {
                     });
                 });
             });
-        } else {
-            this.ts.typeError('Forbidden!',"You don't have the permission to delete the websites")
         }
     }
 
     addWebsite(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.permission = "Create";
-        this.perm = "All";
-        if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
+        if (user.is_admin == false) {
+            this.permission = "Create";
+            this.perm = "All";
+            if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
+                this.router.navigate(['/websites/0']);
+            } else {
+                alert("You don't have the permission to add the websites")
+            }
+        } else{
             this.router.navigate(['/websites/0']);
-        } else {
-            alert("You don't have the permission to add the websites")
-        }       
+        } 
     }
 
     updateFilter(event) {
