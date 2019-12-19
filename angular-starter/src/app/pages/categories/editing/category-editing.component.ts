@@ -17,6 +17,7 @@ export class CategoryEditComponent {
     rows = [];
     roles = [];
     products :any[];
+    permissions :any[];
     categories :any[];
     totalRecords:number;
     temp = []
@@ -34,6 +35,7 @@ export class CategoryEditComponent {
         });
         this.getCategories();
         this.getUserRole();
+        this.getFieldsPermissions();
 
     }
 
@@ -67,22 +69,21 @@ export class CategoryEditComponent {
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
             if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
-                this.categoryService.getFieldPermissions(user.user_id).subscribe(data => {
-                    if(data.edit.includes(cellvalue)){
-                        this.editing[rowIndex + '-' + cell] = false;
-                        this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
-                            this.rows[rowIndex] = data;
-                            this.rows[rowIndex][cell] = event.target.value;
-                            this.categoryService.update(this.rows[rowIndex]).subscribe(data => {
-                                this.categoryService.getAll().subscribe(data => {
-                                    this.rows = data;
-                                });
+                console.log(this.permissions);
+                if(this.permissions.includes(cellvalue)){
+                    this.editing[rowIndex + '-' + cell] = false;
+                    this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.rows[rowIndex] = data;
+                        this.rows[rowIndex][cell] = event.target.value;
+                        this.categoryService.update(this.rows[rowIndex]).subscribe(data => {
+                            this.categoryService.getAll().subscribe(data => {
+                                this.rows = data;
                             });
                         });
-                    } else{
-                        alert("You don't have access to edit " + cellvalue +" field!");
-                    }
-                });
+                    });
+                } else{
+                    alert("You don't have access to edit " + cellvalue +" field!");
+                }
             } else{
                 alert("You don't have permission to edit categories!");
             }
@@ -139,6 +140,13 @@ export class CategoryEditComponent {
       });
     }
 
+    getFieldsPermissions(){
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        this.categoryService.getFieldPermissions(user.user_id).subscribe(data => {
+            this.permissions = data[0].edit;
+        })
+    }
+
     updateRelationshipValue(value, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         if (user.is_admin == false){
@@ -146,23 +154,21 @@ export class CategoryEditComponent {
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
             if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
-                this.categoryService.getFieldPermissions(user.user_id).subscribe(data => {
-                    if(data.edit.includes(cellvalue)){
-                        this.editing[rowIndex + '-' + cell] = false;
-                        this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
-                            this.rows[rowIndex] = data;
-                            this.rows[rowIndex][cell] = value;
-                            this.categoryService.update(this.rows[rowIndex]).subscribe(data => {
-                                this.categoryService.getAll().subscribe(data => {
-                                    this.rows = data;
-                                    console.log(this.rows)
-                                });
+                if(this.permissions.includes(cellvalue)){
+                    this.editing[rowIndex + '-' + cell] = false;
+                    this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.rows[rowIndex] = data;
+                        this.rows[rowIndex][cell] = value;
+                        this.categoryService.update(this.rows[rowIndex]).subscribe(data => {
+                            this.categoryService.getAll().subscribe(data => {
+                                this.rows = data;
+                                console.log(this.rows)
                             });
                         });
-                    } else {
-                        alert("You don't have access to edit " + cellvalue +" field!");                    
-                    }
-                });
+                    });
+                } else {
+                    alert("You don't have access to edit " + cellvalue +" field!");                    
+                }
             } else {
                 alert("You don't have permission to edit the categories!");
             }

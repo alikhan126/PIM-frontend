@@ -31,6 +31,7 @@ export class BrandsEditComponent {
     ngOnInit() {
         this.getUserRole();
         this.getManufacturers();
+        console.log(this.roles);
         this.brandService.getAll().subscribe(data => {
             this.rows = data;
             this.temp = data
@@ -61,20 +62,22 @@ export class BrandsEditComponent {
         if (user.is_admin == false){
             this.permission = "Update";
             this.perm = "All";
-            if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.permission) ){
-                this.editing[rowIndex + '-' + cell] = false;
-                this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
-                    this.rows[rowIndex] = data;
-                    this.rows[rowIndex][cell] = event.target.value;
-                    this.brandService.update(this.rows[rowIndex]).subscribe(data => {
-                        this.brandService.getAll().subscribe(data => {
-                            this.rows = data;
+            this.brandService.getUserRole(user.user_id).subscribe(data => {
+                if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm) || data.role['brands'].includes(this.perm) || data.role['brands'].includes(this.permission) ){
+                    this.editing[rowIndex + '-' + cell] = false;
+                    this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.rows[rowIndex] = data;
+                        this.rows[rowIndex][cell] = event.target.value;
+                        this.brandService.update(this.rows[rowIndex]).subscribe(data => {
+                            this.brandService.getAll().subscribe(data => {
+                                this.rows = data;
+                            });
                         });
                     });
-                });
-            } else {
-                alert("You don't have the permission to edit Brands!");
-            }
+                } else {
+                    alert("You don't have the permission to edit Brands!");
+                }
+            });
         } else {
             this.editing[rowIndex + '-' + cell] = false;
             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
@@ -94,21 +97,23 @@ export class BrandsEditComponent {
         if (user.is_admin == false){
             this.permission = "Update";
             this.perm = "All";
-            if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.permission)){
-                this.editing[rowIndex + '-' + cell] = false;
-                this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
-                    this.rows[rowIndex] = data;
-                    this.rows[rowIndex][cell] = value;
-                    this.brandService.update(this.rows[rowIndex]).subscribe(data => {
-                        this.brandService.getAll().subscribe(data => {
-                            this.rows = data;
+            this.brandService.getUserRole(user.user_id).subscribe(data => {
+                if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm) || data.role['brands'].includes(this.perm) || data.role['brands'].includes(this.permission)){
+                    this.editing[rowIndex + '-' + cell] = false;
+                    this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.rows[rowIndex] = data;
+                        this.rows[rowIndex][cell] = value;
+                        this.brandService.update(this.rows[rowIndex]).subscribe(data => {
+                            this.brandService.getAll().subscribe(data => {
+                                this.rows = data;
+                            });
                         });
                     });
-                });
-            } else {
-                alert("You don't have the permission to edit Brands!");
-            }
-        } else{
+                } else {
+                    alert("You don't have the permission to edit Brands!");
+                }
+            });
+        } else {
             this.editing[rowIndex + '-' + cell] = false;
             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
@@ -190,9 +195,12 @@ export class BrandsEditComponent {
 
     getUserRole(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this. brandService.getUserRole(user.user_id).subscribe(data => {
-          this.roles = data['role'];
-      });
+        if (user.is_admin == false) {
+            this.brandService.getUserRole(user.user_id).subscribe(data => {
+                console.log(data)
+              this.roles = data['role'];
+            });
+        }
     }
 
 }
