@@ -5,6 +5,7 @@ import { ContentLayoutPageComponent } from './content-layout-page.component';
 import { LoginPageComponent } from './login/login-page.component';
 import { RegisterPageComponent } from './register/register-page.component';
 import { VerifiedEmailPageComponent } from './verified-email/verified-email-page.component';
+import { ForgotPasswordPageComponent } from './forgot-password/forgot-password-page.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,13 @@ const routes: Routes = [
         component: VerifiedEmailPageComponent,
         data: {
           title: 'Email Verified Page'
+        }
+      },
+      {
+        path: 'forgotpassword',
+        component: ForgotPasswordPageComponent,
+        data: {
+          title: 'Forgot Password Page'
         }
       }
     ]
