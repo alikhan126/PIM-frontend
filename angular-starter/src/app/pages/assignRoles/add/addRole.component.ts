@@ -53,9 +53,12 @@ export class AddRoleComponent implements OnInit{
       if(this.isNew){
         this.roleService.add(this.pObj)
         .subscribe(result => {
-          this.pObj=result;
-          console.log(this.pObj)
-          this.pObj && this.pObj.id //&& this.router.navigate(['assignroles/'])
+          if(result){
+            this.pObj=result;
+            console.log(this.pObj)
+            this.pObj && this.pObj.id //&& this.router.navigate(['assignroles/'])
+          }
+          
           // this.ts.success("Operation Performed Successfully");
         })
       }

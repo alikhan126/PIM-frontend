@@ -16,9 +16,9 @@
             <form class="form">
               <div class="form-body">
                 <h4 class="form-section"><i class="ft-file-text"></i> Basic Info</h4>
-                <div class="row">
+                <div *ngIf="pObj" class="row">
                   <div class="col-md-4">
-                    <div class="form-group">
+                    <div  class="form-group">
                       <label >User</label>
                       <ng-select [items]="users" bindLabel="email" bindValue="id"  placeholder="Select User"
                       name="user" [(ngModel)]="pObj.user">
