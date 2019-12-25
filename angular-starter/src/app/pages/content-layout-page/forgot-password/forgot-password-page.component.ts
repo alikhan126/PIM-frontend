@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
+import {AuthService} from "../../../shared/auth/auth.service";
 
 @Component({
     selector: 'app-forgot-password-page',
@@ -14,7 +15,7 @@ export class ForgotPasswordPageComponent {
     regularForm: FormGroup;
 
     constructor(private router: Router,
-        private route: ActivatedRoute) { }
+        private route: ActivatedRoute, private authService:AuthService) { }
 
     ngOnInit(){
         this.regularForm = new FormGroup({
@@ -25,7 +26,12 @@ export class ForgotPasswordPageComponent {
 
     // On submit click, reset form fields
     onSubmit() {
-        console.log(this.regularForm.value)
+        console.log(this.regularForm.value);
+        this.authService.forgotPassword(this.regularForm.value).subscribe(resp=>{
+            if(!resp){
+                    console.log("Invalid Credentials");
+            }
+        })
         this.regularForm.reset();
     }
 

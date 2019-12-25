@@ -60,6 +60,54 @@ export class AuthService {
     //your code for checking credentials and getting tokens for for signing in user
   }
 
+  forgotPassword(postObj:any) {
+    return this.http.post<any>(`${AppConfig.URL_ForgotPassword}`, postObj).pipe(
+      map(data => {
+        if (data)
+       {
+          // localStorage.setItem('currentUser', JSON.stringify(user));
+          // this.token=user.token;
+          // this.router.navigate(['/products']);
+
+          // this.currentUserSubject.next(user);        
+          // this.ts.success("Logged In Successfully",'' ,{timeOut: 1000});
+          // this.isLoggedIn = true;
+        }
+        else {
+          console.log("Error")
+          // this.ts.error("Failed to Logged In",'' ,{timeOut: 1000});
+        }
+        return data;
+      }),
+      catchError(this.handleError<any>('add'))
+    );
+    //your code for signing up the new user
+  }
+
+  forgotPasswordconfirm(postObj:any) {
+    return this.http.post<any>(`${AppConfig.URL_ForgotPasswordConfirm}`, postObj).pipe(
+      map(data => {
+        if (data)
+       {
+          // localStorage.setItem('currentUser', JSON.stringify(user));
+          // this.token=user.token;
+          // this.router.navigate(['/products']);
+
+          // this.currentUserSubject.next(user);        
+          // this.ts.success("Logged In Successfully",'' ,{timeOut: 1000});
+          // this.isLoggedIn = true;
+        }
+        else {
+          console.log("Error")
+          // this.ts.error("Failed to Logged In",'' ,{timeOut: 1000});
+        }
+        return data;
+      }),
+      catchError(this.handleError<any>('add'))
+    );
+    //your code for signing up the new user
+  }
+
 
   logout() {   
     this.token = null;

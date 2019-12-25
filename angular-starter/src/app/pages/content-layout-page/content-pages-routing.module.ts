@@ -6,6 +6,7 @@ import { LoginPageComponent } from './login/login-page.component';
 import { RegisterPageComponent } from './register/register-page.component';
 import { VerifiedEmailPageComponent } from './verified-email/verified-email-page.component';
 import { ForgotPasswordPageComponent } from './forgot-password/forgot-password-page.component';
+import { ForgotPasswordConfirmPageComponent } from './forgot-password-confirm/forgot-password-page.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,13 @@ const routes: Routes = [
         component: ForgotPasswordPageComponent,
         data: {
           title: 'Forgot Password Page'
+        }
+      },
+      {
+        path: 'reset/:uuid/:id',
+        component: ForgotPasswordConfirmPageComponent,
+        data: {
+          title: 'Forgot Password Confirm Page'
         }
       }
     ]

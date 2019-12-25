@@ -46,5 +46,7 @@ export class AppConfig {
     public static URL_ReadNotifications: string = AppConfig.URL_AppBase + 'api/v1/read_notifications/';
     public static URL_SignIn: string = AppConfig.URL_AppBase + 'auth/sign-in/';
     public static URL_SignUp: string = AppConfig.URL_AppBase + 'auth/sign-up/';
+    public static URL_ForgotPassword: string = AppConfig.URL_AppBase + 'auth/forgotpassword/';
+    public static URL_ForgotPasswordConfirm: string = AppConfig.URL_AppBase + 'auth/forgot_password_confirm/';
 
 }
