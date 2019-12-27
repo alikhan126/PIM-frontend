@@ -22,7 +22,7 @@ export class AppConfig {
     public static URL_ProductPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/product/';
     public static URL_UserRole: string = AppConfig.URL_AppBase + 'api/v1/user_role/';
     public static URL_BrandPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/brand/';
-    public static URL_CategoryPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/category/';
+    public static URL_CategoryPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/categories/';
     public static URL_ManufacturerPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/manfracturer/';
     public static URL_CatalogPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/catalog/';
     public static URL_TagPermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/tag/';

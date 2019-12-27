@@ -69,7 +69,6 @@ export class CategoryEditComponent {
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
             if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
-                console.log(this.permissions);
                 if(this.permissions.includes(cellvalue)){
                     this.editing[rowIndex + '-' + cell] = false;
                     this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
@@ -143,7 +142,7 @@ export class CategoryEditComponent {
     getFieldsPermissions(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
         this.categoryService.getFieldPermissions(user.user_id).subscribe(data => {
-            this.permissions = data[0].edit;
+            this.permissions = data.edit;
         })
     }
 
@@ -152,7 +151,7 @@ export class CategoryEditComponent {
         if (user.is_admin == false){
             this.permission = "Update";
             this.perm = "All";
-            let cellvalue = this.titleCaseWord(cell);
+            let cellvalue = "ParentCategory";
             if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
                 if(this.permissions.includes(cellvalue)){
                     this.editing[rowIndex + '-' + cell] = false;
