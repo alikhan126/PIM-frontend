@@ -3,10 +3,10 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title ">Manufacturers</h4>
+            <h4 class="card-title ">Catalogs</h4>
             <p class="content-sub-header">Double click on any content to edit that section.</p>
 
-            <a  (click)="addManfacturer()"   class="btn btn-floating halfway-fab btn-large bg-warning topClass"><i class="ft-plus"></i></a>
+            <!-- <a  (click)="addWebsite()"   class="btn btn-floating halfway-fab btn-large bg-warning topClass"><i class="ft-plus"></i></a> -->
           </div>
           <div class="card-content">
             <div class="card-body">
@@ -14,7 +14,7 @@
                 />
                 <ngx-datatable #mydatatable class="bootstrap" [headerHeight]="50" [limit]="50" [columnMode]="'force'" [footerHeight]="50"
                 [rowHeight]="'auto'" [rows]="rows">
-                <ngx-datatable-column [width]="300" name="Action">
+                <ngx-datatable-column [width]="100" name="Action">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                         <ng-template #content let-c="close" let-d="dismiss">
                           <div class="modal-header">
@@ -24,10 +24,10 @@
                             </button>
                           </div>
                           <!-- <div class="modal-body">
-                            <button type="button" class="btn btn-secondary btn-raised" (click)="deleteBrand($event, 'name', rowIndex); c('Close click');">Sure</button>
+                            <button type="button" class="btn btn-secondary btn-raised" (click)="deleteWebsite($event, 'name', rowIndex); c('Close click');">Sure</button>
                           </div> -->
                           <div class="foot">
-                            <button style="float: left;" type="button" class="btn btn-secondary btn-raised left" (click)="deleteManufacturer($event, 'name', rowIndex); c('Close click');">Sure</button>
+                            <button style="float: left;" type="button" class="btn btn-secondary btn-raised left" (click)="deleteCatalog($event, 'name', rowIndex); c('Close click');">Sure</button>
                             <button  style="float: right;" type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
                           </div>
                         </ng-template>
@@ -42,6 +42,24 @@
                             {{value}}
                         </span>
                         <input autofocus (blur)="updateValue($event, 'name', rowIndex)" *ngIf="editing[rowIndex+ '-name']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [width]="300" name="Url">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" >
+                            {{value}}
+                        </span>
+                        <!-- <input autofocus (blur)="updateValue($event, 'url', rowIndex)" *ngIf="editing[rowIndex+ '-url']" type="text" [value]="value"
+                        /> -->
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [width]="300" name="Description">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-description'] = true" *ngIf="!editing[rowIndex + '-description']">
+                            {{value}}
+                        </span>
+                        <input autofocus (blur)="updateValue($event, 'description', rowIndex)" *ngIf="editing[rowIndex+ '-description']" type="text" [value]="value"
                         />
                     </ng-template>
                 </ngx-datatable-column>

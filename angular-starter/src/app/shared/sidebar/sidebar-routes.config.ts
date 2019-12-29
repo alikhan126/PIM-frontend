@@ -10,6 +10,7 @@ export const ADMIN_ROUTES: RouteInfo[] = [
             { path: '/websites/view', title: 'Websites', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/tags/view', title: 'Tags', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/manufacturer/view', title: 'Manufacturer', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/catalogs/view', title: 'Catalogs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     },
     {
@@ -27,6 +28,7 @@ export const ADMIN_ROUTES: RouteInfo[] = [
             { path: '/websites', title: 'Websites', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/tags', title: 'Tags', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/manufacturer', title: 'Manufacturer', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/catalogs', title: 'Catalogs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     },
     { 
@@ -60,6 +62,7 @@ export const USER_ROUTES: RouteInfo[] = [
             { path: '/websites/view', title: 'Websites', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/tags/view', title: 'Tags', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/manufacturer/view', title: 'Manufacturer', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/catalogs/view', title: 'Catalogs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     },
     {
@@ -77,6 +80,7 @@ export const USER_ROUTES: RouteInfo[] = [
             { path: '/websites', title: 'Websites', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/tags', title: 'Tags', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/manufacturer', title: 'Manufacturer', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/catalogs', title: 'Catalogs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     }
 ];

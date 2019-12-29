@@ -27,6 +27,10 @@ export const Full_ROUTES: Routes = [
     loadChildren: () => import('../../pages/websites/websites.module').then(m => m.WebsitesPagesModule)
   },
   {
+    path: 'catalogs',
+    loadChildren: () => import('../../pages/catalogs/catalogs.module').then(m => m.CatalogsPagesModule)
+  },
+  {
     path: 'manufacturer',
     loadChildren: () => import('../../pages/manfacturer/manufacturer.module').then(m => m.ManufacturerPagesModule)
   },
