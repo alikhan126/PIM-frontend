@@ -167,6 +167,8 @@ fileSelected(e){
     
     
     onChangeFile(fileIs :File[]){
+      debugger
+      console.log(fileIs)
       Papa.parse(fileIs[0], {
         header: true,
         skipEmptyLines: true,
