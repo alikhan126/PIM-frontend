@@ -4,6 +4,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 // import {ProductService} from '../products.service';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import * as Papa from 'papaparse';
+import xlsxParser from 'xlsx-parse-json';
+
 import { ProductService } from '../products.service';
 
 import { NGXToastrService} from  '../../../shared/services/toastr.service';
@@ -165,31 +167,56 @@ fileSelected(e){
     
     }
     
+  getExtension(filename) {
+    let parts = filename.split('.');
+    return parts[parts.length - 1];
+  }
     
     onChangeFile(fileIs :File[]){
-      debugger
-      console.log(fileIs)
-      Papa.parse(fileIs[0], {
-        header: true,
-        skipEmptyLines: true,
-        complete: (result,file) => {
-          this.fileData=result.data;
-          this.fileColumns=Object.keys(result.data[0])
-          this.fileColumns.forEach(element => {
-           if( this.databaseColumns.indexOf(element)>=0){
-             this.mappingObj[element]=element;
-           }
-           else {
+      let extension = this.getExtension(fileIs[0].name)
+      if (extension == 'csv'){
+        Papa.parse(fileIs[0], {
+          header: true,
+          skipEmptyLines: true,
+          complete: (result,file) => {
+            this.fileData=result.data;
 
-             this.mappingObj[element]=null;
-           }
-          });
+            this.fileColumns=Object.keys(result.data[0])
+            this.fileColumns.forEach(element => {
+             if( this.databaseColumns.indexOf(element)>=0){
+               this.mappingObj[element]=element;
+             }
+             else {
 
-          this.mappingObj ? this.showAdapters=true :null;
-          // console.log(this.fileColumns)
-          // this.dataList = result.data;
-        }
-      });
+               this.mappingObj[element]=null;
+             }
+            });
+
+            this.mappingObj ? this.showAdapters=true :null;
+            // console.log(this.fileColumns)
+            // this.dataList = result.data;
+          }
+        });
+      } else {
+        xlsxParser
+        .onFileSelection(fileIs[0])
+        .then(data => {
+          this.fileData = data;
+
+          this.fileColumns=Object.keys(data['Export'][0])
+            this.fileColumns.forEach(element => {
+             if( this.databaseColumns.indexOf(element)>=0){
+               this.mappingObj[element]=element;
+             }
+             else {
+
+               this.mappingObj[element]=null;
+             }
+            });
+            this.mappingObj ? this.showAdapters=true :null;
+
+        });
+      }
     }
 
      onFileSelect  (event) {
