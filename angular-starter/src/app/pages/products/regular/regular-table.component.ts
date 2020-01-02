@@ -193,6 +193,7 @@ fileSelected(e){
             });
 
             this.mappingObj ? this.showAdapters=true :null;
+            console.log(this.fileData)
             // console.log(this.fileColumns)
             // this.dataList = result.data;
           }
@@ -201,7 +202,7 @@ fileSelected(e){
         xlsxParser
         .onFileSelection(fileIs[0])
         .then(data => {
-          this.fileData = data;
+          this.fileData = data['Export'];
 
           this.fileColumns=Object.keys(data['Export'][0])
             this.fileColumns.forEach(element => {
@@ -214,7 +215,7 @@ fileSelected(e){
              }
             });
             this.mappingObj ? this.showAdapters=true :null;
-
+            console.log(this.fileData)
         });
       }
     }
