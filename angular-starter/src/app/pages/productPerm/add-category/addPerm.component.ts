@@ -49,9 +49,11 @@ export class AddCategoryPermComponent implements OnInit{
       if(this.isNew){
         this.permissionService.add(this.pObj)
         .subscribe(result => {
-          this.pObj=result;
-          console.log(this.pObj)
-          this.pObj && this.pObj.id //&& this.router.navigate(['fields/category'])
+          if(result){
+            this.pObj=result;
+            console.log(this.pObj)
+            this.pObj && this.pObj.id
+          }
           // this.ts.success("Operation Performed Successfully");
         })
       }

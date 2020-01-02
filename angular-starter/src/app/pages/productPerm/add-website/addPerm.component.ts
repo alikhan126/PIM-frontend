@@ -47,9 +47,11 @@ export class AddWebsitePermComponent implements OnInit{
       if(this.isNew){
         this.permissionService.add(this.pObj)
         .subscribe(result => {
-          this.pObj=result;
-          console.log(this.pObj)
-          this.pObj && this.pObj.id //&& this.router.navigate(['fields/website'])
+          if(result){
+            this.pObj=result;
+            console.log(this.pObj)
+            this.pObj && this.pObj.id
+          }
           // this.ts.success("Operation Performed Successfully");
         })
       }

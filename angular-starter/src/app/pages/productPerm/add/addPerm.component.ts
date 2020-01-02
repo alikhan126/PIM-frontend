@@ -182,7 +182,7 @@ export class AddPermComponent implements OnInit{
 
 
   goToRoles(){
-    this.router.navigate(['/roles']);
+    this.router.navigate(['/fields/product']);
 
 }
 
