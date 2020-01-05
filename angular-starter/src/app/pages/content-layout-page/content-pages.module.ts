@@ -9,7 +9,7 @@ import { RegisterPageComponent } from './register/register-page.component';
 import { ForgotPasswordPageComponent } from './forgot-password/forgot-password-page.component';
 import { ForgotPasswordConfirmPageComponent } from './forgot-password-confirm/forgot-password-page.component';
 import { VerifiedEmailPageComponent } from './verified-email/verified-email-page.component';
-
+import { ChangePasswordPageComponent } from './change-password/change-password-page.component';
 
 
 @NgModule({
@@ -25,7 +25,8 @@ import { VerifiedEmailPageComponent } from './verified-email/verified-email-page
         RegisterPageComponent,
         VerifiedEmailPageComponent,
         ForgotPasswordPageComponent,
-        ForgotPasswordConfirmPageComponent
+        ForgotPasswordConfirmPageComponent,
+        ChangePasswordPageComponent
     ]
 })
 export class ContentPagesModule { }

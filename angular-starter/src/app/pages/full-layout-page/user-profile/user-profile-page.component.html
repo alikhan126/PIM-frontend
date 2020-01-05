@@ -9,7 +9,7 @@
                     <div class="col-5">
                         <div class="align-self-start halfway-fab pl-3 pt-2">
                             <div class="text-left">
-                                <h3 class="card-title white">Jose Diaz</h3>
+                                <h3 class="card-title white">{{user.name}}</h3>
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                     <div class="col-5">                        
                     </div>                    
                 </div>
-                <div class="profile-cover-buttons">
+                <!-- <div class="profile-cover-buttons">
                     <div class="media-body halfway-fab align-self-end">
                         <div class="text-right d-none d-sm-none d-md-none d-lg-block">
                             <button type="button" class="btn btn-primary btn-raised mr-2"><i class="fa fa-plus"></i> Follow</button>
@@ -34,32 +34,16 @@
                             <button type="button" class="btn btn-success btn-raised mr-3"><i class="fa fa-dashcube"></i></button>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="profile-section">
                     <div class="row">
                         <div class="col-lg-5 col-md-5 ">
-                            <ul class="profile-menu no-list-style">
-                                <li>
-                                    <a (click)="showPage('About')" [ngClass]="currentPage === 'About' ? 'primary font-medium-2 font-weight-600 active' : 'primary font-medium-2 font-weight-600'">About</a>
-                                </li>
-                                <li>
-                                    <a (click)="showPage('TimeLine')" [ngClass]="currentPage === 'TimeLine' ? 'primary font-medium-2 font-weight-600 active' : 'primary font-medium-2 font-weight-600'">Timeline</a>
-                                </li>
-                            </ul>
                         </div>
                         <div class="col-lg-2 col-md-2 text-center">
-                            <span class="font-medium-2 text-uppercase">Jose Diaz</span>
-                            <p class="grey font-small-2">Ninja Developer</p>
+                            <span class="font-medium-2 text-uppercase">{{user.name}}</span>
+                            <p class="grey font-small-2">{{user.profession}}</p>
                         </div>
                         <div class="col-lg-5 col-md-5">
-                            <ul class="profile-menu no-list-style">
-                                <li>
-                                    <a (click)="showPage('Friends')" [ngClass]="currentPage === 'Friends' ? 'primary font-medium-2 font-weight-600 active' : 'primary font-medium-2 font-weight-600'">Friends</a>
-                                </li>
-                                <li>
-                                    <a (click)="showPage('Photos')" [ngClass]="currentPage === 'Photos' ? 'primary font-medium-2 font-weight-600 active' : 'primary font-medium-2 font-weight-600'">Photos</a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -86,12 +70,8 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <span class="text-bold-500 primary">About Me:</span>
-                            <span class="d-block overflow-hidden">Hi, I’m Jose, I’m 29 and I work as a Ninja Developer for the
-                                “PIXINVENT” Creative Studio. In my research, I follow the flow of early medieval slavery from viking 
-                                raids in the west, through the booming ports of the Scandinavian north, and out into the Islamic world.
-                                Reading texts against the grain and seeing artifacts as traces of the past can make their lives once 
-                                again visible to us today. This website documents my efforts to do just that, and I hope it will prove 
-                                a resource and an inspiration for others in similar pursuits.
+                            <span class="d-block overflow-hidden">
+                                {{user.about}}
                             </span>
                         </div>
                         <hr>
@@ -100,15 +80,15 @@
                                 <ul class="no-list-style">
                                     <li class="mb-2">
                                         <span class="text-bold-500 primary"><a><i class="icon-present font-small-3"></i> Birthday:</a></span>
-                                        <span class="d-block overflow-hidden">June 10th, 1988</span>
+                                        <span class="d-block overflow-hidden">{{user.date_of_birth}}</span>
                                     </li>
                                     <li class="mb-2">
                                         <span class="text-bold-500 primary"><a><i class="ft-map-pin font-small-3"></i> Birthplace:</a></span>
-                                        <span class="d-block overflow-hidden">New Jersey, USA</span>
+                                        <span class="d-block overflow-hidden">{{user.birthplace}}</span>
                                     </li>
                                     <li class="mb-2">
                                         <span class="text-bold-500 primary"><a><i class="ft-globe font-small-3"></i> Lives in:</a></span>
-                                        <span class="d-block overflow-hidden">Denver, USA</span>
+                                        <span class="d-block overflow-hidden">{{user.lives_in}}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -116,15 +96,15 @@
                                 <ul class="no-list-style">
                                     <li class="mb-2">
                                         <span class="text-bold-500 primary"><a><i class="ft-user font-small-3"></i> Gender:</a></span>
-                                        <span class="d-block overflow-hidden">Male</span>
+                                        <span class="d-block overflow-hidden">{{user.gender}}</span>
                                     </li>
                                     <li class="mb-2">
                                         <span class="text-bold-500 primary"><a><i class="ft-mail font-small-3"></i> Email:</a></span>
-                                        <a class="d-block overflow-hidden">jose@yourmail.com</a>
+                                        <a class="d-block overflow-hidden">{{user.email}}</a>
                                     </li>
                                     <li class="mb-2">
                                         <span class="text-bold-500 primary"><a><i class="ft-monitor font-small-3"></i> Website:</a></span>
-                                        <a class="d-block overflow-hidden">pixinvent.com</a>
+                                        <a class="d-block overflow-hidden">{{user.website}}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -132,15 +112,15 @@
                                 <ul class="no-list-style">
                                     <li class="mb-2">
                                         <span class="text-bold-500 primary"><a><i class="ft-smartphone font-small-3"></i> Phone Number:</a></span>
-                                        <span class="d-block overflow-hidden">(012) 345 - 678 - 9910</span>
+                                        <span class="d-block overflow-hidden">{{user.phone_number}}</span>
                                     </li>
                                     <li class="mb-2">
                                         <span class="text-bold-500 primary"><a><i class="ft-briefcase font-small-3"></i> Occupation:</a></span>
-                                        <span class="d-block overflow-hidden">Ninja Developer</span>
+                                        <span class="d-block overflow-hidden">{{user.profession}}</span>
                                     </li>
                                     <li class="mb-2">
                                         <span class="text-bold-500 primary"><a><i class="ft-book font-small-3"></i> Joined:</a></span>
-                                        <span class="d-block overflow-hidden">April 1st, 2012</span>
+                                        <span class="d-block overflow-hidden">{{user.date_joined}}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -148,15 +128,12 @@
                         <hr>
                         <div class="mt-3">
                             <span class="text-bold-500 primary">Hobbies:</span>
-                            <span class="d-block overflow-hidden">I like to ride the cycle to work, swimming, listning music and 
-                                working out. I also like reading magazines, go to museums, watching good movies and eat spicy food while 
-                                it’s raining outside.Twin siblings Dipper and Mabel Pines spend the summer at their uncle's tourist trap 
-                                in the enigmatic town of Gravity Falls.A mysterious Hollywood stuntman and mechanic moonlights as a 
-                                getaway driver.Scuba Diving, Skiing, Surfing, Photography, Long drive.
+                            <span class="d-block overflow-hidden">
+                                {{user.hobbies}}
                             </span>
                         </div>
                         <div class="mt-2 overflow-hidden">
-                            <span class="mr-3 mt-2 text-center float-left width-100"> <i class="icon-plane danger font-large-2"></i> <div class="mt-2">Travelling</div></span>
+                            <!-- <span class="mr-3 mt-2 text-center float-left width-100"> <i class="icon-plane danger font-large-2"></i> <div class="mt-2">Travelling</div></span>
                             <span class="mr-3 mt-2 text-center float-left width-100"> <i class="icon-speedometer danger font-large-2"></i> <div class="mt-2">Driving</div></span>
                             <span class="mr-3 mt-2 text-center float-left width-100"> <i class="icon-camera danger font-large-2"></i> <div class="mt-2">Photography</div></span>
                             <span class="mr-3 mt-2 text-center float-left width-100"> <i class="icon-game-controller danger font-large-2"></i> <div class="mt-2">Gaming</div></span>
@@ -164,7 +141,7 @@
                             <span class="mr-3 mt-2 text-center float-left width-100"> <i class="ft-monitor danger font-large-2"></i> <div class="mt-2">Surfing</div></span>
                             <span class="mr-3 mt-2 text-center float-left width-100"> <i class="ft-pie-chart danger font-large-2"></i> <div class="mt-2">Foodie</div></span>
                             <span class="mr-3 mt-2 text-center float-left width-100"> <i class="ft-tv danger font-large-2"></i> <div class="mt-2">TV</div></span>
-                            <span class="mr-3 mt-2 text-center float-left width-100"> <i class="icon-basket-loaded danger font-large-2"></i> <div class="mt-2">Shopping</div></span>
+                            <span class="mr-3 mt-2 text-center float-left width-100"> <i class="icon-basket-loaded danger font-large-2"></i> <div class="mt-2">Shopping</div></span> -->
                         </div>
                     </div>
                 </div>
@@ -173,7 +150,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Educational Information</h5>
+                    <h5>Edit Profile & Change Password</h5>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
@@ -181,28 +158,24 @@
                             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                 <ul class="no-list-style">
                                     <li class="mb-2">
-                                        <span class="primary text-bold-500"><a><i class="ft-home font-small-3"></i> Broklin Institute</a></span>
-                                        <span class="grey line-height-0 d-block mb-2 font-small-2">2008 - 2009</span>
-                                        <span class="line-height-2 d-block overflow-hidden">Professor: Leonardo Stagg. Six months of best Developing tools course.</span>
-                                    </li>
-                                    <li class="mb-2">
-                                        <span class="primary text-bold-500"><a><i class="ft-home font-small-3"></i> The Ninja College </a></span>
-                                        <span class="grey line-height-0 d-block mb-2 font-small-2">2012 - 2013</span>
-                                        <span class="line-height-2 d-block overflow-hidden">Professor: Steve Ustreil. Gave me the best educational information for Ninja.</span>
+                                        <span class="primary text-bold-500"><a><i class="ft-user font-small-3"></i> Edit Profile</a></span>
+                                         <span class="grey line-height-0 d-block mb-2">
+                                            <button (click)="goToProfile();" type="button" class="btn btn-raised btn-raised btn-primary">
+                                                Profile
+                                            </button>
+                                        </span>
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                 <ul class="no-list-style">
                                     <li class="mb-2">
-                                        <span class="primary text-bold-500"><a><i class="ft-home font-small-3"></i> Ninja Developer</a></span>
-                                        <span class="grey line-height-0 d-block mb-2 font-small-2">2009-2011</span>
-                                        <span class="line-height-2 d-block overflow-hidden">Ninja Developer for the “PIXINVENT” creative studio. </span>
-                                    </li>
-                                    <li class="mb-2">
-                                        <span class="primary text-bold-500"><a><i class="ft-home font-small-3"></i> Senior Ninja Developer</a></span>
-                                        <span class="grey line-height-0 d-block mb-2 font-small-2">2014-Now</span>
-                                        <span class="line-height-2 d-block overflow-hidden">Senior Ninja Developer for the “PIXINVENT” creative studio.</span>
+                                        <span class="primary text-bold-500"><a><i class="ft-lock font-small-3"></i> Password</a></span>
+                                         <span class="grey line-height-0 d-block mb-2">
+                                            <button (click)="changePassword();" type="button" class="btn btn-raised btn-raised btn-primary">
+                                                Change Password
+                                            </button>
+                                        </span>
                                     </li>
                                 </ul>
                             </div>

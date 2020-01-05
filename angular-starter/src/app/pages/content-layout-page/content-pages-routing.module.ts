@@ -7,6 +7,7 @@ import { RegisterPageComponent } from './register/register-page.component';
 import { VerifiedEmailPageComponent } from './verified-email/verified-email-page.component';
 import { ForgotPasswordPageComponent } from './forgot-password/forgot-password-page.component';
 import { ForgotPasswordConfirmPageComponent } from './forgot-password-confirm/forgot-password-page.component';
+import { ChangePasswordPageComponent } from './change-password/change-password-page.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,13 @@ const routes: Routes = [
         component: ForgotPasswordPageComponent,
         data: {
           title: 'Forgot Password Page'
+        }
+      },
+      {
+        path: 'changepassword',
+        component: ChangePasswordPageComponent,
+        data: {
+          title: 'Change Password Page'
         }
       },
       {

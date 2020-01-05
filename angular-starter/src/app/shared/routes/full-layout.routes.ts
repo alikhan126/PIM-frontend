@@ -7,7 +7,7 @@ export const Full_ROUTES: Routes = [
     loadChildren: () => import('../../changelog/changelog.module').then(m => m.ChangeLogModule)
   },
   {
-    path: 'full-layout',
+    path: 'user',
     loadChildren: () => import('../../pages/full-layout-page/full-pages.module').then(m => m.FullPagesModule)
   },
   {
