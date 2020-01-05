@@ -14,7 +14,8 @@ export class UserProfilePageComponent implements OnInit {
         private route: ActivatedRoute,private authService:AuthService) { }
     //Variable Declaration
     currentPage: string = "About"
-    user = [];
+    user :any[];
+    
 
     ngOnInit() {
         this.getUser();    
