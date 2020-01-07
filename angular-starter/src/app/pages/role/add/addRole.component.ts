@@ -99,7 +99,7 @@ getImages(){
 
 getUsers(){
   this.roleService.getAllUsers().subscribe(data => {
-    this.users = data['results'];
+    this.users = data;
 });
 }
 

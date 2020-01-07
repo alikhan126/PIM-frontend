@@ -97,7 +97,7 @@ getImages(){
 
 getUsers(){
   this.permissionService.getAllUsers().subscribe(data => {
-    this.users = data['results'];
+    this.users = data;
 });
 }
 
