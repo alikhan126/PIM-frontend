@@ -423,6 +423,7 @@ resetFilters(){
     this.greaterThan=null;
     this.query=null;
     this.getAllProducts();
+    this.navigateToProducts();
 }
 getAllProducts(){
     this.productService.getAll().subscribe(data => {
@@ -432,11 +433,17 @@ getAllProducts(){
 
 }
 searchNow(){
+    this.rows=[];
     this.generateParams();
     // if(para){
     //     this.getSearchedResults(para);
     // }
 }
+
+navigateToProducts(){
+    this.router.navigate(['/products']);
+}
+
 generateParams(){
     if( (this.query || this.lessThan || this.greaterThan)  && this.filter )
     {
@@ -521,7 +528,7 @@ getSearchedResults(params){
         }
     })
 }
-wildSearchNew(){
+wildSearchNew(){    
     // alert(JSON.stringify(this.queryParams))
     // return ;
     if( (this.query || this.lessThan || this.greaterThan)  && this.filter )
@@ -554,6 +561,7 @@ wildSearchNew(){
                 return;
             }
             this.router.navigate(['/products'], { queryParams: { 'query': params} });
+
             this.productService.getFilteredProducts(params).subscribe(resp=>{
                 if(resp && resp.length){
                     this.rows=resp;
