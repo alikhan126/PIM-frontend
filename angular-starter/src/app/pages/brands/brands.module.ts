@@ -13,6 +13,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 import { BrandsEditComponent } from './editing/brand-editing.component';
 import { BrandsViewComponent } from './brand-views/brandsViews.component';
+import { BrandsHiddenComponent } from './hidden/brand-hidden.component';
+
 
 @NgModule({
     imports: [
@@ -30,8 +32,8 @@ import { BrandsViewComponent } from './brand-views/brandsViews.component';
         BrandsPageComponent,
         AddBrandComponent,
         BrandsEditComponent,
-        BrandsViewComponent
-        
+        BrandsViewComponent,
+        BrandsHiddenComponent        
     ]
 })
 export class BrandsPagesModule { }

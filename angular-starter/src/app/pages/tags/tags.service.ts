@@ -49,6 +49,17 @@ getAll()
   );
 }
 
+getAllHidden() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Tags + "unapproved/" }`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
 get(id){
   return this.http.get<any>(`${AppConfig.URL_Tags}${id}/`).pipe(
     map(x => x ),

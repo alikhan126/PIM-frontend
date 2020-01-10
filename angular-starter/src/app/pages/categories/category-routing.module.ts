@@ -5,6 +5,8 @@ import { CategoryPageComponent } from 'app/pages/categories/category.component';
 import {AddCategoryComponent} from './add/addCategory.component';
 import { CategoryEditComponent } from './editing/category-editing.component';
 import { CategoryViewComponent } from './category-views/categoriesViews.component';
+import { CategoryHiddenComponent } from './hidden/category-hidden.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -25,6 +27,13 @@ const routes: Routes = [
      component: CategoryPageComponent,
     data: {
       title: 'Categories Page'
+    },    
+  },
+  {
+    path: 'unapproved',
+     component: CategoryHiddenComponent,
+    data: {
+      title: 'Unapproved Categories Page'
     },    
   },
   {

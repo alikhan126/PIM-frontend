@@ -13,6 +13,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 import { TagEditComponent } from './editing/tag-editing.component';
 import { TagsViewComponent } from './tags-views/tagViews.component';
+import { TagHiddenComponent } from './hidden/tag-hidden.component';
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import { TagsViewComponent } from './tags-views/tagViews.component';
         TagsPageComponent,
         AddTagsComponent,
         TagEditComponent,
-        TagsViewComponent
+        TagsViewComponent,
+        TagHiddenComponent
         
     ]
 })

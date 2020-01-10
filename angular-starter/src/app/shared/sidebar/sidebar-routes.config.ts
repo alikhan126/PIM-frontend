@@ -23,11 +23,36 @@ export const ADMIN_ROUTES: RouteInfo[] = [
                 { path: '/products/export', title: 'Export Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 
             ]},
-            { path: '/brands', title: 'Brands', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/categories', title: 'Categories', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/websites', title: 'Websites', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/tags', title: 'Tags', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/manufacturer', title: 'Manufacturer', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            { path: '', title: 'Brands', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
+            submenu: [
+                { path: '/brands', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/brands/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+
+            { path: '', title: 'Categories', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+               { path: '/categories', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+               { path: '/categories/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+
+            { path: '', title: 'Websites', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+                { path: '/websites', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/websites/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+            { path: '', title: 'Tags', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+                { path: '/tags', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/tags/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+
+            { path: '', title: 'Manufacturer', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+                { path: '/manufacturer', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/manufacturer', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
             { path: '/catalogs', title: 'Catalogs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     },
@@ -75,11 +100,35 @@ export const USER_ROUTES: RouteInfo[] = [
                 { path: '/products/export', title: 'Export Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 
             ]},
-            { path: '/brands', title: 'Brands', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/categories', title: 'Categories', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/websites', title: 'Websites', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/tags', title: 'Tags', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/manufacturer', title: 'Manufacturer', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '', title: 'Brands', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
+            submenu: [
+                { path: '/brands', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/brands/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+
+            { path: '', title: 'Categories', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+               { path: '/categories', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+               { path: '/categories/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+
+            { path: '', title: 'Websites', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+                { path: '/websites', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/websites/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+            { path: '', title: 'Tags', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+                { path: '/tags', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/tags/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+
+            { path: '', title: 'Manufacturer', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+                { path: '/manufacturer', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/manufacturer', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
             { path: '/catalogs', title: 'Catalogs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     }

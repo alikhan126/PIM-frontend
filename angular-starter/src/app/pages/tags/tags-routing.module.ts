@@ -4,7 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { TagsPageComponent } from 'app/pages/tags/tags.component';
 import { AddTagsComponent} from './add/addTag.component';
 import { TagEditComponent } from './editing/tag-editing.component';
+import { TagHiddenComponent } from './hidden/tag-hidden.component';
 import { TagsViewComponent } from './tags-views/tagViews.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -25,6 +27,13 @@ const routes: Routes = [
      component: TagsPageComponent,
     data: {
       title: 'Tags Page'
+    },    
+  },
+  {
+    path: 'unapproved',
+     component: TagHiddenComponent,
+    data: {
+      title: 'Tags Hidden Page'
     },    
   },
   {

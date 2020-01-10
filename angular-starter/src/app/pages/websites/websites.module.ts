@@ -12,6 +12,7 @@ import { ReactiveFormsModule,FormControl,FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 import { WebsitesEditComponent } from './editing/website-editing.component';
+import { WebsitesHiddenComponent } from './hidden/website-hidden.component';
 import { WebsitesViewComponent } from './website-views/websiteViews.component';
 
 @NgModule({
@@ -30,7 +31,8 @@ import { WebsitesViewComponent } from './website-views/websiteViews.component';
         WebsitesPageComponent,
         AddWebsiteComponent,
         WebsitesEditComponent,
-        WebsitesViewComponent
+        WebsitesViewComponent,
+        WebsitesHiddenComponent
         
     ]
 })

@@ -4,7 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { BrandsPageComponent } from 'app/pages/brands/brands.component';
 import { AddBrandComponent} from './add/addBrand.component';
 import { BrandsEditComponent } from './editing/brand-editing.component';
+import { BrandsHiddenComponent } from './hidden/brand-hidden.component';
 import { BrandsViewComponent } from './brand-views/brandsViews.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -28,12 +30,20 @@ const routes: Routes = [
     },    
   },
   {
+    path: 'unapproved',
+     component: BrandsHiddenComponent,
+    data: {
+      title: 'Hidden Brand Page'
+    },    
+  },
+  {
     path: ':id',
      component: AddBrandComponent,
     data: {
       title: 'Add Brand Page'
     },    
   }
+  
 ];
 
 @NgModule({

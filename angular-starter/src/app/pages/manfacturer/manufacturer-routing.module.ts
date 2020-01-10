@@ -4,7 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { ManufacturerPageComponent } from 'app/pages/manfacturer/manufacturer.component';
 import { AddMaufacturerComponent} from './add/addManufacturer.component';
 import { ManufacturerEditComponent } from './editing/manufacturer-editing.component';
+import { ManufacturerHiddenComponent } from './hidden/manufacturer-hidden.component';
 import { ManufacturerViewComponent } from './manufacturer-views/manufacturerViews.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -25,6 +27,13 @@ const routes: Routes = [
      component: ManufacturerPageComponent,
     data: {
       title: 'Manufacturer Page'
+    },    
+  },
+  {
+    path: 'unapproved',
+     component: ManufacturerHiddenComponent,
+    data: {
+      title: 'Manufacturer Unapproved Page'
     },    
   },
   {

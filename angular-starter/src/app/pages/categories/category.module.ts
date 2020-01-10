@@ -12,6 +12,7 @@ import { ReactiveFormsModule,FormControl,FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 import { CategoryEditComponent } from './editing/category-editing.component';
+import { CategoryHiddenComponent } from './hidden/category-hidden.component';
 import { CategoryViewComponent } from './category-views/categoriesViews.component';
 
 @NgModule({
@@ -30,8 +31,8 @@ import { CategoryViewComponent } from './category-views/categoriesViews.componen
         CategoryPageComponent,
         AddCategoryComponent,
         CategoryEditComponent,
-        CategoryViewComponent
-        
+        CategoryViewComponent,
+        CategoryHiddenComponent
     ]
 })
 export class CategoryPagesModule { }

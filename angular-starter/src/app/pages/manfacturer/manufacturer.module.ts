@@ -13,6 +13,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 import { ManufacturerEditComponent } from './editing/manufacturer-editing.component';
 import { ManufacturerViewComponent } from './manufacturer-views/manufacturerViews.component';
+import { ManufacturerHiddenComponent } from './hidden/manufacturer-hidden.component';
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import { ManufacturerViewComponent } from './manufacturer-views/manufacturerView
         ManufacturerPageComponent,
         AddMaufacturerComponent,
         ManufacturerEditComponent,
-        ManufacturerViewComponent
+        ManufacturerViewComponent,
+        ManufacturerHiddenComponent
         
     ]
 })

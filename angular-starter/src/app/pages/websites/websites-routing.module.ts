@@ -4,7 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { WebsitesPageComponent } from 'app/pages/websites/websites.component';
 import { AddWebsiteComponent} from './add/addWebsite.component';
 import { WebsitesEditComponent } from './editing/website-editing.component';
+import { WebsitesHiddenComponent } from './hidden/website-hidden.component';
 import { WebsitesViewComponent } from './website-views/websiteViews.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -18,6 +20,13 @@ const routes: Routes = [
      component: WebsitesViewComponent,
     data: {
       title: 'Websites View Page'
+    },    
+  },
+  {
+    path: 'unapproved',
+     component: WebsitesHiddenComponent,
+    data: {
+      title: 'Website Hidden Page'
     },    
   },
   {
