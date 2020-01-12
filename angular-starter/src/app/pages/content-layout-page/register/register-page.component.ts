@@ -51,7 +51,7 @@ export class RegisterPageComponent {
   
         this.authService.signupUser(postObj).subscribe(resp=>{
             if(!resp){
-                this.toastService.typeError("Error","Email already exists!");
+                console.log("Error: Email already exists!");
             }
             else {
                 console.log("Signed up successfully!")  
