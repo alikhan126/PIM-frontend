@@ -18,9 +18,10 @@ export const ADMIN_ROUTES: RouteInfo[] = [
         submenu: [
             { path: '', title: 'Products', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
             submenu: [
-                { path: '/products', title: 'Edit Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/products', title: 'Approved Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
                 { path: '/products/import', title: 'Import Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
                 { path: '/products/export', title: 'Export Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/products/unapproved', title: 'Unpproved Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 
             ]},
 
@@ -95,9 +96,10 @@ export const USER_ROUTES: RouteInfo[] = [
         submenu: [
             { path: '', title: 'Products', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
             submenu: [
-                { path: '/products', title: 'Edit Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/products', title: 'Approved Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
                 { path: '/products/import', title: 'Import Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
                 { path: '/products/export', title: 'Export Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/products/unapproved', title: 'Unpproved Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 
             ]},
             { path: '', title: 'Brands', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 

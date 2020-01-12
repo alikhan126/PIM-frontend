@@ -287,6 +287,17 @@ delete(id){
   );
 }
 
+getAllHidden() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Products + "unapproved/" }`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
 
 
 

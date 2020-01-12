@@ -5,6 +5,7 @@ import { ProductsPageComponent } from 'app/pages/products/products.component';
 import {ExtendedTableComponent} from './extended/extended-table.component';
 import {AddProductComponent} from './add/addProduct.component';
 import { ProductsEditComponent } from './editing/product-editing.component';
+import { ProductsHiddenComponent } from './hidden/product-hidden.component';
 import { ProductViewsComponent } from './product-views/productViews.component';
 import { RegularTableComponent } from './regular/regular-table.component';
 import { ExportComponent } from './export/export.component';
@@ -43,6 +44,13 @@ const routes: Routes = [
      component: ProductViewsComponent,
     data: {
       title: 'Products Views Page'
+    },    
+  },
+  {
+    path: 'unapproved',
+     component: ProductsHiddenComponent,
+    data: {
+      title: 'Products Unapproved Page'
     },    
   },
   {
