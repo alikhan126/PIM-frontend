@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
 import {AuthService} from "../../../shared/auth/auth.service";
+import { NGXToastrService } from 'app/shared/services/toastr.service';
+
 @Component({
     selector: 'app-register-page',
     templateUrl: './register-page.component.html',
@@ -13,7 +15,7 @@ export class RegisterPageComponent {
     regularForm: FormGroup;
     terms:boolean=true;
     constructor(private router: Router,
-        private route: ActivatedRoute,private authService:AuthService) { }
+        private route: ActivatedRoute,private authService:AuthService, private toastService:NGXToastrService) { }
         pa="^[a-zA-Z ]{3,25}$";
         
     ngOnInit(){
@@ -49,13 +51,13 @@ export class RegisterPageComponent {
   
         this.authService.signupUser(postObj).subscribe(resp=>{
             if(!resp){
-                alert("Invalid Credentials!")
+                this.toastService.typeError("Error","Email already exists!");
             }
             else {
                 console.log("Signed up successfully!")  
                 this.authService.signinUser(this.regularForm.value.email,this.regularForm.value.password).subscribe(resp=>{
                     if(!resp){
-                        alert("Invalid Credentials!");
+                        console.log("Invalid Credentials!");
                     } else {
                         console.log("Logged In Successfully!");
                     }
