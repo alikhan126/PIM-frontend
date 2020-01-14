@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 import { BrandService } from '../brands.service';
+import { NGXToastrService } from 'app/shared/services/toastr.service';
 
 @Component({
   selector: 'app-product',
@@ -24,7 +25,7 @@ export class AddBrandComponent implements OnInit{
   perm :string;
   isNew :boolean = false;
 
-  constructor( private route : ActivatedRoute, private router : Router, private brandService: BrandService){
+  constructor(private toastService:NGXToastrService, private route : ActivatedRoute, private router : Router, private brandService: BrandService){
     let userObj=JSON.parse(localStorage.getItem('currentUser'));
 
   }
@@ -57,6 +58,8 @@ export class AddBrandComponent implements OnInit{
         this.pObj=result;
         console.log(this.pObj)
         this.pObj && this.pObj.id //&& this.router.navigate(['brands/'])
+        this.toastService.typeSuccessCustom("Success","Your brand request is submitted for Admin's approval")
+        
         // this.ts.success("Operation Performed Successfully");
       })
     }

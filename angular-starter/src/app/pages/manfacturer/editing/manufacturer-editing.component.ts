@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { ManufacturerService } from '../manufacturer.service';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NGXToastrService } from 'app/shared/services/toastr.service';
 
 declare var require: any;
 
@@ -22,7 +23,7 @@ export class ManufacturerEditComponent {
     permission: string;
     perm: string;
 
-    constructor(private modalService: NgbModal, private manufacturerService: ManufacturerService, private router: Router) {
+    constructor(private toastService:NGXToastrService, private modalService: NgbModal, private manufacturerService: ManufacturerService, private router: Router) {
     }
     ngOnInit() {
         this.getUserRole();
@@ -72,6 +73,7 @@ export class ManufacturerEditComponent {
                                 this.rows[rowIndex] = data;
                                 this.rows[rowIndex][cell] = event.target.value;
                                 this.manufacturerService.update(this.rows[rowIndex]).subscribe(data => {
+                                    this.toastService.typeSuccessCustom("Success","Your manufacturer request is submitted for Admin's approval")
                                     this.manufacturerService.getAll().subscribe(data => {
                                         this.rows = data;
                                         console.log(this.rows)
@@ -114,6 +116,7 @@ export class ManufacturerEditComponent {
                         this.rows[rowIndex] = data;
                         this.rows[rowIndex][cell] = event.target.value;
                         this.manufacturerService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                            this.toastService.typeSuccessCustom("Success","Your manufacturer request is submitted for Admin's approval")
                             this.manufacturerService.getAll().subscribe(data => {
                                 this.rows = data;
                                 console.log(this.rows)

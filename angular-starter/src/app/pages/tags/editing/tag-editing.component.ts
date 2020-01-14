@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { TagService } from '../tags.service';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NGXToastrService } from 'app/shared/services/toastr.service';
 
 declare var require: any;
 
@@ -22,7 +23,7 @@ export class TagEditComponent {
     permission: string;
     perm: string;
 
-    constructor(private modalService: NgbModal, private tagService: TagService, private router: Router) {
+    constructor(private toastService:NGXToastrService, private modalService: NgbModal, private tagService: TagService, private router: Router) {
     }
     ngOnInit() {
         this.getUserRole();
@@ -71,6 +72,7 @@ export class TagEditComponent {
                             this.rows[rowIndex] = data;
                             this.rows[rowIndex][cell] = event.target.value;
                             this.tagService.update(this.rows[rowIndex]).subscribe(data => {
+                                this.toastService.typeSuccessCustom("Success","Your tag request is submitted for Admin's approval")
                                 this.tagService.getAll().subscribe(data => {
                                     this.rows = data;
                                     console.log(this.rows)
@@ -125,6 +127,7 @@ export class TagEditComponent {
                 this.rows[rowIndex] = data;
                 this.rows[rowIndex][cell] = event.target.value;
                 this.tagService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                    this.toastService.typeSuccessCustom("Success","Your tag request is submitted for Admin's approval")
                     this.tagService.getAll().subscribe(data => {
                         this.rows = data;
                         console.log(this.rows)

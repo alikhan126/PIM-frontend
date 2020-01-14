@@ -231,6 +231,7 @@ saveAsCatalog(){
                             this.rows[rowIndex] = data;
                             this.rows[rowIndex][cell] = event.target.value;
                             this.productService.update(this.rows[rowIndex]).subscribe(data => {
+                                this.toastService.typeSuccessCustom("Success","Your product request is submitted for Admin's approval")
                                 this.productService.getAll().subscribe(data => {
                                     this.rows = data;
                                     console.log(this.rows)
@@ -271,6 +272,7 @@ saveAsCatalog(){
                     console.log(this.rows[rowIndex])
                     this.rows[rowIndex][cell] = event.target.value;
                     this.productService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.toastService.typeSuccessCustom("Success","Your product request is submitted for Admin's approval")
                         this.productService.getAll().subscribe(data => {
                             this.rows = data;
                             console.log(this.rows)
@@ -310,6 +312,7 @@ saveAsCatalog(){
                             this.rows[rowIndex] = data;
                             this.rows[rowIndex][cell] = value;
                             this.productService.update(this.rows[rowIndex]).subscribe(data => {
+                                this.toastService.typeSuccessCustom("Success","Your product request is submitted for Admin's approval")
                                 this.productService.getAll().subscribe(data => {
                                     this.rows = data;
                                     console.log(this.rows)

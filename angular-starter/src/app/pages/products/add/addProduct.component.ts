@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 import {ProductService} from '../products.service';
+import { NGXToastrService } from 'app/shared/services/toastr.service';
 
 @Component({
   selector: 'app-product',
@@ -36,7 +37,7 @@ export class AddProductComponent implements OnInit{
 
   isNew :boolean = false;
   loading:boolean=false;
-  constructor( private route : ActivatedRoute, private router : Router, private productService: ProductService){
+  constructor(private toastService:NGXToastrService, private route : ActivatedRoute, private router : Router, private productService: ProductService){
 
   }
   ngOnInit () {
@@ -88,7 +89,7 @@ export class AddProductComponent implements OnInit{
       .subscribe(result => {
         this.pObj=result;
         this.pObj && this.pObj.id //&& this.router.navigate(['products/']);
-
+        this.toastService.typeSuccessCustom("Success","Your product request is submitted for Admin's approval")
         // this.ts.success("Operation Performed Successfully");
       })
     }

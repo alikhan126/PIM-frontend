@@ -78,6 +78,7 @@ export class WebsitesEditComponent {
                             this.rows[rowIndex] = data;
                             this.rows[rowIndex][cell] = event.target.value;
                             this.websiteService.update(this.rows[rowIndex]).subscribe(data => {
+                                this.ts.typeSuccessCustom("Success","Your website request is submitted for Admin's approval")
                                 this.websiteService.getAll().subscribe(data => {
                                     this.rows = data;
                                     console.log(this.rows)
@@ -117,6 +118,7 @@ export class WebsitesEditComponent {
                     this.rows[rowIndex] = data;
                     this.rows[rowIndex][cell] = event.target.value;
                     this.websiteService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.ts.typeSuccessCustom("Success","Your website request is submitted for Admin's approval")
                         this.websiteService.getAll().subscribe(data => {
                             this.rows = data;
                             console.log(this.rows)

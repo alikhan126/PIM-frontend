@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { CategoryService } from '../category.service';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { NGXToastrService } from 'app/shared/services/toastr.service';
 
 declare var require: any;
 
@@ -25,7 +25,7 @@ export class CategoryHiddenComponent {
     permission: string;
     perm: string;
     
-    constructor(private modalService: NgbModal, private categoryService: CategoryService, private router: Router) {
+    constructor(private toastService:NGXToastrService,private modalService: NgbModal, private categoryService: CategoryService, private router: Router) {
     }
     ngOnInit() {                
         this.categoryService.getAllHidden().subscribe(data => {

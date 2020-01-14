@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { BrandService} from '../brands.service';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { NGXToastrService } from 'app/shared/services/toastr.service';
 
 declare var require: any;
 
@@ -26,7 +26,7 @@ export class BrandsEditComponent {
 
     // @ViewChild(DatatableComponent, {static: false}) table: DatatableComponent;
 
-    constructor(private modalService: NgbModal, private brandService: BrandService, private router: Router) {
+    constructor(private toastService:NGXToastrService, private modalService: NgbModal, private brandService: BrandService, private router: Router) {
     }
     ngOnInit() {
         this.getUserRole();
@@ -77,6 +77,7 @@ export class BrandsEditComponent {
                                 this.rows[rowIndex] = data;
                                 this.rows[rowIndex][cell] = event.target.value;
                                 this.brandService.update(this.rows[rowIndex]).subscribe(data => {
+                                    this.toastService.typeSuccessCustom("Success","Your brand request is submitted for Admin's approval")
                                     this.brandService.getAll().subscribe(data => {
                                         this.rows = data;
                                     });
@@ -119,6 +120,7 @@ export class BrandsEditComponent {
                                 this.rows[rowIndex] = data;
                                 this.rows[rowIndex][cell] = value;
                                 this.brandService.update(this.rows[rowIndex]).subscribe(data => {
+                                    this.toastService.typeSuccessCustom("Success","Your brand request is submitted for Admin's approval")
                                     this.brandService.getAll().subscribe(data => {
                                         this.rows = data;
                                     });
@@ -157,6 +159,7 @@ export class BrandsEditComponent {
                     this.rows[rowIndex] = data;
                     this.rows[rowIndex][cell] = event.target.value;
                     this.brandService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.toastService.typeSuccessCustom("Success","Your brand request is submitted for Admin's approval")
                         this.brandService.getAll().subscribe(data => {
                             this.rows = data;
                         });

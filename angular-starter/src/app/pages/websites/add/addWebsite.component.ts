@@ -68,6 +68,7 @@ export class AddWebsiteComponent implements OnInit{
         this.pObj=result;
         console.log(this.pObj)
         this.pObj && this.pObj.id //&& this.router.navigate(['websites/'])
+        this.ts.typeSuccessCustom("Success","Your website request is submitted for Admin's approval")
         // this.ts.success("Operation Performed Successfully");
       })
     }
