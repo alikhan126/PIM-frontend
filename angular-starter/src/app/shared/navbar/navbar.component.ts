@@ -34,6 +34,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   notifications_next:string;
   notifications_count:string;
   query:string;
+  count:string;
   rows = [];
   closeResult: string;
 
@@ -41,7 +42,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : "en");
     this.getNotifications();
-    console.log(this.notifications);
+    this.getNotificationsCount();
+    console.log(this.getNotifications());
   }
 
   ngOnInit() {
@@ -105,12 +107,18 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   getNotifications(){
-    this.query = "?is_read=False"
+    this.query = ""
     this.productService.getNotifications(this.query).subscribe(data => {
       this.notifications = data['results'];
       this.notifications_count = data['count'];
       this.notifications_next = data['next'];
       this.notifications_previous = data['previous'];
+    });
+  }
+
+  getNotificationsCount(){
+    this.productService.getNotificationsCount().subscribe(data => {
+      this.count = data['count'];
     });
   }
 
@@ -135,18 +143,18 @@ export class NavbarComponent implements OnInit, AfterViewInit {
           this.notifications_count = data['count'];
           this.notifications_next = data['next'];
           this.notifications_previous = data['previous'];
+          this.getNotificationsCount();
         });
       });
     });
   }
 
-
-  updateModal(id, modules, value){
+  deleteModal(id, modules, value, action){
     if (modules == "Product"){
       this.productService.get(id).subscribe(data => {
         this.rows = data;
         this.rows['hidden'] = value
-        this.productService.update(this.rows).subscribe(data => {
+        this.productService.delete(this.rows['id']).subscribe(data => {
             this.rows = data;
         });
       });
@@ -154,7 +162,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.brandService.get(id).subscribe(data => {
         this.rows = data;
         this.rows['hidden'] = value
-        this.brandService.update(this.rows).subscribe(data => {
+        this.brandService.delete(this.rows['id']).subscribe(data => {
             this.rows = data;
         });
       });
@@ -164,7 +172,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.categoryService.get(id).subscribe(data => {
         this.rows = data;
         this.rows['hidden'] = value
-        this.categoryService.update(this.rows).subscribe(data => {
+        this.categoryService.delete(this.rows['id']).subscribe(data => {
             this.rows = data;
         });
       });
@@ -172,7 +180,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.tagService.get(id).subscribe(data => {
         this.rows = data;
         this.rows['hidden'] = value
-        this.tagService.update(this.rows).subscribe(data => {
+        this.tagService.delete(this.rows['id']).subscribe(data => {
             this.rows = data;
         });
       });
@@ -180,7 +188,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.websiteService.get(id).subscribe(data => {
         this.rows = data;
         this.rows['hidden'] = value
-        this.websiteService.update(this.rows).subscribe(data => {
+        this.websiteService.delete(this.rows['id']).subscribe(data => {
             this.rows = data;
         });
       });
@@ -188,10 +196,119 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.manufacturerService.get(id).subscribe(data => {
         this.rows = data;
         this.rows['hidden'] = value
-        this.manufacturerService.update(this.rows).subscribe(data => {
+        this.manufacturerService.delete(this.rows['id']).subscribe(data => {
             this.rows = data;
         });
       });
+    }
+  }
+
+
+  updateModal(id, modules, value, action){
+    if (action == "Create" || action == "Update"){
+      if (modules == "Product"){
+        this.productService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.productService.update(this.rows).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Brand") {
+        this.brandService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.brandService.update(this.rows).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Catalog") {
+         // Implement Catalogs
+      } else if(modules == "Category") {
+        this.categoryService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.categoryService.update(this.rows).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Tag") {
+        this.tagService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.tagService.update(this.rows).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Website") {
+        this.websiteService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.websiteService.update(this.rows).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Manufacturer") {
+        this.manufacturerService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.manufacturerService.update(this.rows).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      }
+    } else if (action == "Delete"){
+      if (modules == "Product"){
+        this.productService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.productService.delete(this.rows['id']).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Brand") {
+        this.brandService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.brandService.delete(this.rows['id']).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Catalog") {
+         // Implement Catalogs
+      } else if(modules == "Category") {
+        this.categoryService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.categoryService.delete(this.rows['id']).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Tag") {
+        this.tagService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.tagService.delete(this.rows['id']).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Website") {
+        this.websiteService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.websiteService.delete(this.rows['id']).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Manufacturer") {
+        this.manufacturerService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.manufacturerService.delete(this.rows['id']).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      }
     }
   }
 

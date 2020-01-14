@@ -51,7 +51,7 @@ export const ADMIN_ROUTES: RouteInfo[] = [
 
             { path: '', title: 'Manufacturer', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
                 { path: '/manufacturer', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-                { path: '/manufacturer', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/manufacturer/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 
             ] },
             { path: '/catalogs', title: 'Catalogs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },

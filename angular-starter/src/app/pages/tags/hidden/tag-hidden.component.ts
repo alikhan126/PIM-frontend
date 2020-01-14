@@ -143,7 +143,11 @@ export class TagHiddenComponent {
             this.tagService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 let result = data;
                 result['hidden'] = false
+                console.log("result", result);
+
                 this.tagService.update(result).subscribe(data => {
+                    debugger
+                    console.log("data", data);
                     this.tagService.getAllHidden().subscribe(data => {
                         this.rows = data;
                     });
