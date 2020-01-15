@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
 import {AuthService} from "../../../shared/auth/auth.service";
+import { NGXToastrService } from '../../../shared/services/toastr.service';
 
 @Component({
     selector: 'app-forgot-password-page',
@@ -14,7 +15,7 @@ export class ForgotPasswordPageComponent {
     
     regularForm: FormGroup;
 
-    constructor(private router: Router,
+    constructor(private toastService:NGXToastrService, private router: Router,
         private route: ActivatedRoute, private authService:AuthService) { }
 
     ngOnInit(){
@@ -32,6 +33,7 @@ export class ForgotPasswordPageComponent {
                     console.log("Invalid Credentials");
             }
         })
+        this.toastService.typeSuccessCustom("Succes","Link for reset password is sent to your email,Please check your email")
         this.regularForm.reset();
     }
 
