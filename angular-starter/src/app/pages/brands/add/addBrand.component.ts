@@ -58,8 +58,9 @@ export class AddBrandComponent implements OnInit{
         this.pObj=result;
         console.log(this.pObj)
         this.pObj && this.pObj.id //&& this.router.navigate(['brands/'])
-        this.toastService.typeSuccessCustom("Success","Your brand request is submitted for Admin's approval")
-        
+        if (this.pObj.id){
+          this.toastService.typeSuccessCustom("Success","Your brand request is submitted for Admin's approval")
+        }
         // this.ts.success("Operation Performed Successfully");
       })
     }
