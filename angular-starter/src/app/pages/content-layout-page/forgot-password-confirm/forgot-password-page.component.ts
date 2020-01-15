@@ -22,9 +22,8 @@ export class ForgotPasswordConfirmPageComponent {
 
     ngOnInit(){
         this.regularForm = new FormGroup({
-            'password1': new FormControl(null, [Validators.required]),
-            'password2': new FormControl(null, [Validators.required])
-            
+            'password1': new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(24)]),
+            'password2': new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(24)]),
         });
     }
 
