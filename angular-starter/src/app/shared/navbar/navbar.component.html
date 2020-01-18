@@ -38,7 +38,7 @@
                                 <a *ngFor="let item of notifications;" class="dropdown-item noti-container py-3 border-bottom border-bottom-blue-grey border-bottom-lighten-4">
                                 <ng-template #content let-c="close" let-d="dismiss">
                                   <div class="modal-header">
-                                    <h4 class="modal-title">{{item.module}} {{item.action}}ed</h4>
+                                    <h4 class="modal-title">{{item.module}} {{item.action}}d</h4>
                                     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
