@@ -47,14 +47,14 @@
                                     <p>{{item.message}}</p>
                                   </div>
                                   <div class="modal-footer">
-                                    <button style="float: left;" type="button" class="btn btn-secondary btn-raised left" (click)="updateModal(item.content_id, item.module, false, item.action); updateNotifications(item.id); c('Close click');">Approve</button>
+                                    <button style="float: left;" type="button" class="btn btn-secondary btn-raised left" (click)="updateModal(item.content_id, item.module, false, item.action, item.unapproved_id); updateNotifications(item.id); c('Close click');">Approve</button>
                                     <button  style="float: right;" type="button" class="btn btn-secondary btn-raised" (click)="c('Close click'); deleteModal(item.content_id, item.module, true, item.action); updateNotifications(item.id);">Reject</button>
                                   </div>
                                 </ng-template>
                                 <div (click)="open(content)" >
                                     <i class="ft-bell info float-left d-block font-large-1 mt-1 mr-2"></i>
                                     <span class="noti-wrapper">
-                                        <span class="noti-title line-height-1 d-block text-bold-400 info">{{item.module}} {{item.action}}ed</span>
+                                        <span class="noti-title line-height-1 d-block text-bold-400 info">{{item.module}} {{item.action}}d</span>
                                         <span class="noti-text">{{item.message}}</span>
                                     </span>
                                 </div>

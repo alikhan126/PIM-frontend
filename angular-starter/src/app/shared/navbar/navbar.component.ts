@@ -204,8 +204,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
 
-  updateModal(id, modules, value, action){
-    if (action == "Create" || action == "Update"){
+  updateModal(id, modules, value, action, unapproved_id){
+    if (action == "Create"){
       if (modules == "Product"){
         this.productService.get(id).subscribe(data => {
           this.rows = data;
@@ -251,6 +251,64 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       } else if(modules == "Manufacturer") {
         this.manufacturerService.get(id).subscribe(data => {
           this.rows = data;
+          this.rows['hidden'] = value
+          this.manufacturerService.update(this.rows).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      }
+    } else if (action == "Update"){
+      if (modules == "Product"){
+        this.productService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['unapproved_id'] = unapproved_id
+          this.rows['hidden'] = value
+          this.productService.update(this.rows).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Brand") {
+        this.brandService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['unapproved_id'] = unapproved_id
+          this.rows['hidden'] = value
+          this.brandService.update(this.rows).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Catalog") {
+         // Implement Catalogs
+      } else if(modules == "Category") {
+        this.categoryService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['unapproved_id'] = unapproved_id
+          this.rows['hidden'] = value
+          this.categoryService.update(this.rows).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Tag") {
+        this.tagService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['unapproved_id'] = unapproved_id
+          this.rows['hidden'] = value
+          this.tagService.update(this.rows).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Website") {
+        this.websiteService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['unapproved_id'] = unapproved_id
+          this.rows['hidden'] = value
+          this.websiteService.update(this.rows).subscribe(data => {
+              this.rows = data;
+          });
+        });
+      } else if(modules == "Manufacturer") {
+        this.manufacturerService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['unapproved_id'] = unapproved_id
           this.rows['hidden'] = value
           this.manufacturerService.update(this.rows).subscribe(data => {
               this.rows = data;
