@@ -63,7 +63,7 @@ export class TagHiddenComponent {
             this.permission = "Update";
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
-            if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission) ){
+            if(this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission) ){
                 this.tagService.getFieldPermissions(user.user_id).subscribe(data => {
                     if(data.edit.includes(cellvalue)){
                         this.editing[rowIndex + '-' + cell] = false;
@@ -73,7 +73,6 @@ export class TagHiddenComponent {
                             this.tagService.update(this.rows[rowIndex]).subscribe(data => {
                                 this.tagService.getAllHidden().subscribe(data => {
                                     this.rows = data;
-                                    console.log(this.rows)
                                 });
                             });
                         });
@@ -92,7 +91,6 @@ export class TagHiddenComponent {
                 this.tagService.update(this.rows[rowIndex]).subscribe(data => {
                     this.tagService.getAllHidden().subscribe(data => {
                         this.rows = data;
-                        console.log(this.rows)
                     });
                 });
             });
@@ -104,7 +102,7 @@ export class TagHiddenComponent {
         if (user.is_admin == false){
             this.permission = "Delete";
             this.perm = "All";
-            if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission)){
+            if(this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission)){
                 this.editing[rowIndex + '-' + cell] = false;
                 this.tagService.get(this.rows[rowIndex]['id']).subscribe(data => {
                     this.rows[rowIndex] = data;
@@ -112,7 +110,6 @@ export class TagHiddenComponent {
                     this.tagService.delete(this.rows[rowIndex]['id']).subscribe(data => {
                         this.tagService.getAllHidden().subscribe(data => {
                             this.rows = data;
-                            console.log(this.rows)
                         });
                     });
                 });
@@ -127,7 +124,6 @@ export class TagHiddenComponent {
                 this.tagService.delete(this.rows[rowIndex]['id']).subscribe(data => {
                     this.tagService.getAllHidden().subscribe(data => {
                         this.rows = data;
-                        console.log(this.rows)
                     });
                 });
             });
@@ -143,11 +139,7 @@ export class TagHiddenComponent {
             this.tagService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 let result = data;
                 result['hidden'] = false
-                console.log("result", result);
-
                 this.tagService.update(result).subscribe(data => {
-                    debugger
-                    console.log("data", data);
                     this.tagService.getAllHidden().subscribe(data => {
                         this.rows = data;
                     });
@@ -161,7 +153,7 @@ export class TagHiddenComponent {
         if (user.is_admin == false){
             this.permission = "Create";
             this.perm = "All";
-            if(user.roles['tags'].includes(this.permission) || user.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission)){
+            if(this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission)){
                 this.router.navigate(['/tags/0']);
             } else {
                 alert("You don't have access to add tag!");

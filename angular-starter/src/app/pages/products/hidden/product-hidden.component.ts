@@ -223,7 +223,7 @@ saveAsCatalog(){
             this.permission = "Update";
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
-            if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission) ){
+            if(this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission) ){
                 this.productService.getFieldPermissions(user.user_id).subscribe(data => {
                     if(data.edit.includes(cellvalue)){
                         this.editing[rowIndex + '-' + cell] = false;
@@ -233,7 +233,6 @@ saveAsCatalog(){
                             this.productService.update(this.rows[rowIndex]).subscribe(data => {
                                 this.productService.getAllHidden().subscribe(data => {
                                     this.rows = data;
-                                    console.log(this.rows)
                                 });
                             });
                         });
@@ -252,7 +251,6 @@ saveAsCatalog(){
                 this.productService.update(this.rows[rowIndex]).subscribe(data => {
                     this.productService.getAllHidden().subscribe(data => {
                         this.rows = data;
-                        console.log(this.rows)
                     });
                 });
             });
@@ -264,16 +262,14 @@ saveAsCatalog(){
         if (user.is_admin == false){
             this.permission = "Delete";
             this.perm = "All";
-            if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission) ){
+            if(this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission)){
                 this.editing[rowIndex + '-' + cell] = false;
                 this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
                     this.rows[rowIndex] = data;
-                    console.log(this.rows[rowIndex])
                     this.rows[rowIndex][cell] = event.target.value;
                     this.productService.delete(this.rows[rowIndex]['id']).subscribe(data => {
                         this.productService.getAllHidden().subscribe(data => {
                             this.rows = data;
-                            console.log(this.rows)
                         });
                     });
                 });
@@ -284,12 +280,10 @@ saveAsCatalog(){
             this.editing[rowIndex + '-' + cell] = false;
             this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
                 this.rows[rowIndex] = data;
-                console.log(this.rows[rowIndex])
                 this.rows[rowIndex][cell] = event.target.value;
                 this.productService.delete(this.rows[rowIndex]['id']).subscribe(data => {
                     this.productService.getAllHidden().subscribe(data => {
                         this.rows = data;
-                        console.log(this.rows)
                     });
                 });
             });
@@ -302,7 +296,7 @@ saveAsCatalog(){
             this.permission = "Update";
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
-            if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission)){
+            if(this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission)){
                 this.productService.getFieldPermissions(user.user_id).subscribe(data => {
                     if(data.edit.includes(cellvalue)){
                         this.editing[rowIndex + '-' + cell] = false;
@@ -312,7 +306,6 @@ saveAsCatalog(){
                             this.productService.update(this.rows[rowIndex]).subscribe(data => {
                                 this.productService.getAllHidden().subscribe(data => {
                                     this.rows = data;
-                                    console.log(this.rows)
                                 });
                             });
                         });
@@ -331,7 +324,6 @@ saveAsCatalog(){
                 this.productService.update(this.rows[rowIndex]).subscribe(data => {
                     this.productService.getAllHidden().subscribe(data => {
                         this.rows = data;
-                        console.log(this.rows)
                     });
                 });
             });
@@ -343,7 +335,7 @@ saveAsCatalog(){
         if (user.is_admin == false){
             this.permission = "Create";
             this.perm = "All";
-            if(user.roles['products'].includes(this.permission) || user.roles['products'].includes(this.perm) || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission)){
+            if(this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission)){
                 this.router.navigate(['/products/0']);
             } else {
                 alert("You don't have access to add products!");

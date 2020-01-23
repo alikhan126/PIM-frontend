@@ -68,7 +68,7 @@ export class CategoryEditComponent {
             this.permission = "Update";
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
-            if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
+            if(this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
                 if(this.permissions.includes(cellvalue)){
                     this.editing[rowIndex + '-' + cell] = false;
                     this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
@@ -105,7 +105,7 @@ export class CategoryEditComponent {
         if (user.is_admin == false){
             this.permission = "Create";
             this.perm = "All";
-            if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
+            if(this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
                 this.router.navigate(['/categories/0']);
             } else {
                 alert("You don't have permission to add the categories!");
@@ -153,7 +153,7 @@ export class CategoryEditComponent {
             this.permission = "Update";
             this.perm = "All";
             let cellvalue = "ParentCategory";
-            if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
+            if(this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
                 if(this.permissions.includes(cellvalue)){
                     this.editing[rowIndex + '-' + cell] = false;
                     this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
@@ -193,7 +193,7 @@ export class CategoryEditComponent {
         if (user.is_admin == false){
             this.permission = "Delete";
             this.perm = "All";
-            if(user.roles['categories'].includes(this.permission) || user.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
+            if(this.roles['categories'].includes(this.perm) || this.roles['categories'].includes(this.permission)){
                 this.editing[rowIndex + '-' + cell] = false;
                 this.categoryService.get(this.rows[rowIndex]['id']).subscribe(data => {
                     this.rows[rowIndex] = data;

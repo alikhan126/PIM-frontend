@@ -80,7 +80,6 @@ export class CatalogsEditComponent {
                 this.catalogService.update(this.rows[rowIndex]).subscribe(data => {
                     this.catalogService.getAll().subscribe(data => {
                         this.rows = data;
-                        console.log(this.rows)
                     });
                 });
             });

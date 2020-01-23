@@ -70,7 +70,7 @@ export class WebsitesHiddenComponent {
             this.permission = "Update";
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
-            if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
+            if(this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
                 this.websiteService.getFieldPermissions(user.user_id).subscribe(data => {
                     if(data.edit.includes(cellvalue)){
                         this.editing[rowIndex + '-' + cell] = false;
@@ -80,7 +80,6 @@ export class WebsitesHiddenComponent {
                             this.websiteService.update(this.rows[rowIndex]).subscribe(data => {
                                 this.websiteService.getAllHidden().subscribe(data => {
                                     this.rows = data;
-                                    console.log(this.rows)
                                 });
                             });
                         });
@@ -99,7 +98,6 @@ export class WebsitesHiddenComponent {
                 this.websiteService.update(this.rows[rowIndex]).subscribe(data => {
                     this.websiteService.getAllHidden().subscribe(data => {
                         this.rows = data;
-                        console.log(this.rows)
                     });
                 });
             });
@@ -111,7 +109,7 @@ export class WebsitesHiddenComponent {
         if (user.is_admin == false){
             this.permission = "Delete";
             this.perm = "All";
-            if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
+            if(this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
                 this.editing[rowIndex + '-' + cell] = false;
                 this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
                     this.rows[rowIndex] = data;
@@ -119,7 +117,6 @@ export class WebsitesHiddenComponent {
                     this.websiteService.delete(this.rows[rowIndex]['id']).subscribe(data => {
                         this.websiteService.getAllHidden().subscribe(data => {
                             this.rows = data;
-                            console.log(this.rows)
                         });
                     });
                 });
@@ -134,7 +131,6 @@ export class WebsitesHiddenComponent {
                 this.websiteService.delete(this.rows[rowIndex]['id']).subscribe(data => {
                     this.websiteService.getAllHidden().subscribe(data => {
                         this.rows = data;
-                        console.log(this.rows)
                     });
                 });
             });
@@ -164,7 +160,7 @@ export class WebsitesHiddenComponent {
         if (user.is_admin == false) {
             this.permission = "Create";
             this.perm = "All";
-            if(user.roles['websites'].includes(this.permission) || user.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
+            if(this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
                 this.router.navigate(['/websites/0']);
             } else {
                 alert("You don't have the permission to add the websites")

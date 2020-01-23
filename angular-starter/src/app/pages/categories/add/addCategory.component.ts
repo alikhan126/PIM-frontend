@@ -51,9 +51,6 @@ export class AddCategoryComponent implements OnInit{
 
     id ? this.categoryService.get(id)
     .subscribe(data => {
-    // this.pObj=data;
-    console.log(data)
-
     this.regularForm.get('name').setValue(data.name);
     this.regularForm.get('level').setValue(data.level);
     this.regularForm.get('description').setValue(data.description);

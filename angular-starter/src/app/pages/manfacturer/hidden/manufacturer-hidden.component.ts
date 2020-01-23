@@ -64,7 +64,7 @@ export class ManufacturerHiddenComponent {
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
             this.manufacturerService.getUserRole(user.user_id).subscribe(data => {
-                if(user.roles['manufacturer'].includes(this.permission) || user.roles['manufacturer'].includes(this.perm) || data.role['manufacturer'].includes(this.perm) || data.role['manufacturer'].includes(this.permission)){
+                if(data.role['manufacturer'].includes(this.perm) || data.role['manufacturer'].includes(this.permission)){
                     this.manufacturerService.getFieldPermissions(user.user_id).subscribe(data => {
                         if(data.edit.includes(cellvalue)){
                             this.editing[rowIndex + '-' + cell] = false;
@@ -107,8 +107,7 @@ export class ManufacturerHiddenComponent {
             this.permission = "Delete";
             this.perm = "All";
             this.manufacturerService.getUserRole(user.user_id).subscribe(data => {
-
-                if(user.roles['manufacturer'].includes(this.permission) || user.roles['manufacturer'].includes(this.perm || data.role['manufacturer'].includes(this.perm) || data.role['manufacturer'].includes(this.permission))){
+                if( data.role['manufacturer'].includes(this.perm) || data.role['manufacturer'].includes(this.permission)){
                     this.editing[rowIndex + '-' + cell] = false;
                     this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
                         this.rows[rowIndex] = data;
@@ -116,7 +115,6 @@ export class ManufacturerHiddenComponent {
                         this.manufacturerService.delete(this.rows[rowIndex]['id']).subscribe(data => {
                             this.manufacturerService.getAllHidden().subscribe(data => {
                                 this.rows = data;
-                                console.log(this.rows)
                             });
                         });
                     });
@@ -132,7 +130,6 @@ export class ManufacturerHiddenComponent {
                 this.manufacturerService.delete(this.rows[rowIndex]['id']).subscribe(data => {
                     this.manufacturerService.getAllHidden().subscribe(data => {
                         this.rows = data;
-                        console.log(this.rows)
                     });
                 });
             });
@@ -162,7 +159,7 @@ export class ManufacturerHiddenComponent {
         if (user.is_admin == false){
             this.permission = "Create";
             this.perm = "All";
-            if(user.roles['manufacturer'].includes(this.permission) || user.roles['manufacturer'].includes(this.perm || this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission))){
+            if(this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission)){
                 this.router.navigate(['/manufacturer/0']);
             } else {
                 alert("You don't have access to add manufacturer!");

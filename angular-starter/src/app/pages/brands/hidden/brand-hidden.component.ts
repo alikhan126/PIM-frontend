@@ -69,7 +69,7 @@ export class BrandsHiddenComponent {
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
             this.brandService.getUserRole(user.user_id).subscribe(data => {
-                if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm) || data.role['brands'].includes(this.perm) || data.role['brands'].includes(this.permission) ){
+                if(data.role['brands'].includes(this.perm) || data.role['brands'].includes(this.permission) ){
                     this.brandService.getFieldPermissions(user.user_id).subscribe(data => {
                         if(data.edit.includes(cellvalue)){
                             this.editing[rowIndex + '-' + cell] = false;
@@ -111,7 +111,7 @@ export class BrandsHiddenComponent {
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
             this.brandService.getUserRole(user.user_id).subscribe(data => {
-                if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm) || data.role['brands'].includes(this.perm) || data.role['brands'].includes(this.permission)){
+                if(data.role['brands'].includes(this.perm) || data.role['brands'].includes(this.permission)){
                     this.brandService.getFieldPermissions(user.user_id).subscribe(data => {
                         if(data.edit.includes(cellvalue)){
                             this.editing[rowIndex + '-' + cell] = false;
@@ -151,7 +151,7 @@ export class BrandsHiddenComponent {
         if (user.is_admin == false){
             this.permission = "Delete";
             this.perm = "All";
-            if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.permission)){
+            if(this.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.permission)){
                 this.editing[rowIndex + '-' + cell] = false;
                 this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                     this.rows[rowIndex] = data;
@@ -203,7 +203,7 @@ export class BrandsHiddenComponent {
         if (user.is_admin == false){
             this.permission = "Create";
             this.perm = "All";
-            if(user.roles['brands'].includes(this.permission) || user.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.permission)){
+            if(this.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.permission)){
                 this.router.navigate(['/brands/0']);
             } else{
                 alert("You don't have the permission to add Brands!");
