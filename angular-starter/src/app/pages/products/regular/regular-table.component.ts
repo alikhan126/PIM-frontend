@@ -43,7 +43,7 @@ export class RegularTableComponent implements OnInit  {
     }
 
     ngOnInit () {
-  
+
       this.productService.getFildsToImport().subscribe(result=>{
         this.databaseObjects=result;
 
@@ -193,6 +193,7 @@ fileSelected(e){
             });
 
             this.mappingObj ? this.showAdapters=true :null;
+            this.showAdapters=true;
             console.log(this.fileData)
             // console.log(this.fileColumns)
             // this.dataList = result.data;
@@ -215,6 +216,8 @@ fileSelected(e){
              }
             });
             this.mappingObj ? this.showAdapters=true :null;
+            this.showAdapters=true;
+
             console.log(this.fileData)
         });
       }
