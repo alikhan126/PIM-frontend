@@ -174,9 +174,9 @@ fileSelected(e){
 
   goToResources(){
     console.log("Import started");
-    let filename = "test.csv"
-    let parts = filename.split('.');
-    return parts[parts.length - 1];
+    // let filename = "test.csv"
+    // let parts = filename.split('.');
+    // return parts[parts.length - 1];
   }
     
     onChangeFile(fileIs :File[]){
