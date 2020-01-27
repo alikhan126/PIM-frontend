@@ -171,6 +171,10 @@ fileSelected(e){
     let parts = filename.split('.');
     return parts[parts.length - 1];
   }
+
+  goToResources(){
+    console.log("Import started");
+  }
     
     onChangeFile(fileIs :File[]){
       let extension = this.getExtension(fileIs[0].name)

@@ -45,7 +45,7 @@
                 <!-- <button (click)="goToResources()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Cancel
                 </button> -->
-                <button (click)="save()" type="button" class="btn btn-raised btn-raised btn-primary">
+                <button (click)="goToResources()()" type="button" class="btn btn-raised btn-raised btn-primary">
                   <i class="fa fa-check-square-o"></i> Next
                 </button>
               </div>
@@ -134,7 +134,7 @@
             </table>
 
 
-            <div class="form-actions">
+            <div *ngIf="this.showAdapters" class="form-actions">
                 <!-- <button (click)="goToResources()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Cancel
                 </button> -->
