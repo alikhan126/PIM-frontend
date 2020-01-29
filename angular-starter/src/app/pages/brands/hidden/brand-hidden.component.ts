@@ -71,7 +71,7 @@ export class BrandsHiddenComponent {
             this.brandService.getUserRole(user.user_id).subscribe(data => {
                 if(data.role['brands'].includes(this.perm) || data.role['brands'].includes(this.permission) ){
                     this.brandService.getFieldPermissions(user.user_id).subscribe(data => {
-                        if(data.edit.includes(cellvalue)){
+                        if(data[0].edit.includes(cellvalue)){
                             this.editing[rowIndex + '-' + cell] = false;
                             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                                 this.rows[rowIndex] = data;
@@ -113,7 +113,7 @@ export class BrandsHiddenComponent {
             this.brandService.getUserRole(user.user_id).subscribe(data => {
                 if(data.role['brands'].includes(this.perm) || data.role['brands'].includes(this.permission)){
                     this.brandService.getFieldPermissions(user.user_id).subscribe(data => {
-                        if(data.edit.includes(cellvalue)){
+                        if(data[0].edit.includes(cellvalue)){
                             this.editing[rowIndex + '-' + cell] = false;
                             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                                 this.rows[rowIndex] = data;

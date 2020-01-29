@@ -66,7 +66,7 @@ export class ManufacturerHiddenComponent {
             this.manufacturerService.getUserRole(user.user_id).subscribe(data => {
                 if(data.role['manufacturer'].includes(this.perm) || data.role['manufacturer'].includes(this.permission)){
                     this.manufacturerService.getFieldPermissions(user.user_id).subscribe(data => {
-                        if(data.edit.includes(cellvalue)){
+                        if(data[0].edit.includes(cellvalue)){
                             this.editing[rowIndex + '-' + cell] = false;
                             this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {
                                 this.rows[rowIndex] = data;

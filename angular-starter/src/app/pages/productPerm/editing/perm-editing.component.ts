@@ -18,7 +18,7 @@ export class PermEditComponent {
     products :any[];
     totalRecords:number;
     temp = [];
-    users =[];
+    roles =[];
     permission :string;
     closeResult: string;
 
@@ -27,7 +27,7 @@ export class PermEditComponent {
     constructor(private modalService: NgbModal, private permissionService: PermissionService, private router: Router) {
     }
     ngOnInit() {
-        this.getUsers();
+        this.getRoles();
         this.permissionService.getAll().subscribe(data => {
             this.rows = data;
             this.temp = data;
@@ -228,9 +228,9 @@ export class PermEditComponent {
         this.rows = temp;
     }
 
-    getUsers(){
-            this.permissionService.getAllUsers().subscribe(data => {
-            this.users = data;
+    getRoles(){
+            this.permissionService.getAllRoles().subscribe(data => {
+            this.roles = data;
         });
     }
 

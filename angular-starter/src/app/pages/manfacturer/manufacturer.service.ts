@@ -22,7 +22,7 @@ export class  ManufacturerService  {
 }
 
 getFieldPermissions(id){
-  return this.http.get<any>(`${AppConfig.URL_ManufacturerPermissionCheck + "?user="}${id}`).pipe(
+  return this.http.get<any>(`${AppConfig.URL_ManufacturerPermissionCheck + "?role="}${id}`).pipe(
     map(x => x ),
     tap(_ => console.log(`get record=${id}`)),
     catchError(this.handleError<any>('getRecord'))

@@ -30,6 +30,17 @@ add (record: any): Observable<any> {
   );
 }
 
+getAllRoles() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_Role}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched record')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
 getAll() 
 {
 

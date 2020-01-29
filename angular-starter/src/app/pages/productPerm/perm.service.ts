@@ -82,10 +82,10 @@ getAllWebsites()
   );
 }
 
-getAllUsers() 
+getAllRoles() 
 {
 
-  return this.http.get<any []>(`${AppConfig.URL_Users}`)
+  return this.http.get<any []>(`${AppConfig.URL_Role}`)
   .pipe(
     map(x => x ),
     tap(_ => console.log('fetched record')),

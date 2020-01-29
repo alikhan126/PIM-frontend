@@ -18,7 +18,7 @@ export class AddWebsitePermComponent implements OnInit{
   categories:any=[];
   productFamilies:any=[];
   taxes:any=[];
-  users:any=[];
+  roles:any=[];
 
   isNew :boolean = false;
 
@@ -26,7 +26,7 @@ export class AddWebsitePermComponent implements OnInit{
   }
   ngOnInit () {
      this.getRole();
-     this.getUsers();
+     this.getRoles();
   }
 
   getRole(){
@@ -93,9 +93,9 @@ getImages(){
 });
 }
 
-getUsers(){
-  this.permissionService.getAllUsers().subscribe(data => {
-    this.users = data;
+getRoles(){
+  this.permissionService.getAllRoles().subscribe(data => {
+    this.roles = data;
 });
 }
 

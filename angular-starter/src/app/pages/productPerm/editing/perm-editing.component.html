@@ -15,13 +15,13 @@
                 />
                 <ngx-datatable #mydatatable class="bootstrap" [headerHeight]="50" [limit]="50" [columnMode]="'force'" [footerHeight]="50"
                 [rowHeight]="'auto'" [rows]="rows" [scrollbarH]="true">
-                <ngx-datatable-column [width]="300" name="User">
+                <ngx-datatable-column [width]="300" name="Role">
                   <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
                       <span>
-                          {{value.email}}
+                          {{value.name}}
                       </span>
                   </ng-template>
-              </ngx-datatable-column>
+                </ngx-datatable-column>
 
 
               <ngx-datatable-column [width]="300" name="Edit">

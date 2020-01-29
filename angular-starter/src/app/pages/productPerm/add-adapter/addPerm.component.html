@@ -19,9 +19,9 @@
                 <div *ngIf="pObj"  class="row">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label >User</label>
-                      <ng-select [items]="users" bindLabel="email" bindValue="id"  placeholder="Select User"
-                      name="user" [(ngModel)]="pObj.user">
+                      <label >Role</label>
+                      <ng-select [items]="roles" bindLabel="name" bindValue="id"  placeholder="Select Role"
+                      name="role" [(ngModel)]="pObj.role">
                     </ng-select>
                     </div>
                   </div>

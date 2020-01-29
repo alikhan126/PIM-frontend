@@ -72,7 +72,7 @@ export class WebsitesEditComponent {
             let cellvalue = this.titleCaseWord(cell);
             if(this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
                 this.websiteService.getFieldPermissions(user.user_id).subscribe(data => {
-                    if(data.edit.includes(cellvalue)){
+                    if(data[0].edit.includes(cellvalue)){
                         this.editing[rowIndex + '-' + cell] = false;
                         this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {
                             this.rows[rowIndex] = data;

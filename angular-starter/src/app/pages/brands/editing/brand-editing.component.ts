@@ -70,8 +70,8 @@ export class BrandsEditComponent {
             let cellvalue = this.titleCaseWord(cell);
             this.brandService.getUserRole(user.user_id).subscribe(data => {
                 if(data.role['brands'].includes(this.perm) || data.role['brands'].includes(this.permission) ){
-                    this.brandService.getFieldPermissions(user.user_id).subscribe(data => {
-                        if(data.edit.includes(cellvalue)){
+                    this.brandService.getFieldPermissions(user.role).subscribe(data => {
+                        if(data[0].edit.includes(cellvalue)){
                             this.editing[rowIndex + '-' + cell] = false;
                             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                                 this.rows[rowIndex] = data;
@@ -111,10 +111,10 @@ export class BrandsEditComponent {
             this.permission = "Update";
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
-            this.brandService.getUserRole(user.user_id).subscribe(data => {
+            this.brandService.getUserRole(user.role).subscribe(data => {
                 if(data.role['brands'].includes(this.perm) || data.role['brands'].includes(this.permission)){
                     this.brandService.getFieldPermissions(user.user_id).subscribe(data => {
-                        if(data.edit.includes(cellvalue)){
+                        if(data[0].edit.includes(cellvalue)){
                             this.editing[rowIndex + '-' + cell] = false;
                             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
                                 this.rows[rowIndex] = data;
