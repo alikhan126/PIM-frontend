@@ -60,12 +60,8 @@ export const ADMIN_ROUTES: RouteInfo[] = [
     { 
         path: '', title: 'Roles', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
         submenu: [
-            { path: '', title: 'Roles', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
-            submenu: [
-                { path: '/role', title: 'Roles', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-                { path: '/assignroles', title: 'Assign Roles', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },  
-            ]},
-            { path: '', title: 'Permission', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+            { path: '/role', title: 'Meta Permissions', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '', title: 'Field Permissions', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
 
                 { path: '/fields/product', title: 'Product Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
                 { path: '/fields/brand', title: 'Brand Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
@@ -76,6 +72,8 @@ export const ADMIN_ROUTES: RouteInfo[] = [
                 { path: '/fields/adapter', title: 'Adapter Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
                 { path: '/fields/website', title: 'Website Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             ] },
+            { path: '/assignroles', title: 'Assign Roles', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },  
+
         ]
     }
 ];
