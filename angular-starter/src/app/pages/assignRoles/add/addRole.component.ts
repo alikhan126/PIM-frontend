@@ -108,7 +108,7 @@ getUsers(){
 
 getRoles(){
   this.roleService.getAllRoles().subscribe(data => {
-    this.roles = data['results'];
+    this.roles = data;
 });
 }
 
