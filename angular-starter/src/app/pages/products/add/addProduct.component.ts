@@ -118,6 +118,11 @@ export class AddProductComponent implements OnInit{
       // this.location.back();
   }
 
+  VISIBILITY_CHOICES = [
+    {name : 'Simple'},
+    {name : 'Catalog'},
+    {name : 'NotVisibleIndividually'},
+  ]
 
 
   goToProducts(){

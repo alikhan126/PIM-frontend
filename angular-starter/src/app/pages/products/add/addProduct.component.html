@@ -203,11 +203,10 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label >Visibility<span style="color:Red;">*</span></label>
-                <select class="form-control" name="visibility" [(ngModel)]="pObj.visibility" required>
-                  <option class="form-control" value="Catalog">Catalog</option>
-                  <option class="form-control" value="Search">Search</option>
-                  <option class="form-control" value="NotVisibleIndividually">Not Visible Individually</option>
-                </select>
+                <ng-select [items]="VISIBILITY_CHOICES"  bindLabel="name" bindValue="name"  placeholder="Select Visibility"
+                    name="visibility" [(ngModel)]="pObj.visibility" multiple="true"
+                  >
+                </ng-select>
               </div>
             </div>
            

@@ -2,7 +2,7 @@ import { RouteInfo } from './sidebar.metadata';
 
 export const ADMIN_ROUTES: RouteInfo[] = [
     {
-        path: '', title: 'Views', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
+        path: '', title: 'View', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
         submenu: [
             { path: '/products/view', title: 'Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/brands/view', title: 'Brands', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
@@ -14,7 +14,7 @@ export const ADMIN_ROUTES: RouteInfo[] = [
         ]
     },
     {
-        path: '', title: 'Edits', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
+        path: '', title: 'Edit', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
         submenu: [
             { path: '', title: 'Products', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
             submenu: [
@@ -80,7 +80,7 @@ export const ADMIN_ROUTES: RouteInfo[] = [
 
 export const USER_ROUTES: RouteInfo[] = [
     {
-        path: '', title: 'Views', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
+        path: '', title: 'View', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
         submenu: [
             { path: '/products/view', title: 'Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/brands/view', title: 'Brands', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
@@ -92,7 +92,7 @@ export const USER_ROUTES: RouteInfo[] = [
         ]
     },
     {
-        path: '', title: 'Edits', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
+        path: '', title: 'Edit', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
         submenu: [
             { path: '', title: 'Products', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
             submenu: [
