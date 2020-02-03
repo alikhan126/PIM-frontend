@@ -150,57 +150,63 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   deleteModal(id, modules, value, action){
-    if (modules == "Product"){
-      this.productService.get(id).subscribe(data => {
-        this.rows = data;
-        this.rows['hidden'] = value
-        this.productService.delete(this.rows['id']).subscribe(data => {
-            this.rows = data;
+    if(action == "Create"){
+      if (modules == "Product"){
+        this.productService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.productService.delete(this.rows['id']).subscribe(data => {
+              this.rows = data;
+          });
         });
-      });
-    } else if(modules == "Brand") {
-      this.brandService.get(id).subscribe(data => {
-        this.rows = data;
-        this.rows['hidden'] = value
-        this.brandService.delete(this.rows['id']).subscribe(data => {
-            this.rows = data;
+      } else if(modules == "Brand") {
+        this.brandService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.brandService.delete(this.rows['id']).subscribe(data => {
+              this.rows = data;
+          });
         });
-      });
-    } else if(modules == "Catalog") {
-       // Implement Catalogs
-    } else if(modules == "Category") {
-      this.categoryService.get(id).subscribe(data => {
-        this.rows = data;
-        this.rows['hidden'] = value
-        this.categoryService.delete(this.rows['id']).subscribe(data => {
-            this.rows = data;
+      } else if(modules == "Catalog") {
+         // Implement Catalogs
+      } else if(modules == "Category") {
+        this.categoryService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.categoryService.delete(this.rows['id']).subscribe(data => {
+              this.rows = data;
+          });
         });
-      });
-    } else if(modules == "Tag") {
-      this.tagService.get(id).subscribe(data => {
-        this.rows = data;
-        this.rows['hidden'] = value
-        this.tagService.delete(this.rows['id']).subscribe(data => {
-            this.rows = data;
+      } else if(modules == "Tag") {
+        this.tagService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.tagService.delete(this.rows['id']).subscribe(data => {
+              this.rows = data;
+          });
         });
-      });
-    } else if(modules == "Website") {
-      this.websiteService.get(id).subscribe(data => {
-        this.rows = data;
-        this.rows['hidden'] = value
-        this.websiteService.delete(this.rows['id']).subscribe(data => {
-            this.rows = data;
+      } else if(modules == "Website") {
+        this.websiteService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.websiteService.delete(this.rows['id']).subscribe(data => {
+              this.rows = data;
+          });
         });
-      });
-    } else if(modules == "Manufacturer") {
-      this.manufacturerService.get(id).subscribe(data => {
-        this.rows = data;
-        this.rows['hidden'] = value
-        this.manufacturerService.delete(this.rows['id']).subscribe(data => {
-            this.rows = data;
+      } else if(modules == "Manufacturer") {
+        this.manufacturerService.get(id).subscribe(data => {
+          this.rows = data;
+          this.rows['hidden'] = value
+          this.manufacturerService.delete(this.rows['id']).subscribe(data => {
+              this.rows = data;
+          });
         });
-      });
+      }
+    } else if(action=="Update"){
+      console.log("Updated")
+
     }
+
   }
 
 
