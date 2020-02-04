@@ -141,7 +141,7 @@ export class CategoryHiddenComponent {
 
     getFieldsPermissions(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
-        this.categoryService.getFieldPermissions(user.user_id).subscribe(data => {
+        this.categoryService.getFieldPermissions(user.role).subscribe(data => {
             this.permissions = data[0].edit;
         })
     }

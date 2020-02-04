@@ -66,7 +66,7 @@ export class ManufacturerEditComponent {
             let cellvalue = this.titleCaseWord(cell);
             this.manufacturerService.getUserRole(user.user_id).subscribe(data => {
                 if(data.role['manufacturer'].includes(this.perm) || data.role['manufacturer'].includes(this.permission)){
-                    this.manufacturerService.getFieldPermissions(user.user_id).subscribe(data => {
+                    this.manufacturerService.getFieldPermissions(user.role).subscribe(data => {
                         if(data[0].edit.includes(cellvalue)){
                             this.editing[rowIndex + '-' + cell] = false;
                             this.manufacturerService.get(this.rows[rowIndex]['id']).subscribe(data => {

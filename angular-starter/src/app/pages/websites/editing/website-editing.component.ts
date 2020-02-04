@@ -71,7 +71,7 @@ export class WebsitesEditComponent {
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
             if(this.roles['websites'].includes(this.perm) || this.roles['websites'].includes(this.permission)){
-                this.websiteService.getFieldPermissions(user.user_id).subscribe(data => {
+                this.websiteService.getFieldPermissions(user.role).subscribe(data => {
                     if(data[0].edit.includes(cellvalue)){
                         this.editing[rowIndex + '-' + cell] = false;
                         this.websiteService.get(this.rows[rowIndex]['id']).subscribe(data => {

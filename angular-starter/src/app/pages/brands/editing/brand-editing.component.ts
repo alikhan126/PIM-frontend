@@ -113,7 +113,7 @@ export class BrandsEditComponent {
             let cellvalue = this.titleCaseWord(cell);
             this.brandService.getUserRole(user.role).subscribe(data => {
                 if(data.role['brands'].includes(this.perm) || data.role['brands'].includes(this.permission)){
-                    this.brandService.getFieldPermissions(user.user_id).subscribe(data => {
+                    this.brandService.getFieldPermissions(user.role).subscribe(data => {
                         if(data[0].edit.includes(cellvalue)){
                             this.editing[rowIndex + '-' + cell] = false;
                             this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {

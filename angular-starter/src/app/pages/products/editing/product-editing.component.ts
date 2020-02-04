@@ -224,7 +224,7 @@ saveAsCatalog(){
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
             if(this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission) ){
-                this.productService.getFieldPermissions(user.user_id).subscribe(data => {
+                this.productService.getFieldPermissions(user.role).subscribe(data => {
                     if(data[0].edit.includes(cellvalue)){
                         this.editing[rowIndex + '-' + cell] = false;
                         this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {
@@ -299,7 +299,7 @@ saveAsCatalog(){
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
             if(this.roles['products'].includes(this.perm) || this.roles['products'].includes(this.permission)){
-                this.productService.getFieldPermissions(user.user_id).subscribe(data => {
+                this.productService.getFieldPermissions(user.role).subscribe(data => {
                     if(data[0].edit.includes(cellvalue)){
                         this.editing[rowIndex + '-' + cell] = false;
                         this.productService.get(this.rows[rowIndex]['id']).subscribe(data => {

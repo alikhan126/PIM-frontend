@@ -64,7 +64,7 @@ export class TagHiddenComponent {
             this.perm = "All";
             let cellvalue = this.titleCaseWord(cell);
             if(this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission) ){
-                this.tagService.getFieldPermissions(user.user_id).subscribe(data => {
+                this.tagService.getFieldPermissions(user.role).subscribe(data => {
                     if(data[0].edit.includes(cellvalue)){
                         this.editing[rowIndex + '-' + cell] = false;
                         this.tagService.get(this.rows[rowIndex]['id']).subscribe(data => {
