@@ -139,15 +139,6 @@
                         />
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column [width]="300" name="EAN">
-                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-ean'] = true" *ngIf="!editing[rowIndex + '-ean']">
-                            {{value}}
-                        </span>
-                        <input (blur)="updateValue($event, 'ean', rowIndex)" *ngIf="editing[rowIndex+ '-ean']" type="text" [value]="value"
-                        />
-                    </ng-template>
-                </ngx-datatable-column>
                 <ngx-datatable-column [width]="300" name="Amount">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
                         <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-amount'] = true" *ngIf="!editing[rowIndex + '-amount']">
@@ -182,12 +173,12 @@
                         </span>
                         
                         <select  *ngIf="editing[rowIndex + '-type']" class="form-control" (blur)="updateValue($event, 'type', rowIndex)" [value]="row['type']">
-                            <option value="Simple">Simple</option>
-                            <option value="Grouped">Grouped</option>
-                            <option value="Configurable">Configurable</option>
-                            <option value="Virtual">Virtual</option>
-                            <option value="Bundle">Bundle</option>
-                            <option value="Downloadable">Downloadable</option>
+                            <option value="simple">Simple</option>
+                            <option value="grouped">Grouped</option>
+                            <option value="configurable">Configurable</option>
+                            <option value="virtual">Virtual</option>
+                            <option value="bundle">Bundle</option>
+                            <option value="downloadable">Downloadable</option>
                         </select>
                     </ng-template>
                 </ngx-datatable-column>
@@ -210,8 +201,8 @@
                             {{value}}
                         </span>
                         <select class="form-control" *ngIf="editing[rowIndex + '-taxClassName']" (change)="updateValue($event, 'taxClassName', rowIndex)" [value]="value">
-                            <option class="form-control" value="FoodProducts">Food Products</option>
-                            <option class="form-control" value="NonFoodProducts">Non Food Products</option>
+                            <option class="form-control" value="Food Products">Food Products</option>
+                            <option class="form-control" value="Non Food Products">Non Food Products</option>
                         </select>
                     </ng-template>
                 </ngx-datatable-column>s
@@ -241,11 +232,17 @@
                         <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-visibility'] = true" *ngIf="!editing[rowIndex + '-visibility']">
                             {{value}}
                         </span>
-                        <select *ngIf="editing[rowIndex+ '-visibility']" class="form-control" (blur)="updateValue($event, 'visibility', rowIndex)" [value]="value" >
-                            <option class="form-control" value="Catalog">Catalog</option>
-                            <option class="form-control" value="Search">Search</option>
-                            <option class="form-control" value="NotVisibleIndividually">Not Visible Individually</option>
-                          </select>
+                        <!-- <input (blur)="updateValue($event, 'visibility', rowIndex)" *ngIf="editing[rowIndex+ '-visibility']" type="text" [value]="value"
+                        
+                        
+                        /> -->
+                        <ng-select appendTo="body" (blur)="updateRelationshipValue(row['visibility']['id'], 'visibility', rowIndex)" *ngIf="editing[rowIndex+ '-visibility']" [items]="VISIBILITY_CHOICES"  bindLabel="name"   placeholder="Select visibility"
+                         
+                         name="visibility" [(ngModel)]="row['visibility']" [multiple]="true"
+                        >
+
+                      </ng-select>
+                         
                     </ng-template>
                 </ngx-datatable-column>
 
@@ -851,8 +848,8 @@
                         </span>
                         <select  *ngIf="editing[rowIndex + '-stockType']" class="form-control" (blur)="updateValue($event, 'stockType', rowIndex)" [value]="row['stockType']">
                             <option value="Stocked">Stocked</option>
-                            <option value="SpecialOrder">Special Order</option>
-                            <option value="FromPartners">From Partners</option>
+                            <option value="Special Order">Special Order</option>
+                            <option value="From Partners">From Partners</option>
                         </select>
                     </ng-template>
                 </ngx-datatable-column>

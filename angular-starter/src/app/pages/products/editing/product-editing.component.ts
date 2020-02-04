@@ -103,6 +103,12 @@ export class ProductsEditComponent implements OnInit{
         this.FSD = "FSD";
     }
 
+    VISIBILITY_CHOICES = [
+        {name : 'Search'},
+        {name : 'Catalog'},
+        {name : 'Not Visible Individually'},
+      ]
+
     
 
   resetCatalog(){

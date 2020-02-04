@@ -49,20 +49,20 @@ export class AddProductComponent implements OnInit{
      this.getCategories();
      // this.getProductFamilies();
      //  this.getTaxes();
-     this.Simple = "Simple";
-     this.Grouped = "Grouped";
-     this.Configurable = "Configurable";
-     this.Virtual = "Virtual";
-     this.Bundle = "Bundle";
-     this.Downloadable = "Downloadable";
+     this.Simple = "simple";
+     this.Grouped = "grouped";
+     this.Configurable = "configurable";
+     this.Virtual = "virtual";
+     this.Bundle = "bundle";
+     this.Downloadable = "downloadable";
      this.Catalog = "Catalog";
      this.Search = "Search";
-     this.NotVisibleIndividually = "NotVisibleIndividually";
-     this.FoodProducts = "FoodProducts";
-     this.NonFoodProducts = "NonFoodProducts";
+     this.NotVisibleIndividually = "Not Visible Individually";
+     this.FoodProducts = "Food Products";
+     this.NonFoodProducts = "Non Food Products";
      this.Stocked = "Stocked";
-     this.SpecialOrder = "SpecialOrder";
-     this.FromPartners = "FromPartners";
+     this.SpecialOrder = "Special Order";
+     this.FromPartners = "From Partners";
      this.FSD = "FSD";
   }
 
@@ -119,7 +119,7 @@ export class AddProductComponent implements OnInit{
   }
 
   VISIBILITY_CHOICES = [
-    {name : 'Simple'},
+    {name : 'Search'},
     {name : 'Catalog'},
     {name : 'NotVisibleIndividually'},
   ]
