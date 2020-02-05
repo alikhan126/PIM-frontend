@@ -173,12 +173,12 @@
                         </span>
                         
                         <select  *ngIf="editing[rowIndex + '-type']" class="form-control" (blur)="updateValue($event, 'type', rowIndex)" [value]="row['type']">
-                            <option value="Simple">Simple</option>
-                            <option value="Grouped">Grouped</option>
-                            <option value="Configurable">Configurable</option>
-                            <option value="Virtual">Virtual</option>
-                            <option value="Bundle">Bundle</option>
-                            <option value="Downloadable">Downloadable</option>
+                            <option value="simple">Simple</option>
+                            <option value="grouped">Grouped</option>
+                            <option value="configurable">Configurable</option>
+                            <option value="virtual">Virtual</option>
+                            <option value="bundle">Bundle</option>
+                            <option value="downloadable">Downloadable</option>
                         </select>
                     </ng-template>
                 </ngx-datatable-column>
@@ -848,8 +848,8 @@
                         </span>
                         <select  *ngIf="editing[rowIndex + '-stockType']" class="form-control" (blur)="updateValue($event, 'stockType', rowIndex)" [value]="row['stockType']">
                             <option value="Stocked">Stocked</option>
-                            <option value="SpecialOrder">Special Order</option>
-                            <option value="FromPartners">From Partners</option>
+                            <option value="Special Order">Special Order</option>
+                            <option value="From Partners">From Partners</option>
                         </select>
                     </ng-template>
                 </ngx-datatable-column>
@@ -1026,7 +1026,7 @@
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column [width]="300" name="Title 2">
+                <ngx-datatable-column [width]="300" name="Title2">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
                         <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-title2'] = true" *ngIf="!editing[rowIndex + '-title2']">
                             {{value}}
@@ -1036,7 +1036,7 @@
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column [width]="300" name="Title 3">
+                <ngx-datatable-column [width]="300" name="Title3">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
                         <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-title3'] = true" *ngIf="!editing[rowIndex + '-title3']">
                             {{value}}
@@ -1046,22 +1046,22 @@
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column [width]="300" name="Deferred Stock Update">
+                <ngx-datatable-column [width]="300" name="Shipping Type">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
                         <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-shippingType'] = true" *ngIf="!editing[rowIndex + '-shippingType']">
                             {{value}}
                         </span>
                         <select  *ngIf="editing[rowIndex + '-shippingType']" class="form-control" (blur)="updateValue($event, 'shippingType', rowIndex)" [value]="row['shippingType']">
-                            <option value="ShipsFree">Ships Free</option>
-                            <option value="NevershipsFree">Never ships Free</option>
-                            <option value="IncludedinTreshold">Included in Treshold</option>
+                            <option value="Ships Free">Ships Free</option>
+                            <option value="Never ships Free">Never ships Free</option>
+                            <option value="Included in Treshold">Included in Treshold</option>
                         </select>
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column [width]="300" name="RequiresShippingSupply">
+                <ngx-datatable-column [width]="300" name="Requires Shipping Supply">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-RequiresShippingSupply'] = true" *ngIf="!editing[rowIndex + '-RequiresShippingSupply']">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-adjustedShippingWeight'] = true" *ngIf="!editing[rowIndex + '-RequiresShippingSupply']">
                             {{value}}
                         </span>
                         <input (blur)="updateValue($event, 'RequiresShippingSupply', rowIndex)" *ngIf="editing[rowIndex+ '-RequiresShippingSupply']" type="text" [value]="value"
