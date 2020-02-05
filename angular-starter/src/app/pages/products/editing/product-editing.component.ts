@@ -63,6 +63,9 @@ export class ProductsEditComponent implements OnInit{
     closeResult: string;
     permission: string;
     perm: string;
+    ShipsFree:any=[];
+    NevershipsFree:any=[];
+    IncludedinTreshold:any=[];
 
     queryParams:any={};
     
@@ -86,21 +89,24 @@ export class ProductsEditComponent implements OnInit{
         this.getBrands();
         this.getCategories();
         this.getFields();
-        this.Simple = "Simple";
-        this.Grouped = "Grouped";
-        this.Configurable = "Configurable";
-        this.Virtual = "Virtual";
-        this.Bundle = "Bundle";
-        this.Downloadable = "Downloadable";
+        this.Simple = "simple";
+        this.Grouped = "grouped";
+        this.Configurable = "configurable";
+        this.Virtual = "virtual";
+        this.Bundle = "bundle";
+        this.Downloadable = "downloadable";
         this.Catalog = "Catalog";
         this.Search = "Search";
-        this.NotVisibleIndividually = "NotVisibleIndividually";
-        this.FoodProducts = "FoodProducts";
-        this.NonFoodProducts = "NonFoodProducts";
+        this.NotVisibleIndividually = "Not Visible Individually";
+        this.FoodProducts = "Food Products";
+        this.NonFoodProducts = "Non Food Products";
         this.Stocked = "Stocked";
-        this.SpecialOrder = "SpecialOrder";
-        this.FromPartners = "FromPartners";
+        this.SpecialOrder = "Special Order";
+        this.FromPartners = "From Partners";
         this.FSD = "FSD";
+        this.ShipsFree = "Ships Free";
+        this.NevershipsFree = "Never ships Free";
+        this.IncludedinTreshold = "Included in Treshold";
     }
 
     VISIBILITY_CHOICES = [

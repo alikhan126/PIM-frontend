@@ -33,6 +33,9 @@ export class AddProductComponent implements OnInit{
   Stocked:any=[];
   SpecialOrder:any=[];
   FromPartners:any=[];
+  ShipsFree:any=[];
+  NevershipsFree:any=[];
+  IncludedinTreshold:any=[];
   FSD:any=[];
 
   isNew :boolean = false;
@@ -64,6 +67,9 @@ export class AddProductComponent implements OnInit{
      this.SpecialOrder = "Special Order";
      this.FromPartners = "From Partners";
      this.FSD = "FSD";
+     this.ShipsFree = "Ships Free";
+     this.NevershipsFree = "Never ships Free";
+     this.IncludedinTreshold = "Included in Treshold";
   }
 
 
@@ -122,6 +128,12 @@ export class AddProductComponent implements OnInit{
     {name : 'Search'},
     {name : 'Catalog'},
     {name : 'NotVisibleIndividually'},
+  ]
+
+  SHIPPING_CHOICES = [
+    {name : 'Ships Free'},
+    {name : 'Never ships Free'},
+    {name : 'Included in Treshold'},
   ]
 
 
