@@ -15,7 +15,7 @@
                 />
                 <ngx-datatable #mydatatable class="bootstrap" [headerHeight]="50" [limit]="50" [columnMode]="'force'" [footerHeight]="50"
                 [rowHeight]="'auto'" [rows]="rows" [scrollbarH]="true">
-                <ngx-datatable-column [width]="300" name="Name">
+                <ngx-datatable-column [width]="300" name="Role">
                   <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                       <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-name'] = true" *ngIf="!editing[rowIndex + '-name']">
                           {{value}}
