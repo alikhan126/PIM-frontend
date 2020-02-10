@@ -8,6 +8,7 @@ import { VerifiedEmailPageComponent } from './verified-email/verified-email-page
 import { ForgotPasswordPageComponent } from './forgot-password/forgot-password-page.component';
 import { ForgotPasswordConfirmPageComponent } from './forgot-password-confirm/forgot-password-page.component';
 import { ChangePasswordPageComponent } from './change-password/change-password-page.component';
+import { ThankyouEmailSendPageComponent } from './verified-email-send/verified-email-send-page.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,13 @@ const routes: Routes = [
         component: VerifiedEmailPageComponent,
         data: {
           title: 'Email Verified Page'
+        }
+      },
+      {
+        path: 'thankyouemail',
+        component: ThankyouEmailSendPageComponent,
+        data: {
+          title: 'Email Verified Send Page'
         }
       },
       {

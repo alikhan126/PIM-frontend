@@ -9,6 +9,7 @@ import { RegisterPageComponent } from './register/register-page.component';
 import { ForgotPasswordPageComponent } from './forgot-password/forgot-password-page.component';
 import { ForgotPasswordConfirmPageComponent } from './forgot-password-confirm/forgot-password-page.component';
 import { VerifiedEmailPageComponent } from './verified-email/verified-email-page.component';
+import { ThankyouEmailSendPageComponent } from './verified-email-send/verified-email-send-page.component';
 import { ChangePasswordPageComponent } from './change-password/change-password-page.component';
 
 
@@ -26,7 +27,8 @@ import { ChangePasswordPageComponent } from './change-password/change-password-p
         VerifiedEmailPageComponent,
         ForgotPasswordPageComponent,
         ForgotPasswordConfirmPageComponent,
-        ChangePasswordPageComponent
+        ChangePasswordPageComponent,
+        ThankyouEmailSendPageComponent
     ]
 })
 export class ContentPagesModule { }

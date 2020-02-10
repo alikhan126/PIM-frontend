@@ -54,14 +54,8 @@ export class RegisterPageComponent {
                 console.log("Error: Email already exists!");
             }
             else {
-                console.log("Signed up successfully!")  
-                this.authService.signinUser(this.regularForm.value.email,this.regularForm.value.password).subscribe(resp=>{
-                    if(!resp){
-                        console.log("Invalid Credentials!");
-                    } else {
-                        console.log("Logged In Successfully!");
-                    }
-                });
+                this.toastService.typeSuccessCustom("Success","Signed up successfully!")  
+                this.router.navigate(['/auth/thankyouemail/']);
                 this.regularForm.reset();              
             }
         })
