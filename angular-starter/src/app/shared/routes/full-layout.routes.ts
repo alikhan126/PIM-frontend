@@ -53,5 +53,9 @@ export const Full_ROUTES: Routes = [
   {
     path: 'tags',
     loadChildren: () => import('../../pages/tags/tags.module').then(m => m.TagPagesModule)
+  },
+  {
+    path: 'images',
+    loadChildren: () => import('../../pages/images/image.module').then(m => m.ImagePagesModule)
   }
 ];

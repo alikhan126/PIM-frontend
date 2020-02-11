@@ -55,6 +55,7 @@ export const ADMIN_ROUTES: RouteInfo[] = [
 
             ] },
             { path: '/catalogs', title: 'Catalogs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/images', title: 'Images', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     },
     { 
@@ -132,6 +133,7 @@ export const USER_ROUTES: RouteInfo[] = [
 
             ] },
             { path: '/catalogs', title: 'Catalogs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/images', title: 'Images', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     }
 ];

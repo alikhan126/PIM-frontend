@@ -1,0 +1,127 @@
+<section id="shopping-cart">
+    <div class="row text-left">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title ">Images</h4>
+            <p class="content-sub-header">Double click on any content to edit that section.</p>
+
+            <a  (click)="addTag()"   class="btn btn-floating halfway-fab btn-large bg-warning topClass"><i class="ft-plus"></i></a>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+                <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Type to filter the name column...' (keyup)='updateFilter($event)'
+                />
+                <ngx-datatable #mydatatable class="bootstrap" [headerHeight]="50" [limit]="50" [columnMode]="'force'" [footerHeight]="50"
+                [rowHeight]="'auto'" [rows]="rows" [scrollbarH]="true">
+                <ngx-datatable-column [width]="300" name="Action">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <ng-template #content let-c="close" let-d="dismiss">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Are you sure you want to delete this?</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <!-- <div class="modal-body">
+                            <button type="button" class="btn btn-secondary btn-raised" (click)="deletetag($event, 'name', rowIndex); c('Close click');">Sure</button>
+                          </div> -->
+                          <div class="foot">
+                            <button style="float: left;" type="button" class="btn btn-secondary btn-raised left" (click)="deletetag($event, 'name', rowIndex); c('Close click');">Sure</button>
+                            <button  style="float: right;" type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                          </div>
+                        </ng-template>
+                          <a class="danger p-0" (click)="open(content)" data-original-title="" title="Click to delete">
+                          <i class="ft-x font-medium-3 mr-2"></i>
+                        </a>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [width]="300" name="Base Image">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Image" (dblclick)="editing[rowIndex + '-baseImage'] = true" *ngIf="!editing[rowIndex + '-baseImage']">
+                            <!-- {{value}} -->
+                        <img src="{{value}}" style="height: 75px;">
+                        </span>                    
+                      </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [width]="300" name="Base Image Label">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-baseImageLabel'] = true" *ngIf="!editing[rowIndex + '-baseImageLabel']">
+                            {{value}}
+                        </span>
+                        <input autofocus (blur)="updateValue($event, 'baseImageLabel', rowIndex)" *ngIf="editing[rowIndex+ '-baseImageLabel']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [width]="300" name="Small Image">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Image" (dblclick)="editing[rowIndex + '-smallImage'] = true" *ngIf="!editing[rowIndex + '-smallImage']">
+                            <!-- {{value}} -->
+                        <img src="{{value}}" style="height: 75px;">
+                        </span>                    
+                      </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [width]="300" name="Small Image Label">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-smallImageLabel'] = true" *ngIf="!editing[rowIndex + '-smallImageLabel']">
+                            {{value}}
+                        </span>
+                        <input autofocus (blur)="updateValue($event, 'smallImageLabel', rowIndex)" *ngIf="editing[rowIndex+ '-smallImageLabel']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [width]="300" name="Thumbnail Image">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Image" (dblclick)="editing[rowIndex + '-thumbnailImage'] = true" *ngIf="!editing[rowIndex + '-thumbnailImage']">
+                            <!-- {{value}} -->
+                        <img src="{{value}}" style="height: 75px;">
+                        </span>                    
+                      </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [width]="300" name="Thumbnail Image Label">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-thumbnailImageLabel'] = true" *ngIf="!editing[rowIndex + '-thumbnailImageLabel']">
+                            {{value}}
+                        </span>
+                        <input autofocus (blur)="updateValue($event, 'thumbnailImageLabel', rowIndex)" *ngIf="editing[rowIndex+ '-thumbnailImageLabel']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [width]="300" name="Swatch Image">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Image" (dblclick)="editing[rowIndex + '-swatchImage'] = true" *ngIf="!editing[rowIndex + '-swatchImage']">
+                            <!-- {{value}} -->
+                        <img src="{{value}}" style="height: 75px;">
+                        </span>                   
+                        </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [width]="300" name="Swatch Image Label">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-swatchImageLabel'] = true" *ngIf="!editing[rowIndex + '-swatchImageLabel']">
+                            {{value}}
+                        </span>
+                        <input autofocus (blur)="updateValue($event, 'swatchImageLabel', rowIndex)" *ngIf="editing[rowIndex+ '-swatchImageLabel']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [width]="300" name="Alt Tag">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-altTag'] = true" *ngIf="!editing[rowIndex + '-altTag']">
+                            {{value}}
+                        </span>
+                        <input autofocus (blur)="updateValue($event, 'altTag', rowIndex)" *ngIf="editing[rowIndex+ '-altTag']" type="text" [value]="value"
+                        />
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
