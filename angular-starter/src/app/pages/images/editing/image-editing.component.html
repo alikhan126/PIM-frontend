@@ -38,7 +38,7 @@
                 </ngx-datatable-column>
                 <ngx-datatable-column [width]="300" name="Base Image">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Image" (dblclick)="editing[rowIndex + '-baseImage'] = true" *ngIf="!editing[rowIndex + '-baseImage']">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Image">
                             <!-- {{value}} -->
                         <img src="{{value}}" style="height: 75px;">
                         </span>                    
@@ -56,7 +56,7 @@
 
                 <ngx-datatable-column [width]="300" name="Small Image">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Image" (dblclick)="editing[rowIndex + '-smallImage'] = true" *ngIf="!editing[rowIndex + '-smallImage']">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Image">
                             <!-- {{value}} -->
                         <img src="{{value}}" style="height: 75px;">
                         </span>                    
@@ -74,7 +74,7 @@
 
                 <ngx-datatable-column [width]="300" name="Thumbnail Image">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Image" (dblclick)="editing[rowIndex + '-thumbnailImage'] = true" *ngIf="!editing[rowIndex + '-thumbnailImage']">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Image" >
                             <!-- {{value}} -->
                         <img src="{{value}}" style="height: 75px;">
                         </span>                    
@@ -92,7 +92,7 @@
 
                 <ngx-datatable-column [width]="300" name="Swatch Image">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Image" (dblclick)="editing[rowIndex + '-swatchImage'] = true" *ngIf="!editing[rowIndex + '-swatchImage']">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Image">
                             <!-- {{value}} -->
                         <img src="{{value}}" style="height: 75px;">
                         </span>                   
@@ -100,7 +100,7 @@
                 </ngx-datatable-column>
                 <ngx-datatable-column [width]="300" name="Swatch Image Label">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-swatchImageLabel'] = true" *ngIf="!editing[rowIndex + '-swatchImageLabel']">
+                        <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" *ngIf="!editing[rowIndex + '-swatchImageLabel']">
                             {{value}}
                         </span>
                         <input autofocus (blur)="updateValue($event, 'swatchImageLabel', rowIndex)" *ngIf="editing[rowIndex+ '-swatchImageLabel']" type="text" [value]="value"

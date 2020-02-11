@@ -115,13 +115,13 @@ export class AddImageComponent implements OnInit{
   _payload(){
     if (this.payload_empty = true){
       this.datasend[this.image_url] = this.url;
-      this.datasend[this.image_url +"Label"] = this.image_label;
+      this.datasend["altTag"] = this.image_label;
       this.payload.push(this.datasend);
       this.payload_empty = false
     } else {
       this.datasend = this.payload[0]
       this.datasend[this.image_url] = this.url;
-      this.datasend[this.image_url +"Label"] = this.image_label;
+      this.datasend["altTag"] = this.image_label;
       this.payload_empty = false
     }
     console.log(this.payload);
@@ -198,12 +198,11 @@ export class AddImageComponent implements OnInit{
   }
 
   save_front() {
+    debugger
     var urlUpload = AppConfig.AMAZONS3_UPLOAD; // UPLOAD_KYC <- UPLOAD_KYC_PROXY
     this.imageService.getImageParams().subscribe(
       data => {
         this.AMAZONS3PARAM = data;
-          this.url = this.ConvertXMLtoJSON(data);
-
         // ------------------------ Front Upload Start ---------------------------
         this.imageService
           .API_FORM_POST_File(urlUpload, this.file, this.AMAZONS3PARAM)
