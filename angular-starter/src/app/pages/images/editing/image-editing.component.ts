@@ -61,30 +61,40 @@ export class ImageEditComponent {
     updateValue(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         if (user.is_admin == false){
-            this.permission = "Update";
-            this.perm = "All";
-            let cellvalue = this.titleCaseWord(cell);
-            if(this.roles['images'].includes(this.perm) || this.roles['images'].includes(this.permission) ){
-                this.imageService.getFieldPermissions(user.role).subscribe(data => {
-                    if(data[0].edit.includes(cellvalue)){
-                        this.editing[rowIndex + '-' + cell] = false;
-                        this.imageService.get(this.rows[rowIndex]['id']).subscribe(data => {
-                            this.rows[rowIndex] = data;
-                            this.rows[rowIndex][cell] = event.target.value;
-                            this.imageService.update(this.rows[rowIndex]).subscribe(data => {
-                                this.toastService.typeSuccessCustom("Success","Your tag request is submitted for Admin's approval")
-                                this.imageService.getAll().subscribe(data => {
-                                    this.rows = data;
-                                });
-                            });
-                        });
-                    } else{
-                        alert("You don't have access to edit " + cellvalue +" field!");
-                    }
+            this.editing[rowIndex + '-' + cell] = false;
+            this.imageService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.imageService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.imageService.getAll().subscribe(data => {
+                        this.rows = data;
+                    });
                 });
-            } else {
-                alert("You don't have access to edit images!");
-            }
+            });
+            // this.permission = "Update";
+            // this.perm = "All";
+            // let cellvalue = this.titleCaseWord(cell);
+            // if(this.roles['images'].includes(this.perm) || this.roles['images'].includes(this.permission) ){
+            //     this.imageService.getFieldPermissions(user.role).subscribe(data => {
+            //         if(data[0].edit.includes(cellvalue)){
+            //             this.editing[rowIndex + '-' + cell] = false;
+            //             this.imageService.get(this.rows[rowIndex]['id']).subscribe(data => {
+            //                 this.rows[rowIndex] = data;
+            //                 this.rows[rowIndex][cell] = event.target.value;
+            //                 this.imageService.update(this.rows[rowIndex]).subscribe(data => {
+            //                     this.toastService.typeSuccessCustom("Success","Your tag request is submitted for Admin's approval")
+            //                     this.imageService.getAll().subscribe(data => {
+            //                         this.rows = data;
+            //                     });
+            //                 });
+            //             });
+            //         } else{
+            //             alert("You don't have access to edit " + cellvalue +" field!");
+            //         }
+            //     });
+            // } else {
+            //     alert("You don't have access to edit images!");
+            // }
         } else {
             this.editing[rowIndex + '-' + cell] = false;
             this.imageService.get(this.rows[rowIndex]['id']).subscribe(data => {
@@ -102,22 +112,33 @@ export class ImageEditComponent {
     deletetag(event, cell, rowIndex) {
         let user=JSON.parse(localStorage.getItem('currentUser'));
         if (user.is_admin == false){
-            this.permission = "Delete";
-            this.perm = "All";
-            if(this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission)){
-                this.editing[rowIndex + '-' + cell] = false;
-                this.imageService.get(this.rows[rowIndex]['id']).subscribe(data => {
-                    this.rows[rowIndex] = data;
-                    this.rows[rowIndex][cell] = event.target.value;
-                    this.imageService.delete(this.rows[rowIndex]['id']).subscribe(data => {
-                        this.imageService.getAll().subscribe(data => {
-                            this.rows = data;
-                        });
+            this.editing[rowIndex + '-' + cell] = false;
+            this.imageService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.imageService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                    // this.toastService.typeSuccessCustom("Success","Your images request is submitted for Admin's approval")
+                    this.imageService.getAll().subscribe(data => {
+                        this.rows = data;
                     });
                 });
-            } else {
-                alert("You don't have access to delete image!");
-            }
+            });
+            // this.permission = "Delete";
+            // this.perm = "All";
+            // if(this.roles['tags'].includes(this.perm) || this.roles['tags'].includes(this.permission)){
+            //     this.editing[rowIndex + '-' + cell] = false;
+            //     this.imageService.get(this.rows[rowIndex]['id']).subscribe(data => {
+            //         this.rows[rowIndex] = data;
+            //         this.rows[rowIndex][cell] = event.target.value;
+            //         this.imageService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+            //             this.imageService.getAll().subscribe(data => {
+            //                 this.rows = data;
+            //             });
+            //         });
+            //     });
+            // } else {
+            //     alert("You don't have access to delete image!");
+            // }
         } else {
             this.editing[rowIndex + '-' + cell] = false;
             this.imageService.get(this.rows[rowIndex]['id']).subscribe(data => {
@@ -136,13 +157,15 @@ export class ImageEditComponent {
     addTag(){
         let user=JSON.parse(localStorage.getItem('currentUser'));
         if (user.is_admin == false){
-            this.permission = "Create";
-            this.perm = "All";
-            if(this.roles['images'].includes(this.perm) || this.roles['images'].includes(this.permission)){
-                this.router.navigate(['/images/0']);
-            } else {
-                alert("You don't have access to add image!");
-            }
+            this.router.navigate(['/images/0']);
+            
+            // this.permission = "Create";
+            // this.perm = "All";
+            // if(this.roles['images'].includes(this.perm) || this.roles['images'].includes(this.permission)){
+            //     this.router.navigate(['/images/0']);
+            // } else {
+            //     alert("You don't have access to add image!");
+            // }
         } else {
             this.router.navigate(['/images/0']);
         }
