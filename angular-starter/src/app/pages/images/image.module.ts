@@ -4,10 +4,10 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
-import { TagsRoutingModule } from "./image-routing.module";
+import { ImageRoutingModule } from "./image-routing.module";
 
 import { ImagesPageComponent } from './image.component';
-import { AddTagsComponent} from './add/addImage.component';
+import { AddImageComponent} from './add/addImage.component';
 import { ReactiveFormsModule,FormControl,FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
@@ -21,7 +21,7 @@ import { ImageHiddenComponent } from './hidden/image-hidden.component';
         ReactiveFormsModule,
         FormsModule,
         // FormControl,
-        TagsRoutingModule ,
+        ImageRoutingModule ,
         Ng2SmartTableModule ,
         NgSelectModule,
         NgOptionHighlightModule,
@@ -29,7 +29,7 @@ import { ImageHiddenComponent } from './hidden/image-hidden.component';
     ],
     declarations: [ 
         ImagesPageComponent,
-        AddTagsComponent,
+        AddImageComponent,
         ImageEditComponent,
         TagsViewComponent,
         ImageHiddenComponent

@@ -225,7 +225,9 @@ delete(id){
 
 API_FORM_POST_File(url: string, file, body?: any) {
     var form_data = new FormData();
-    form_data.append('key', body.key);
+    var key = body.key.replace("${filename}", file.name)
+
+    form_data.append('key', key);
     form_data.append('AWSAccessKeyId', body.AWSAccessKeyId);
     form_data.append('acl', body.acl);
     form_data.append('success_action_status', '201');

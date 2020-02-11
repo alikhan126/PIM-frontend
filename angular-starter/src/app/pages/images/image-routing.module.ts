@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ImagesPageComponent } from 'app/pages/images/image.component';
-import { AddTagsComponent} from './add/addImage.component';
+import { AddImageComponent} from './add/addImage.component';
 import { ImageEditComponent } from './editing/image-editing.component';
 import { ImageHiddenComponent } from './hidden/image-hidden.component';
 import { TagsViewComponent } from './image-views/imageViews.component';
@@ -19,7 +19,7 @@ const routes: Routes = [
     path: 'view',
      component: TagsViewComponent,
     data: {
-      title: 'Tag View Page'
+      title: 'Image View Page'
     },    
   },
   {
@@ -33,14 +33,14 @@ const routes: Routes = [
     path: 'unapproved',
      component: ImageHiddenComponent,
     data: {
-      title: 'Tags Hidden Page'
+      title: 'Image Hidden Page'
     },    
   },
   {
     path: ':id',
-     component: AddTagsComponent,
+     component: AddImageComponent,
     data: {
-      title: 'Add Tag Page'
+      title: 'Add Image Page'
     },    
   }
 ];
@@ -49,4 +49,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TagsRoutingModule { }
+export class ImageRoutingModule { }
