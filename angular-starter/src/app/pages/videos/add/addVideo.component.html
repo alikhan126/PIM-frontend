@@ -2,14 +2,14 @@
 <section id="basic-form-layouts">
   <div class="row text-left">
     <div class="col-sm-12">
-      <div class="content-header">Image</div>
+      <div class="content-header">Video</div>
     </div>
   </div>
   <div class="row ">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header pb-2">
-          <h4 class="card-title" id="basic-layout-form">Image Info</h4>
+          <h4 class="card-title" id="basic-layout-form">Video Info</h4>
         </div>
         <div class="card-content">
           <div class="px-3">
@@ -19,37 +19,17 @@
                 <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label class="file-upload__label">Upload
-                      <input style="border: none;" class="form-control" id="imageFile" (click)="front_val($event)" (change)="getBase64($event)"  accept="image/x-png,image/jpeg"
+                      <label >Alt Tag:</label> <br>
+                      <input class="form-control" type="text" name="video_label" [(ngModel)]="video_label" placeholder="Alt Tag">
+                      <br>
+                      <label class="file-upload__label">Upload Video
+                      <input style="border: none;" class="form-control"  *ngIf="!post_video_selected" id="videoFile" (click)="front_val($event)" (change)="getBase64($event); save_front();"  accept="video/mp4,video/x-m4v,video/*"
                           type="file" [value]="img">
                       </label>   
-                      <ng-template #content let-c="close" let-d="dismiss">
-                        <div class="modal-header">
-                          <h4 class="modal-title">Image Info</h4>
-                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="form-group">
-                            <label >Alt Tag:</label> <br>
-                            <input class="form-control" type="text" name="image_label" [(ngModel)]="image_label" placeholder="Alt Tag">
-                            <br>
-                            <label >Image Name:</label>
-                            <ng-select [items]="IMAGE_NAME"  bindLabel="name" bindValue="name"  placeholder="Select Image"
-                                name="image_url" [(ngModel)]="image_url"
-                              >
-                            </ng-select>
-                            <br>
-                            <img src="{{base64image}}" width="60%">
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button style="float: left;" type="button" class="btn btn-secondary btn-raised left" (click)="_payload(); clearform(); c('Close click');">Add More Images</button>
-                          
-                          <button  style="float: right;" type="button" class="btn btn-secondary btn-raised" (click)="_payload(); c('Close click');">Save</button>
-                        </div>
-                      </ng-template>    
+                      <br>
+                      <video style="height: 200px;width: 100%;" *ngIf="post_video_selected" width="100%" controls
+                        src="{{base64video}}" type="video/mp4">
+                      </video>
                       <ng-template #product let-c="close" let-d="dismiss">
                         <div class="modal-header">
                           <h4 class="modal-title">Attach to Product</h4>
@@ -75,16 +55,13 @@
               </div>
 
               <div class="form-actions">
-                <button (click)="goToImage()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
+                <button (click)="goTovideo()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Cancel
                 </button>
-                <button (click)="save_front(); open(content);" type="button" *ngIf="post_image_selected" class="btn btn-raised btn-raised btn-primary mr-1">
-                  <i class="fa fa-check-square-o"></i> Upload
-                </button>
-                <button (click)="open(product);" type="button" *ngIf="!payload_empty" class="btn btn-raised btn-raised btn-primary mr-1">
+                <button (click)="open(product);" type="button" *ngIf="post_video_selected" class="btn btn-raised btn-raised btn-primary mr-1">
                   <i class="fa fa-check-square-o"></i> Attach To Product
                 </button>
-                <button (click)="save_data(); goToImage();" type="button" *ngIf="post_image_selected" class="btn btn-raised btn-raised btn-primary">
+                <button (click)="save_data(); goTovideo();" type="button" *ngIf="post_video_selected" class="btn btn-raised btn-raised btn-primary">
                   <i class="fa fa-check-square-o"></i> Save
                 </button>
               </div>

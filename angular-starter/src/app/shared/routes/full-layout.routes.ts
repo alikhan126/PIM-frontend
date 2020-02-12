@@ -57,5 +57,13 @@ export const Full_ROUTES: Routes = [
   {
     path: 'images',
     loadChildren: () => import('../../pages/images/image.module').then(m => m.ImagePagesModule)
+  },
+  {
+    path: 'videos',
+    loadChildren: () => import('../../pages/videos/video.module').then(m => m.VideoPagesModule)
+  },
+  {
+    path: 'pdf',
+    loadChildren: () => import('../../pages/pdf/pdf.module').then(m => m.PDFPagesModule)
   }
 ];

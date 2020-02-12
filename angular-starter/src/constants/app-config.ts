@@ -32,6 +32,8 @@ export class AppConfig {
     public static URL_WebsitePermissionCheck: string = AppConfig.URL_AppBase + 'api/v1/fields/website/';
 
     public static URL_Images: string = AppConfig.URL_AppBase + 'api/v1/images/';
+    public static URL_Videos: string = AppConfig.URL_AppBase + 'api/v1/videos/';
+    public static URL_PDF: string = AppConfig.URL_AppBase + 'api/v1/pdfs/';
     public static URL_Fields: string = AppConfig.URL_AppBase + 'api/v1/product/fields/';
     public static URL_Tags: string = AppConfig.URL_AppBase + 'api/v1/tags/';
     public static URL_Roles: string = AppConfig.URL_AppBase + 'api/v1/roles/';
