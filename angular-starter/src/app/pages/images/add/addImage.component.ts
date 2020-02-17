@@ -207,12 +207,14 @@ export class AddImageComponent implements OnInit{
     this.imageService.getImageParams().subscribe(
       data => {
         this.AMAZONS3PARAM = data;
+        this.AMAZONS3PARAM.key = this.AMAZONS3PARAM.key.replace("${filename}", this.file.name)
+
         // ------------------------ Picture Upload Start ---------------------------
         this.imageService
           .API_FORM_POST_File(urlUpload, this.file, this.AMAZONS3PARAM)
           .subscribe(
             data => {
-              this.url = this.ConvertXMLtoJSON(data);
+              this.url =  "http://foodservicedirect.com.s3.amazonaws.com/" + this.AMAZONS3PARAM.key
             },
             err => {
               console.log(err);
@@ -232,8 +234,9 @@ export class AddImageComponent implements OnInit{
 
 
   ConvertXMLtoJSON(data) {
-    // var dataj = "<?xml version='1.0' encoding='UTF-8'?><PostResponse><Location>https://socialchain-prod.s3.amazonaws.com/media%2F585d7febe63942f0b6c925a9cc12ed55%2Ffeed%2Fali.jpeg</Location><Bucket>socialchain-prod</Bucket><Key>media/585d7febe63942f0b6c925a9cc12ed55/feed/ali.jpeg</Key><ETag>'de1c6b1e1342cb40b4d012984d77e187'</ETag></PostResponse>"
-    var dataj = data.text();
+    console.log(data)
+    var dataj = "<?xml version='1.0' encoding='UTF-8'?><PostResponse><Location>https://socialchain-prod.s3.amazonaws.com/media%2F585d7febe63942f0b6c925a9cc12ed55%2Ffeed%2Fali.jpeg</Location><Bucket>socialchain-prod</Bucket><Key>media/585d7febe63942f0b6c925a9cc12ed55/feed/ali.jpeg</Key><ETag>'de1c6b1e1342cb40b4d012984d77e187'</ETag></PostResponse>"
+    // var dataj = data.text();
     var x2js = new X2JS();
     var jsonj = x2js.xml2js(dataj);
     var imagelocation = jsonj.PostResponse.Location;

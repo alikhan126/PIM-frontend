@@ -1,3 +1,4 @@
+import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 // import { BaseHttpService } from '../../services/BaseHttpService';
 import { HttpHeaders ,HttpClient } from '@angular/common/http';
@@ -225,9 +226,8 @@ delete(id){
 
 API_FORM_POST_File(url: string, file, body?: any) {
     var form_data = new FormData();
-    var key = body.key.replace("${filename}", file.name)
 
-    form_data.append('key', key);
+    form_data.append('key', body.key);
     form_data.append('AWSAccessKeyId', body.AWSAccessKeyId);
     form_data.append('acl', body.acl);
     form_data.append('success_action_status', '201');
@@ -236,30 +236,21 @@ API_FORM_POST_File(url: string, file, body?: any) {
     form_data.append('Content-Type', 'image/*');
     form_data.append('file', file);
 
-    // let headersnew = new Headers({
-    //   'Access-Control-Allow-Origin': 'origin',
-    //   'Access-Control-Allow-Credentials': 'true'
-    // });
-    
+    const httpOptions = {
+      headers: new HttpHeaders({
+      }),
+      responeType:'text',
+      Observe: 'response'
+    };
 
-    let headers = new HttpHeaders();
-    // headers.set
-    headers = headers.set('Access-Control-Allow-Origin', ["origin"]);
-    headers = headers.set('Access-Control-Allow-Credentials', ["true"]);
-    console.log(headers)
-    //   'Access-Control-Allow-Origin': 'origin',
-    //   'Access-Control-Allow-Credentials': 'true',
-    // });
 
-    // const options = {
-    //   headers: headersnew,
-    //   withCredentials: false
-    // };
-    
-    return this.http.post<any>(url, form_data, {
-      headers: headers
-    }).pipe(
-    map(x => x ),
+    httpOptions.headers.append('Access-Control-Allow-Origin', '*');
+    httpOptions.headers.append('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    httpOptions.headers.append('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    httpOptions.headers.append('Access-Control-Allow-Credentials', 'true');
+
+    return this.http.post(url, form_data, httpOptions ).pipe(
+    map(x => x),
     tap((newP: any) => console.log(`added record w/ id=${newP}`)),
     catchError(this.handleError<any>('add'))
   );

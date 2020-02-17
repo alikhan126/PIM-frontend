@@ -12,18 +12,19 @@ export class JwtInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add authorization header with jwt token if available
-            console.log("added auth")
+        console.log("added auth")
         // let currentUser = true;
-
         let currentUser = this.authenticationService.isAuthenticated();
         let token = this.authenticationService.getToken();
 
-        if (currentUser && currentUser) {
-            request = request.clone({
-                setHeaders: {
-                    Authorization: `jwt ${token}`
-                }
-            });
+        if (request.url != "http://foodservicedirect.com.s3.amazonaws.com/"){
+            if (currentUser && currentUser) {
+                request = request.clone({
+                    setHeaders: {
+                        Authorization: `jwt ${token}`
+                    }
+                });
+            }
         }
 
         return next.handle(request);

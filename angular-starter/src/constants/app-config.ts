@@ -9,6 +9,7 @@ export class AppConfig {
     public static URL_EXPORT_Adapters: string = AppConfig.URL_AppBase + 'api/v1/export_adapters/';
     public static URL_CATALOGS: string = AppConfig.URL_AppBase + 'api/v1/catalogs/';
     public static UPLOAD_IMAGE: string = AppConfig.URL_AppBase + 'api/v1/s3imageparams/';
+    public static UPLOAD_PDF: string = AppConfig.URL_AppBase + 'api/v1/s3pdfparams/';
     public static AMAZONS3_UPLOAD: string = 'http://foodservicedirect.com.s3.amazonaws.com/';
 
 

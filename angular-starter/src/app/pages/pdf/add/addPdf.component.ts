@@ -203,22 +203,23 @@ export class AddPDFComponent implements OnInit{
 
   save_front() {
     var urlUpload = AppConfig.AMAZONS3_UPLOAD; // UPLOAD_KYC <- UPLOAD_KYC_PROXY
-    this.pdfService.getImageParams().subscribe(
+    this.pdfService.getPDFParams().subscribe(
       data => {
         this.AMAZONS3PARAM = data;
+        this.AMAZONS3PARAM.key = this.AMAZONS3PARAM.key.replace("${filename}", this.file.name)
+
         // ------------------------ pdf Upload Start ---------------------------
         this.pdfService
           .API_FORM_POST_File(urlUpload, this.file, this.AMAZONS3PARAM)
           .subscribe(
             data => {
-              this.url = this.ConvertXMLtoJSON(data);
+              this.url =  "http://foodservicedirect.com.s3.amazonaws.com/" + this.AMAZONS3PARAM.key
+              // this.url = this.ConvertXMLtoJSON(data);
             },
             err => {
               console.log(err);
             }
           );
-        // this.url = this.ConvertXMLtoJSON(data);
-
       },
       err => {
         console.log(err);

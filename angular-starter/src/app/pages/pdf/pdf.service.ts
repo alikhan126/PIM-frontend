@@ -69,8 +69,8 @@ get(id){
 }
 
 
-getImageParams(){
-  return this.http.get<any>(`${AppConfig.UPLOAD_IMAGE}`).pipe(
+getPDFParams(){
+  return this.http.get<any>(`${AppConfig.UPLOAD_PDF}`).pipe(
     map(x => x ),
     tap(_ => console.log(`get record`)),
     catchError(this.handleError<any>('getRecord'))
@@ -225,40 +225,30 @@ delete(id){
 
 API_FORM_POST_File(url: string, file, body?: any) {
     var form_data = new FormData();
-    var key = "key/" + body.key.replace("${filename}", file.name)
-    form_data.append('key', key);
+
+    form_data.append('key', body.key);
     form_data.append('AWSAccessKeyId', body.AWSAccessKeyId);
     form_data.append('acl', body.acl);
     form_data.append('success_action_status', '201');
     form_data.append('policy', body.policy);
     form_data.append('signature', body.signature);
     form_data.append('Content-Type', 'application/pdf');
-    form_data.append('file', file);
+    form_data.append('file', file);    
 
-    // let headersnew = new Headers({
-    //   'Access-Control-Allow-Origin': 'origin',
-    //   'Access-Control-Allow-Credentials': 'true'
-    // });
-    
+    const httpOptions = {
+      headers: new HttpHeaders({
+      }),
+      responeType:'text',
+      Observe: 'response'
+    };
 
-    let headers = new HttpHeaders();
-    // headers.set
-    headers = headers.set('Access-Control-Allow-Origin', ["origin"]);
-    headers = headers.set('Access-Control-Allow-Credentials', ["true"]);
-    console.log(headers)
-    //   'Access-Control-Allow-Origin': 'origin',
-    //   'Access-Control-Allow-Credentials': 'true',
-    // });
+    httpOptions.headers.append('Access-Control-Allow-Origin', '*');
+    httpOptions.headers.append('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    httpOptions.headers.append('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    httpOptions.headers.append('Access-Control-Allow-Credentials', 'true');
 
-    // const options = {
-    //   headers: headersnew,
-    //   withCredentials: false
-    // };
-    
-    return this.http.post<any>(url, form_data, {
-      headers: headers
-    }).pipe(
-    map(x => x ),
+    return this.http.post(url, form_data, httpOptions ).pipe(
+    map(x => x),
     tap((newP: any) => console.log(`added record w/ id=${newP}`)),
     catchError(this.handleError<any>('add'))
   );
