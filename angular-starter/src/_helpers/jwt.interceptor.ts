@@ -17,7 +17,7 @@ export class JwtInterceptor implements HttpInterceptor {
         let currentUser = this.authenticationService.isAuthenticated();
         let token = this.authenticationService.getToken();
 
-        if (request.url != "http://foodservicedirect.com.s3.amazonaws.com/"){
+        if (request.url != "http://foodservicedirect.com.s3.amazonaws.com/" || request.url == "http://foodservicedirect.com.s3.amazonaws.com/"){
             if (currentUser && currentUser) {
                 request = request.clone({
                     setHeaders: {
