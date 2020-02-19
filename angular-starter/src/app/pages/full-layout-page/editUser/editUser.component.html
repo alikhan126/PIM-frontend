@@ -1,0 +1,118 @@
+<!-- Basic form layout section start -->
+<section id="basic-form-layouts">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">User Details</div>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="basic-layout-form">User Info</h4>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form">
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-file-text"></i> Basic Info</h4>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label >Name</label>
+                      <input type="text" class="form-control" name="name" [(ngModel)]="pObj.name"   >
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label >Profession</label>
+                      <input type="text" class="form-control" name="profession" [(ngModel)]="pObj.profession"   >
+                    </div>
+                  </div>
+                </div>
+                <h4 class="form-section"><i class="ft-file-text"></i> Personal Information</h4>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label >DOB</label>
+                      <input type="date" class="form-control" name="date_of_birth" [(ngModel)]="pObj.date_of_birth"   >
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label >Gender</label>
+                      <select class="form-control" name="gender" [(ngModel)]="pObj.gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label >Phone Number</label>
+                      <input type="text" class="form-control" name="phone_number" [(ngModel)]="pObj.phone_number"   >
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label >BirthPlace</label>
+                      <input type="text" class="form-control" name="birthplace" [(ngModel)]="pObj.birthplace"   >
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label >Email</label>
+                      <input type="text" class="form-control" name="email" [(ngModel)]="pObj.email"  disabled >
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label >Lives In</label>
+                      <input type="text" class="form-control" name="lives_in" [(ngModel)]="pObj.lives_in"   >
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label >Website</label>
+                      <input type="text" class="form-control" name="website" [(ngModel)]="pObj.website"   >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label >About</label>
+                      <textarea class="form-control" name="about" [(ngModel)]="pObj.about" placeholder="Write something.." style="height:200px"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label >Hobbies</label>
+                      <textarea class="form-control" name="hobbies" [(ngModel)]="pObj.hobbies" placeholder="Write something.." style="height:200px"></textarea>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button (click)="save();" type="button" class="btn btn-raised btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> Save
+                </button>
+              </div>
+            </form>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</section>
+<!-- // Basic form layout section end -->

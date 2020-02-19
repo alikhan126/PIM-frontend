@@ -16,7 +16,7 @@ export class ExtendedTableComponent implements OnInit {
     }
     ngOnInit() {
         this.productService.getAll().subscribe(data => {
-            this.products = data['results'];
+            this.products = data;
             console.log(this.products)
             // this.totalRecords = data['count'];
         });

@@ -1,0 +1,166 @@
+<div class="row text-left">
+  <div class="col-12">
+    <div class="content-header">Import Data</div>
+    <!-- <p class="content-sub-header">All table styles are inherited in Bootstrap 4, meaning any nested tables will be
+      styled in the same manner as the parent.</p> -->
+  </div>
+</div>
+
+<!-- Basic form layout section start -->
+<section id="basic-form-layouts">
+  <div class="row ">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form" [formGroup] = "uploadForm" >
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-file-text"></i> Select File</h4>
+
+
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label >Upload File</label>
+                      <input type="file"  #upload (change)="onChangeFile(upload.files)" value="process"  accept=".csv, .xlsx">
+                       <span class="custom-file-control"></span>
+                    </div>
+
+                    <!-- <div class="form-group">
+                      <label >Upload File</label>
+                      <input type="file"   formControlName="upload" (change)="onFileSelect($event)" >
+                       <span class="custom-file-control"></span>
+
+                    </div> -->
+                  </div>
+                 
+                 
+                  </div>
+
+
+              </div>
+
+              <div class="form-actions">
+                <!-- <button (click)="save()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> Cancel
+                </button> -->
+                <button (click)="goToResources()" type="button" class="btn btn-raised btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> Next
+                </button>
+              </div>
+            </form>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+<!--Basic Table Starts-->
+<section id="simple-table">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Map Data to Tables</h4>
+          <p>Select the column for the import file in the left side and map it to database table column in the right side </p>
+      
+          <div *ngIf="this.showAdapters" class="form-actions">
+              <!-- <button (click)="goToResources()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
+                <i class="ft-x"></i> Cancel
+              </button> -->
+              <div class="row">
+              <div class="col-md-6">
+                
+                <div class="form-group">
+
+                    <ng-select [items]="adapters" bindLabel="name"  
+                        bindValue="mapped_fields"
+                        [(ngModel)]="selectedAdapter"
+                        name="selectedAdapter"
+                        placeholder="Select adapter to map" >
+                    </ng-select>
+
+                </div>
+
+              </div>
+
+              <div class="col-md-3">
+                  <button [disabled]="!selectedAdapter" (click)="mapAsAdapter()" type="button" class="btn btn-raised btn-raised btn-primary">
+                      <i class="fa fa-check-square-o"></i> Map Adapter
+                    </button>
+              </div>
+              
+
+           </div>
+
+            </div>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <!-- <th>#</th> -->
+                  <th>File Columns</th>
+                  <th>Database Table Columns</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let field of fileColumns">
+
+                  <!-- <th scope="row">1</th> -->
+                  <td>
+                    <div class="col-md-6">
+                    {{field}} 
+                    </div>
+
+                  </td>
+                  <td>
+                      <div class="col-md-6">
+                        <ng-select [items]="databaseObjects" bindLabel="name" bindValue="name" 
+                        [(ngModel)]="mappingObj[field]"
+                        name="mappingObj[field]"
+                        placeholder="Select" >
+                      </ng-select>
+                          </div>
+
+                  </td>
+                </tr>
+
+              
+               
+              </tbody>
+            </table>
+
+
+            <div *ngIf="this.showAdapters" class="form-actions">
+                <!-- <button (click)="goToResources()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> Cancel
+                </button> -->
+                <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" placeholder="Please enter adapter name"  [(ngModel)]="adaptersName" class="form-control" name="adaptersName" >
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                    <button [disabled]="!adaptersName" (click)="saveAdapter()" type="button" class="btn btn-raised btn-raised btn-primary">
+                        <i class="fa fa-check-square-o"></i> Save as  Adapter
+                      </button>
+                </div>
+                
+
+             </div>
+                <button (click)="buildData()" type="button" class="btn btn-raised btn-raised btn-green">
+                  <i class="fa fa-check-square-o"></i> Import Mapped Data
+                </button>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

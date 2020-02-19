@@ -1,30 +1,143 @@
 import { RouteInfo } from './sidebar.metadata';
 
-export const ROUTES: RouteInfo[] = [
-
+export const ADMIN_ROUTES: RouteInfo[] = [
     {
-        path: '/products', title: 'Products', icon: 'ft-layout', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
+        path: '', title: 'View', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
+        submenu: [
+            { path: '/products/view', title: 'Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/brands/view', title: 'Brands', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/categories/view', title: 'Categories', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/websites/view', title: 'Websites', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/tags/view', title: 'Tags', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/manufacturer/view', title: 'Manufacturer', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/catalogs/view', title: 'Catalogs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+        ]
     },
-    // {
-    //     path: '/content-layout', title: 'Content Layout', icon: 'ft-square', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
-    // },
-    // {
-    //     path: '', title: 'Menu Levels', icon: 'ft-align-left', class: 'has-sub', badge: '1', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false,
-    //     submenu: [
-    //         { path: 'javascript:;', title: 'Second Level', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: true, submenu: [] },
-    //         {
-    //             path: '', title: 'Second Level Child', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
-    //             submenu: [
-    //                 { path: 'javascript:;', title: 'Third Level 1.1', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: true, submenu: [] },
-    //                 { path: 'javascript:;', title: 'Third Level 1.2', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: true, submenu: [] },
-    //             ]
-    //         },
-    //     ]
-    // },
-    // {
-    //     path: '/changelog', title: 'ChangeLog', icon: 'ft-file', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
-    // },
-    // { path: 'https://pixinvent.com/apex-angular-4-bootstrap-admin-template/documentation', title: 'Documentation', icon: 'ft-folder', class: '', badge: '', badgeClass: '', isExternalLink: true, submenu: [] },
-    // { path: 'https://pixinvent.ticksy.com/', title: 'Support', icon: 'ft-life-buoy', class: '', badge: '', badgeClass: '', isExternalLink: true, submenu: [] },
+    {
+        path: '', title: 'Edit', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
+        submenu: [
+            { path: '', title: 'Products', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
+            submenu: [
+                { path: '/products', title: 'Approved Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/products/import', title: 'Import Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/products/export', title: 'Export Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/products/unapproved', title: 'Unpproved Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 
+            ]},
+
+            { path: '', title: 'Brands', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
+            submenu: [
+                { path: '/brands', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/brands/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+
+            { path: '', title: 'Categories', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+               { path: '/categories', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+               { path: '/categories/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+
+            { path: '', title: 'Websites', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+                { path: '/websites', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/websites/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+            { path: '', title: 'Tags', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+                { path: '/tags', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/tags/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+
+            { path: '', title: 'Manufacturer', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+                { path: '/manufacturer', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/manufacturer/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+            { path: '/catalogs', title: 'Catalogs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/images', title: 'Images', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/videos', title: 'Videos', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/pdf', title: 'PDFs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+        ]
+    },
+    { 
+        path: '', title: 'Roles', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
+        submenu: [
+            { path: '/role', title: 'Meta Permissions', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '', title: 'Field Permissions', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+
+                { path: '/fields/product', title: 'Product Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/fields/brand', title: 'Brand Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/fields/category', title: 'Category Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/fields/manufacturer', title: 'Manufacturer Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/fields/catalog', title: 'Catalog Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/fields/tag', title: 'Tag Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/fields/adapter', title: 'Adapter Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/fields/website', title: 'Website Fields', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            ] },
+            { path: '/assignroles', title: 'Assign Roles', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },  
+
+        ]
+    }
+];
+
+export const USER_ROUTES: RouteInfo[] = [
+    {
+        path: '', title: 'View', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
+        submenu: [
+            { path: '/products/view', title: 'Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/brands/view', title: 'Brands', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/categories/view', title: 'Categories', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/websites/view', title: 'Websites', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/tags/view', title: 'Tags', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/manufacturer/view', title: 'Manufacturer', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/catalogs/view', title: 'Catalogs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+        ]
+    },
+    {
+        path: '', title: 'Edit', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
+        submenu: [
+            { path: '', title: 'Products', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
+            submenu: [
+                { path: '/products', title: 'Approved Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/products/import', title: 'Import Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/products/export', title: 'Export Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/products/unapproved', title: 'Unpproved Products', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ]},
+            { path: '', title: 'Brands', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, 
+            submenu: [
+                { path: '/brands', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/brands/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+
+            { path: '', title: 'Categories', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+               { path: '/categories', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+               { path: '/categories/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+
+            { path: '', title: 'Websites', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+                { path: '/websites', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/websites/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+            { path: '', title: 'Tags', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+                { path: '/tags', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/tags/unapproved', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+
+            { path: '', title: 'Manufacturer', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+                { path: '/manufacturer', title: 'Approved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/manufacturer', title: 'Unapproved', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+            ] },
+            { path: '/catalogs', title: 'Catalogs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/images', title: 'Images', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/videos', title: 'Videos', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/pdf', title: 'PDFs', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+        ]
+    }
 ];

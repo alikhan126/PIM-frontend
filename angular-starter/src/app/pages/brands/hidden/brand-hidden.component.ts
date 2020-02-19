@@ -1,0 +1,243 @@
+import { Component,OnInit } from '@angular/core';
+import { BrandService} from '../brands.service';
+import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+
+declare var require: any;
+
+@Component({
+    selector: 'app-dt-hidden',
+    templateUrl: './brand-hidden.component.html',
+    styleUrls: ['./brand-hidden.component.scss']
+})
+
+export class BrandsHiddenComponent {
+    editing = {};
+    rows = [];
+    roles = [];
+    products :any[];
+    totalRecords:number;
+    temp = [];
+    manufacturers =[];
+    permission :string;
+    perm :string;
+    closeResult: string;
+
+    // @ViewChild(DatatableComponent, {static: false}) table: DatatableComponent;
+
+    constructor(private modalService: NgbModal, private brandService: BrandService, private router: Router) {
+    }
+    ngOnInit() {
+        this.getUserRole();
+        this.getManufacturers();
+        console.log(this.roles);
+        this.brandService.getAllHidden().subscribe(data => {
+            this.rows = data;
+            this.temp = data
+        });
+    }
+
+    open(content) {
+        this.modalService.open(content).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    }
+
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return `with: ${reason}`;
+        }
+    }
+
+    titleCaseWord(word: string) {
+        if (!word) return word;
+        return word[0].toUpperCase() + word.substr(1).toLowerCase();
+    }
+
+    // Editing content code
+    updateValue(event, cell, rowIndex) {
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        if (user.is_admin == false){
+            this.permission = "Update";
+            this.perm = "All";
+            let cellvalue = this.titleCaseWord(cell);
+            this.brandService.getUserRole(user.user_id).subscribe(data => {
+                if(data.role['brands'].includes(this.perm) || data.role['brands'].includes(this.permission) ){
+                    this.brandService.getFieldPermissions(user.role).subscribe(data => {
+                        if(data[0].edit.includes(cellvalue)){
+                            this.editing[rowIndex + '-' + cell] = false;
+                            this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                                this.rows[rowIndex] = data;
+                                this.rows[rowIndex][cell] = event.target.value;
+                                this.brandService.update(this.rows[rowIndex]).subscribe(data => {
+                                    this.brandService.getAllHidden().subscribe(data => {
+                                        this.rows = data;
+                                    });
+                                });
+                            });
+                        } else{
+                            alert("You don't have access to edit " + cellvalue +" field!");
+                        }
+                    });
+                } else {
+                    alert("You don't have the permission to edit Brands!");
+                }
+            });
+        } else {
+            this.editing[rowIndex + '-' + cell] = false;
+            this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.brandService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.brandService.getAllHidden().subscribe(data => {
+                        this.rows = data;
+                    });
+                });
+            });
+        }
+    }
+
+    updateRelationshipValue(value, cell, rowIndex) {
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        if (user.is_admin == false){
+            this.permission = "Update";
+            this.perm = "All";
+            let cellvalue = this.titleCaseWord(cell);
+            this.brandService.getUserRole(user.user_id).subscribe(data => {
+                if(data.role['brands'].includes(this.perm) || data.role['brands'].includes(this.permission)){
+                    this.brandService.getFieldPermissions(user.role).subscribe(data => {
+                        if(data[0].edit.includes(cellvalue)){
+                            this.editing[rowIndex + '-' + cell] = false;
+                            this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                                this.rows[rowIndex] = data;
+                                this.rows[rowIndex][cell] = value;
+                                this.brandService.update(this.rows[rowIndex]).subscribe(data => {
+                                    this.brandService.getAllHidden().subscribe(data => {
+                                        this.rows = data;
+                                    });
+                                });
+                            });
+                        } else{
+                            alert("You don't have access to edit " + cellvalue +" field!");
+                        }
+                    });
+                } else {
+                    alert("You don't have the permission to edit Brands!");
+                }
+            });
+        } else {
+            this.editing[rowIndex + '-' + cell] = false;
+            this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = value;
+                this.brandService.update(this.rows[rowIndex]).subscribe(data => {
+                    this.brandService.getAllHidden().subscribe(data => {
+                        this.rows = data;
+                    });
+                });
+            });
+        }
+    }
+
+    deleteBrand(event, cell, rowIndex) {
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        if (user.is_admin == false){
+            this.permission = "Delete";
+            this.perm = "All";
+            if(this.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.permission)){
+                this.editing[rowIndex + '-' + cell] = false;
+                this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                    this.rows[rowIndex] = data;
+                    this.rows[rowIndex][cell] = event.target.value;
+                    this.brandService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                        this.brandService.getAllHidden().subscribe(data => {
+                            this.rows = data;
+                        });
+                    });
+                });
+            } else{
+                alert("You don't have the permission to delete Brands!");
+
+            }
+        } else {
+            this.editing[rowIndex + '-' + cell] = false;
+            this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                this.rows[rowIndex] = data;
+                this.rows[rowIndex][cell] = event.target.value;
+                this.brandService.delete(this.rows[rowIndex]['id']).subscribe(data => {
+                    this.brandService.getAllHidden().subscribe(data => {
+                        this.rows = data;
+                    });
+                });
+            });
+        }
+    }
+
+    approveBrand(event, cell, rowIndex) {
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        if (user.is_admin == false){ 
+            alert("Only admin can approve this brand.");
+        } else {
+            this.editing[rowIndex + '-' + cell] = false;
+            this.brandService.get(this.rows[rowIndex]['id']).subscribe(data => {
+                let result = data;
+                result['hidden'] = false
+                this.brandService.update(result).subscribe(data => {
+                    this.brandService.getAllHidden().subscribe(data => {
+                        this.rows = data;
+                    });
+                });
+            });
+        }
+    }
+
+    addBrand(){
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        if (user.is_admin == false){
+            this.permission = "Create";
+            this.perm = "All";
+            if(this.roles['brands'].includes(this.perm) || this.roles['brands'].includes(this.permission)){
+                this.router.navigate(['/brands/0']);
+            } else{
+                alert("You don't have the permission to add Brands!");
+            }
+        } else {
+            this.router.navigate(['/brands/0']);
+        }
+    }
+
+    updateFilter(event) {
+        const val = event.target.value.toLowerCase();
+
+        const temp = this.temp.filter(function (d) {
+            return d.name.toLowerCase().indexOf(val) !== -1 || !val || d.manufacturer['name'].toLowerCase().indexOf(val) !== -1;
+        });
+
+        // update the rows
+        this.rows = temp;
+    }
+
+    getManufacturers(){
+            this.brandService.getAllManufacturers().subscribe(data => {
+            this.manufacturers = data;
+        });
+    }
+
+    getUserRole(){
+        let user=JSON.parse(localStorage.getItem('currentUser'));
+        if (user.is_admin == false) {
+            this.brandService.getUserRole(user.user_id).subscribe(data => {
+                console.log(data)
+              this.roles = data['role'];
+            });
+        }
+    }
+
+}

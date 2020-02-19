@@ -25,7 +25,7 @@ export class AuthService {
           // this.isLoggedIn = true;
         }
         else {
-          alert("Failed to Login")
+          console.log("Failed to Login")
           // this.ts.error("Failed to Logged In",'' ,{timeOut: 1000});
         }
         return user;
@@ -60,12 +60,101 @@ export class AuthService {
     //your code for checking credentials and getting tokens for for signing in user
   }
 
+  forgotPassword(postObj:any) {
+    return this.http.post<any>(`${AppConfig.URL_ForgotPassword}`, postObj).pipe(
+      map(data => {
+        if (data)
+       {
+          // localStorage.setItem('currentUser', JSON.stringify(user));
+          // this.token=user.token;
+          // this.router.navigate(['/products']);
+
+          // this.currentUserSubject.next(user);        
+          // this.ts.success("Logged In Successfully",'' ,{timeOut: 1000});
+          // this.isLoggedIn = true;
+        }
+        else {
+          console.log("Error")
+          // this.ts.error("Failed to Logged In",'' ,{timeOut: 1000});
+        }
+        return data;
+      }),
+      catchError(this.handleError<any>('add'))
+    );
+    //your code for signing up the new user
+  }
+
+  forgotPasswordconfirm(postObj:any) {
+    return this.http.post<any>(`${AppConfig.URL_ForgotPasswordConfirm}`, postObj).pipe(
+      map(data => {
+        if (data)
+       {
+          // localStorage.setItem('currentUser', JSON.stringify(user));
+          // this.token=user.token;
+          // this.router.navigate(['/products']);
+
+          // this.currentUserSubject.next(user);        
+          // this.ts.success("Logged In Successfully",'' ,{timeOut: 1000});
+          // this.isLoggedIn = true;
+        }
+        else {
+          console.log("Error")
+          // this.ts.error("Failed to Logged In",'' ,{timeOut: 1000});
+        }
+        return data;
+      }),
+      catchError(this.handleError<any>('add'))
+    );
+    //your code for signing up the new user
+  }
+
+  changePassword(postObj:any) {
+    return this.http.post<any>(`${AppConfig.URL_ChangePassword}`, postObj).pipe(
+      map(data => {
+        if (data)
+       {
+          // localStorage.setItem('currentUser', JSON.stringify(user));
+          // this.token=user.token;
+          // this.router.navigate(['/products']);
+
+          // this.currentUserSubject.next(user);        
+          // this.ts.success("Logged In Successfully",'' ,{timeOut: 1000});
+          // this.isLoggedIn = true;
+        }
+        else {
+          console.log("Error")
+          // this.ts.error("Failed to Logged In",'' ,{timeOut: 1000});
+        }
+        return data;
+      }),
+      catchError(this.handleError<any>('add'))
+    );
+    //your code for signing up the new user
+  }
+
 
   logout() {   
     this.token = null;
     localStorage.removeItem("currentUser");
     this.router.navigate(['auth/login']);
   }
+
+  getUser(id) {
+    return this.http.get<any>(`${AppConfig.URL_Users}${id}/`).pipe(
+      map(x => x ),
+      tap(_ => console.log(`get user details=${id}`)),
+      catchError(this.handleError<any>('getRecord'))
+    );
+  }
+
+ 
+
+  updateUser (record: any): Observable<any> {
+  return this.http.put(`${AppConfig.URL_Users}${record["id"]}/`, record).pipe(
+    tap(_ => this.log(`updated record id=${record["id"]}`)),
+    catchError(this.handleError<any>('updateRecord'))
+  );
+}
 
   getToken() {
     if(this.token){

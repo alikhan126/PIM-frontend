@@ -6,7 +6,11 @@ import { ContentPagesRoutingModule } from "./content-pages-routing.module";
 import { ContentLayoutPageComponent } from './content-layout-page.component';
 import { LoginPageComponent } from './login/login-page.component';
 import { RegisterPageComponent } from './register/register-page.component';
-
+import { ForgotPasswordPageComponent } from './forgot-password/forgot-password-page.component';
+import { ForgotPasswordConfirmPageComponent } from './forgot-password-confirm/forgot-password-page.component';
+import { VerifiedEmailPageComponent } from './verified-email/verified-email-page.component';
+import { ThankyouEmailSendPageComponent } from './verified-email-send/verified-email-send-page.component';
+import { ChangePasswordPageComponent } from './change-password/change-password-page.component';
 
 
 @NgModule({
@@ -19,7 +23,12 @@ import { RegisterPageComponent } from './register/register-page.component';
     declarations: [
         ContentLayoutPageComponent,
         LoginPageComponent,
-        RegisterPageComponent
+        RegisterPageComponent,
+        VerifiedEmailPageComponent,
+        ForgotPasswordPageComponent,
+        ForgotPasswordConfirmPageComponent,
+        ChangePasswordPageComponent,
+        ThankyouEmailSendPageComponent
     ]
 })
 export class ContentPagesModule { }

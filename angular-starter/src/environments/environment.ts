@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  appRoot: 'http://Pimdevbe.paperhouse.com/'
+  appRoot: 'http://pimdevbe.paperhouse.com/'
 };

@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
 import {AuthService} from "../../../shared/auth/auth.service";
+import { NGXToastrService } from 'app/shared/services/toastr.service';
+
 @Component({
     selector: 'app-register-page',
     templateUrl: './register-page.component.html',
@@ -11,14 +13,15 @@ import {AuthService} from "../../../shared/auth/auth.service";
 export class RegisterPageComponent {
 
     regularForm: FormGroup;
+    terms:boolean=true;
     constructor(private router: Router,
-        private route: ActivatedRoute,private authService:AuthService) { }
-
-    
+        private route: ActivatedRoute,private authService:AuthService, private toastService:NGXToastrService) { }
+        pa="^[a-zA-Z ]{3,25}$";
+        
     ngOnInit(){
         this.authService.isAuthenticated() ? this.router.navigate(['products']):null; 
         this.regularForm = new FormGroup({
-            'fullName': new FormControl(null, [Validators.required, Validators.minLength(3)]),
+            'fullName': new FormControl(null, [Validators.required, Validators.minLength(4),Validators.pattern(this.pa)]),
             'email': new FormControl(null, [Validators.required, Validators.email]),
             'password': new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(24)]),
             'confirmPassword': new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(24)]),
@@ -48,11 +51,12 @@ export class RegisterPageComponent {
   
         this.authService.signupUser(postObj).subscribe(resp=>{
             if(!resp){
-                alert("Invalid Credentials!")
+                console.log("Error: Email already exists!");
             }
             else {
-                alert("Signed up successfully!")
-                this.regularForm.reset();
+                this.toastService.typeSuccessCustom("Success","Signed up successfully!")  
+                this.router.navigate(['/auth/thankyouemail/']);
+                this.regularForm.reset();              
             }
         })
         // this.registerForm.reset();

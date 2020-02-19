@@ -20,7 +20,12 @@ import { ContentLayoutComponent } from "./layouts/content/content-layout.compone
 import { FullLayoutComponent } from "./layouts/full/full-layout.component";
 
 import { AuthService } from './shared/auth/auth.service';
+import { ToastrModule } from "ngx-toastr";
+
+import { NGXToastrService } from './shared/services/toastr.service';
+
 import { AuthGuard } from './shared/auth/auth-guard.service';
+import { DatePipe } from '@angular/common';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -40,6 +45,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       SharedModule,
       HttpClientModule,
       NgbModule.forRoot(),
+      ToastrModule.forRoot(),
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,
@@ -50,8 +56,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       PerfectScrollbarModule
     ],
     providers: [
+      DatePipe,
       AuthService,
       AuthGuard,
+      NGXToastrService,
       {
         provide: PERFECT_SCROLLBAR_CONFIG,
         useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
