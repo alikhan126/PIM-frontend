@@ -47,6 +47,7 @@ export class AppConfig {
     public static URL_Brands: string = AppConfig.URL_AppBase + 'api/v1/brands/';
     public static URL_ProductFamilies: string = AppConfig.URL_AppBase + 'api/v1/productfamily/';
     public static URL_Taxes: string = AppConfig.URL_AppBase + 'api/v1/tax/';
+    public static URL_ActivityNotifications: string = AppConfig.URL_AppBase + 'api/v1/activity/';
     public static URL_Notifications: string = AppConfig.URL_AppBase + 'api/v1/notifications/';
     public static URL_ReadNotifications: string = AppConfig.URL_AppBase + 'api/v1/read_notifications/';
     public static URL_NotificationsCount: string = AppConfig.URL_AppBase + 'api/v1/unread_count/';

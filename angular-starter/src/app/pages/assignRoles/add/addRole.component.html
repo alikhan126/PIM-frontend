@@ -2,14 +2,14 @@
 <section id="basic-form-layouts">
   <div class="row text-left">
     <div class="col-sm-12">
-      <div class="content-header">Permissions</div>
+      <div class="content-header">Assign Role</div>
     </div>
   </div>
   <div class="row ">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header pb-2">
-          <h4 class="card-title" id="basic-layout-form">Permission Info</h4>
+          <h4 class="card-title" id="basic-layout-form">Assign Role Info</h4>
         </div>
         <div class="card-content">
           <div class="px-3">
@@ -28,7 +28,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label >Role</label>
-                      <ng-select [items]="roles" bindLabel="name" bindValue="id"  placeholder="Select Role"
+                      <ng-select [items]="roles" bindLabel="role" bindValue="id"  placeholder="Select Role"
                       name="role" [(ngModel)]="pObj.role">
                       </ng-select>
                     </div>

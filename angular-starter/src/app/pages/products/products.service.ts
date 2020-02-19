@@ -139,6 +139,17 @@ readNotification()
   );
 }
 
+getActivityNotification() 
+{
+
+  return this.http.get<any []>(`${AppConfig.URL_ActivityNotifications}`)
+  .pipe(
+    map(x => x ),
+    tap(_ => console.log('fetched activity notifications')),
+    catchError(this.handleError('getRecord', []))
+  );
+}
+
 
 getAll() 
 {

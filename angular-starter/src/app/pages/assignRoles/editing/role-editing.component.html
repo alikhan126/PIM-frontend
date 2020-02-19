@@ -26,9 +26,9 @@
               <ngx-datatable-column [width]="300" name="Role">
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
                     <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Double click to edit" (dblclick)="editing[rowIndex + '-role'] = true" *ngIf="!editing[rowIndex + '-role']">
-                        {{value.name}}
+                        {{value.role}}
                     </span>
-                    <ng-select appendTo="body" (blur)="updateRelationshipValue(row['role']['id'], 'role', rowIndex)" *ngIf="editing[rowIndex+ '-role']" [items]="roles"  bindLabel="name"   placeholder="Select role"
+                    <ng-select appendTo="body" (blur)="updateRelationshipValue(row['role']['id'], 'role', rowIndex)" *ngIf="editing[rowIndex+ '-role']" [items]="roles"  bindLabel="role"   placeholder="Select role"
                      
                      name="role" [(ngModel)]="row['role']"[virtualScroll]="true"
                     >

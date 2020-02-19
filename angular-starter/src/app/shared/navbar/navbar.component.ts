@@ -29,6 +29,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   public config: any = {};
   notifications:any=[];
+  activities:any=[];
   read:any=[];
   notifications_previous:string;
   notifications_next:string;
@@ -44,6 +45,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.getNotifications();
     this.getNotificationsCount();
     console.log(this.getNotifications());
+    this.getActivityNotifications();
   }
 
   ngOnInit() {
@@ -113,6 +115,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.notifications_count = data['count'];
       this.notifications_next = data['next'];
       this.notifications_previous = data['previous'];
+    });
+  }
+
+  getActivityNotifications(){
+    this.productService.getActivityNotification().subscribe(data => {
+      this.activities = data;
     });
   }
 
