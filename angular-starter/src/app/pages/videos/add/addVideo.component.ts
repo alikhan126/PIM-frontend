@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Title, DomSanitizer } from "@angular/platform-browser";
 import { Router,ActivatedRoute } from '@angular/router';
 import { VideoService } from '../video.service';
 import { NGXToastrService } from 'app/shared/services/toastr.service';
@@ -61,15 +62,22 @@ export class AddVideoComponent implements OnInit{
   file :any=[];
   closeResult: string;
   video_label: string;
+  video_link: string;
   product_id: number;
 
 
-  constructor(private modalService: NgbModal, private toastService:NGXToastrService, private route : ActivatedRoute, private router : Router, private videoService: VideoService){
+  constructor(private modalService: NgbModal, private toastService:NGXToastrService, private route : ActivatedRoute, private router : Router, private videoService: VideoService,
+    private sanitizer: DomSanitizer){
 
   }
   ngOnInit () {
      this.getvideo();
      this.getProducts();
+  }
+
+  public getSantizeUrl(url: string) {
+    let urlsafe = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    return urlsafe;
   }
 
   getvideo(){
@@ -128,7 +136,7 @@ export class AddVideoComponent implements OnInit{
   }
 
   save_data(){
-    this.datasend["url"] = this.url;
+    this.datasend["url"] = this.video_link;
     this.datasend['altTag'] = this.video_label;
     this.videoService.add(this.datasend)
     .subscribe(result => {
@@ -200,31 +208,31 @@ export class AddVideoComponent implements OnInit{
     event.target.value = null;
   }
 
-  save_front() {
-    var urlUpload = AppConfig.AMAZONS3_UPLOAD; // UPLOAD_KYC <- UPLOAD_KYC_PROXY
-    this.videoService.getImageParams().subscribe(
-      data => {
-        this.AMAZONS3PARAM = data;
-        this.AMAZONS3PARAM.key = this.AMAZONS3PARAM.key.replace("${filename}", this.file.name)
+  // save_front() {
+  //   var urlUpload = AppConfig.AMAZONS3_UPLOAD; // UPLOAD_KYC <- UPLOAD_KYC_PROXY
+  //   this.videoService.getImageParams().subscribe(
+  //     data => {
+  //       this.AMAZONS3PARAM = data;
+  //       this.AMAZONS3PARAM.key = this.AMAZONS3PARAM.key.replace("${filename}", this.file.name)
         
-        // ------------------------ Video Upload Start ---------------------------
-        this.videoService
-          .API_FORM_POST_File(urlUpload, this.file, this.AMAZONS3PARAM)
-          .subscribe(
-            data => {
-              this.url =  "http://foodservicedirect.com.s3.amazonaws.com/" + this.AMAZONS3PARAM.key
-              // this.url = this.ConvertXMLtoJSON(data);
-            },
-            err => {
-              console.log(err);
-            }
-          );
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+  //       // ------------------------ Video Upload Start ---------------------------
+  //       this.videoService
+  //         .API_FORM_POST_File(urlUpload, this.file, this.AMAZONS3PARAM)
+  //         .subscribe(
+  //           data => {
+  //             this.url =  "http://foodservicedirect.com.s3.amazonaws.com/" + this.AMAZONS3PARAM.key
+  //             // this.url = this.ConvertXMLtoJSON(data);
+  //           },
+  //           err => {
+  //             console.log(err);
+  //           }
+  //         );
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
   getvideoinfo(value) {
     this.video_url = value

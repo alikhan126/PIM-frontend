@@ -36,12 +36,16 @@
                 <ngx-datatable-column [width]="400" name="Url">
                     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                         <span [ngClass]="{'container-fluid expandView': value==null  || value == undefined || value=='' && value!==0 }" title="Video">
-                            <!-- {{value}} -->
-                        <!-- <img src="{{value}}" style="height: 75px;"> -->
+                            {{value}}
+                        <!-- <img src="{{value}}" style="height: 75px;"> 
                         <video  width="340" height="190" controls>
-                            <source src="{{value}}" type="video/mp4">
-                            <source src="{{value}}" type="video/ogg">
-                          </video>
+                          <source src="{{value}}" type="video/mp4">
+                          <source src="{{value}}" type="video/ogg">
+                        </video> -->
+
+                        <!-- <iframe width="340" height="190"
+                          src="{{value.urlsafe}}">
+                        </iframe> -->
                         </span>                    
                       </ng-template>
                 </ngx-datatable-column>

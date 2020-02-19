@@ -22,9 +22,8 @@
                       <label >Alt Tag:</label> <br>
                       <input class="form-control" type="text" name="video_label" [(ngModel)]="video_label" placeholder="Alt Tag">
                       <br>
-                      <label class="file-upload__label">Upload Video
-                      <input style="border: none;" class="form-control"  *ngIf="!post_video_selected" id="videoFile" (click)="front_val($event)" (change)="getBase64($event); save_front();"  accept="video/mp4,video/x-m4v,video/*"
-                          type="file" [value]="img">
+                      <label class="file-upload__label">Video url
+                      <input class="form-control" type="text" name="video_link" [(ngModel)]="video_link" placeholder="Url">
                       </label>   
                       <br>
                       <video style="height: 200px;width: 100%;" *ngIf="post_video_selected" width="100%" controls
@@ -58,10 +57,10 @@
                 <button (click)="goTovideo()" type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Cancel
                 </button>
-                <button (click)="open(product);" type="button" *ngIf="post_video_selected" class="btn btn-raised btn-raised btn-primary mr-1">
+                <button (click)="open(product);" type="button" class="btn btn-raised btn-raised btn-primary mr-1">
                   <i class="fa fa-check-square-o"></i> Attach To Product
                 </button>
-                <button (click)="save_data(); goTovideo();" type="button" *ngIf="post_video_selected" class="btn btn-raised btn-raised btn-primary">
+                <button (click)="save_data(); goTovideo();" type="button" class="btn btn-raised btn-raised btn-primary">
                   <i class="fa fa-check-square-o"></i> Save
                 </button>
               </div>
