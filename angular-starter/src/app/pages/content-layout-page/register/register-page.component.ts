@@ -2,8 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
 import {AuthService} from "../../../shared/auth/auth.service";
-import { NGXToastrService } from 'app/shared/services/toastr.service';
-
 @Component({
     selector: 'app-register-page',
     templateUrl: './register-page.component.html',
@@ -13,15 +11,14 @@ import { NGXToastrService } from 'app/shared/services/toastr.service';
 export class RegisterPageComponent {
 
     regularForm: FormGroup;
-    terms:boolean=true;
     constructor(private router: Router,
-        private route: ActivatedRoute,private authService:AuthService, private toastService:NGXToastrService) { }
-        pa="^[a-zA-Z ]{3,25}$";
-        
+        private route: ActivatedRoute,private authService:AuthService) { }
+
+    
     ngOnInit(){
         this.authService.isAuthenticated() ? this.router.navigate(['products']):null; 
         this.regularForm = new FormGroup({
-            'fullName': new FormControl(null, [Validators.required, Validators.minLength(4),Validators.pattern(this.pa)]),
+            'fullName': new FormControl(null, [Validators.required, Validators.minLength(3)]),
             'email': new FormControl(null, [Validators.required, Validators.email]),
             'password': new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(24)]),
             'confirmPassword': new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(24)]),
@@ -51,12 +48,11 @@ export class RegisterPageComponent {
   
         this.authService.signupUser(postObj).subscribe(resp=>{
             if(!resp){
-                console.log("Error: Email already exists!");
+                alert("Invalid Credentials!")
             }
             else {
-                this.toastService.typeSuccessCustom("Success","Signed up successfully!")  
-                this.router.navigate(['/auth/thankyouemail/']);
-                this.regularForm.reset();              
+                alert("Signed up successfully!")
+                this.regularForm.reset();
             }
         })
         // this.registerForm.reset();

@@ -30,142 +30,10 @@ add (record: any): Observable<any> {
   );
 }
 
-importProducts (record: any): Observable<any> {
-
-  return this.http.post<any>(`${AppConfig.URL_Import_Products}`, record).pipe(
-    map(x => x ),
-    catchError(this.handleError<any>('import'))
-  );
-}
-
-addAdapters (record: any): Observable<any> {
-
-  return this.http.post<any>(`${AppConfig.URL_Adapters}`, record).pipe(
-    map(x => x ),
-    catchError(this.handleError<any>('Adapters'))
-  );
-}
-
-addCatalog (record: any): Observable<any> {
-
-  return this.http.post<any>(`${AppConfig.URL_CATALOGS}`, record).pipe(
-    map(x => x ),
-    catchError(this.handleError<any>('Adapters'))
-  );
-}
-addExportAdapters (record: any): Observable<any> {
-
-  return this.http.post<any>(`${AppConfig.URL_EXPORT_Adapters}`, record).pipe(
-    map(x => x ),
-    catchError(this.handleError<any>('Adapters'))
-  );
-}
-
-
-getFieldPermissions(id){
-  return this.http.get<any>(`${AppConfig.URL_ProductPermissionCheck + "?role="}${id}`).pipe(
-    map(x => x ),
-    tap(_ => console.log(`get record=${id}`)),
-    catchError(this.handleError<any>('getRecord'))
-  );
-}
-
-getAdapters() 
-{
-
-  return this.http.get<any []>(`${AppConfig.URL_Adapters}`)
-  .pipe(
-    map(x => x ),
-    tap(_ => console.log('fetched record')),
-    catchError(this.handleError('getRecord', []))
-  );
-}
-
-getExportAdapters() 
-{
-
-  return this.http.get<any []>(`${AppConfig.URL_EXPORT_Adapters}`)
-  .pipe(
-    map(x => x ),
-    tap(_ => console.log('fetched record')),
-    catchError(this.handleError('getRecord', []))
-  );
-}
-
-getNotifications(params) 
-{
-
-  return this.http.get<any []>(`${AppConfig.URL_Notifications}${params}`)
-  .pipe(
-    map(x => x ),
-    tap(_ => console.log('fetched notifications')),
-    catchError(this.handleError('getRecord', []))
-  );
-}
-
-getNotificationsCount() 
-{
-
-  return this.http.get<any []>(`${AppConfig.URL_NotificationsCount}`)
-  .pipe(
-    map(x => x ),
-    tap(_ => console.log('fetched notifications')),
-    catchError(this.handleError('getRecord', []))
-  );
-}
-
-updateNotification (record: any): Observable<any> {
-  return this.http.put(`${AppConfig.URL_Notifications}${record["id"]}/`, record).pipe(
-    tap(_ => this.log(`updated record id=${record["id"]}`)),
-    catchError(this.handleError<any>('updateRecord'))
-  );
-}
-
-getNotification(id){
-  return this.http.get<any>(`${AppConfig.URL_Notifications}${id}/`).pipe(
-    map(x => x ),
-    tap(_ => console.log(`get record=${id}`)),
-    catchError(this.handleError<any>('getRecord'))
-  );
-}
-
-readNotification() 
-{
-  return this.http.get<any []>(`${AppConfig.URL_ReadNotifications}`)
-  .pipe(
-    map(x => x ),
-    tap(_ => console.log('read notifications')),
-    catchError(this.handleError('getRecord', []))
-  );
-}
-
-getActivityNotification() 
-{
-
-  return this.http.get<any []>(`${AppConfig.URL_ActivityNotifications}`)
-  .pipe(
-    map(x => x ),
-    tap(_ => console.log('fetched activity notifications')),
-    catchError(this.handleError('getRecord', []))
-  );
-}
-
-
 getAll() 
 {
 
   return this.http.get<any []>(`${AppConfig.URL_Products}`)
-  .pipe(
-    map(x => x ),
-    tap(_ => console.log('fetched record')),
-    catchError(this.handleError('getRecord', []))
-  );
-}
-
-getFilteredProducts(params) 
-{
-
-  return this.http.get<any []>(`${AppConfig.URL_Search_Products}${params}`)
   .pipe(
     map(x => x ),
     tap(_ => console.log('fetched record')),
@@ -181,30 +49,10 @@ get(id){
   );
 }
 
-
-getFildsToImport(){
-  return this.http.get<any []>(`${AppConfig.URL_Fields}`)
-  .pipe(
-    map(x => x ),
-    catchError(this.handleError('getRecord', []))
-  );
-}
-
 getAllImages() 
 {
 
   return this.http.get<any []>(`${AppConfig.URL_Images}`)
-  .pipe(
-    map(x => x ),
-    tap(_ => console.log('fetched record')),
-    catchError(this.handleError('getRecord', []))
-  );
-}
-
-getUserRole(id) 
-{
-
-  return this.http.get<any>(`${AppConfig.URL_UserRole + "?user="}${id}`)
   .pipe(
     map(x => x ),
     tap(_ => console.log('fetched record')),
@@ -301,24 +149,6 @@ update (record: any): Observable<any> {
   );
 }
 
-delete(id){
-  return this.http.delete<any>(`${AppConfig.URL_Products}${id}/`).pipe(
-    map(x => x ),
-    tap(_ => console.log(`delete record=${id}`)),
-    catchError(this.handleError<any>('deleteRecord'))
-  );
-}
-
-getAllHidden() 
-{
-
-  return this.http.get<any []>(`${AppConfig.URL_Products + "unapproved/" }`)
-  .pipe(
-    map(x => x ),
-    tap(_ => console.log('fetched record')),
-    catchError(this.handleError('getRecord', []))
-  );
-}
 
 
 

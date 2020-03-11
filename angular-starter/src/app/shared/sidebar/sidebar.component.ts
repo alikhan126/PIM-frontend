@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit } from "@angular/core";
 
-import { USER_ROUTES, ADMIN_ROUTES } from './sidebar-routes.config';
+import { ROUTES } from './sidebar-routes.config';
 import { Router, ActivatedRoute } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
 import { customAnimations } from "../animations/custom-animations";
@@ -41,12 +41,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.config = this.configService.templateConf;
-    let userObj=JSON.parse(localStorage.getItem('currentUser'));
-    if (userObj.is_admin == false){
-      this.menuItems = USER_ROUTES;
-    } else {
-      this.menuItems = ADMIN_ROUTES;
-    }
+    this.menuItems = ROUTES;
 
 
 
