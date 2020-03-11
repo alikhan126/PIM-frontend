@@ -4,53 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductsPageComponent } from 'app/pages/products/products.component';
 import {ExtendedTableComponent} from './extended/extended-table.component';
 import {AddProductComponent} from './add/addProduct.component';
-import { ProductsEditComponent } from './editing/product-editing.component';
-import { ProductsHiddenComponent } from './hidden/product-hidden.component';
-import { ProductViewsComponent } from './product-views/productViews.component';
-import { RegularTableComponent } from './regular/regular-table.component';
-import { ExportComponent } from './export/export.component';
-
 const routes: Routes = [
   {
-    path:'import',
-    component:RegularTableComponent,
-    data:{
-      title:'Import'
-    }
-  },
-  {
-    path:'export',
-    component:ExportComponent,
-    data:{
-      title:'Export'
-    }
-  },
-  {
-    path: 'old',
+    path: '',
      component: ExtendedTableComponent,
     data: {
       title: 'Products Page'
-    },    
-  },
-  {
-    path: '',
-     component: ProductsEditComponent,
-    data: {
-      title: 'Products Editing Page'
-    },    
-  },
-  {
-    path: 'view',
-     component: ProductViewsComponent,
-    data: {
-      title: 'Products Views Page'
-    },    
-  },
-  {
-    path: 'unapproved',
-     component: ProductsHiddenComponent,
-    data: {
-      title: 'Products Unapproved Page'
     },    
   },
   {

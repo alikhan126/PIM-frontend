@@ -31,22 +31,10 @@
                       formControlName="fullName" required
   
                     />
-                    <!-- <small class="form-text text-muted danger" 
+                    <small class="form-text text-muted danger" 
                     [hidden]="regularForm.get('fullName').valid || (!regularForm.get('fullName').dirty && !regularForm.get('fullName').touched)"
-                    >Characters Only!</small> -->
-                    <div *ngIf="regularForm.get('fullName').invalid && (regularForm.get('fullName').dirty || regularForm.get('fullName').touched)">
-
-                      <small class="form-text text-muted danger"  *ngIf="regularForm.get('fullName').errors.required">
-                        Name is required.
-                      </small>
-                      <small class="form-text text-muted danger"  *ngIf="regularForm.get('fullName').errors.minlength">
-                        Name must be at least 4 characters long.
-                      </small>
-                      <small class="form-text text-muted danger"  *ngIf="regularForm.get('fullName').errors.pattern">
-                        Chracters Only!
-                      </small>
+                    >Name characters length must be minimum 3</small>
                     </div>
-                  </div>
                   <div class="form-group">
                       <input
                         type="email"                    
@@ -97,7 +85,6 @@
                       name="customCheckboxInline1"
                       class="custom-control-input"
                       checked
-                      (change)="terms=!terms"
                     />
                     <label
                       class="custom-control-label"
@@ -119,7 +106,7 @@
                       </button>
                     </div>
                     <div class="recover-pass">
-                      <button (click)="onSubmit()"  [disabled]="!terms || !regularForm.valid || !matchPAss() "  class="btn btn-primary">
+                      <button (click)="onSubmit()"  [disabled]="!regularForm.valid"  class="btn btn-primary">
                         <a class="text-decoration-none text-white">
                           Register
                         </a>

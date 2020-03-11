@@ -21,15 +21,16 @@ export class LoginPageComponent implements OnInit{
             this.authService.isAuthenticated() ? this.router.navigate(['products']):null; 
             this.regularForm = new FormGroup({
                 'email': new FormControl(null, [Validators.required, Validators.email]),
-                'password': new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(24)]),
+                'password': new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(24)]),
                 
             });
         }
     // On submit button click
     onSubmit() {
         this.authService.signinUser(this.regularForm.value.email,this.regularForm.value.password).subscribe(resp=>{
+            console.log(JSON.stringify(resp))
             if(!resp){
-                    console.log("Invalid Credentials");
+                alert("Invalid Credentials")
             }
         })
         // this.loginForm.reset();

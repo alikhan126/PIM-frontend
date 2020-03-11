@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 import {ProductService} from '../products.service';
-import { NGXToastrService } from 'app/shared/services/toastr.service';
 
 @Component({
   selector: 'app-product',
@@ -19,28 +18,10 @@ export class AddProductComponent implements OnInit{
   categories:any=[];
   productFamilies:any=[];
   taxes:any=[];
-  Downloadable:any=[];
-  Simple:any=[];
-  Grouped:any=[];
-  Bundle:any=[];
-  Configurable:any=[];
-  Catalog:any=[];
-  NotVisibleIndividually:any=[];
-  Search:any=[];
-  FoodProducts:any=[];
-  NonFoodProducts:any=[];
-  Virtual:any=[];
-  Stocked:any=[];
-  SpecialOrder:any=[];
-  FromPartners:any=[];
-  ShipsFree:any=[];
-  NevershipsFree:any=[];
-  IncludedinTreshold:any=[];
-  FSD:any=[];
 
   isNew :boolean = false;
-  loading:boolean=false;
-  constructor(private toastService:NGXToastrService, private route : ActivatedRoute, private router : Router, private productService: ProductService){
+
+  constructor( private route : ActivatedRoute, private router : Router, private productService: ProductService){
 
   }
   ngOnInit () {
@@ -50,32 +31,10 @@ export class AddProductComponent implements OnInit{
      this.getTags();
      this.getBrands();
      this.getCategories();
-     // this.getProductFamilies();
-     //  this.getTaxes();
-     this.Simple = "simple";
-     this.Grouped = "grouped";
-     this.Configurable = "configurable";
-     this.Virtual = "virtual";
-     this.Bundle = "bundle";
-     this.Downloadable = "downloadable";
-     this.Catalog = "Catalog";
-     this.Search = "Search";
-     this.NotVisibleIndividually = "Not Visible Individually";
-     this.FoodProducts = "Food Products";
-     this.NonFoodProducts = "Non Food Products";
-     this.Stocked = "Stocked";
-     this.SpecialOrder = "Special Order";
-     this.FromPartners = "From Partners";
-     this.FSD = "FSD";
-     this.ShipsFree = "Ships Free";
-     this.NevershipsFree = "Never ships Free";
-     this.IncludedinTreshold = "Included in Treshold";
+     this.getProductFamilies();
+    //  this.getTaxes();
   }
 
-
-  test(val){
-    alert(val)
-  }
   getProduct(){
     const id = +this.route.snapshot.paramMap.get('id');
 
@@ -89,13 +48,12 @@ export class AddProductComponent implements OnInit{
 
   save(): void {
 
-  this.loading=true;
+
     if(this.isNew){
       this.productService.add(this.pObj)
       .subscribe(result => {
         this.pObj=result;
-        this.pObj && this.pObj.id //&& this.router.navigate(['products/']);
-        this.toastService.typeSuccessCustom("Success","Your product request is submitted for Admin's approval")
+        this.pObj && this.pObj.id && this.router.navigate(['products/'+this.pObj.id])
         // this.ts.success("Operation Performed Successfully");
       })
     }
@@ -124,17 +82,6 @@ export class AddProductComponent implements OnInit{
       // this.location.back();
   }
 
-  VISIBILITY_CHOICES = [
-    {name : 'Search'},
-    {name : 'Catalog'},
-    {name : 'NotVisibleIndividually'},
-  ]
-
-  SHIPPING_CHOICES = [
-    {name : 'Ships Free'},
-    {name : 'Never ships Free'},
-    {name : 'Included in Treshold'},
-  ]
 
 
   goToProducts(){
